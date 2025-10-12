@@ -14,6 +14,7 @@ tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 
 kalau terlalu panjang bagi proyek menjadi beberapa part tapi setiap part bisa langsung di lihat hasilnya, agar segera bisa di fix  kalau ada error, kemudian lanjut dengan  part selanjutnya di chat berikutnya.
 
+  <base href="/flutter/001-020/neon_whisper/build/web/">
 
 # 200 Proyek Flutter untuk Belajar (Pemula → Expert)
 
