@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flutter Projects - 200 Proyek Belajar</title>
+    <title>Flutter Projects - Proyek Belajar</title>
     <style>
         * {
             margin: 0;
@@ -217,7 +217,7 @@
     <div class="container">
         <header>
             <h1>🍃 Flutter Projects</h1>
-            <p class="subtitle">Flutter App Collection - 200 Learning Experiences</p>
+            <p class="subtitle">Flutter Collection - 200 Interactive Experiences</p>
         </header>
 
         <div class="search-box">
@@ -438,7 +438,14 @@
             const folderRange = Math.floor((num - 1) / 20) * 20 + 1;
             const folderEnd = folderRange + 19;
             const folder = `${String(folderRange).padStart(3, '0')}-${String(folderEnd).padStart(3, '0')}`;
-            return `/${folder}/${name}/build/web`;
+            
+            // Convert CamelCase to snake_case
+            const snakeCaseName = name
+                .replace(/([A-Z])/g, '_$1')
+                .toLowerCase()
+                .replace(/^_/, '');
+            
+            return `/${folder}/${snakeCaseName}/build/web`;
         }
 
         function renderProjects(filteredProjects) {
