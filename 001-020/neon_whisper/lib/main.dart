@@ -10,7 +10,7 @@ import 'widgets/neon_text.dart';
 
 /// Entry point aplikasi Flutter
 /// 
-/// main() adalah function pertama yang dijalankan
+/// main() adalah function pertama yang dijalankan.
 /// async karena kita akan melakukan setup asynchronous
 void main() async {
   // Memastikan Flutter binding sudah diinisialisasi
