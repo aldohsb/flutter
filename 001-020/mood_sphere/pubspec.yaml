@@ -1,0 +1,33 @@
+name: moodsphere
+description: "Aplikasi mood tracker dengan tombol emosi yang meledak warna random"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Icon yang indah dan modern
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Linting untuk code quality
+  flutter_lints: ^3.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # Jika ingin menambahkan custom fonts (opsional)
+  # fonts:
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: fonts/Poppins-Regular.ttf
+  #       - asset: fonts/Poppins-Bold.ttf
+  #         weight: 700

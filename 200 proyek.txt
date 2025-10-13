@@ -11,6 +11,7 @@ jangan gunakan syntax code yang sudah deprecated.
 mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
 tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+nama proyek pakai snake case
 
 kalau terlalu panjang bagi proyek menjadi beberapa part tapi setiap part bisa langsung di lihat hasilnya, agar segera bisa di fix  kalau ada error, kemudian lanjut dengan  part selanjutnya di chat berikutnya.
 
