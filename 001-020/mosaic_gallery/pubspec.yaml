@@ -1,0 +1,33 @@
+name: mosaic_gallery
+description: Grid foto dengan efek parallax scroll dan Memphis design
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Tidak ada dependency eksternal - fokus pada Flutter core widgets
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Daftarkan semua asset gambar yang akan digunakan
+  # Path relatif dari root project
+  assets:
+    - assets/images/
+  
+  # Jika ingin menambahkan font custom untuk Memphis design
+  # fonts:
+  #   - family: Memphis
+  #     fonts:
+  #       - asset: fonts/Memphis-Bold.ttf
+  #         weight: 700
