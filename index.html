@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flutter Projects - Proyek Belajar</title>
+    <title>Flutter Projects - Aldohsb</title>
     <style>
         * {
             margin: 0;
@@ -101,6 +101,98 @@
             margin-top: 40px;
         }
 
+        .special-projects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(218, 165, 32, 0.3) 100%);
+            border: 3px solid #daa520;
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(218, 165, 32, 0.3);
+            grid-column: span 1;
+        }
+
+        .special-card::before {
+            content: '⭐';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+
+        .special-card:hover::before {
+            opacity: 0.8;
+            transform: rotate(72deg) scale(1.2);
+        }
+
+        .special-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .special-card:hover::after {
+            opacity: 1;
+        }
+
+        .special-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #ffd700;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(218, 165, 32, 0.4) 100%);
+            box-shadow: 0 15px 40px rgba(218, 165, 32, 0.5);
+        }
+
+        .special-badge {
+            display: inline-block;
+            background: #daa520;
+            color: white;
+            font-size: 0.75em;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .special-name {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2a2a2a;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-description {
+            font-size: 1.1em;
+            color: #4a4a4a;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
         .project-card {
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(212, 228, 188, 0.8) 100%);
             border: 2px solid #8b7355;
@@ -186,12 +278,20 @@
             .projects-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
+            
+            .special-projects {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 15px;
+            }
+            
+            .special-projects {
+                grid-template-columns: 1fr;
             }
             
             h1 {
@@ -201,6 +301,10 @@
 
         @media (max-width: 480px) {
             .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-projects {
                 grid-template-columns: 1fr;
             }
         }
@@ -217,11 +321,25 @@
     <div class="container">
         <header>
             <h1>🍃 Flutter Projects</h1>
-            <p class="subtitle">Flutter Collection - 200 Interactive Experiences</p>
+            <p class="subtitle">Zen Garden Collection - 200 Interactive Experiences</p>
         </header>
 
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Cari proyek..." onkeyup="filterProjects()">
+        </div>
+
+        <div class="special-projects">
+            <a href="/letterhanna/build/web" class="special-card">
+                <span class="special-badge">Special #1</span>
+                <div class="special-name">Letterhanna</div>
+                <div class="special-description">Aplikasi eCommerce handwriting font Letterhanna Studio</div>
+            </a>
+            
+            <a href="/mochi_quiz/build/web" class="special-card">
+                <span class="special-badge">Special #2</span>
+                <div class="special-name">MochiQuiz</div>
+                <div class="special-description">Belajar hiragana, katakana dan kanji dengan kuis menantang</div>
+            </a>
         </div>
 
         <div class="projects-grid" id="projectsGrid"></div>
@@ -445,7 +563,7 @@
                 .toLowerCase()
                 .replace(/^_/, '');
             
-            return `/flutter/${folder}/${snakeCaseName}/build/web`;
+            return `/${folder}/${snakeCaseName}/build/web`;
         }
 
         function renderProjects(filteredProjects) {
