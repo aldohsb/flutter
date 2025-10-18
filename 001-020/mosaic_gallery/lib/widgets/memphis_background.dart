@@ -11,9 +11,9 @@ class MemphisBackground extends StatelessWidget {
 
   /// Constructor
   const MemphisBackground({
-    Key? key,
+    super.key,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

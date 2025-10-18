@@ -135,7 +135,7 @@ class GridCalculator {
     final double spacing = calculateSpacing(context);
     
     // Total padding horizontal (kiri + kanan)
-    final double totalHorizontalPadding = horizontalPadding * 2;
+    const double totalHorizontalPadding = horizontalPadding * 2;
     
     // Total spacing horizontal (spacing antar kolom)
     // Jumlah spacing = columnCount - 1

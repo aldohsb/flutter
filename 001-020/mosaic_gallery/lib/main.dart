@@ -40,7 +40,7 @@ void main() {
 /// MosaicGalleryApp - Root widget aplikasi
 /// StatelessWidget karena configuration tidak berubah
 class MosaicGalleryApp extends StatelessWidget {
-  const MosaicGalleryApp({Key? key}) : super(key: key);
+  const MosaicGalleryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,9 +77,9 @@ class MosaicGalleryApp extends StatelessWidget {
           // Clamp text scale factor antara 0.8 - 1.2
           // Mencegah text terlalu kecil atau besar dari user settings
           data: MediaQuery.of(context).copyWith(
-            textScaleFactor: MediaQuery.of(context)
+            textScaler: TextScaler.linear(MediaQuery.of(context)
                 .textScaleFactor
-                .clamp(0.8, 1.2),
+                .clamp(0.8, 1.2)),
           ),
           child: child!,
         );

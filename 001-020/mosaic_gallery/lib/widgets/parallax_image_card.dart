@@ -17,11 +17,11 @@ class ParallaxImageCard extends StatelessWidget {
 
   /// Constructor
   const ParallaxImageCard({
-    Key? key,
+    super.key,
     required this.photo,
     required this.imageKey,
     required this.scrollController,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

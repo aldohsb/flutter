@@ -1,0 +1,56 @@
+name: letterhanna
+description: "Aplikasi E-Commerce Handwriting Font Elegant - Letterhanna"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+# Penjelasan: 
+# - name: nama aplikasi yang akan ditampilkan di store ds
+# - version: versi aplikasi (1.0.0+1 artinya versi 1.0.0, build 1)
+# - publish_to: 'none' artinya tidak akan dipublish ke pub.dev
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  # Penjelasan: Menentukan versi Dart SDK yang kompatibel
+  # >=3.0.0 artinya minimal Dart 3.0.0
+  # <4.0.0 artinya dibawah Dart 4.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Penjelasan: Dependency utama Flutter framework
+
+  cupertino_icons: ^1.0.2
+  # Penjelasan: Icon iOS style untuk Flutter
+
+  google_fonts: ^6.1.0
+  # Penjelasan: Package untuk menggunakan Google Fonts (akan kita gunakan untuk font elegant)
+
+  intl: ^0.19.0
+  # Penjelasan: Package untuk internationalization (format tanggal, currency, dll)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # Penjelasan: Package untuk testing Flutter
+
+  flutter_lints: ^3.0.0
+  # Penjelasan: Package untuk code style dan best practices
+
+flutter:
+  uses-material-design: true
+  # Penjelasan: Menggunakan Material Design dari Flutter
+  
+  # Pada bagian ini (AKAN DITAMBAH KEMUDIAN):
+  # - Definisi custom fonts
+  # - Definisi assets (gambar, icon, dll)
+  # - Definisi splash screen
+
+# Catatan untuk Hari 1:
+# Dependencies ini adalah foundation awal. Hari-hari berikutnya akan menambah:
+# - state management (Provider, GetX, atau Riverpod)
+# - HTTP client (Dio)
+# - Local database (Hive atau Sqflite)
+# - Firebase untuk backend
+# - Image processing
+# - Payment gateway (Midtrans, Xendit)

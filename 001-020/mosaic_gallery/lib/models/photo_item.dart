@@ -89,94 +89,94 @@ class PhotoItem {
   static List<PhotoItem> getDummyPhotos() {
     return [
       // Row 1 - Warna warm
-      PhotoItem(
+      const PhotoItem(
         id: '1',
         assetPath: 'assets/images/photo1.jpg',
         title: 'Sunset Vibes',
-        accentColor: const Color(0xFFFF006E), // Pink
+        accentColor: Color(0xFFFF006E), // Pink
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '2',
         assetPath: 'assets/images/photo2.jpg',
         title: 'Urban Dreams',
-        accentColor: const Color(0xFFFFBE0B), // Yellow
+        accentColor: Color(0xFFFFBE0B), // Yellow
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '3',
         assetPath: 'assets/images/photo3.jpg',
         title: 'Nature Calm',
-        accentColor: const Color(0xFF06FFA5), // Mint
+        accentColor: Color(0xFF06FFA5), // Mint
         aspectRatio: 1.0,
       ),
       
       // Row 2 - Warna cool
-      PhotoItem(
+      const PhotoItem(
         id: '4',
         assetPath: 'assets/images/photo4.jpg',
         title: 'Ocean Breeze',
-        accentColor: const Color(0xFF00D9FF), // Cyan
+        accentColor: Color(0xFF00D9FF), // Cyan
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '5',
         assetPath: 'assets/images/photo5.jpg',
         title: 'Mountain High',
-        accentColor: const Color(0xFF8338EC), // Purple
+        accentColor: Color(0xFF8338EC), // Purple
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '6',
         assetPath: 'assets/images/photo6.jpg',
         title: 'City Lights',
-        accentColor: const Color(0xFFFF6B35), // Orange
+        accentColor: Color(0xFFFF6B35), // Orange
         aspectRatio: 1.0,
       ),
       
       // Row 3 - Mix colors
-      PhotoItem(
+      const PhotoItem(
         id: '7',
         assetPath: 'assets/images/photo7.jpg',
         title: 'Desert Mirage',
-        accentColor: const Color(0xFF3A86FF), // Electric Blue
+        accentColor: Color(0xFF3A86FF), // Electric Blue
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '8',
         assetPath: 'assets/images/photo8.jpg',
         title: 'Forest Path',
-        accentColor: const Color(0xFFFF5A5F), // Coral
+        accentColor: Color(0xFFFF5A5F), // Coral
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '9',
         assetPath: 'assets/images/photo9.jpg',
         title: 'Sky Above',
-        accentColor: const Color(0xFFFF006E), // Pink
+        accentColor: Color(0xFFFF006E), // Pink
         aspectRatio: 1.0,
       ),
       
       // Tambahan untuk scrolling
-      PhotoItem(
+      const PhotoItem(
         id: '10',
         assetPath: 'assets/images/photo1.jpg', // Reuse
         title: 'Dawn Light',
-        accentColor: const Color(0xFFFFBE0B), // Yellow
+        accentColor: Color(0xFFFFBE0B), // Yellow
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '11',
         assetPath: 'assets/images/photo2.jpg', // Reuse
         title: 'Night Sky',
-        accentColor: const Color(0xFF8338EC), // Purple
+        accentColor: Color(0xFF8338EC), // Purple
         aspectRatio: 1.0,
       ),
-      PhotoItem(
+      const PhotoItem(
         id: '12',
         assetPath: 'assets/images/photo3.jpg', // Reuse
         title: 'River Flow',
-        accentColor: const Color(0xFF06FFA5), // Mint
+        accentColor: Color(0xFF06FFA5), // Mint
         aspectRatio: 1.0,
       ),
     ];

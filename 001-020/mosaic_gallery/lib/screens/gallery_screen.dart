@@ -9,7 +9,7 @@ import '../config/app_colors.dart';
 /// Menggunakan GridView.builder untuk performa optimal
 /// Implements parallax scroll effect dan Memphis design
 class GalleryScreen extends StatefulWidget {
-  const GalleryScreen({Key? key}) : super(key: key);
+  const GalleryScreen({super.key});
 
   @override
   State<GalleryScreen> createState() => _GalleryScreenState();

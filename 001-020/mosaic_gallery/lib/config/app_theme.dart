@@ -24,7 +24,7 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.background,
       
       // Color scheme untuk Material 3 compatibility
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: AppColors.cyan,
         secondary: AppColors.pink,
         surface: AppColors.cardBackground,
@@ -36,7 +36,7 @@ class AppTheme {
 
       // === APP BAR THEME ===
       
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         // Elevation 0 untuk flat design yang modern
         elevation: 0,
         
@@ -84,7 +84,7 @@ class AppTheme {
 
       // === TEXT THEME ===
       
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
         // Display - untuk heading besar
         displayLarge: TextStyle(
           fontSize: 32,
@@ -125,7 +125,7 @@ class AppTheme {
 
       // === ICON THEME ===
       
-      iconTheme: IconThemeData(
+      iconTheme: const IconThemeData(
         color: AppColors.textPrimary,
         size: 24,
       ),

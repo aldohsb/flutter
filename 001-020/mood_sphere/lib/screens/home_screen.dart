@@ -115,14 +115,14 @@ class _HomeScreenState extends State<HomeScreen> {
       // Background dengan gradient
       body: Container(
         // Decoration untuk background gradient
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              const Color(0xFF1a1a2e), // Dark blue
-              const Color(0xFF16213e), // Darker blue
-              const Color(0xFF0f3460), // Deep blue
+              Color(0xFF1a1a2e), // Dark blue
+              Color(0xFF16213e), // Darker blue
+              Color(0xFF0f3460), // Deep blue
             ],
           ),
         ),
