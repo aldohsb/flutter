@@ -310,13 +310,13 @@ class HomePage extends StatelessWidget {
             height: 140,
             // Dimensi gambar
             
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               // Styling container gambar
               
               color: Color(0xFFF0F0F0),
               // color: warna placeholder (abu-abu terang)
               
-              borderRadius: const BorderRadius.only(
+              borderRadius: BorderRadius.only(
                 // borderRadius: hanya top-left dan top-right yang rounded
                 // Agar sesuai dengan border card
                 

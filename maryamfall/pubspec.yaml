@@ -1,0 +1,30 @@
+name: maryamfall
+description: Game jatuh ala Fluffy Fall - Tutorial Flutter 30 Hari
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Untuk icons cantik
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  # Untuk code quality
+  flutter_lints: ^2.0.0
+
+# Konfigurasi assets (gambar, font, dll)
+flutter:
+  uses-material-design: true
+  
+  # Nanti kita akan tambahkan assets di sini
+  # assets:
+  #   - assets/images/
+  #   - assets/audio/
