@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constants/app_constants.dart';
-import '../../models/models.dart';
 import '../../providers/app_providers.dart';
 import '../results/results_screen.dart';
 import '../../widgets/quiz/question_card.dart';
