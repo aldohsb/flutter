@@ -1,0 +1,20 @@
+name: sky_mood
+description: "Aplikasi widget cuaca dengan particle animation dan claymorphism design."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '^3.2.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flutter Projects - by Aldohsb</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 40%, #a5d6a7 100%);
+            color: #2d3e2d;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(139, 115, 85, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(101, 67, 33, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(165, 214, 167, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(101, 67, 33, 0.9) 0%, rgba(62, 39, 35, 0.95) 100%);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(139, 115, 85, 0.5);
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #e8f5e9;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: #c8e6c9;
+            font-style: italic;
+        }
+
+        .search-box {
+            margin: 30px auto;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.1em;
+            border: 2px solid #654321;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            color: #2d3e2d;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(62, 39, 35, 0.2);
+        }
+
+        .search-box input::placeholder {
+            color: #7a9d7a;
+        }
+
+        .search-box input:focus {
+            background: rgba(255, 255, 255, 1);
+            border-color: #4a7c59;
+            box-shadow: 0 4px 16px rgba(74, 124, 89, 0.4);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .special-projects {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .special-card {
+            background: linear-gradient(135deg, rgba(255, 235, 205, 0.95) 0%, rgba(245, 222, 179, 0.9) 100%);
+            border: 3px solid #8b6914;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(139, 105, 20, 0.3);
+            grid-column: span 1;
+        }
+
+        .special-card::before {
+            content: '⭐';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2em;
+            opacity: 0.3;
+            transition: all 0.4s ease;
+        }
+
+        .special-card:hover::before {
+            opacity: 0.8;
+            transform: rotate(72deg) scale(1.2);
+        }
+
+        .special-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .special-card:hover::after {
+            opacity: 1;
+        }
+
+        .special-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: #daa520;
+            background: linear-gradient(135deg, rgba(255, 235, 205, 1) 0%, rgba(245, 222, 179, 1) 100%);
+            box-shadow: 0 15px 40px rgba(139, 105, 20, 0.5);
+        }
+
+        .special-badge {
+            display: inline-block;
+            background: #8b6914;
+            color: white;
+            font-size: 0.65em;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .special-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #3e2723;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .special-description {
+            font-size: 1.1em;
+            color: #5d4037;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(232, 245, 233, 0.9) 100%);
+            border: 2px solid #654321;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            backdrop-filter: blur(5px);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(62, 39, 35, 0.15);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(165, 214, 167, 0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: #4a7c59;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 1) 0%, rgba(232, 245, 233, 1) 100%);
+            box-shadow: 0 12px 30px rgba(74, 124, 89, 0.3);
+        }
+
+        .project-number {
+            font-size: 0.9em;
+            color: #654321;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: rgba(101, 67, 33, 0.1);
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .project-name {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #2d3e2d;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-description {
+            font-size: 0.95em;
+            color: #4a5d4a;
+            line-height: 1.5;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats {
+            text-align: center;
+            margin: 20px 0;
+            color: #c5d5a8;
+            font-size: 1.1em;
+        }
+
+        .zen-decoration {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            opacity: 0.3;
+        }
+
+        @media (max-width: 1200px) {
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .special-projects{
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+                      }
+        }
+
+        @media (max-width: 768px) {
+            .projects-grid, .special-projects{
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+                        
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .special-projects {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #4a7c59;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍃 Flutter Projects</h1>
+            <p class="subtitle">Flutter App Collection by Aldohsb</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari proyek..." onkeyup="filterProjects()">
+        </div>
+
+        <div class="special-projects">
+            <a href="/letterhanna/build/web" class="special-card">
+                <span class="special-badge">Special #1</span>
+                <div class="special-name">Letterhanna</div>
+                <div class="special-description">Aplikasi eCommerce handwriting font Letterhanna Studio</div>
+            </a>
+            
+            <a href="/usama_quiz/build/web" class="special-card">
+                <span class="special-badge">Special #2</span>
+                <div class="special-name">UsamaQuiz</div>
+                <div class="special-description">Belajar hiragana, katakana dan kanji dengan kuis menantang</div>
+            </a>
+
+            <a href="/lisaanaquiz/build/web" class="special-card">
+                <span class="special-badge">Special #3</span>
+                <div class="special-name">LisaanaQuiz</div>
+                <div class="special-description">Belajar 1700 kosakata bahasa Arab dengan kuis menantang</div>
+            </a>
+
+            <a href="/maryam_fall/build/web" class="special-card">
+                <span class="special-badge">Special #4</span>
+                <div class="special-name">MaryamFall</div>
+                <div class="special-description">Game seru menghindari hambatan saat jatuh.</div>
+            </a>
+        </div>
+
+        <div class="projects-grid" id="projectsGrid"></div>
+        <div class="no-results" id="noResults" style="display: none;">
+            Tidak ada proyek yang ditemukan
+        </div>
+    </div>
+
+    <script>
+        const projects = [
+            { num: 1, name: "NeonWhisper", desc: "Aplikasi salam interaktif dengan efek neon glow" },
+            { num: 2, name: "MoodSphere", desc: "Tombol emosi yang meledak warna random" },
+            { num: 3, name: "PulseCounter", desc: "Penghitung dengan animasi heartbeat effect" },
+            { num: 4, name: "MosaicGallery", desc: "Grid foto dengan efek parallax scroll" },
+            { num: 5, name: "AuraCard", desc: "Kartu profil holografik dengan glassmorphism" },
+            { num: 6, name: "SkyMood", desc: "Widget cuaca dengan particle animation background" },
+            { num: 7, name: "InkScroll", desc: "Feed quotes dengan ink bleed effect" },
+            { num: 8, name: "ChromaLab", desc: "Color mixer dengan real-time preview" },
+            { num: 9, name: "NeonPulse", desc: "Countdown timer dengan neon tube aesthetic" },
+            { num: 10, name: "LunarToggle", desc: "Theme switcher dengan moon phase animation" },
+            { num: 11, name: "ZenCalc", desc: "Kalkulator dengan sand ripple animations" },
+            { num: 12, name: "FlowTask", desc: "Todo list dengan water flow transitions" },
+            { num: 13, name: "CrystalDice", desc: "Dice roller dengan 3D crystal shatter effect" },
+            { num: 14, name: "VitalCheck", desc: "BMI calculator dengan health aura visualization" },
+            { num: 15, name: "TipVibe", desc: "Bill splitter dengan vibrant haptic feedback" },
+            { num: 16, name: "QuantumFlip", desc: "Flashcard dengan quantum flip physics" },
+            { num: 17, name: "AtomicWatch", desc: "Stopwatch dengan atomic clock precision" },
+            { num: 18, name: "VaultKey", desc: "Password generator dengan cipher aesthetics" },
+            { num: 19, name: "FluxConverter", desc: "Unit converter dengan electromagnetic theme" },
+            { num: 20, name: "QuickSpend", desc: "Expense tracker cepat dengan one-tap entry" },
+            { num: 21, name: "SonicWave", desc: "Music player dengan waveform visualizer" },
+            { num: 22, name: "FlavorVault", desc: "Recipe book dengan ingredient smell animations" },
+            { num: 23, name: "BurnRush", desc: "HIIT timer dengan flame particle effects" },
+            { num: 24, name: "PaperCloud", desc: "Note app dengan origami folding transitions" },
+            { num: 25, name: "QuantumCode", desc: "QR generator dengan quantum particle background" },
+            { num: 26, name: "StormCast", desc: "Weather app dengan storm particle system" },
+            { num: 27, name: "InkFeed", desc: "News reader dengan newspaper ink spread" },
+            { num: 28, name: "GoldFlux", desc: "Currency converter dengan molten gold effect" },
+            { num: 29, name: "HabitFlow", desc: "Habit tracker dengan daily checklist visual" },
+            { num: 30, name: "FocusOrb", desc: "Pomodoro timer dengan meditation orb" },
+            { num: 31, name: "KanaQuest", desc: "Kuis baca hiragana, katakana dan kanji interaktif" },
+            { num: 32, name: "WealthOrb", desc: "Budget planner dengan crystal ball prediction" },
+            { num: 33, name: "CodeNebula", desc: "Markdown editor dengan code constellation" },
+            { num: 34, name: "CinemaVoid", desc: "Movie database dengan void space aesthetic" },
+            { num: 35, name: "PawPrint", desc: "Pet care reminder dengan paw trail animation" },
+            { num: 36, name: "HydroSphere", desc: "Water reminder dengan liquid sphere physics" },
+            { num: 37, name: "MindMaze", desc: "Quiz app dengan neural maze background" },
+            { num: 38, name: "PrismSync", desc: "Contact app dengan light prism refraction" },
+            { num: 39, name: "EmberLog", desc: "Daily journal dengan burning paper aesthetic" },
+            { num: 40, name: "CartCrystal", desc: "Shopping list dengan crystalline structure" },
+            { num: 41, name: "IronForge", desc: "Gym logger dengan metal forging theme" },
+            { num: 42, name: "DreamWeave", desc: "Sleep tracker dengan dreamcatcher visual" },
+            { num: 43, name: "FeastFlow", desc: "Meal planner dengan food constellation map" },
+            { num: 44, name: "NovaCount", desc: "Event countdown dengan supernova explosion" },
+            { num: 45, name: "EchoWave", desc: "Voice recorder dengan echo visualization" },
+            { num: 46, name: "TomeKeeper", desc: "Book library dengan ancient tome aesthetic" },
+            { num: 47, name: "DataPrism", desc: "Expense visualizer dengan data refraction" },
+            { num: 48, name: "CipherVault", desc: "Password manager dengan encryption visual" },
+            { num: 49, name: "NexusTask", desc: "Task manager dengan neural connection web" },
+            { num: 50, name: "StudyPulse", desc: "Study planner dengan brainwave rhythm" },
+            { num: 51, name: "VoidChat", desc: "Local chat dengan dark matter bubbles" },
+            { num: 52, name: "PrismFilter", desc: "Photo editor dengan light spectrum manipulation" },
+            { num: 53, name: "TerraNavi", desc: "Map explorer dengan topographic layers" },
+            { num: 54, name: "FlavorDash", desc: "Food delivery UI dengan taste wave design" },
+            { num: 55, name: "AetherFeed", desc: "Social timeline dengan ethereal mist effect" },
+            { num: 56, name: "ChromaPlay", desc: "Video player dengan chromatic aberration" },
+            { num: 57, name: "NexusShop", desc: "E-commerce dengan quantum entanglement theme" },
+            { num: 58, name: "ChronoSphere", desc: "Calendar dengan time sphere visualization" },
+            { num: 59, name: "SonicCast", desc: "Podcast player dengan sound molecule theme" },
+            { num: 60, name: "PixelGram", desc: "Instagram clone dengan pixel art aesthetic" },
+            { num: 61, name: "QuantumChat", desc: "WhatsApp clone dengan quantum communication" },
+            { num: 62, name: "MeloSphere", desc: "Spotify clone dengan melody orb visualization" },
+            { num: 63, name: "FluxScroll", desc: "TikTok clone dengan energy flux transitions" },
+            { num: 64, name: "ChirpStream", desc: "Twitter clone dengan bird flight patterns" },
+            { num: 65, name: "CosmicStay", desc: "Airbnb clone dengan cosmic lodging theme" },
+            { num: 66, name: "SheRide", desc: "Ride-hailing khusus ojek perempuan dengan safety features" },
+            { num: 67, name: "VoidFlix", desc: "Netflix clone dengan void space cinema" },
+            { num: 68, name: "NexusLink", desc: "LinkedIn clone dengan neural network web" },
+            { num: 69, name: "InkStory", desc: "Medium clone dengan flowing ink aesthetic" },
+            { num: 70, name: "CrystalPin", desc: "Pinterest clone dengan crystal mosaic layout" },
+            { num: 71, name: "VoidLink", desc: "Discord clone dengan dark void channels" },
+            { num: 72, name: "FlowBoard", desc: "Trello clone dengan liquid flow cards" },
+            { num: 73, name: "QuantumSpace", desc: "Notion clone dengan quantum workspace" },
+            { num: 74, name: "NexusTeam", desc: "Slack clone dengan team nexus connections" },
+            { num: 75, name: "HoloMeet", desc: "Zoom clone dengan holographic projection" },
+            { num: 76, name: "VectorForge", desc: "Figma clone dengan vector field background" },
+            { num: 77, name: "ChromaDesign", desc: "Canva clone dengan color explosion theme" },
+            { num: 78, name: "GlyphPath", desc: "Duolingo clone dengan ancient path theme" },
+            { num: 79, name: "ZenSphere", desc: "Headspace clone dengan zen orb meditation" },
+            { num: 80, name: "PulseRun", desc: "Strava clone dengan heartbeat trail visual" },
+            { num: 81, name: "TomeShelf", desc: "Goodreads clone dengan mystical shelf" },
+            { num: 82, name: "CinemaDB", desc: "IMDb clone dengan film reel aesthetic" },
+            { num: 83, name: "FlavorFind", desc: "Yelp clone dengan taste explosion map" },
+            { num: 84, name: "KnowledgeNexus", desc: "Udemy clone dengan knowledge network web" },
+            { num: 85, name: "MerchantOrb", desc: "Shopify clone dengan merchant crystal ball" },
+            { num: 86, name: "CampaignForge", desc: "Mailchimp clone dengan forge hammer theme" },
+            { num: 87, name: "TaskNexus", desc: "Asana clone dengan task web connection" },
+            { num: 88, name: "CloudVault", desc: "Dropbox clone dengan cloud particle system" },
+            { num: 89, name: "NoteOrb", desc: "Evernote clone dengan thought orb theme" },
+            { num: 90, name: "RouteFlux", desc: "Waze clone dengan route energy flux" },
+            { num: 91, name: "FlavorRush", desc: "Swiggy clone dengan spice rush theme" },
+            { num: 92, name: "WalletNexus", desc: "Paytm clone dengan digital nexus connection" },
+            { num: 93, name: "ShowSphere", desc: "BookMyShow clone dengan entertainment orb" },
+            { num: 94, name: "MarketVoid", desc: "OLX clone dengan market void aesthetic" },
+            { num: 95, name: "ThreadNexus", desc: "Reddit clone dengan discussion thread web" },
+            { num: 96, name: "CodeForge", desc: "StackOverflow clone dengan code forge theme" },
+            { num: 97, name: "PortfolioGalaxy", desc: "Behance clone dengan portfolio galaxy theme" },
+            { num: 98, name: "DesignSphere", desc: "Dribbble clone dengan design orb aesthetic" },
+            { num: 99, name: "WaveCloud", desc: "SoundCloud clone dengan sound wave clouds" },
+            { num: 100, name: "GatherSphere", desc: "Meetup clone dengan gathering sphere visual" },
+            { num: 101, name: "CryptoNexus", desc: "Crypto tracker dengan blockchain nexus web" },
+            { num: 102, name: "SpatialForge", desc: "AR furniture app dengan spatial mapping" },
+            { num: 103, name: "FaceNexus", desc: "Face filter app dengan facial nexus mapping" },
+            { num: 104, name: "GlyphScan", desc: "Real-time translator dengan ancient glyphs" },
+            { num: 105, name: "FloraOracle", desc: "Plant identifier dengan nature oracle theme" },
+            { num: 106, name: "MotionForge", desc: "AI fitness trainer dengan motion capture" },
+            { num: 107, name: "ReceiptSage", desc: "AI expense tracker dengan receipt intelligence" },
+            { num: 108, name: "EchoMind", desc: "Voice assistant dengan echo mind visualization" },
+            { num: 109, name: "ScanForge", desc: "Document scanner dengan edge forge detection" },
+            { num: 110, name: "ReflectDash", desc: "Smart mirror dashboard dengan reflection UI" },
+            { num: 111, name: "ParkOracle", desc: "Parking finder dengan availability oracle" },
+            { num: 112, name: "SparkMatch", desc: "Dating app dengan chemistry spark visual" },
+            { num: 113, name: "EstateVision", desc: "Property finder dengan AR vision overlay" },
+            { num: 114, name: "MediLink", desc: "Telehealth app dengan medical link connection" },
+            { num: 115, name: "TutorNexus", desc: "Online tutoring dengan knowledge nexus board" },
+            { num: 116, name: "NutriVision", desc: "Food recognition dengan nutrition vision AI" },
+            { num: 117, name: "StyleForge", desc: "AI fashion stylist dengan style forge algorithm" },
+            { num: 118, name: "DomainHub", desc: "Smart home controller dengan domain nexus" },
+            { num: 119, name: "AutoScan", desc: "Car diagnostic dengan OBD scanner interface" },
+            { num: 120, name: "SkyCommand", desc: "Drone controller dengan sky command HUD" },
+            { num: 121, name: "VeloMap", desc: "Bike sharing dengan velocity map tracking" },
+            { num: 122, name: "RideSync", desc: "Carpooling dengan synchronized ride matching" },
+            { num: 123, name: "EventVault", desc: "Event ticketing dengan vault security theme" },
+            { num: 124, name: "BidSphere", desc: "Auction platform dengan bidding sphere energy" },
+            { num: 125, name: "TradeNexus", desc: "Stock trading dengan market nexus web" },
+            { num: 126, name: "CryptoForge", desc: "NFT marketplace dengan blockchain forge" },
+            { num: 127, name: "PawMatch", desc: "Pet adoption dengan paw print matching" },
+            { num: 128, name: "LifeLink", desc: "Blood donor app dengan life connection web" },
+            { num: 129, name: "AlertNexus", desc: "Disaster alert dengan emergency nexus network" },
+            { num: 130, name: "ImpactSphere", desc: "Volunteer platform dengan impact sphere visualization" },
+            { num: 131, name: "GuideVision", desc: "AR local guide dengan vision overlay" },
+            { num: 132, name: "FlavorShare", desc: "Recipe sharing dengan flavor network web" },
+            { num: 133, name: "GardenForge", desc: "Garden planner dengan growth forge simulation" },
+            { num: 134, name: "MakerSpace", desc: "DIY project guide dengan maker aesthetic" },
+            { num: 135, name: "MuseGallery", desc: "Virtual art gallery dengan 3D museum tour" },
+            { num: 136, name: "HarmonyLink", desc: "Music collaboration dengan harmony connection" },
+            { num: 137, name: "PodForge", desc: "Podcast studio dengan audio forge tools" },
+            { num: 138, name: "ReelForge", desc: "Mobile video editor dengan cinematic reel" },
+            { num: 139, name: "FrameCraft", desc: "Frame-by-frame animator dengan craft aesthetic" },
+            { num: 140, name: "PixelEngine", desc: "2D game engine dengan pixel world builder" },
+            { num: 141, name: "ChessMind", desc: "Chess game dengan strategic mind mapping" },
+            { num: 142, name: "CardNexus", desc: "Multiplayer poker dengan card nexus energy" },
+            { num: 143, name: "StoryPath", desc: "Game cerita interaktif dengan pilihan bercabang" },
+            { num: 144, name: "TaleTree", desc: "Game cerita anak interaktif dengan pilihan edukatif" },
+            { num: 145, name: "TreasureVoid", desc: "GPS treasure hunt dengan void portal travel" },
+            { num: 146, name: "PixelPet", desc: "Virtual pet Tamagotchi dengan pixel evolution" },
+            { num: 147, name: "HarvestMoon", desc: "Farm simulator dengan lunar cycle economy" },
+            { num: 148, name: "FlavorEmpire", desc: "Restaurant management simulator dengan taste empire" },
+            { num: 149, name: "MetropolisForge", desc: "City builder simulator dengan metropolis forge" },
+            { num: 150, name: "VoidExplorer", desc: "Space exploration simulator dengan void travel" },
+            { num: 151, name: "VaultBank", desc: "Full banking app dengan multi-layer security" },
+            { num: 152, name: "ShieldCare", desc: "Insurance app dengan protection shield theme" },
+            { num: 153, name: "TalentNexus", desc: "HR management dengan talent connection network" },
+            { num: 154, name: "WarehouseOrb", desc: "Inventory system dengan warehouse sphere tracking" },
+            { num: 155, name: "RetailForge", desc: "Point of sale dengan retail forge ecosystem" },
+            { num: 156, name: "ClientSphere", desc: "CRM system dengan client relationship sphere" },
+            { num: 157, name: "ProjectNexus", desc: "Enterprise project management dengan nexus web" },
+            { num: 158, name: "JusticeVault", desc: "Legal case management dengan justice vault security" },
+            { num: 159, name: "MedRecord", desc: "Electronic medical record dengan patient record nexus" },
+            { num: 160, name: "EduSphere", desc: "School management dengan education sphere ecosystem" },
+            { num: 161, name: "BiblioNexus", desc: "Library system dengan bibliographic nexus network" },
+            { num: 162, name: "MediQueue", desc: "Hospital queue dengan medical flow optimization" },
+            { num: 163, name: "FleetVision", desc: "Fleet management dengan vehicle vision tracking" },
+            { num: 164, name: "RoboCommand", desc: "Warehouse robot controller dengan command nexus" },
+            { num: 165, name: "AgroSphere", desc: "Smart farming dengan agricultural sphere network" },
+            { num: 166, name: "PowerNexus", desc: "Energy monitoring dengan power nexus grid" },
+            { num: 167, name: "AquaOracle", desc: "Water quality monitoring dengan oracle prediction" },
+            { num: 168, name: "AtmosGuard", desc: "Air quality monitoring dengan atmospheric guardian" },
+            { num: 169, name: "TrafficMind", desc: "Traffic management dengan intelligent mind network" },
+            { num: 170, name: "ParkingOrb", desc: "Automated parking dengan parking sphere matrix" },
+            { num: 171, name: "SecureNexus", desc: "Building security dengan integrated nexus network" },
+            { num: 172, name: "RetailVision", desc: "Retail analytics dengan customer vision insight" },
+            { num: 173, name: "SupplyForge", desc: "Supply chain management dengan logistics forge" },
+            { num: 174, name: "ManufactureOrb", desc: "Manufacturing execution dengan production sphere" },
+            { num: 175, name: "LabSphere", desc: "Laboratory information system dengan science sphere" },
+            { num: 176, name: "PharmaNexus", desc: "Pharmacy management dengan pharmaceutical nexus" },
+            { num: 177, name: "HospitalCommand", desc: "Hospital operations dengan central command hub" },
+            { num: 178, name: "DiagnosticVision", desc: "Medical diagnostic dengan vision AI analysis" },
+            { num: 179, name: "TelemedicOrb", desc: "Telemedicine platform dengan remote care sphere" },
+            { num: 180, name: "FitnessAcademy", desc: "Fitness training platform dengan academy progression" },
+            { num: 181, name: "NutritionForge", desc: "Nutrition planning dengan meal forge algorithm" },
+            { num: 182, name: "WellnessOrb", desc: "Wellness tracking dengan holistic health sphere" },
+            { num: 183, name: "TherapyLink", desc: "Mental health platform dengan therapy connection" },
+            { num: 184, name: "RehabNexus", desc: "Rehabilitation tracking dengan recovery nexus path" },
+            { num: 185, name: "DentalVision", desc: "Dental practice management dengan oral vision" },
+            { num: 186, name: "VetCare", desc: "Veterinary clinic dengan animal care system" },
+            { num: 187, name: "SalonSphere", desc: "Salon management dengan beauty service sphere" },
+            { num: 188, name: "RestaurantCommand", desc: "Restaurant operations dengan kitchen command center" },
+            { num: 189, name: "HotelNexus", desc: "Hotel management dengan hospitality nexus" },
+            { num: 190, name: "EventForge", desc: "Event management dengan experience forge platform" },
+            { num: 191, name: "ConferenceOrb", desc: "Conference platform dengan virtual conference sphere" },
+            { num: 192, name: "ExhibitVision", desc: "Exhibition management dengan exhibit vision tracking" },
+            { num: 193, name: "TicketVault", desc: "Ticketing platform dengan secure vault system" },
+            { num: 194, name: "LivestreamNexus", desc: "Livestream platform dengan audience nexus network" },
+            { num: 195, name: "PodcastGalaxy", desc: "Podcast network dengan content galaxy ecosystem" },
+            { num: 196, name: "NewsOracle", desc: "News aggregation dengan intelligent oracle curation" },
+            { num: 197, name: "SocialSphere", desc: "Social platform dengan decentralized sphere network" },
+            { num: 198, name: "MarketplaceNexus", desc: "Marketplace platform dengan commerce nexus ecosystem" },
+            { num: 199, name: "FinanceForge", desc: "Financial platform dengan wealth forge tools" },
+            { num: 200, name: "MetaverseHub", desc: "Metaverse platform dengan virtual world hub" }
+        ];
+
+        function getProjectPath(num, name) {
+            const folderRange = Math.floor((num - 1) / 20) * 20 + 1;
+            const folderEnd = folderRange + 19;
+            const folder = `${String(folderRange).padStart(3, '0')}-${String(folderEnd).padStart(3, '0')}`;
+            
+            // Convert CamelCase to snake_case
+            const snakeCaseName = name
+                .replace(/([A-Z])/g, '_$1')
+                .toLowerCase()
+                .replace(/^_/, '');
+            
+            return `/flutter/${folder}/${snakeCaseName}/build/web`;
+        }
+
+        function renderProjects(filteredProjects) {
+            const grid = document.getElementById('projectsGrid');
+            const noResults = document.getElementById('noResults');
+            
+            if (filteredProjects.length === 0) {
+                grid.style.display = 'none';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            grid.style.display = 'grid';
+            noResults.style.display = 'none';
+            
+            grid.innerHTML = filteredProjects.map(project => `
+                <a href="${getProjectPath(project.num, project.name)}" class="project-card">
+                    <div class="project-number">#${String(project.num).padStart(3, '0')}</div>
+                    <div class="project-name">${project.name}</div>
+                    <div class="project-description">${project.desc}</div>
+                </a>
+            `).join('');
+        }
+
+        function filterProjects() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = projects.filter(project => 
+                project.name.toLowerCase().includes(searchTerm) ||
+                project.desc.toLowerCase().includes(searchTerm) ||
+                String(project.num).includes(searchTerm)
+            );
+            renderProjects(filtered);
+        }
+
+        renderProjects(projects);
+    </script>
+</body>
+</html>
