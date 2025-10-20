@@ -1,0 +1,28 @@
+name: ink_scroll
+description: "A beautiful quote feed app with ink bleed effects."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  # Jika ingin menambahkan assets atau fonts custom, uncomment di sini
+  # assets:
+  #   - assets/images/
+  # fonts:
+  #   - family: CustomFont 
+  #     fonts:
+  #       - asset: assets/fonts/CustomFont.ttf
