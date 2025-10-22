@@ -10,7 +10,7 @@ import '../utils/theme_utils.dart';
 /// StatelessWidget berarti widget ini tidak punya state yang berubah-ubah
 class CustomDivider extends StatelessWidget {
   /// Constructor
-  const CustomDivider({Key? key}) : super(key: key);
+  const CustomDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class CustomDivider extends StatelessWidget {
     return Column(
       children: [
         // Padding vertikal untuk spacing di atas
-        SizedBox(height: AppTheme.spacingMedium),
+        const SizedBox(height: AppTheme.spacingMedium),
 
         // === GARIS DIVIDER UTAMA ===
         // Horizontal divider dengan custom style
@@ -49,7 +49,7 @@ class CustomDivider extends StatelessWidget {
         ),
 
         // Padding vertikal untuk spacing di bawah
-        SizedBox(height: AppTheme.spacingMedium),
+        const SizedBox(height: AppTheme.spacingMedium),
       ],
     );
   }

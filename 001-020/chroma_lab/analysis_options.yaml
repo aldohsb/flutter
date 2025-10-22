@@ -1,0 +1,17 @@
+# File ini berisi aturan-aturan linting (pemeriksaan kode)
+# Membantu menulis kode yang lebih bersih dan mengikuti best practice
+
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Aturan tambahan untuk kode yang lebih baik
+    prefer_const_constructors: true
+    prefer_const_literals_to_create_immutables: true
+    avoid_print: false  # Boleh pakai print untuk debugging
+    prefer_single_quotes: true
+    
+analyzer:
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"

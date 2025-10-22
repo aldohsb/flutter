@@ -1,0 +1,28 @@
+name: chroma_lab
+description: "A color mixer app with laboratory theme and real-time preview"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Tidak ada dependency tambahan - menggunakan built-in Flutter saja
+  # Ini membuat aplikasi lebih ringan dan mudah dipelajari
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  
+  # Jika ingin menambahkan font custom, uncomment di bawah:
+  # fonts:
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: fonts/Roboto-Regular.ttf

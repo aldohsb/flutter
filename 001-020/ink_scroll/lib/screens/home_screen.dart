@@ -13,7 +13,7 @@ import '../widgets/custom_divider.dart';
 /// Screen HomeScreen adalah layar utama aplikasi
 /// StatefulWidget digunakan karena kita mungkin ingin state yang berubah (filtering, dsb)
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -160,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   );
-                }).toList(), // Konversi map iterator ke list
+                }), // Konversi map iterator ke list
               ],
             ),
           ),
@@ -222,7 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
         // === BOTTOM SPACING SLIVER ===
         // SliverToBoxAdapter untuk convert regular widget menjadi Sliver
-        SliverToBoxAdapter(
+        const SliverToBoxAdapter(
           child: SizedBox(height: AppTheme.spacingLarge),
         ),
       ],

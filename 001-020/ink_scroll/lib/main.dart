@@ -17,7 +17,7 @@ void main() {
 /// Root widget aplikasi
 /// StatelessWidget karena aplikasi structure tidak berubah (hanya theme)
 class InkScrollApp extends StatelessWidget {
-  const InkScrollApp({Key? key}) : super(key: key);
+  const InkScrollApp({super.key});
 
   @override
   Widget build(BuildContext context) {

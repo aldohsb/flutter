@@ -16,9 +16,9 @@ class QuoteCard extends StatelessWidget {
 
   /// Constructor dengan required parameter quote
   const QuoteCard({
-    Key? key,
+    super.key,
     required this.quote,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class QuoteCard extends StatelessWidget {
             // Border radius untuk sudut yang rounded
             borderRadius: BorderRadius.circular(AppTheme.borderRadiusMedium),
             // Shadow untuk efek "floating"
-            boxShadow: [AppTheme.cardShadow],
+            boxShadow: const [AppTheme.cardShadow],
           ),
           // === CHILD: CONTENT INSIDE CARD ===
           child: Column(
