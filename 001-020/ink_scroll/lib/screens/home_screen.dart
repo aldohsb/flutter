@@ -8,7 +8,6 @@ import '../models/quote_model.dart';
 import '../utils/theme_utils.dart';
 import '../utils/quote_data.dart';
 import '../widgets/quote_card.dart';
-import '../widgets/custom_divider.dart';
 
 /// Screen HomeScreen adalah layar utama aplikasi
 /// StatefulWidget digunakan karena kita mungkin ingin state yang berubah (filtering, dsb)
