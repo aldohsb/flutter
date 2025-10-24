@@ -19,7 +19,6 @@ dependencies:
   
   # Notifications & Background
   flutter_local_notifications: ^17.2.3
-  workmanager: ^0.5.2
   
   # Audio
   audioplayers: ^6.1.0

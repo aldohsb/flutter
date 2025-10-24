@@ -39,13 +39,13 @@ class AppTheme {
       useMaterial3: true,
       primaryColor: AppConstants.primaryColor,
       scaffoldBackgroundColor: AppConstants.backgroundColor,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: AppConstants.primaryColor,
         secondary: AppConstants.accentColor,
         surface: AppConstants.surfaceColor,
         error: AppConstants.errorColor,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppConstants.primaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -68,7 +68,7 @@ class AppTheme {
           ),
         ),
       ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: AppConstants.primaryColor,
         foregroundColor: Colors.white,
       ),
@@ -77,15 +77,15 @@ class AppTheme {
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppConstants.dividerColor),
+          borderSide: const BorderSide(color: AppConstants.dividerColor),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppConstants.dividerColor),
+          borderSide: const BorderSide(color: AppConstants.dividerColor),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-          borderSide: BorderSide(color: AppConstants.primaryColor, width: 2),
+          borderSide: const BorderSide(color: AppConstants.primaryColor, width: 2),
         ),
       ),
     );
