@@ -23,7 +23,7 @@ class LevelModel {
     
     int groupIndex = ((levelNumber - 1) ~/ 20);
     int startRank = 100 + (groupIndex * 100);
-    int endRank = startRank + 100;
+    int endRank = startRank + 300;
 
     return LevelModel(
       levelNumber: levelNumber,
