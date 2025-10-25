@@ -45,10 +45,15 @@ class TimerProvider extends ChangeNotifier {
       _activeSession = sessions.where((s) => s.isRunning).firstOrNull;
       
       if (_activeSession != null) {
+        final alarmInterval = HiveService.getSetting(
+          'alarm_interval',
+          defaultValue: AppConstants.alarmIntervalMinutes,
+        );
+        
         final now = DateTime.now();
         final elapsed = now.difference(_activeSession!.startTime).inSeconds;
         _elapsedSeconds = elapsed;
-        _lastAlarmMinute = (elapsed ~/ 60) ~/ AppConstants.alarmIntervalMinutes;
+        _lastAlarmMinute = (elapsed ~/ 60) ~/ alarmInterval;
         _startTimer();
       }
     } catch (e) {
@@ -118,10 +123,15 @@ class TimerProvider extends ChangeNotifier {
   }
   
   void _checkAlarm() {
-    final currentMinute = _elapsedSeconds ~/ 60;
-    final alarmMinute = currentMinute ~/ AppConstants.alarmIntervalMinutes;
+    final alarmInterval = HiveService.getSetting(
+      'alarm_interval',
+      defaultValue: AppConstants.alarmIntervalMinutes,
+    );
     
-    if (alarmMinute > _lastAlarmMinute && currentMinute % AppConstants.alarmIntervalMinutes == 0) {
+    final currentMinute = _elapsedSeconds ~/ 60;
+    final alarmMinute = currentMinute ~/ alarmInterval;
+    
+    if (alarmMinute > _lastAlarmMinute && currentMinute % alarmInterval == 0) {
       _lastAlarmMinute = alarmMinute;
       _triggerAlarm(currentMinute);
     }

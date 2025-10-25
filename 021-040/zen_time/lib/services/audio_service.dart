@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart';
+import 'package:zentime/services/hive_service.dart';
 
 class AudioService {
   static final AudioService _instance = AudioService._internal();
@@ -11,34 +12,47 @@ class AudioService {
   bool _hasAudioFile = true;
   
   Future<void> playAlarmSound() async {
+    // Check settings
+    final enableSound = HiveService.getSetting('enable_sound', defaultValue: true);
+    final enableVibration = HiveService.getSetting('enable_vibration', defaultValue: true);
+    
+    if (!enableSound && !enableVibration) {
+      debugPrint('⚠️ Sound and vibration disabled in settings');
+      return;
+    }
+    
     try {
       // Try to play custom bell sound
-      if (_hasAudioFile) {
+      if (_hasAudioFile && enableSound) {
         try {
           await _audioPlayer.play(AssetSource('sounds/bell.mp3'));
           debugPrint('✅ Playing bell.mp3');
         } catch (e) {
           debugPrint('⚠️ bell.mp3 not found, using fallback');
           _hasAudioFile = false;
-          await _playFallbackSound();
+          await _playFallbackSound(enableSound, enableVibration);
         }
       } else {
-        await _playFallbackSound();
+        await _playFallbackSound(enableSound, enableVibration);
       }
     } catch (e) {
       debugPrint('❌ Error playing alarm sound: $e');
-      await _playFallbackSound();
+      await _playFallbackSound(enableSound, enableVibration);
     }
   }
   
-  Future<void> _playFallbackSound() async {
+  Future<void> _playFallbackSound(bool enableSound, bool enableVibration) async {
     try {
-      // Play system notification sound as fallback
-      await SystemSound.play(SystemSoundType.alert);
-      debugPrint('✅ Playing system alert sound');
+      if (enableSound) {
+        // Play system notification sound as fallback
+        await SystemSound.play(SystemSoundType.alert);
+        debugPrint('✅ Playing system alert sound');
+      }
     } catch (e) {
-      debugPrint('⚠️ System sound failed, using vibration');
-      // If all fails, just vibrate
+      debugPrint('⚠️ System sound failed');
+    }
+    
+    if (enableVibration) {
       try {
         await HapticFeedback.heavyImpact();
         debugPrint('✅ Vibration triggered');

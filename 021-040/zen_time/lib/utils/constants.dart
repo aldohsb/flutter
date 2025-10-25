@@ -14,7 +14,7 @@ class AppConstants {
   static const Color dividerColor = Color(0xFFDDE5DD); // Soft Green Gray
   
   // Timer Settings
-  static const int alarmIntervalMinutes = 15;
+  static const int alarmIntervalMinutes = 5;
   static const String alarmSoundAsset = 'assets/sounds/bell.mp3';
   
   // Hive Box Names
