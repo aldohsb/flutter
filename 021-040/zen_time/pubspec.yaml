@@ -51,6 +51,10 @@ flutter_launcher_icons:
   image_path: "assets/icon/app_icon.png"
   adaptive_icon_background: "#6B7F5E"  # Warna olive green
   adaptive_icon_foreground: "assets/icon/app_icon.png"
+  windows:
+    generate: true
+    image_path: "assets/icon/app_icon.png"  # Path ke icon PNG yang ada
+    icon_size: 256
   
   # Optional: Untuk Android 13+ themed icon
   adaptive_icon_monochrome: "assets/icon/app_icon.png"

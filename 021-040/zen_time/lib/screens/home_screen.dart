@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zentime/providers/project_provider.dart';
+import 'package:zentime/providers/timer_provider.dart';
 import 'package:zentime/screens/add_edit_project_screen.dart';
 import 'package:zentime/screens/project_detail_screen.dart';
+import 'package:zentime/screens/settings_screen.dart';
 import 'package:zentime/widgets/project_card.dart';
 import 'package:zentime/widgets/timer_widget.dart';
+import 'package:zentime/utils/constants.dart';
+import 'package:zentime/services/hive_service.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,6 +19,17 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('ZenTime'),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.info_outline),
             onPressed: () => _showInfo(context),
