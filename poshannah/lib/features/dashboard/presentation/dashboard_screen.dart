@@ -317,7 +317,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         const SizedBox(height: 12),
-        ...orders.map((order) => _buildOrderItem(order)).toList(),
+        ...orders.map((order) => _buildOrderItem(order)),
       ],
     );
   }

@@ -203,7 +203,7 @@ class HomeScreen extends StatelessWidget {
                     const SizedBox(height: AppConstants.paddingS),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.video_library,
                           size: AppConstants.iconXS,
                           color: AppColors.textSecondary,
