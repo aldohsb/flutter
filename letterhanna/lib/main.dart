@@ -6,7 +6,7 @@ void main() {
 }
 
 class LetterHannaApp extends StatelessWidget {
-  const LetterHannaApp({Key? key}) : super(key: key);
+  const LetterHannaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class LetterHannaApp extends StatelessWidget {
           primary: const Color(0xFF2C1810),
           secondary: const Color(0xFFD4AF37), // Gold accent
           surface: Colors.white,
-          background: const Color(0xFFFFFDF7),
         ),
         
         appBarTheme: const AppBarTheme(

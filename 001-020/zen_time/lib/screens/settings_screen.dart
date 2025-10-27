@@ -72,7 +72,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           color: AppConstants.primaryColor.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.alarm,
                           color: AppConstants.primaryColor,
                           size: 28,
@@ -175,7 +175,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                           color: AppConstants.accentColor.withOpacity(0.15),
                           borderRadius: BorderRadius.circular(12),
                         ),
-                        child: Icon(
+                        child: const Icon(
                           Icons.volume_up,
                           color: AppConstants.accentColor,
                           size: 28,
@@ -215,7 +215,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     subtitle: const Text('Play alarm sound'),
                     value: _enableSound,
-                    activeColor: AppConstants.primaryColor,
+                    activeThumbColor: AppConstants.primaryColor,
                     onChanged: (value) {
                       setState(() {
                         _enableSound = value;
@@ -232,7 +232,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     ),
                     subtitle: const Text('Vibrate on alarm'),
                     value: _enableVibration,
-                    activeColor: AppConstants.primaryColor,
+                    activeThumbColor: AppConstants.primaryColor,
                     onChanged: (value) {
                       setState(() {
                         _enableVibration = value;
@@ -250,16 +250,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // Info Card
           Card(
             color: AppConstants.primaryColor.withOpacity(0.1),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
+            child: const Padding(
+              padding: EdgeInsets.all(16),
               child: Row(
                 children: [
                   Icon(
                     Icons.info_outline,
                     color: AppConstants.primaryColor,
                   ),
-                  const SizedBox(width: 12),
-                  const Expanded(
+                  SizedBox(width: 12),
+                  Expanded(
                     child: Text(
                       'Changes will take effect on the next timer session',
                       style: TextStyle(
