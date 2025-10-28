@@ -34,7 +34,7 @@ void main() {
 
 // MyApp = root widget aplikasi
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -106,7 +106,6 @@ class MyApp extends StatelessWidget {
             primary: Colors.black87,
             secondary: Colors.grey[800]!,
             surface: Colors.white,
-            background: Colors.white,
           ),
         ),
         

@@ -10,11 +10,11 @@ class QuoteCard extends StatelessWidget {
   final int currentIndex; // Index saat ini
 
   const QuoteCard({
-    Key? key,
+    super.key,
     required this.quote,
     this.totalQuotes = 365, // Default 365 (1 tahun)
     this.currentIndex = 1,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -209,9 +209,9 @@ class QuoteCardCentered extends StatelessWidget {
   final QuoteModel quote;
 
   const QuoteCardCentered({
-    Key? key,
+    super.key,
     required this.quote,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

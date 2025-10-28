@@ -8,7 +8,7 @@ import '../models/quote_model.dart';
 
 // Favorites Screen - halaman untuk lihat semua quotes favorit
 class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({Key? key}) : super(key: key);
+  const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

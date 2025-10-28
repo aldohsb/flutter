@@ -11,10 +11,10 @@ class MagazineBackground extends StatelessWidget {
 
   // Constructor
   const MagazineBackground({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +122,7 @@ class MagazineBackground extends StatelessWidget {
 
 // Widget untuk noise texture effect (opsional, bikin background lebih "magazine-like")
 class NoiseTexture extends StatelessWidget {
-  const NoiseTexture({Key? key}) : super(key: key);
+  const NoiseTexture({super.key});
 
   @override
   Widget build(BuildContext context) {
