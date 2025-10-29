@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 import '../models/player.dart';
+import '../models/particle.dart';
 import '../core/constants/game_constants.dart';
 
 class GameCanvas extends StatelessWidget {
   final Player player;
+  final List<Particle> particles;
+  final Offset cameraShake;
   
   const GameCanvas({
     super.key,
     required this.player,
+    required this.particles,
+    this.cameraShake = Offset.zero,
   });
 
   @override
   Widget build(BuildContext context) {
     return CustomPaint(
-      painter: GamePainter(player: player),
+      painter: GamePainter(
+        player: player,
+        particles: particles,
+        cameraShake: cameraShake,
+      ),
       size: Size.infinite,
     );
   }
@@ -21,19 +30,37 @@ class GameCanvas extends StatelessWidget {
 
 class GamePainter extends CustomPainter {
   final Player player;
+  final List<Particle> particles;
+  final Offset cameraShake;
   
-  GamePainter({required this.player});
+  GamePainter({
+    required this.player,
+    required this.particles,
+    required this.cameraShake,
+  });
   
   @override
   void paint(Canvas canvas, Size size) {
+    // Apply camera shake
+    canvas.save();
+    canvas.translate(cameraShake.dx, cameraShake.dy);
+    
     // Draw tunnel effect (perspective lines)
     _drawTunnel(canvas, size);
+    
+    // Draw particles (behind player)
+    _drawParticles(canvas, size);
     
     // Draw player with perspective scaling
     _drawPlayer(canvas, size);
     
     // Draw score
     _drawScore(canvas, size);
+    
+    // Draw velocity indicator
+    _drawVelocityIndicator(canvas, size);
+    
+    canvas.restore();
   }
   
   void _drawTunnel(Canvas canvas, Size size) {
@@ -155,6 +182,73 @@ class GamePainter extends CustomPainter {
     
     textPainter.layout();
     textPainter.paint(canvas, const Offset(20, 50));
+  }
+  
+  void _drawParticles(Canvas canvas, Size size) {
+    for (var particle in particles) {
+      double scale = particle.getScale();
+      double opacity = particle.getOpacity();
+      double scaledSize = particle.size * scale;
+      
+      final paint = Paint()
+        ..color = particle.color.withOpacity(opacity)
+        ..style = PaintingStyle.fill;
+      
+      canvas.drawCircle(
+        Offset(particle.x, particle.y),
+        scaledSize / 2,
+        paint,
+      );
+    }
+  }
+  
+  void _drawVelocityIndicator(Canvas canvas, Size size) {
+    // Draw velocity vector (for debugging/feedback)
+    double velocityMagnitude = (player.velocityX.abs() + player.velocityY.abs()) / 2;
+    double barWidth = (velocityMagnitude / GameConstants.maxVelocityX) * 100;
+    barWidth = barWidth.clamp(0, 100);
+    
+    final bgPaint = Paint()
+      ..color = Colors.white.withOpacity(0.2)
+      ..style = PaintingStyle.fill;
+    
+    final fgPaint = Paint()
+      ..color = GameConstants.playerColor
+      ..style = PaintingStyle.fill;
+    
+    // Background bar
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(
+        const Rect.fromLTWH(20, 90, 100, 8),
+        const Radius.circular(4),
+      ),
+      bgPaint,
+    );
+    
+    // Foreground bar (velocity)
+    if (barWidth > 0) {
+      canvas.drawRRect(
+        RRect.fromRectAndRadius(
+          Rect.fromLTWH(20, 90, barWidth, 8),
+          const Radius.circular(4),
+        ),
+        fgPaint,
+      );
+    }
+    
+    // Label
+    final labelPainter = TextPainter(
+      text: const TextSpan(
+        text: 'Speed',
+        style: TextStyle(
+          color: Colors.white70,
+          fontSize: 12,
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    );
+    labelPainter.layout();
+    labelPainter.paint(canvas, const Offset(20, 105));
   }
   
   @override

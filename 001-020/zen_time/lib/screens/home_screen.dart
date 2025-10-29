@@ -6,6 +6,9 @@ import 'package:zentime/screens/project_detail_screen.dart';
 import 'package:zentime/screens/settings_screen.dart';
 import 'package:zentime/widgets/project_card.dart';
 import 'package:zentime/widgets/timer_widget.dart';
+import 'package:zentime/utils/constants.dart';
+import 'package:zentime/services/hive_service.dart';
+import 'package:zentime/utils/time_formatter.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -36,6 +39,69 @@ class HomeScreen extends StatelessWidget {
       body: Column(
         children: [
           const TimerWidget(),
+          
+          // Statistics Summary
+          Consumer<ProjectProvider>(
+            builder: (context, projectProvider, child) {
+              final projects = projectProvider.projects;
+              
+              int totalTodaySeconds = 0;
+              int totalWeekSeconds = 0;
+              
+              for (var project in projects) {
+                totalTodaySeconds += projectProvider.getTodayDuration(project.id);
+                totalWeekSeconds += projectProvider.getWeekDuration(project.id);
+              }
+              
+              return Container(
+                margin: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      AppConstants.primaryColor.withOpacity(0.1),
+                      AppConstants.accentColor.withOpacity(0.1),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: AppConstants.primaryColor.withOpacity(0.2),
+                    width: 1,
+                  ),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.today,
+                        label: 'Today',
+                        value: TimeFormatter.formatDurationToHours(totalTodaySeconds),
+                        color: AppConstants.primaryColor,
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      height: 40,
+                      color: AppConstants.dividerColor,
+                      margin: const EdgeInsets.symmetric(horizontal: 12),
+                    ),
+                    Expanded(
+                      child: _StatCard(
+                        icon: Icons.calendar_today,
+                        label: 'This Week',
+                        value: TimeFormatter.formatDurationToHours(totalWeekSeconds),
+                        color: AppConstants.accentColor,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+          
+          // Projects Grid
           Expanded(
             child: Consumer<ProjectProvider>(
               builder: (context, projectProvider, child) {
@@ -72,13 +138,20 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 
-                return ListView.builder(
-                  padding: const EdgeInsets.only(bottom: 80),
+                return GridView.builder(
+                  padding: const EdgeInsets.fromLTRB(12, 4, 12, 80),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 2,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 8,
+                  ),
                   itemCount: projects.length,
                   itemBuilder: (context, index) {
                     final project = projects[index];
                     return ProjectCard(
                       project: project,
+                      isCompact: true,
                       onTap: () {
                         Navigator.push(
                           context,
@@ -112,28 +185,33 @@ class HomeScreen extends StatelessWidget {
   }
   
   void _showInfo(BuildContext context) {
+    final alarmInterval = HiveService.getSetting(
+      'alarm_interval',
+      defaultValue: AppConstants.alarmIntervalMinutes,
+    );
+    
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         title: const Text('About ZenTime'),
-        content: const Column(
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'ZenTime - Time Tracking App',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
-            Text('Track your project time with zen focus.'),
-            SizedBox(height: 16),
-            Text('Features:', style: TextStyle(fontWeight: FontWeight.bold)),
-            SizedBox(height: 4),
-            Text('• Multi-project tracking'),
-            Text('• Daily & weekly targets'),
-            Text('• 15-minute interval alarms'),
-            Text('• Session management'),
-            Text('• Progress statistics'),
+            const SizedBox(height: 8),
+            const Text('Track your project time with zen focus.'),
+            const SizedBox(height: 16),
+            const Text('Features:', style: TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            const Text('• Multi-project tracking'),
+            const Text('• Daily & weekly targets'),
+            Text('• $alarmInterval-minute interval alarms (customizable)'),
+            const Text('• Session management'),
+            const Text('• Progress statistics'),
           ],
         ),
         actions: [
@@ -143,6 +221,53 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _StatCard extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final String value;
+  final Color color;
+  
+  const _StatCard({
+    required this.icon,
+    required this.label,
+    required this.value,
+    required this.color,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 16, color: color),
+            const SizedBox(width: 6),
+            Text(
+              label,
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey[700],
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value,
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+      ],
     );
   }
 }

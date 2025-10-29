@@ -45,6 +45,25 @@ class _GameScreenState extends State<GameScreen> {
                         onHorizontalDragUpdate: (details) {
                           _controller.movePlayer(details.delta.dx * 2);
                         },
+                        onVerticalDragUpdate: (details) {
+                          // Allow vertical swipe too
+                          _controller.player.applyForce(0, details.delta.dy * 2);
+                        },
+                        child: GameCanvas(
+                          player: _controller.player,
+                          particles: _controller.particles,
+                          cameraShake: _controller.getCameraShake(),
+                        ),
+                      )
+                    : GameCanvas(
+                        player: _controller.player,
+                        particles: _controller.particles,
+                      ),.playing ||
+                        _controller.state == GameState.paused
+                    ? GestureDetector(
+                        onHorizontalDragUpdate: (details) {
+                          _controller.movePlayer(details.delta.dx * 2);
+                        },
                         child: GameCanvas(player: _controller.player),
                       )
                     : GameCanvas(player: _controller.player),
@@ -96,7 +115,7 @@ class _GameScreenState extends State<GameScreen> {
             ),
             const SizedBox(height: 20),
             const Text(
-              'Slide to move\nAvoid obstacles\nFall deeper!',
+              'Tilt device or swipe to move\nAvoid obstacles\nFall deeper!',
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 18,

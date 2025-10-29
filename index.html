@@ -594,7 +594,12 @@
                 .toLowerCase()
                 .replace(/^_/, '');
             
-            return `/flutter/${folder}/${snakeCaseName}/web`;
+            const kebabCaseName = name
+    .replace(/([A-Z])/g, '-$1')    // Ganti _ jadi -
+    .toLowerCase()
+    .replace(/^-/, '');
+            
+            return `/flutter/${folder}/${kebabCaseName}/web`;
         }
 
         function renderProjects(filteredProjects) {
