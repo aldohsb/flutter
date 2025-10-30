@@ -15,14 +15,25 @@ class Helpers {
 
   // Format date
   static String formatDate(DateTime date, {String format = 'dd MMM yyyy'}) {
-    final formatter = DateFormat(format, 'id_ID');
-    return formatter.format(date);
+    try {
+      final formatter = DateFormat(format, 'id_ID');
+      return formatter.format(date);
+    } catch (e) {
+      // Fallback to default locale if id_ID is not available
+      final formatter = DateFormat(format);
+      return formatter.format(date);
+    }
   }
 
   // Format time
   static String formatTime(DateTime date) {
-    final formatter = DateFormat('HH:mm', 'id_ID');
-    return formatter.format(date);
+    try {
+      final formatter = DateFormat('HH:mm', 'id_ID');
+      return formatter.format(date);
+    } catch (e) {
+      final formatter = DateFormat('HH:mm');
+      return formatter.format(date);
+    }
   }
 
   // Format weight with unit

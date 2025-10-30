@@ -18,7 +18,7 @@ val flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "
 
 android {
     namespace = "com.example.ketopedia"
-    compileSdk = 34
+    compileSdk = 36
     
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
@@ -33,7 +33,7 @@ android {
     defaultConfig {
         applicationId = "com.example.ketopedia"
         minSdk = flutter.minSdkVersion
-        targetSdk = 34
+        targetSdk = 36
         versionCode = flutterVersionCode
         versionName = flutterVersionName
         multiDexEnabled = true

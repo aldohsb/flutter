@@ -44,6 +44,7 @@ class DatabaseService {
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL,
           gender INTEGER NOT NULL,
+          age INTEGER NOT NULL,
           height REAL NOT NULL,
           current_weight REAL NOT NULL,
           target_weight REAL NOT NULL,

@@ -63,12 +63,12 @@ class _SplashScreenState extends State<SplashScreen>
   }
 
   Future<void> _initialize() async {
-    final themeProvider = context.read<ThemeProvider>();
     final userProvider = context.read<UserProvider>();
 
-    await themeProvider.loadTheme();
+    // Load user data
     await userProvider.loadUser();
 
+    // Wait for minimum splash time
     await Future.delayed(const Duration(seconds: 3));
 
     if (mounted) {

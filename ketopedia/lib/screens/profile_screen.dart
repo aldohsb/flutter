@@ -74,6 +74,15 @@ class ProfileScreen extends StatelessWidget {
                 const SizedBox(height: 12),
 
                 CompactStatCard(
+                  label: 'Umur',
+                  value: '${user.age} tahun',
+                  icon: Icons.cake,
+                  color: Colors.purple,
+                ),
+
+                const SizedBox(height: 12),
+
+                CompactStatCard(
                   label: 'BMI',
                   value: Helpers.formatBMI(user.bmi),
                   icon: Icons.analytics,

@@ -32,12 +32,11 @@ class _MacroCalculatorScreenState extends State<MacroCalculatorScreen> {
   void _calculateFromUser() {
     final user = context.read<UserProvider>().user;
     if (user != null) {
-      final age = DateTime.now().year - user.startDate.year;
       final bmr = Helpers.calculateBMR(
         user.gender,
         user.currentWeight,
         user.height,
-        age > 18 ? age : 25, // Default age if not accurate
+        user.age,
       );
       _tdee = Helpers.calculateTDEE(bmr, _activityLevel);
       _caloriesController.text = _tdee!.toStringAsFixed(0);

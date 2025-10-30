@@ -16,7 +16,6 @@ class FoodData {
       FoodModel(name: 'Sosis Sapi', category: FoodCategory.daging, carbs: 3.5, protein: 13, fat: 25, calories: 301, rating: 3, description: 'Tinggi lemak', tips: 'Pilih yang tanpa filler/tepung'),
       FoodModel(name: 'Bakso Sapi', category: FoodCategory.daging, carbs: 8, protein: 12, fat: 10, calories: 180, rating: 2, description: 'Mengandung tepung', tips: 'Batasi konsumsi, pilih yang homemade'),
       FoodModel(name: 'Daging Cincang', category: FoodCategory.daging, carbs: 0, protein: 26, fat: 15, calories: 250, rating: 4, description: 'Serbaguna untuk masakan', tips: 'Buat burger tanpa roti'),
-      FoodModel(name: 'Bacon', category: FoodCategory.daging, carbs: 1.4, protein: 37, fat: 42, calories: 541, rating: 4, description: 'Tinggi lemak', tips: 'Pilih yang tanpa gula'),
       FoodModel(name: 'Sate Ayam', category: FoodCategory.daging, carbs: 2, protein: 27, fat: 8, calories: 190, rating: 3, description: 'Bumbu kecap mengandung gula', tips: 'Minta tanpa saus kecap manis'),
       FoodModel(name: 'Daging Asap', category: FoodCategory.daging, carbs: 1, protein: 26, fat: 18, calories: 280, rating: 4, description: 'Awet dan praktis', tips: 'Cek label, hindari yang ada gula'),
       FoodModel(name: 'Kornet', category: FoodCategory.daging, carbs: 4, protein: 24, fat: 12, calories: 217, rating: 3, description: 'Daging kalengan', tips: 'Baca komposisi, pilih low carb'),
@@ -56,7 +55,6 @@ class FoodData {
       // TELUR (10 items)
       // CEMILAN (15 items)
       FoodModel(name: 'Keripik Kale', category: FoodCategory.cemilan, carbs: 4, protein: 2, fat: 0.5, calories: 30, rating: 4, description: 'Snack sehat', tips: 'Panggang sendiri lebih baik'),
-      FoodModel(name: 'Chicharron (Kulit Babi)', category: FoodCategory.cemilan, carbs: 0, protein: 61, fat: 32, calories: 544, rating: 4, description: 'Zero carb', tips: 'Cemilan kriuk sempurna'),
       FoodModel(name: 'Telur Rebus', category: FoodCategory.cemilan, carbs: 1.1, protein: 13, fat: 11, calories: 155, rating: 4, description: 'Snack protein tinggi', tips: 'Bawa kemana-mana'),
       FoodModel(name: 'Kacang Almond Panggang', category: FoodCategory.cemilan, carbs: 22, protein: 21, fat: 49, calories: 579, rating: 4, description: 'Camilan premium', tips: '10-15 butir cukup'),
       FoodModel(name: 'Dark Chocolate 85%', category: FoodCategory.cemilan, carbs: 15, protein: 8, fat: 45, calories: 598, rating: 4, description: 'Coklat rendah gula', tips: '1-2 kotak sehari'),
@@ -197,7 +195,6 @@ class FoodData {
       FoodModel(name: 'Minyak Wijen', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 884, rating: 4, description: 'Aroma khas', tips: 'Finishing oil'),
       FoodModel(name: 'Minyak Goreng Sawit', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 884, rating: 3, description: 'Minyak umum', tips: 'Ganti dengan kelapa lebih baik'),
       FoodModel(name: 'Minyak Kanola', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 884, rating: 3, description: 'Netral', tips: 'Oke untuk menumis'),
-      FoodModel(name: 'Lemak Babi', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 900, rating: 4, description: 'Lemak hewani', tips: 'Lard untuk masak savory'),
       FoodModel(name: 'Lemak Sapi', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 902, rating: 4, description: 'Tallow', tips: 'Tahan panas sangat tinggi'),
       FoodModel(name: 'Minyak Biji Rami', category: FoodCategory.minyak, carbs: 0, protein: 0, fat: 100, calories: 884, rating: 4, description: 'Omega-3', tips: 'Jangan dipanaskan'),
       FoodModel(name: 'Mayones', category: FoodCategory.minyak, carbs: 0.6, protein: 1.4, fat: 79, calories: 680, rating: 4, description: 'Saus keto friendly', tips: 'Pilih yang tanpa gula'),
@@ -252,7 +249,6 @@ class FoodData {
 
       // CEMILAN (15 items)
       FoodModel(name: 'Keripik Kale', category: FoodCategory.cemilan, carbs: 4, protein: 2, fat: 0.5, calories: 30, rating: 4, description: 'Snack sehat', tips: 'Panggang sendiri lebih baik'),
-      FoodModel(name: 'Chicharron (Kulit Babi)', category: FoodCategory.cemilan, carbs: 0, protein: 61, fat: 32, calories: 544, rating: 4, description: 'Zero carb', tips: 'Cemilan kriuk sempurna'),
       FoodModel(name: 'Telur  Ayam', category: FoodCategory.telur, carbs: 0.6, protein: 13, fat: 11, calories: 155, rating: 4, description: 'Superfood untuk keto', tips: 'Rebus, ceplok, atau dadar'),
       FoodModel(name: 'Telur Bebek', category: FoodCategory.telur, carbs: 1.5, protein: 13, fat: 14, calories: 185, rating: 4, description: 'Lebih besar dari telur ayam', tips: 'Telur asin cocok untuk keto'),
       FoodModel(name: 'Telur Puyuh', category: FoodCategory.telur, carbs: 0.4, protein: 13, fat: 11, calories: 158, rating: 4, description: 'Ukuran mini, gizi sama', tips: 'Rebus untuk camilan'),

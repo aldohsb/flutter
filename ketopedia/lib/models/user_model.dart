@@ -4,6 +4,7 @@ class UserModel {
   final int? id;
   final String name;
   final Gender gender;
+  final int age; // Tambahkan umur
   final double height; // cm
   final double currentWeight; // kg
   final double targetWeight; // kg
@@ -15,6 +16,7 @@ class UserModel {
     this.id,
     required this.name,
     required this.gender,
+    required this.age,
     required this.height,
     required this.currentWeight,
     required this.targetWeight,
@@ -58,6 +60,7 @@ class UserModel {
       if (id != null) 'id': id,
       'name': name,
       'gender': gender.index,
+      'age': age,
       'height': height,
       'current_weight': currentWeight,
       'target_weight': targetWeight,
@@ -73,6 +76,7 @@ class UserModel {
       id: map['id'] as int?,
       name: map['name'] as String,
       gender: Gender.values[map['gender'] as int],
+      age: map['age'] as int,
       height: map['height'] as double,
       currentWeight: map['current_weight'] as double,
       targetWeight: map['target_weight'] as double,
@@ -87,6 +91,7 @@ class UserModel {
     int? id,
     String? name,
     Gender? gender,
+    int? age,
     double? height,
     double? currentWeight,
     double? targetWeight,
@@ -98,6 +103,7 @@ class UserModel {
       id: id ?? this.id,
       name: name ?? this.name,
       gender: gender ?? this.gender,
+      age: age ?? this.age,
       height: height ?? this.height,
       currentWeight: currentWeight ?? this.currentWeight,
       targetWeight: targetWeight ?? this.targetWeight,

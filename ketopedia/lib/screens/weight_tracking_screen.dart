@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../models/weight_entry_model.dart';
@@ -244,42 +243,46 @@ class _WeightTrackingScreenState extends State<WeightTrackingScreen> {
       builder: (context) => AlertDialog(
         title: const Text('Tambah Data Berat'),
         content: StatefulBuilder(
-          builder: (context, setState) => Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              CustomTextField(
-                label: 'Berat Badan (kg)',
-                hint: '70.5',
-                controller: weightController,
-                keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
-                prefixIcon: Icons.monitor_weight,
-              ),
-              const SizedBox(height: 16),
-              ListTile(
-                title: const Text('Tanggal'),
-                subtitle: Text(Helpers.formatDate(selectedDate)),
-                trailing: const Icon(Icons.calendar_today),
-                onTap: () async {
-                  final date = await showDatePicker(
-                    context: context,
-                    initialDate: selectedDate,
-                    firstDate: DateTime(2020),
-                    lastDate: DateTime.now(),
-                  );
-                  if (date != null) {
-                    setState(() => selectedDate = date);
-                  }
-                },
-              ),
-              const SizedBox(height: 16),
-              CustomTextField(
-                label: 'Catatan (Opsional)',
-                hint: 'Tulis catatan...',
-                controller: notesController,
-                maxLines: 3,
-              ),
-            ],
+          builder: (context, setState) => SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomTextField(
+                  label: 'Berat Badan (kg)',
+                  hint: '70.5',
+                  controller: weightController,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  prefixIcon: Icons.monitor_weight,
+                ),
+                const SizedBox(height: 16),
+                ListTile(
+                  title: const Text('Tanggal'),
+                  subtitle: Text(
+                    Helpers.formatDate(selectedDate),
+                  ),
+                  trailing: const Icon(Icons.calendar_today),
+                  onTap: () async {
+                    final date = await showDatePicker(
+                      context: context,
+                      initialDate: selectedDate,
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime.now(),
+                    );
+                    if (date != null) {
+                      setState(() => selectedDate = date);
+                    }
+                  },
+                ),
+                const SizedBox(height: 16),
+                CustomTextField(
+                  label: 'Catatan (Opsional)',
+                  hint: 'Tulis catatan...',
+                  controller: notesController,
+                  maxLines: 3,
+                ),
+              ],
+            ),
           ),
         ),
         actions: [
@@ -290,17 +293,36 @@ class _WeightTrackingScreenState extends State<WeightTrackingScreen> {
           CustomButton(
             text: 'Simpan',
             onPressed: () async {
-              final weight = double.tryParse(weightController.text);
-              if (weight == null) {
+              final weightText = weightController.text.trim();
+              if (weightText.isEmpty) {
                 Helpers.showSnackBar(
                   context,
-                  'Berat badan tidak valid',
+                  'Berat badan tidak boleh kosong',
+                  isError: true,
+                );
+                return;
+              }
+
+              final weight = double.tryParse(weightText);
+              if (weight == null || weight < 20 || weight > 300) {
+                Helpers.showSnackBar(
+                  context,
+                  'Berat badan harus antara 20-300 kg',
                   isError: true,
                 );
                 return;
               }
 
               final userProvider = context.read<UserProvider>();
+              if (userProvider.user == null) {
+                Helpers.showSnackBar(
+                  context,
+                  'User tidak ditemukan',
+                  isError: true,
+                );
+                return;
+              }
+
               final entry = WeightEntryModel(
                 userId: userProvider.user!.id!,
                 weight: weight,
@@ -318,6 +340,12 @@ class _WeightTrackingScreenState extends State<WeightTrackingScreen> {
                 await userProvider.updateCurrentWeight(weight);
                 Navigator.pop(context);
                 Helpers.showSnackBar(context, 'Data berhasil ditambahkan!');
+              } else if (context.mounted) {
+                Helpers.showSnackBar(
+                  context,
+                  'Gagal menambahkan data',
+                  isError: true,
+                );
               }
             },
           ),

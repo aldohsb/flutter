@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'providers/user_provider.dart';
 import 'providers/food_provider.dart';
@@ -12,6 +13,15 @@ import 'utils/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize date formatting for Indonesian locale
+  try {
+    await initializeDateFormatting('id_ID', null);
+  } catch (e) {
+    print('Date formatting initialization failed: $e');
+    // Continue anyway, will fallback to default locale
+  }
+  
   runApp(const MyApp());
 }
 

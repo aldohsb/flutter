@@ -68,11 +68,17 @@ class _FoodListScreenState extends State<FoodListScreen> {
             suffixIcon: foodProvider.searchQuery.isNotEmpty
                 ? IconButton(
                     icon: const Icon(Icons.clear),
-                    onPressed: () => foodProvider.searchFoods(''),
+                    onPressed: () {
+                      foodProvider.searchFoods('');
+                      // Clear the text field
+                      FocusScope.of(context).unfocus();
+                    },
                   )
                 : null,
           ),
-          onChanged: (value) => foodProvider.searchFoods(value),
+          onChanged: (value) {
+            foodProvider.searchFoods(value);
+          },
         );
       },
     );

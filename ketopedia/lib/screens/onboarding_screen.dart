@@ -22,6 +22,7 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
+  final _ageController = TextEditingController();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
   final _targetController = TextEditingController();
@@ -32,6 +33,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void dispose() {
     _nameController.dispose();
+    _ageController.dispose();
     _heightController.dispose();
     _weightController.dispose();
     _targetController.dispose();
@@ -47,6 +49,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       final user = UserModel(
         name: _nameController.text.trim(),
         gender: _selectedGender,
+        age: int.parse(_ageController.text),
         height: double.parse(_heightController.text),
         currentWeight: double.parse(_weightController.text),
         targetWeight: double.parse(_targetController.text),
@@ -177,6 +180,28 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ),
                     ),
                   ],
+                ),
+
+                const SizedBox(height: 20),
+
+                // Age Field
+                CustomTextField(
+                  label: 'Umur (tahun)',
+                  hint: '25',
+                  controller: _ageController,
+                  keyboardType: TextInputType.number,
+                  prefixIcon: Icons.cake,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Umur tidak boleh kosong';
+                    }
+                    final age = int.tryParse(value);
+                    if (age == null || age < 15 || age > 100) {
+                      return 'Umur harus antara 15-100 tahun';
+                    }
+                    return null;
+                  },
                 ),
 
                 const SizedBox(height: 20),
