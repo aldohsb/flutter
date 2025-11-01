@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../models/user_model.dart';
+import '../models/weight_entry_model.dart';
 import '../providers/user_provider.dart';
 import '../providers/food_provider.dart';
+import '../providers/weight_provider.dart';
 import '../providers/notification_provider.dart';
 import '../utils/constants.dart';
 import '../utils/helpers.dart';
@@ -64,8 +66,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         final foodProvider = context.read<FoodProvider>();
         await foodProvider.loadFoods();
         
-        // Initialize notifications with the created user ID
+        // Create initial weight entry
         if (userProvider.user != null) {
+          final weightProvider = context.read<WeightProvider>();
+          final initialWeightEntry = WeightEntryModel(
+            userId: userProvider.user!.id!,
+            weight: double.parse(_weightController.text),
+            date: DateTime.now(),
+            notes: 'Berat awal saat memulai diet keto',
+          );
+          await weightProvider.addEntry(initialWeightEntry);
+          
+          // Initialize notifications
           final notificationProvider = context.read<NotificationProvider>();
           await notificationProvider.initialize(userProvider.user!.id!);
         }

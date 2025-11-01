@@ -1,22 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import '../utils/constants.dart';
 
-class FoodModel {
-  final int? id;
+part 'food_model.g.dart';
+
+@HiveType(typeId: 1)
+class FoodModel extends HiveObject {
+  @HiveField(0)
+  int? id;
+  
+  @HiveField(1)
   final String name;
-  final FoodCategory category;
-  final double carbs; // per 100g
-  final double protein; // per 100g
-  final double fat; // per 100g
-  final double calories; // per 100g
-  final int rating; // 1-4 (Avoid to Excellent)
+  
+  @HiveField(2)
+  final int categoryIndex;
+  
+  @HiveField(3)
+  final double carbs;
+  
+  @HiveField(4)
+  final double protein;
+  
+  @HiveField(5)
+  final double fat;
+  
+  @HiveField(6)
+  final double calories;
+  
+  @HiveField(7)
+  final int rating;
+  
+  @HiveField(8)
   final String? description;
+  
+  @HiveField(9)
   final String? tips;
   
   FoodModel({
     this.id,
     required this.name,
-    required this.category,
+    required FoodCategory category,
     required this.carbs,
     required this.protein,
     required this.fat,
@@ -24,7 +47,10 @@ class FoodModel {
     required this.rating,
     this.description,
     this.tips,
-  });
+  }) : categoryIndex = category.index;
+
+  // Getter for category
+  FoodCategory get category => FoodCategory.values[categoryIndex];
 
   // Get rating label
   String get ratingLabel {
@@ -74,18 +100,18 @@ class FoodModel {
     }
   }
 
-  // Calculate net carbs (for keto, usually carbs - fiber, but we'll use carbs directly)
+  // Calculate net carbs
   double get netCarbs => carbs;
 
   // Is keto friendly
   bool get isKetoFriendly => rating >= AppConstants.ratingModerateValue;
 
-  // Convert to Map for database
+  // Convert to Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
-      'category': category.index,
+      'category': categoryIndex,
       'carbs': carbs,
       'protein': protein,
       'fat': fat,

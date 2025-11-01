@@ -1,9 +1,25 @@
-class WeightEntryModel {
-  final int? id;
+import 'package:hive/hive.dart';
+
+part 'weight_entry_model.g.dart';
+
+@HiveType(typeId: 2)
+class WeightEntryModel extends HiveObject {
+  @HiveField(0)
+  int? id;
+  
+  @HiveField(1)
   final int userId;
-  final double weight; // kg
+  
+  @HiveField(2)
+  final double weight;
+  
+  @HiveField(3)
   final DateTime date;
+  
+  @HiveField(4)
   final String? notes;
+  
+  @HiveField(5)
   final DateTime? createdAt;
 
   WeightEntryModel({
@@ -15,7 +31,7 @@ class WeightEntryModel {
     this.createdAt,
   });
 
-  // Convert to Map for database
+  // Convert to Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,

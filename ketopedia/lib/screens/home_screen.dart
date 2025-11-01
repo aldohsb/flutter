@@ -196,9 +196,15 @@ class _HomePage extends StatelessWidget {
         final user = userProvider.user;
         if (user == null) return const SizedBox();
 
-        final currentWeight = weightProvider.currentWeight ?? user.currentWeight;
-        final weightLost = user.currentWeight - currentWeight;
-        final remaining = currentWeight - user.targetWeight;
+        // Get current weight from latest weight entry, or use user's initial weight
+        final latestWeight = weightProvider.currentWeight ?? user.currentWeight;
+        
+        // Calculate weight lost from initial weight (first weight entry or user's start weight)
+        final initialWeight = weightProvider.initialWeight ?? user.currentWeight;
+        final weightLost = initialWeight - latestWeight;
+        
+        // Remaining weight to target
+        final remaining = latestWeight - user.targetWeight;
 
         return Column(
           children: [
@@ -207,7 +213,7 @@ class _HomePage extends StatelessWidget {
                 Expanded(
                   child: StatCard(
                     title: 'Berat Saat Ini',
-                    value: Helpers.formatWeight(currentWeight),
+                    value: Helpers.formatWeight(latestWeight),
                     icon: Icons.monitor_weight,
                     color: AppConstants.primaryRed,
                   ),
@@ -230,18 +236,27 @@ class _HomePage extends StatelessWidget {
                 Expanded(
                   child: StatCard(
                     title: 'Turun',
-                    value: '${weightLost.toStringAsFixed(1)} kg',
+                    value: weightLost > 0 
+                        ? '${weightLost.toStringAsFixed(1)} kg' 
+                        : '0.0 kg',
+                    subtitle: weightLost > 0 ? '🔥 Keep going!' : 'Mulai tracking!',
                     icon: Icons.trending_down,
-                    color: AppConstants.ratingExcellent,
+                    color: weightLost > 0 
+                        ? AppConstants.ratingExcellent 
+                        : Colors.grey,
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: StatCard(
                     title: 'Sisa Target',
-                    value: '${remaining.toStringAsFixed(1)} kg',
+                    value: remaining > 0 
+                        ? '${remaining.toStringAsFixed(1)} kg' 
+                        : 'Target tercapai! 🎉',
                     icon: Icons.flag,
-                    color: AppConstants.accentYellow,
+                    color: remaining > 0 
+                        ? AppConstants.accentYellow 
+                        : AppConstants.ratingExcellent,
                   ),
                 ),
               ],

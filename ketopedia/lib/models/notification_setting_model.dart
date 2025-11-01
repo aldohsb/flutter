@@ -1,8 +1,22 @@
-class NotificationSettingModel {
-  final int? id;
+import 'package:hive/hive.dart';
+
+part 'notification_setting_model.g.dart';
+
+@HiveType(typeId: 3)
+class NotificationSettingModel extends HiveObject {
+  @HiveField(0)
+  int? id;
+  
+  @HiveField(1)
   final int userId;
-  final String time; // Format: HH:mm (24 hour)
+  
+  @HiveField(2)
+  final String time;
+  
+  @HiveField(3)
   final bool isEnabled;
+  
+  @HiveField(4)
   final DateTime? createdAt;
 
   NotificationSettingModel({
@@ -25,7 +39,7 @@ class NotificationSettingModel {
     return int.parse(parts[1]);
   }
 
-  // Convert to Map for database
+  // Convert to Map
   Map<String, dynamic> toMap() {
     return {
       'id': id,

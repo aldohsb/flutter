@@ -1,21 +1,59 @@
+import 'package:hive/hive.dart';
 import '../utils/constants.dart';
 
-class UserModel {
-  final int? id;
+part 'user_model.g.dart';
+
+@HiveType(typeId: 0)
+class UserModel extends HiveObject {
+  @HiveField(0)
+  int? id;
+  
+  @HiveField(1)
   final String name;
-  final Gender gender;
-  final int age; // Tambahkan umur
-  final double height; // cm
-  final double currentWeight; // kg
-  final double targetWeight; // kg
+  
+  @HiveField(2)
+  final int genderIndex;
+  
+  @HiveField(3)
+  final int age;
+  
+  @HiveField(4)
+  final double height;
+  
+  @HiveField(5)
+  final double currentWeight;
+  
+  @HiveField(6)
+  final double targetWeight;
+  
+  @HiveField(7)
   final DateTime startDate;
+  
+  @HiveField(8)
   final DateTime? createdAt;
+  
+  @HiveField(9)
   final DateTime? updatedAt;
 
+  // Main constructor
   UserModel({
     this.id,
     required this.name,
-    required this.gender,
+    required Gender gender,
+    required this.age,
+    required this.height,
+    required this.currentWeight,
+    required this.targetWeight,
+    required this.startDate,
+    this.createdAt,
+    this.updatedAt,
+  }) : genderIndex = gender.index;
+
+  // Private constructor for Hive
+  UserModel._internal({
+    this.id,
+    required this.name,
+    required this.genderIndex,
     required this.age,
     required this.height,
     required this.currentWeight,
@@ -24,6 +62,36 @@ class UserModel {
     this.createdAt,
     this.updatedAt,
   });
+
+  // Factory for Hive adapter
+  factory UserModel.fromHive({
+    int? id,
+    required String name,
+    required int genderIndex,
+    required int age,
+    required double height,
+    required double currentWeight,
+    required double targetWeight,
+    required DateTime startDate,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return UserModel._internal(
+      id: id,
+      name: name,
+      genderIndex: genderIndex,
+      age: age,
+      height: height,
+      currentWeight: currentWeight,
+      targetWeight: targetWeight,
+      startDate: startDate,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+    );
+  }
+
+  // Getter for gender
+  Gender get gender => Gender.values[genderIndex];
 
   // Calculate BMI
   double get bmi {
@@ -54,12 +122,12 @@ class UserModel {
     return DateTime.now().difference(startDate).inDays;
   }
 
-  // Convert to Map for database
+  // Convert to Map
   Map<String, dynamic> toMap() {
     return {
       if (id != null) 'id': id,
       'name': name,
-      'gender': gender.index,
+      'gender': genderIndex,
       'age': age,
       'height': height,
       'current_weight': currentWeight,
@@ -72,10 +140,10 @@ class UserModel {
 
   // Create from Map
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
+    return UserModel._internal(
       id: map['id'] as int?,
       name: map['name'] as String,
-      gender: Gender.values[map['gender'] as int],
+      genderIndex: map['gender'] as int,
       age: map['age'] as int,
       height: map['height'] as double,
       currentWeight: map['current_weight'] as double,
@@ -99,10 +167,10 @@ class UserModel {
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
-    return UserModel(
+    return UserModel._internal(
       id: id ?? this.id,
       name: name ?? this.name,
-      gender: gender ?? this.gender,
+      genderIndex: gender?.index ?? this.genderIndex,
       age: age ?? this.age,
       height: height ?? this.height,
       currentWeight: currentWeight ?? this.currentWeight,

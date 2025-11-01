@@ -1,27 +1,93 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final ScrollController _scrollController = ScrollController();
+  bool _isScrolled = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    // Detect jika sudah scroll lebih dari 100px
+    if (_scrollController.offset > 100 && !_isScrolled) {
+      setState(() {
+        _isScrolled = true;
+      });
+    } else if (_scrollController.offset <= 100 && _isScrolled) {
+      setState(() {
+        _isScrolled = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: const Text('LETTERHANNA'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.search, size: 22),
-            onPressed: () {},
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(kToolbarHeight),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          decoration: BoxDecoration(
+            color: _isScrolled 
+                ? const Color(0xFFFFFDF7).withOpacity(0.95)
+                : Colors.transparent,
+            border: _isScrolled
+                ? Border(
+                    bottom: BorderSide(
+                      color: const Color(0xFFE8E2D5),
+                      width: 1,
+                    ),
+                  )
+                : null,
           ),
-          IconButton(
-            icon: const Icon(Icons.shopping_bag_outlined, size: 22),
-            onPressed: () {},
+          child: ClipRRect(
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: _isScrolled ? 10 : 0,
+                sigmaY: _isScrolled ? 10 : 0,
+              ),
+              child: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                centerTitle: true,
+                title: const Text('LETTERHANNA'),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.search, size: 22),
+                    onPressed: () {},
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.shopping_bag_outlined, size: 22),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(width: 8),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(width: 8),
-        ],
+        ),
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
