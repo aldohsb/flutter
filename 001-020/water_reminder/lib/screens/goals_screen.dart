@@ -68,7 +68,7 @@ class GoalsScreen extends StatelessWidget {
       margin: const EdgeInsets.all(AppConstants.paddingNormal),
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
+        gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [

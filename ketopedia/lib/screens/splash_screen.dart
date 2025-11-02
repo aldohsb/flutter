@@ -4,7 +4,6 @@ import 'dart:math';
 
 import '../data/tips_data.dart';
 import '../providers/user_provider.dart';
-import '../providers/theme_provider.dart';
 import '../utils/constants.dart';
 import 'onboarding_screen.dart';
 import 'home_screen.dart';

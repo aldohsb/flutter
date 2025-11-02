@@ -170,7 +170,7 @@ class UserModel extends HiveObject {
     return UserModel._internal(
       id: id ?? this.id,
       name: name ?? this.name,
-      genderIndex: gender?.index ?? this.genderIndex,
+      genderIndex: gender?.index ?? genderIndex,
       age: age ?? this.age,
       height: height ?? this.height,
       currentWeight: currentWeight ?? this.currentWeight,

@@ -17,7 +17,7 @@ class AppTheme {
       
       // === SKEMA WARNA ===
       // ColorScheme menentukan warna-warna utama aplikasi
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: AppConstants.primaryColor, // Warna utama (tombol, app bar, dll)
         secondary: AppConstants.secondaryColor, // Warna sekunder
         surface: Colors.white, // Warna permukaan (card, sheet, dll)

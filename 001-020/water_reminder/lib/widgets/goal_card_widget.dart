@@ -178,16 +178,16 @@ class GoalCardWidget extends StatelessWidget {
         color: AppConstants.successColor,
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Row(
+      child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(
+          Icon(
             Icons.check_circle,
             size: 16,
             color: Colors.white,
           ),
-          const SizedBox(width: 4),
-          const Text(
+          SizedBox(width: 4),
+          Text(
             'Completed',
             style: TextStyle(
               color: Colors.white,

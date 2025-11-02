@@ -236,25 +236,25 @@ class HomeScreen extends StatelessWidget {
   Widget _buildEmptyState() {
     return Container(
       padding: const EdgeInsets.all(AppConstants.paddingLarge),
-      child: Column(
+      child: const Column(
         children: [
           // Emoji
-          const Text(
+          Text(
             '💧',
             style: TextStyle(fontSize: 64),
           ),
-          const SizedBox(height: AppConstants.paddingNormal),
+          SizedBox(height: AppConstants.paddingNormal),
           
           // Text
-          const Text(
+          Text(
             'No water intake today',
             style: TextStyle(
               fontSize: AppConstants.fontSizeLarge,
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: AppConstants.paddingSmall),
-          const Text(
+          SizedBox(height: AppConstants.paddingSmall),
+          Text(
             'Start tracking your hydration now!',
             style: TextStyle(
               color: Colors.black54,

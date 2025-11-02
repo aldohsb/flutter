@@ -239,7 +239,7 @@ class NotificationService {
   }
 
   Future<void> _scheduleReminder(int index, DateTime time) async {
-    final messages = AppConstants.reminderMessages;
+    const messages = AppConstants.reminderMessages;
     final randomMessage = messages[Random().nextInt(messages.length)];
 
     await scheduleNotification(
