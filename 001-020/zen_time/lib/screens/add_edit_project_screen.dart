@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:zentime/models/project_model.dart';
 import 'package:zentime/providers/project_provider.dart';
 import 'package:zentime/utils/constants.dart';
 
@@ -20,16 +21,27 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
   final _weeklyTargetController = TextEditingController();
   
   Color _selectedColor = AppConstants.primaryColor;
+  int _weekStartDay = 1; // 1=Monday
+  
+  final Map<int, String> _weekDays = {
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday',
+    7: 'Sunday',
+  };
   
   final List<Color> _colorOptions = [
-    AppConstants.primaryColor,
-    const Color(0xFF2196F3),
-    const Color(0xFFF44336),
-    const Color(0xFFFF9800),
-    const Color(0xFF9C27B0),
-    const Color(0xFF4CAF50),
-    const Color(0xFFE91E63),
-    const Color(0xFF00BCD4),
+    const Color(0xFF7D9D6F), // Soft Sage Green
+    const Color(0xFF6B9BD1), // Soft Blue
+    const Color(0xFFE07A5F), // Soft Coral
+    const Color(0xFFEEAA5C), // Soft Orange
+    const Color(0xFFB392AC), // Soft Purple
+    const Color(0xFF81B29A), // Soft Teal
+    const Color(0xFFDB7F8E), // Soft Pink
+    const Color(0xFF5FA8D3), // Soft Sky Blue
   ];
   
   @override
@@ -53,6 +65,7 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
       _dailyTargetController.text = project.dailyTargetHours.toString();
       _weeklyTargetController.text = project.weeklyTargetHours.toString();
       _selectedColor = Color(project.colorValue);
+      _weekStartDay = project.weekStartDay;
     }
   }
   
@@ -102,6 +115,37 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
                 prefixIcon: Icon(Icons.description),
               ),
               maxLines: 3,
+            ),
+            const SizedBox(height: 24),
+            
+            const Text(
+              'Week Start Day',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 12),
+            
+            DropdownButtonFormField<int>(
+              value: _weekStartDay,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(Icons.calendar_month),
+                labelText: 'Week Starts On',
+              ),
+              items: _weekDays.entries.map((entry) {
+                return DropdownMenuItem(
+                  value: entry.key,
+                  child: Text(entry.value),
+                );
+              }).toList(),
+              onChanged: (value) {
+                if (value != null) {
+                  setState(() {
+                    _weekStartDay = value;
+                  });
+                }
+              },
             ),
             const SizedBox(height: 24),
             
@@ -246,6 +290,7 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
         color: _selectedColor,
         dailyTargetHours: dailyTarget,
         weeklyTargetHours: weeklyTarget,
+        weekStartDay: _weekStartDay,
       );
     } else {
       await projectProvider.addProject(
@@ -254,6 +299,7 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
         color: _selectedColor,
         dailyTargetHours: dailyTarget,
         weeklyTargetHours: weeklyTarget,
+        weekStartDay: _weekStartDay,
       );
     }
     

@@ -28,6 +28,12 @@ class ProjectModel extends HiveObject {
   @HiveField(7)
   DateTime updatedAt;
   
+  @HiveField(9)
+  int order;
+  
+  @HiveField(10)
+  int weekStartDay; // 1=Monday, 7=Sunday
+  
   ProjectModel({
     required this.id,
     required this.name,
@@ -37,6 +43,8 @@ class ProjectModel extends HiveObject {
     required this.weeklyTargetHours,
     required this.createdAt,
     required this.updatedAt,
+    this.order = 0,
+    this.weekStartDay = 1, // Default Monday
   });
   
   ProjectModel copyWith({
@@ -46,6 +54,8 @@ class ProjectModel extends HiveObject {
     double? dailyTargetHours,
     double? weeklyTargetHours,
     DateTime? updatedAt,
+    int? order,
+    int? weekStartDay,
   }) {
     return ProjectModel(
       id: id,
@@ -56,6 +66,8 @@ class ProjectModel extends HiveObject {
       weeklyTargetHours: weeklyTargetHours ?? this.weeklyTargetHours,
       createdAt: createdAt,
       updatedAt: updatedAt ?? this.updatedAt,
+      order: order ?? this.order,
+      weekStartDay: weekStartDay ?? this.weekStartDay,
     );
   }
 }

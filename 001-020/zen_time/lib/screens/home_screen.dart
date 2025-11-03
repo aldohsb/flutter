@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zentime/providers/project_provider.dart';
+import 'package:zentime/providers/timer_provider.dart';
 import 'package:zentime/screens/add_edit_project_screen.dart';
 import 'package:zentime/screens/project_detail_screen.dart';
 import 'package:zentime/screens/settings_screen.dart';
 import 'package:zentime/widgets/project_card.dart';
 import 'package:zentime/widgets/timer_widget.dart';
+import 'package:zentime/widgets/reorderable_grid_view.dart';
 import 'package:zentime/utils/constants.dart';
 import 'package:zentime/services/hive_service.dart';
 import 'package:zentime/utils/time_formatter.dart';
@@ -138,18 +140,20 @@ class HomeScreen extends StatelessWidget {
                   );
                 }
                 
-                return GridView.builder(
+                return ReorderableGridView(
                   padding: const EdgeInsets.fromLTRB(12, 4, 12, 80),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 2,
-                    crossAxisSpacing: 8,
-                    mainAxisSpacing: 8,
-                  ),
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.85,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
                   itemCount: projects.length,
+                  onReorder: (oldIndex, newIndex) {
+                    projectProvider.reorderProjects(oldIndex, newIndex);
+                  },
                   itemBuilder: (context, index) {
                     final project = projects[index];
                     return ProjectCard(
+                      key: ValueKey(project.id),
                       project: project,
                       isCompact: true,
                       onTap: () {

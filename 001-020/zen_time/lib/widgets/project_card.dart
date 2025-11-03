@@ -135,7 +135,7 @@ class _CompactCard extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               
-              // Today Progress
+              // Week Progress Only
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -143,42 +143,7 @@ class _CompactCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Today',
-                        style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      Text(
-                        '${TimeFormatter.formatDurationToHours(todayDuration)} / ${project.dailyTargetHours.toStringAsFixed(1)}h',
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  ProgressBarWidget(
-                    progress: todayProgress,
-                    color: Color(project.colorValue),
-                    height: 6,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              
-              // Week Progress
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Week',
+                        'This Week',
                         style: TextStyle(
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
@@ -199,7 +164,7 @@ class _CompactCard extends StatelessWidget {
                   ProgressBarWidget(
                     progress: weekProgress,
                     color: Color(project.colorValue),
-                    height: 6,
+                    height: 7,
                   ),
                 ],
               ),

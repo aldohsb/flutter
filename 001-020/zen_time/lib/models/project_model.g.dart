@@ -25,13 +25,15 @@ class ProjectModelAdapter extends TypeAdapter<ProjectModel> {
       weeklyTargetHours: fields[5] as double,
       createdAt: fields[6] as DateTime,
       updatedAt: fields[7] as DateTime,
+      order: fields[9] as int,
+      weekStartDay: fields[10] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, ProjectModel obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(10)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -47,7 +49,11 @@ class ProjectModelAdapter extends TypeAdapter<ProjectModel> {
       ..writeByte(6)
       ..write(obj.createdAt)
       ..writeByte(7)
-      ..write(obj.updatedAt);
+      ..write(obj.updatedAt)
+      ..writeByte(9)
+      ..write(obj.order)
+      ..writeByte(10)
+      ..write(obj.weekStartDay);
   }
 
   @override
