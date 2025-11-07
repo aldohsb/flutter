@@ -2,14 +2,26 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:zentime/models/project_model.dart';
 import 'package:zentime/models/session_model.dart';
 import 'package:zentime/utils/constants.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 class HiveService {
   static Future<void> init() async {
-    await Hive.initFlutter();
+    // Use proper app directory instead of Documents
+    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+      final appDir = await getApplicationSupportDirectory();
+      await Hive.initFlutter(appDir.path);
+    } else {
+      await Hive.initFlutter();
+    }
     
     // Register Adapters
-    Hive.registerAdapter(ProjectModelAdapter());
-    Hive.registerAdapter(SessionModelAdapter());
+    if (!Hive.isAdapterRegistered(0)) {
+      Hive.registerAdapter(ProjectModelAdapter());
+    }
+    if (!Hive.isAdapterRegistered(1)) {
+      Hive.registerAdapter(SessionModelAdapter());
+    }
     
     // Open Boxes
     await Hive.openBox<ProjectModel>(AppConstants.projectsBox);

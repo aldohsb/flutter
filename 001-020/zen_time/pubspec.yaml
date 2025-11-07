@@ -16,8 +16,9 @@ dependencies:
   # Local Storage
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  path_provider: ^2.1.4
   
-  # Notifications & Background
+  # Notifications
   flutter_local_notifications: ^17.2.3
   
   # Audio
@@ -36,25 +37,9 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   hive_generator: ^2.0.1
   build_runner: ^2.4.12
-  flutter_launcher_icons: ^0.13.1  # Tambahkan ini
-
 
 flutter:
   uses-material-design: true
   
   assets:
     - assets/sounds/
-    
-flutter_launcher_icons:
-  android: true
-  ios: true
-  image_path: "assets/icon/app_icon.png"
-  adaptive_icon_background: "#6B7F5E"  # Warna olive green
-  adaptive_icon_foreground: "assets/icon/app_icon.png"
-  windows:
-    generate: true
-    image_path: "assets/icon/app_icon.png"  # Path ke icon PNG yang ada
-    icon_size: 256
-  
-  # Optional: Untuk Android 13+ themed icon
-  adaptive_icon_monochrome: "assets/icon/app_icon.png"

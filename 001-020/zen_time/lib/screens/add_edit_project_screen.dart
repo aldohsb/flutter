@@ -128,7 +128,7 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
             const SizedBox(height: 12),
             
             DropdownButtonFormField<int>(
-              value: _weekStartDay,
+              initialValue: _weekStartDay,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.calendar_month),
                 labelText: 'Week Starts On',

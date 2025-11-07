@@ -83,6 +83,7 @@ class _CompactCard extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
               // Header with color indicator
               Row(
@@ -133,7 +134,7 @@ class _CompactCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 10),
               
               // Week Progress Only
               Column(

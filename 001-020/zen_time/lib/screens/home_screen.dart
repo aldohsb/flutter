@@ -143,7 +143,7 @@ class HomeScreen extends StatelessWidget {
                 return ReorderableGridView(
                   padding: const EdgeInsets.fromLTRB(12, 4, 12, 80),
                   crossAxisCount: 2,
-                  childAspectRatio: 0.85,
+                  childAspectRatio: 2.3,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                   itemCount: projects.length,

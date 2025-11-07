@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ReorderableGridView extends StatelessWidget {
+class ReorderableGridView extends StatefulWidget {
   final int itemCount;
   final Widget Function(BuildContext, int) itemBuilder;
   final void Function(int, int) onReorder;
@@ -23,78 +23,121 @@ class ReorderableGridView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    return ReorderableListView.builder(
-      padding: padding,
-      itemCount: (itemCount / crossAxisCount).ceil(),
-      onReorder: (oldRowIndex, newRowIndex) {
-        final oldIndex = oldRowIndex * crossAxisCount;
-        final newIndex = newRowIndex * crossAxisCount;
-        onReorder(oldIndex, newIndex);
-      },
-      proxyDecorator: (child, index, animation) {
-        return Material(
-          elevation: 8,
-          borderRadius: BorderRadius.circular(12),
-          child: child,
-        );
-      },
-      itemBuilder: (context, rowIndex) {
-        final startIndex = rowIndex * crossAxisCount;
-        final endIndex = (startIndex + crossAxisCount < itemCount)
-            ? startIndex + crossAxisCount
-            : itemCount;
+  State<ReorderableGridView> createState() => _ReorderableGridViewState();
+}
 
-        return Container(
-          key: ValueKey('row_$rowIndex'),
-          margin: EdgeInsets.only(bottom: mainAxisSpacing),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (int i = startIndex; i < endIndex; i++) ...[
-                Expanded(
-                  child: LongPressDraggable<int>(
-                    data: i,
-                    feedback: Material(
-                      elevation: 8,
-                      borderRadius: BorderRadius.circular(12),
-                      child: SizedBox(
-                        width: (MediaQuery.of(context).size.width - 
-                                padding.horizontal - 
-                                (crossAxisSpacing * (crossAxisCount - 1))) / 
-                               crossAxisCount,
-                        child: Opacity(
-                          opacity: 0.8,
-                          child: itemBuilder(context, i),
-                        ),
-                      ),
-                    ),
-                    childWhenDragging: Opacity(
-                      opacity: 0.3,
-                      child: itemBuilder(context, i),
-                    ),
-                    child: DragTarget<int>(
-                      onAcceptWithDetails: (details) {
-                        onReorder(details.data, i);
-                      },
-                      builder: (context, candidateData, rejectedData) {
-                        return itemBuilder(context, i);
-                      },
-                    ),
-                  ),
-                ),
-                if (i < endIndex - 1) SizedBox(width: crossAxisSpacing),
-              ],
-              // Fill remaining space if last row is incomplete
-              if (endIndex - startIndex < crossAxisCount)
-                ...List.generate(
-                  crossAxisCount - (endIndex - startIndex),
-                  (index) => Expanded(child: Container()),
-                ),
-            ],
+class _ReorderableGridViewState extends State<ReorderableGridView> {
+  int? _draggingIndex;
+  int? _hoveringIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final availableWidth = constraints.maxWidth - 
+            widget.padding.left - 
+            widget.padding.right -
+            (widget.crossAxisSpacing * (widget.crossAxisCount - 1));
+        final itemWidth = availableWidth / widget.crossAxisCount;
+        final itemHeight = itemWidth / widget.childAspectRatio;
+
+        return SingleChildScrollView(
+          padding: widget.padding,
+          child: Wrap(
+            spacing: widget.crossAxisSpacing,
+            runSpacing: widget.mainAxisSpacing,
+            children: List.generate(widget.itemCount, (index) {
+              return _buildDraggableItem(
+                context,
+                index,
+                itemWidth,
+                itemHeight,
+              );
+            }),
           ),
         );
       },
+    );
+  }
+
+  Widget _buildDraggableItem(
+    BuildContext context,
+    int index,
+    double width,
+    double height,
+  ) {
+    final isDragging = _draggingIndex == index;
+    final isHovering = _hoveringIndex == index;
+
+    return SizedBox(
+      width: width,
+      height: height,
+      child: LongPressDraggable<int>(
+        data: index,
+        onDragStarted: () {
+          setState(() {
+            _draggingIndex = index;
+          });
+        },
+        onDragEnd: (_) {
+          setState(() {
+            _draggingIndex = null;
+            _hoveringIndex = null;
+          });
+        },
+        feedback: Material(
+          elevation: 8,
+          borderRadius: BorderRadius.circular(12),
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: Opacity(
+              opacity: 0.9,
+              child: widget.itemBuilder(context, index),
+            ),
+          ),
+        ),
+        childWhenDragging: Opacity(
+          opacity: 0.3,
+          child: widget.itemBuilder(context, index),
+        ),
+        child: DragTarget<int>(
+          onWillAcceptWithDetails: (details) {
+            if (details.data != index) {
+              setState(() {
+                _hoveringIndex = index;
+              });
+            }
+            return details.data != index;
+          },
+          onLeave: (_) {
+            setState(() {
+              _hoveringIndex = null;
+            });
+          },
+          onAcceptWithDetails: (details) {
+            widget.onReorder(details.data, index);
+            setState(() {
+              _hoveringIndex = null;
+            });
+          },
+          builder: (context, candidateData, rejectedData) {
+            return AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: isHovering
+                    ? Border.all(
+                        color: Colors.blue,
+                        width: 2,
+                      )
+                    : null,
+              ),
+              child: widget.itemBuilder(context, index),
+            );
+          },
+        ),
+      ),
     );
   }
 }

@@ -140,7 +140,7 @@ class ConversionDisplay extends StatelessWidget {
             provider.swapUnits();
           },
           borderRadius: BorderRadius.circular(50),
-          child: Container(
+          child: SizedBox(
             width: 56,
             height: 56,
             child: const Icon(
