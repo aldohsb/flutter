@@ -1,158 +1,120 @@
-// Import package Flutter Material Design
-// Material adalah design system dari Google yang sudah include berbagai widget
 import 'package:flutter/material.dart';
+// Import constants
+import 'core/constants/app_colors.dart';
+import 'core/constants/app_strings.dart';
+import 'core/routes/app_routes.dart';
+// Import screens
+import 'screens/home/home_screen.dart';
+import 'screens/catalog/catalog_screen.dart';
+import 'screens/profile/profile_screen.dart';
 
-// Fungsi main() adalah entry point aplikasi
-// Ini fungsi pertama yang dijalankan saat app dibuka
+// Entry point aplikasi
 void main() {
-  // runApp() menjalankan aplikasi Flutter
-  // Parameter yang diberikan adalah widget root (widget paling atas)
   runApp(const LetterhannaApp());
 }
 
-// Class LetterhannaApp adalah widget root kita
-// StatelessWidget = widget yang tidak punya state (data yang berubah)
-// const = nilai tetap, tidak berubah, lebih efisien untuk performa
+// Root widget aplikasi
 class LetterhannaApp extends StatelessWidget {
   const LetterhannaApp({super.key});
 
-  // Method build() wajib ada di setiap widget
-  // Method ini mengembalikan tampilan UI widget
-  // BuildContext adalah informasi lokasi widget di widget tree
   @override
   Widget build(BuildContext context) {
-    // MaterialApp adalah widget pembungkus aplikasi Material Design
     return MaterialApp(
-      // title muncul di task switcher (tidak terlihat di layar app)
-      title: 'Letterhanna',
+      // App title
+      title: AppStrings.appName,
       
-      // debugShowCheckedModeBanner: false menghilangkan banner "DEBUG" di pojok
+      // Hilangkan banner DEBUG
       debugShowCheckedModeBanner: false,
       
-      // theme mengatur tampilan global aplikasi (warna, font, dll)
+      // Theme configuration menggunakan AppColors
       theme: ThemeData(
-        // primarySwatch adalah warna utama aplikasi
-        // Colors.brown cocok untuk tema elegant classic
-        primarySwatch: Colors.brown,
+        // Primary color dari AppColors
+        primaryColor: AppColors.primary,
         
-        // useMaterial3: true menggunakan Material Design 3 (versi terbaru)
+        // Scaffold background color
+        scaffoldBackgroundColor: AppColors.background,
+        
+        // AppBar theme global
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.primary,
+          foregroundColor: AppColors.textOnDark,
+          elevation: 0,
+          centerTitle: true,
+        ),
+        
+        // Color scheme untuk Material 3
+        colorScheme: ColorScheme.light(
+          primary: AppColors.primary,
+          secondary: AppColors.accent,
+          surface: AppColors.surface,
+          error: AppColors.error,
+        ),
+        
+        // Enable Material 3
         useMaterial3: true,
       ),
       
-      // home adalah halaman pertama yang ditampilkan saat app dibuka
-      home: const HomePage(),
-    );
-  }
-}
-
-// Class HomePage adalah halaman utama aplikasi
-// StatelessWidget karena untuk hari ini kita hanya tampil teks static
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // Scaffold adalah struktur dasar halaman Material Design
-    // Scaffold punya AppBar, Body, FloatingActionButton, dll
-    return Scaffold(
-      // AppBar adalah bar di bagian atas aplikasi
-      appBar: AppBar(
-        // title menampilkan judul di AppBar
-        title: const Text('Letterhanna'),
-        
-        // centerTitle: true membuat title berada di tengah
-        centerTitle: true,
-        
-        // backgroundColor mengatur warna background AppBar
-        // Colors.brown.shade800 adalah coklat tua (elegant)
-        backgroundColor: Colors.brown.shade800,
-        
-        // foregroundColor mengatur warna teks & icon di AppBar
-        foregroundColor: Colors.white,
-        
-        // elevation adalah bayangan/shadow di bawah AppBar
-        // 0 = tidak ada shadow (flat design, lebih modern)
-        elevation: 0,
-      ),
+      // Initial route (halaman pertama yang dibuka)
+      initialRoute: AppRoutes.home,
       
-      // body adalah konten utama halaman (di bawah AppBar)
-      body: Center(
-        // Center membuat child-nya berada di tengah layar
-        child: Column(
-          // mainAxisAlignment mengatur posisi children di axis utama (vertikal untuk Column)
-          // MainAxisAlignment.center = semua children di tengah secara vertikal
-          mainAxisAlignment: MainAxisAlignment.center,
-          
-          // children adalah list widget-widget yang ditampilkan di Column
-          children: [
-            // Icon menampilkan icon dari Material Icons
-            Icon(
-              Icons.font_download,
-              size: 80,
-              color: Colors.brown.shade700,
+      // Routes configuration
+      // Map<String, WidgetBuilder> yang menghubungkan route name dengan screen
+      routes: {
+        // Route home (/)
+        AppRoutes.home: (context) => const HomeScreen(),
+        
+        // Route catalog (/catalog)
+        AppRoutes.catalog: (context) => const CatalogScreen(),
+        
+        // Route profile (/profile)
+        AppRoutes.profile: (context) => const ProfileScreen(),
+      },
+      
+      // onUnknownRoute dipanggil jika user navigasi ke route yang tidak terdaftar
+      // Ini seperti 404 page di web
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => Scaffold(
+            appBar: AppBar(
+              title: const Text('Page Not Found'),
             ),
-            
-            // SizedBox memberi jarak vertikal 24 pixel
-            const SizedBox(height: 24),
-            
-            // Text menampilkan teks
-            const Text(
-              'Welcome to Letterhanna',
-              // style mengatur tampilan teks
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.brown,
-              ),
-            ),
-            
-            const SizedBox(height: 12),
-            
-            const Text(
-              'Handwriting Fonts Collection',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
-            ),
-            
-            const SizedBox(height: 40),
-            
-            // Container seperti div di HTML, bisa punya padding, margin, decoration
-            Container(
-              // padding adalah jarak dari tepi container ke content
-              padding: const EdgeInsets.symmetric(
-                horizontal: 32,
-                vertical: 16,
-              ),
-              
-              // decoration mengatur tampilan container (warna, border, shadow, dll)
-              decoration: BoxDecoration(
-                color: Colors.brown.shade800,
-                // borderRadius membuat sudut container melengkung
-                borderRadius: BorderRadius.circular(30),
-                // boxShadow memberi bayangan
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.brown.withOpacity(0.3),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.error_outline,
+                    size: 80,
+                    color: AppColors.error,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    '404 - Page Not Found',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textPrimary,
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigator.pushReplacementNamed mengganti route saat ini
+                      // dengan route baru (tidak bisa back)
+                      Navigator.pushReplacementNamed(context, AppRoutes.home);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.primary,
+                      foregroundColor: AppColors.textOnDark,
+                    ),
+                    child: const Text('Back to Home'),
                   ),
                 ],
               ),
-              
-              child: const Text(
-                'Get Started',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }
