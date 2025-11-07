@@ -1,58 +1,56 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user_model.dart';
+part of 'task_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class UserModelAdapter extends TypeAdapter<UserModel> {
+class TaskAdapter extends TypeAdapter<Task> {
   @override
   final int typeId = 0;
 
   @override
-  UserModel read(BinaryReader reader) {
+  Task read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return UserModel(
-      id: fields[0] as int?,
-      name: fields[1] as String,
-      age: fields[3] as int,
-      height: fields[4] as double,
-      currentWeight: fields[5] as double,
-      targetWeight: fields[6] as double,
-      startDate: fields[7] as DateTime,
-      createdAt: fields[8] as DateTime?,
-      updatedAt: fields[9] as DateTime?,
+    return Task(
+      id: fields[0] as String,
+      title: fields[1] as String,
+      description: fields[2] as String,
+      category: fields[3] as String,
+      priority: fields[4] as String,
+      deadline: fields[5] as DateTime,
+      isCompleted: fields[6] as bool,
+      createdAt: fields[7] as DateTime,
+      order: fields[8] as int,
     );
   }
 
   @override
-  void write(BinaryWriter writer, UserModel obj) {
+  void write(BinaryWriter writer, Task obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(9)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.name)
+      ..write(obj.title)
       ..writeByte(2)
-      ..write(obj.genderIndex)
+      ..write(obj.description)
       ..writeByte(3)
-      ..write(obj.age)
+      ..write(obj.category)
       ..writeByte(4)
-      ..write(obj.height)
+      ..write(obj.priority)
       ..writeByte(5)
-      ..write(obj.currentWeight)
+      ..write(obj.deadline)
       ..writeByte(6)
-      ..write(obj.targetWeight)
+      ..write(obj.isCompleted)
       ..writeByte(7)
-      ..write(obj.startDate)
-      ..writeByte(8)
       ..write(obj.createdAt)
-      ..writeByte(9)
-      ..write(obj.updatedAt);
+      ..writeByte(8)
+      ..write(obj.order);
   }
 
   @override
@@ -61,7 +59,7 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is UserModelAdapter &&
+      other is TaskAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
