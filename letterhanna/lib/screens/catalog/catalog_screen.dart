@@ -45,11 +45,7 @@ class CatalogScreen extends StatelessWidget {
             
             Text(
               'Font Catalog',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textPrimary,
-              ),
+              style: Theme.of(context).textTheme.headlineSmall,
             ),
             
             const SizedBox(height: 12),
@@ -59,10 +55,7 @@ class CatalogScreen extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
                 'Grid layout dengan daftar font akan muncul di sini pada Hari ke-6',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textSecondary,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
             ),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_strings.dart';
 import '../../core/routes/app_routes.dart';
+// Import custom widget
+import '../../widgets/common/custom_button.dart';
 
 // HomeScreen adalah halaman utama aplikasi
 class HomeScreen extends StatelessWidget {
@@ -42,37 +44,30 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 32),
               
               // === WELCOME MESSAGE ===
+              // Menggunakan headlineMedium dari theme
               Text(
                 AppStrings.welcomeMessage,
-                style: TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.textPrimary,
-                ),
+                style: Theme.of(context).textTheme.headlineMedium,
                 textAlign: TextAlign.center,
               ),
               
               const SizedBox(height: 16),
               
               // === TAGLINE ===
+              // Menggunakan titleLarge dari theme
               Text(
                 AppStrings.appTagline,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: AppColors.textSecondary,
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
                 textAlign: TextAlign.center,
               ),
               
               const SizedBox(height: 12),
               
               // === DESCRIPTION ===
+              // Menggunakan bodyMedium dari theme
               Text(
                 AppStrings.appDescription,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: AppColors.textHint,
-                ),
+                style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
               
@@ -118,11 +113,9 @@ class HomeScreen extends StatelessWidget {
                   
                   child: Text(
                     AppStrings.exploreButton,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: AppColors.textOnDark,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 1.2, // Jarak antar huruf
+                      letterSpacing: 1.2,
                     ),
                   ),
                 ),
@@ -154,10 +147,8 @@ class HomeScreen extends StatelessWidget {
                   
                   child: Text(
                     AppStrings.browseCollection,
-                    style: TextStyle(
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: AppColors.primary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
                       letterSpacing: 1.2,
                     ),
                   ),

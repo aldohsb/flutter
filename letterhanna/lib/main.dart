@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // Import constants
 import 'core/constants/app_colors.dart';
 import 'core/constants/app_strings.dart';
+import 'core/constants/app_theme.dart';
 import 'core/routes/app_routes.dart';
 // Import screens
 import 'screens/home/home_screen.dart';
@@ -12,6 +13,7 @@ import 'screens/profile/profile_screen.dart';
 void main() {
   runApp(const LetterhannaApp());
 }
+
 
 // Root widget aplikasi
 class LetterhannaApp extends StatelessWidget {

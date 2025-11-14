@@ -118,6 +118,8 @@ class TimerProvider extends ChangeNotifier {
       }
       
       _checkAlarm();
+      
+      // Notify every second to update UI
       notifyListeners();
     });
   }
@@ -187,6 +189,7 @@ class TimerProvider extends ChangeNotifier {
       _elapsedSeconds = 0;
       _lastAlarmMinute = 0;
       
+      // Force notify to update statistics
       notifyListeners();
     } catch (e) {
       debugPrint('Error stopping timer: $e');

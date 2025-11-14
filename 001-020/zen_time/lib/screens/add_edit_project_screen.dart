@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zentime/models/project_model.dart';
 import 'package:zentime/providers/project_provider.dart';
 import 'package:zentime/utils/constants.dart';
 

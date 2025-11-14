@@ -408,7 +408,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onChanged: (value) {
                       taskProvider.toggleCompletedFilter();
                     },
-                    activeColor: const Color(0xFF6366F1),
+                    activeThumbColor: const Color(0xFF6366F1),
                   ),
                   const SizedBox(height: 16),
                   // Clear filters button

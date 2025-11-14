@@ -3,6 +3,7 @@ import 'package:uuid/uuid.dart';
 import 'package:zentime/models/project_model.dart';
 import 'package:zentime/models/session_model.dart';
 import 'package:zentime/services/hive_service.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 class ProjectProvider extends ChangeNotifier {
   List<ProjectModel> _projects = [];
@@ -11,6 +12,14 @@ class ProjectProvider extends ChangeNotifier {
   
   ProjectProvider() {
     loadProjects();
+    _listenToSessionChanges();
+  }
+  
+  void _listenToSessionChanges() {
+    // Listen to session box changes to update statistics
+    HiveService.sessionsBox.listenable().addListener(() {
+      notifyListeners();
+    });
   }
   
   void loadProjects() {

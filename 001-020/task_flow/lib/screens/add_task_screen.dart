@@ -8,7 +8,6 @@ import '../providers/task_provider.dart';
 import '../utils/constants.dart';
 import '../utils/date_utils.dart';
 import '../widgets/category_chip.dart';
-import '../widgets/priority_indicator.dart';
 
 class AddTaskScreen extends StatefulWidget {
   // StatefulWidget = widget yang punya state yang bisa berubah
