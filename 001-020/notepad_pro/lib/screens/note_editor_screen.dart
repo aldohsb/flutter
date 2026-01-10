@@ -236,11 +236,11 @@ class _NoteEditorScreenState extends State<NoteEditorScreen> {
   Widget _buildContentField() {
     return Container(
       padding: const EdgeInsets.all(AppConstants.spacingM),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppTheme.paperWhite,
         // Paper lines effect
         image: DecorationImage(
-          image: const NetworkImage(
+          image: NetworkImage(
             'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIzMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48bGluZSB4MT0iMCIgeTE9IjMxIiB4Mj0iMTAwJSIgeTI9IjMxIiBzdHJva2U9IiNFMEUwRTAiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==',
           ),
           repeat: ImageRepeat.repeatY,

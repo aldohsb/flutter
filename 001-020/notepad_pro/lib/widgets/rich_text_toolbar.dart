@@ -30,7 +30,7 @@ class RichTextToolbar extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: AppTheme.paperWhite,
-        border: Border(
+        border: const Border(
           top: BorderSide(
             color: AppTheme.lineGray,
             width: 1,

@@ -27,7 +27,7 @@ class AppTheme {
       brightness: Brightness.light,
       
       // Color Scheme
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: inkBlue,
         secondary: tabBlue,
         surface: paperWhite,
@@ -67,15 +67,15 @@ class AppTheme {
         fillColor: Colors.white,
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusS),
-          borderSide: BorderSide(color: lineGray),
+          borderSide: const BorderSide(color: lineGray),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusS),
-          borderSide: BorderSide(color: lineGray),
+          borderSide: const BorderSide(color: lineGray),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(AppConstants.radiusS),
-          borderSide: BorderSide(color: tabBlue, width: 2),
+          borderSide: const BorderSide(color: tabBlue, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: AppConstants.spacingM,
@@ -136,7 +136,7 @@ class AppTheme {
       ),
       
       // Divider
-      dividerTheme: DividerThemeData(
+      dividerTheme: const DividerThemeData(
         color: lineGray,
         thickness: 1,
         space: AppConstants.spacingM,
@@ -145,10 +145,10 @@ class AppTheme {
   }
   
   // Paper line decoration
-  static BoxDecoration paperLineDecoration = BoxDecoration(
+  static BoxDecoration paperLineDecoration = const BoxDecoration(
     color: paperWhite,
     image: DecorationImage(
-      image: const AssetImage('assets/paper_lines.png'),
+      image: AssetImage('assets/paper_lines.png'),
       repeat: ImageRepeat.repeat,
       opacity: 0.3,
     ),

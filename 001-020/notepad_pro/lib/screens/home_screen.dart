@@ -4,7 +4,6 @@ import 'package:notepad_pro/providers/note_provider.dart';
 import 'package:notepad_pro/providers/folder_provider.dart';
 import 'package:notepad_pro/providers/tag_provider.dart';
 import 'package:notepad_pro/screens/note_editor_screen.dart';
-import 'package:notepad_pro/screens/folder_screen.dart';
 import 'package:notepad_pro/widgets/note_card.dart';
 import 'package:notepad_pro/widgets/folder_item.dart';
 import 'package:notepad_pro/widgets/tag_chip.dart';
@@ -74,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 280,
               decoration: BoxDecoration(
                 color: AppTheme.paperYellow.withOpacity(0.3),
-                border: Border(
+                border: const Border(
                   right: BorderSide(
                     color: AppTheme.lineGray,
                     width: 1,
