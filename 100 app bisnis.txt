@@ -1,0 +1,2122 @@
+Buatkan panduan  dan file lengkap proyek Flutter di bawah ini, 
+Judul : 
+
+sertakan pembahasan pelajaran teknik atau konsep flutter yang dibahas di atas, pembahasan level beginner, pakai bahasa awam.
+proyek jangan terlalu rumit, yang simple saja, fokuskan pelajaran teknik yang disebutkan diatas
+lengkapi code dengan banyak komentar untuk menjelaskan setiap baris code untuk belajar.
+
+UI/UX standart profesional, designer grade.
+Terapkan modular programming, dan setiap file di tulis di masing-masing artifact agar mudah di copy.
+jangan gunakan syntax code yang sudah deprecated.
+mulai dari inisialisasi proyek
+sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
+tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+nama proyek pakai snake case
+
+Artifact hanya digunakan untuk coding aplikasi saja. Panduan atau pembahasan, setup dan lain lain di dalam chat saja
+
+kalau terlalu panjang bagi proyek menjadi beberapa part tapi setiap part bisa langsung di lihat hasilnya, agar segera bisa di fix  kalau ada error, kemudian lanjut dengan  part selanjutnya di chat berikutnya.
+
+  <base href="/flutter/001-020/neon_whisper/build/web/">
+
+###########
+1. AppointEase - Simple Appointment Booking
+2. InvoiceQuick - Simple Invoice Generator
+3. LocalCraft - Single Vendor Handicraft Store
+4. QuickChat - Simple One-to-One Chat
+5. QuizMaster - Simple Quiz & Assessment App
+6. FamilyCircle - Family Group Chat
+7. FlashLearn - Flashcard Learning App
+8. FreshBasket - Grocery Delivery App
+9. StockKeeper - Basic Inventory Management
+10. TableReserve - Restaurant Table Booking
+11. BookNook - Digital Bookstore
+12. CashFlow - Expense & Income Tracker
+13. ClassBook - Fitness Class Booking
+14. StudyBuddy - Student Study Group Chat
+15. VideoLearn - Video Course Player
+16. AppointBook - Appointment Booking System
+17. BookShelf - Digital Library & Reading App
+18. NeighborNet - Neighborhood Community App
+19. StyleHub - Fashion Boutique App
+20. TutorSchedule - Private Tutor Booking
+21. HobbyHub - Interest-Based Community
+22. ParkSpot - Parking Slot Booking
+23. ServicePro - Field Service Management
+24. SkillTrack - Skill Development Tracker
+25. TechZone - Electronics Store
+26. ClassConnect - Virtual Classroom Platform
+27. PharmaQuick - Online Pharmacy
+28. RetailPOS - Retail Point of Sale
+29. SalonPro - Beauty Salon Multi-Service Booking
+30. TeamSync - Team Collaboration Platform
+31. CafeHub - Restaurant/Cafe POS
+32. CarService - Auto Service Booking
+33. CodeAcademy - Programming Learning Platform
+34. FoodieMarket - Cloud Kitchen Marketplace
+35. GamerChat - Gaming Community Platform
+36. AutoRepair - Auto Workshop Management
+37. HealthHub - Healthcare Appointment Platform
+38. LanguagePro - Language Learning Platform
+39. PetPalace - Pet Supplies E-Commerce
+40. WellnessTribe - Health & Fitness Community
+41. EventPass - Event Ticketing Platform
+42. ExamPrep - Competitive Exam Preparation
+43. HomeDecor - Furniture & Home Decor Marketplace
+44. LocalBuzz - Hyperlocal Social Network
+45. SalonSuite - Salon & Spa Management
+46. BeautyBox - Beauty & Cosmetics Store
+47. CertifyPro - Professional Certification Platform
+48. CoWorkSpace - Coworking Space Booking
+49. MedicalPOS - Pharmacy/Clinic POS
+50. MomConnect - Parenting Community App
+51. MarketHub - Multi-Vendor Marketplace (BC)
+52. MultiStore - Multi-Branch Retail Management
+53. ProNetwork - Professional Networking Platform
+54. TravelBook - Multi-Service Travel Booking
+55. UniversityHub - Complete University LMS
+56. CorporateTrain - Corporate Training Platform
+57. CreatorSpace - Content Creator Community
+58. HotelPro - Hotel Management System (PMS)
+59. LuxeWear - Premium Fashion E-Commerce
+60. VenueMatch - Event Venue Marketplace
+61. FarmToTable - Farm-to-Consumer Platform
+62. HomeService - On-Demand Home Services
+63. MedicalEdu - Medical Education Platform
+64. VolunteerHub - Volunteer & NGO Platform
+65. WholesaleHub - BB Wholesale Distribution
+66. AutoParts - Automotive Parts Marketplace
+67. ConstructPro - Construction Management System
+68. EventFlow - Event-Centric Social Platform
+69. PropertyRent - Property Rental Platform
+70. TutorMarket - Online Tutoring Marketplace
+71. ManufactureOS - Manufacturing ERP System
+72. MentalSpace - Mental Health Support Community
+73. SkillMarketplace - Skill-Based Learning Marketplace
+74. SportsPlex - Sports Facility Booking Complex
+75. WholesalePro - BB Wholesale Platform
+76. AdaptiveLearn - AI-Powered Adaptive Learning
+77. EduVerse - Educational Metaverse Platform
+78. GlobalTrade - Cross-Border E-Commerce Platform
+79. MediConnect - Integrated Healthcare Ecosystem
+80. OmniPOS - Omnichannel Retail Platform
+81. CloudRestaurant - Cloud Kitchen Management Platform
+82. GlobalConnect - International Community Platform
+83. HotelChain - Multi-Property Hotel Management
+84. MetaLearn - Metaverse Learning Platform
+85. SocialShop - Social Commerce Platform
+86. AuctionBay - Auction & Bidding Platform
+87. DecentralChat - Blockchain-Based Decentralized Chat
+88. FleetBook - Fleet Management & Vehicle Booking
+89. GlobalEdu - International Education Platform
+90. MedicalERP - Hospital Information System (HIS)
+91. EnterpriseLMS - Enterprise Learning Ecosystem
+92. EnterpriseSocial - Enterprise Social Network
+93. GlobalCruise - Cruise Line Booking Platform
+94. SubscriptBox - Subscription Box Platform
+95. SupplyChainAI - AI-Powered Supply Chain Platform
+96. EduOS - Complete Education Operating System
+97. EnterpriseOS - Complete Business Operating System
+98. MetaCommune - AI-Powered Metaverse Community
+99. OmniBook - Universal Booking Operating System -
+100. OmniRetail - Omnichannel Retail Platform
+
+#########
+Level 1: Basic E-Commerce (Proyek 1-5)
+1. LocalCraft
+Jenis: Single Vendor Handicraft Store
+Deskripsi: Toko online kerajinan tangan lokal dengan katalog produk, keranjang belanja, dan checkout sederhana. Cocok untuk UMKM yang baru mulai online.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+Provider untuk state management
+Razorpay/Midtrans untuk payment
+cached_network_image
+flutter_rating_bar
+
+2. FreshBasket
+Jenis: Grocery Delivery App
+Deskripsi: Aplikasi belanja sayur dan buah segar dengan kategori produk, pencarian, dan sistem order sederhana untuk toko kelontong lokal.
+Teknologi:
+
+Firebase (Auth, Firestore)
+Provider/GetX
+Google Maps API
+flutter_local_notifications
+Payment gateway (COD + online)
+
+3. BookNook
+Jenis: Digital Bookstore
+Deskripsi: Toko buku online dengan preview, wishlist, dan sistem review. Support ebook download dan physical book delivery.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+flutter_pdfview untuk preview
+epub_reader untuk ebook
+Provider
+Payment gateway
+download_manager
+
+4. StyleHub
+Jenis: Fashion Boutique App
+Deskripsi: Aplikasi fashion store dengan filter size/color, wishlist, dan lookbook. Fokus pada single brand atau boutique kecil.
+Teknologi:
+
+Firebase/REST API
+Provider/Riverpod
+carousel_slider untuk product images
+flutter_staggered_grid_view
+Payment gateway
+size_chart widget
+
+5. TechZone
+Jenis: Electronics Store
+Deskripsi: Toko elektronik dengan perbandingan produk, spesifikasi detail, dan sistem review. Termasuk warranty tracking.
+Teknologi:
+
+Firebase/REST API
+BLoC/Riverpod
+compare_products feature
+flutter_html untuk specifications
+Payment gateway
+QR code untuk warranty
+
+Level 2: Intermediate E-Commerce (Proyek 6-10)
+6. PharmaQuick
+Jenis: Online Pharmacy
+Deskripsi: Aplikasi apotek online dengan upload resep, konsultasi apoteker via chat, pengingat minum obat, dan pengiriman cepat.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage, FCM)
+image_picker untuk upload resep
+OCR untuk reading prescription
+flutter_local_notifications untuk reminder
+In-app chat (Stream Chat/Firestore)
+Payment gateway
+Geolocation untuk nearest pharmacy
+
+7. FoodieMarket
+Jenis: Cloud Kitchen Marketplace
+Deskripsi: Platform multi-restaurant food delivery dengan real-time order tracking, multiple payment methods, dan rating system.
+Teknologi:
+
+Firebase/REST API
+Google Maps SDK
+Real-time location tracking (geolocator, geoflutterfire)
+BLoC architecture
+Multiple payment gateways
+Push notifications (FCM)
+rating_dialog
+Driver app integration
+
+8. PetPalace
+Jenis: Pet Supplies E-Commerce
+Deskripsi: Toko perlengkapan hewan dengan pet profile, subscription untuk recurring orders, vet consultation, dan pet care tips.
+Teknologi:
+
+Firebase/REST API
+Subscription management
+Video consultation (Agora/Jitsi)
+Content management untuk tips
+Payment gateway with recurring billing
+Calendar untuk grooming booking
+Provider/Riverpod
+
+9. HomeDecor
+Jenis: Furniture & Home Decor Marketplace
+Deskripsi: Marketplace furniture dengan AR view untuk visualisasi produk di ruangan, 360° product view, dan custom order form.
+Teknologia:
+
+Firebase/REST API
+ARCore untuk AR furniture placement
+panorama/photo_sphere untuk 360° view
+Custom form builder
+BLoC/Riverpod
+Payment gateway
+Installment payment support
+3D model viewer
+
+10. BeautyBox
+Jenis: Beauty & Cosmetics Store
+Deskripsi: E-commerce kosmetik dengan virtual try-on menggunakan AR, skin analysis, product recommendation, dan beauty tips.
+Teknologi:
+
+Firebase/REST API
+ML Kit untuk face detection
+AR face filters (custom or Snapchat SDK)
+Camera plugin
+Content delivery (beauty tips/tutorials)
+Subscription box feature
+Payment gateway
+Loyalty points system
+
+Level 3: Advanced E-Commerce (Proyek 11-15)
+11. MarketHub
+Jenis: Multi-Vendor Marketplace (B2C)
+Deskripsi: Platform marketplace lengkap dengan vendor dashboard, komisi system, escrow payment, dan advanced analytics. Mirip Tokopedia/Shopee.
+Teknologi:
+
+REST API (Node.js/Laravel backend)
+Multi-role authentication
+Vendor management dashboard
+Escrow payment system
+Chat system (buyer-seller)
+Order management dengan multiple status
+Rating & review system
+Commission calculation
+Firebase Cloud Messaging
+Advanced analytics (Firebase Analytics/Mixpanel)
+BLoC architecture
+Multiple payment gateways
+
+12. LuxeWear
+Jenis: Premium Fashion E-Commerce
+Deskripsi: High-end fashion app dengan personal shopper, live streaming shopping, exclusive member benefits, dan luxury unboxing experience tracking.
+Teknologi:
+
+REST API dengan GraphQL
+Live streaming (Agora SDK/AWS IVS)
+Video commerce integration
+Personal shopper chat (real-time)
+Membership tier system
+VIP perks and early access
+Premium payment gateways
+Order tracking dengan photo updates
+Referral program
+BLoC/Clean Architecture
+
+13. FarmToTable
+Jenis: Farm-to-Consumer Platform
+Deskripsi: Platform yang menghubungkan petani langsung dengan konsumen. Termasuk traceability produk, farm visit booking, dan subscription box.
+Teknologi:
+
+REST API/GraphQL
+Blockchain untuk traceability (optional)
+QR code scanning untuk product journey
+Subscription management
+Calendar booking untuk farm visits
+Real-time inventory dari multiple farms
+Cold chain tracking
+Payment gateway dengan farmer payout
+Geolocation untuk local farmers
+Educational content delivery
+Community forum
+
+14. AutoParts
+Jenis: Automotive Parts Marketplace
+Deskripsi: Marketplace spare part kendaraan dengan pencarian berdasarkan VIN, compatibility checker, dan workshop booking integration.
+Teknologi:
+
+REST API
+VIN decoder API integration
+Part compatibility database
+Image recognition untuk part identification
+Workshop finder dengan Google Maps
+Booking calendar
+Multiple seller management
+RFQ (Request for Quotation) system
+Payment gateway
+Return & warranty management
+Shipping integration (multiple carriers)
+Garage/car profile management
+
+15. WholesalePro
+Jenis: B2B Wholesale Platform
+Deskripsi: Platform wholesale untuk bisnis dengan MOQ, bulk pricing, credit terms, purchase orders, dan invoice management.
+Teknologi:
+
+REST API (enterprise-grade)
+B2B authentication (company verification)
+Tiered pricing engine
+MOQ (Minimum Order Quantity) logic
+Credit limit management
+Purchase order system
+Invoice generation (PDF)
+Payment terms (net 30/60/90)
+Bulk order import (CSV/Excel)
+Sales representative assignment
+Analytics dashboard
+ERP integration ready
+Document management
+Clean Architecture/BLoC
+
+Level 4: Expert E-Commerce (Proyek 16-20)
+16. GlobalTrade
+Jenis: Cross-Border E-Commerce Platform
+Deskripsi: Platform perdagangan internasional dengan multi-currency, multi-language, customs calculation, international shipping, dan compliance management.
+Teknologi:
+
+Microservices architecture
+REST API/GraphQL
+Multi-currency dengan real-time exchange rates
+Multi-language (i18n with easy_localization)
+Customs duty calculator
+International shipping aggregator
+Tax compliance automation
+Payment gateway (multiple countries)
+KYC/AML verification
+Export documentation
+Logistics tracking (multiple carriers)
+Currency hedging
+Geo-blocking/restrictions
+Advanced fraud detection
+BLoC/Clean Architecture
+
+17. SocialShop
+Jenis: Social Commerce Platform
+Deskripsi: Platform e-commerce berbasis social media dengan live selling, user-generated content, influencer marketplace, dan social features.
+Teknologi:
+
+Microservices backend
+Live streaming (Agora/AWS IVS)
+Real-time chat dan comments
+Social feed (stories, posts, reels)
+Influencer dashboard
+Affiliate marketing system
+UGC (User Generated Content) management
+Shoppable posts/videos
+Social login (multiple providers)
+In-app content creation tools
+Analytics (engagement metrics)
+Payment gateway
+Commission tracking
+AI-powered content moderation
+Push notifications & deep linking
+
+18. AuctionBay
+Jenis: Auction & Bidding Platform
+Deskripsi: Platform lelang online dengan live bidding, proxy bidding, buy-it-now option, escrow service, dan authentication untuk high-value items.
+Teknologi:
+
+Real-time WebSocket untuk bidding
+Countdown timer dengan server sync
+Proxy bidding algorithm
+Escrow payment integration
+Authentication service (untuk luxury items)
+Live auction streaming
+Bidding history & analytics
+Auto-bidding bots prevention
+Payment gateway (with escrow)
+KYC for high-value items
+Shipping insurance
+Item verification system
+Push notifications (outbid alerts)
+Multi-lot bidding
+Clean Architecture
+
+19. SubscriptBox
+Jenis: Subscription Box Platform
+Deskripsi: Platform subscription box dengan personalization algorithm, recurring billing, pause/skip features, dan community engagement.
+Teknologi:
+
+Microservices architecture
+ML-based recommendation engine
+Subscription management (Stripe/Chargebee)
+Recurring payment automation
+Personalization quiz
+Subscription lifecycle management
+Pause/skip/cancel logic
+Box customization
+Preview boxes before shipment
+Community features (unboxing feed)
+Referral program
+Gift subscription
+Inventory prediction (ML)
+Churn prediction & retention
+Analytics dashboard
+CRM integration
+Payment gateway with subscription support
+
+20. OmniRetail
+Jenis: Omnichannel Retail Platform
+Deskripsi: Platform retail omnichannel lengkap yang mengintegrasikan online, offline store, warehouse, dengan unified inventory, click & collect, dan endless aisle.
+Teknologi:
+
+Enterprise microservices architecture
+Unified inventory system
+POS integration (online-offline sync)
+Click & collect / BOPIS
+Endless aisle (in-store ordering)
+Store locator dengan inventory visibility
+Clienteling features
+Unified customer profile (online+offline)
+Loyalty program integration
+Order management system (OMS)
+Warehouse management integration
+Multiple fulfillment options
+Return anywhere feature
+Real-time inventory sync
+Staff mobile app
+Customer mobile app
+Advanced analytics & BI
+ERP integration
+Payment gateway (online + POS)
+Clean Architecture/DDD
+Offline-first capability
+
+
+Level 1: Basic Chat Apps (Proyek 1-5)
+1. QuickChat
+Jenis: Simple One-to-One Chat
+Deskripsi: Aplikasi chat sederhana untuk komunikasi pribadi dengan fitur text message, emoji, dan typing indicator. Cocok untuk belajar dasar-dasar real-time messaging.
+Teknologi:
+
+Firebase (Auth, Firestore)
+Provider untuk state management
+emoji_picker_flutter
+timeago untuk timestamp
+cached_network_image
+flutter_local_notifications
+
+2. FamilyCircle
+Jenis: Family Group Chat
+Deskripsi: Aplikasi chat khusus keluarga dengan shared calendar, shopping list, photo album, dan location sharing untuk menjaga komunikasi keluarga.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+table_calendar untuk family events
+image_picker untuk photo sharing
+geolocator untuk location sharing
+Provider/GetX
+flutter_local_notifications
+shared_preferences
+
+3. StudyBuddy
+Jenis: Student Study Group Chat
+Deskripsi: Platform chat untuk kelompok belajar dengan file sharing, assignment tracking, study timer, dan voice notes untuk kolaborasi akademik.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+file_picker untuk document sharing
+flutter_sound untuk voice messages
+Provider/Riverpod
+url_launcher untuk links
+flutter_downloader
+task_manager untuk assignments
+
+4. NeighborNet
+Jenis: Neighborhood Community App
+Deskripsi: Aplikasi komunitas perumahan dengan announcement board, local marketplace, emergency contacts, dan grup chat RT/RW.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage, FCM)
+Google Maps untuk location
+url_launcher untuk emergency calls
+Provider/GetX
+flutter_local_notifications
+carousel_slider untuk announcements
+simple marketplace features
+
+5. HobbyHub
+Jenis: Interest-Based Community
+Deskripsi: Platform untuk bergabung dengan komunitas berdasarkan hobi (fotografi, memasak, gaming, dll) dengan forum diskusi dan event organizer.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+Multi-channel chat
+table_calendar untuk events
+flutter_tags untuk interests
+Provider/Riverpod
+image_gallery untuk photo sharing
+poll feature untuk voting
+
+Level 2: Intermediate Chat/Community (Proyek 6-10)
+6. TeamSync
+Jenis: Team Collaboration Platform
+Deskripsi: Aplikasi kolaborasi tim dengan channels, direct messages, task management, video calls, dan file repository untuk produktivitas tim.
+Teknologi:
+
+Firebase/REST API
+Agora/Jitsi untuk video calls
+BLoC architecture
+file_picker & flutter_downloader
+Task board (drag & drop)
+mentions dan reactions
+thread conversations
+search functionality
+push notifications (FCM)
+offline mode support
+
+7. GamerChat
+Jenis: Gaming Community Platform
+Deskripsi: Platform untuk gamers dengan clan system, tournament organizer, game stats integration, voice chat, dan streaming support.
+Teknologi:
+
+Firebase/REST API + WebSocket
+Agora SDK untuk voice chat
+Game API integration (Steam, PSN, Xbox)
+Tournament bracket generator
+clan_management system
+live_stream integration
+leaderboard system
+BLoC/Riverpod
+rich_presence untuk game status
+Discord-like server structure
+
+8. WellnessTribe
+Jenis: Health & Fitness Community
+Deskripsi: Komunitas kesehatan dengan workout groups, nutrition tracking, challenge system, expert consultation, dan progress sharing.
+Teknologi:
+
+Firebase/REST API
+Video consultation (Agora)
+HealthKit/Google Fit integration
+charts_flutter untuk progress
+challenge_system
+meal_planner sharing
+workout_video support
+BLoC architecture
+social_feed untuk progress posts
+achievement_badges
+in-app chat with nutritionist
+
+9. LocalBuzz
+Jenis: Hyperlocal Social Network
+Deskripsi: Social network berbasis lokasi untuk discover events, local businesses, community news, dan nearby people dengan same interests.
+Teknologi:
+
+Firebase/REST API
+Google Maps SDK + geofencing
+location-based matching
+event_discovery dengan maps
+local_business directory
+news_feed (location-based)
+BLoC/Clean Architecture
+real-time notifications
+story_feature
+check-in system
+review & rating
+
+10. MomConnect
+Jenis: Parenting Community App
+Deskripsi: Platform untuk ibu berbagi pengalaman parenting dengan expert Q&A, playdate scheduler, product reviews, dan milestone tracking.
+Teknologia:
+
+Firebase/REST API
+Expert consultation (chat/video)
+Agora untuk video calls
+milestone_tracker
+playdate_calendar dengan location
+product_review system
+article_library (parenting tips)
+BLoC architecture
+anonymous_posting option
+age_based groups
+marketplace untuk baby items
+
+Level 3: Advanced Chat/Community (Proyek 11-15)
+11. ProNetwork
+Jenis: Professional Networking Platform
+Deskripsi: LinkedIn-style app dengan profile building, job board, mentorship matching, industry groups, dan professional content sharing.
+Teknologi:
+
+REST API/GraphQL
+Profile builder dengan resume
+job_board dengan filters
+mentorship_matching algorithm
+industry_specific groups
+content_publishing (articles)
+endorsement_system
+connection_suggestions (ML)
+video_introductions
+BLoC/Clean Architecture
+analytics_dashboard
+premium_membership tiers
+event_networking
+chat + video calls
+
+12. CreatorSpace
+Jenis: Content Creator Community
+Deskripsi: Platform untuk content creator dengan portfolio showcase, collaboration finder, monetization tools, dan resource sharing.
+Teknologi:
+
+REST API/GraphQL
+portfolio_builder (video/photo)
+video_player dengan analytics
+collaboration_board
+monetization_integration (tips, subscriptions)
+Stripe/payment gateway
+resource_marketplace
+project_management tools
+live_streaming (Agora/AWS IVS)
+BLoC/Clean Architecture
+analytics untuk content performance
+copyright_protection tools
+sponsor_connection system
+
+13. VolunteerHub
+Jenis: Volunteer & NGO Platform
+Deskripsi: Platform menghubungkan volunteers dengan NGO, project management, impact tracking, donation system, dan volunteer certification.
+Teknologi:
+
+REST API dengan microservices
+volunteer_matching algorithm
+project_board dengan filters
+time_tracking untuk volunteer hours
+impact_metrics dashboard
+donation_gateway
+certificate_generator
+skill-based matching
+geolocation untuk local projects
+BLoC/Clean Architecture
+background_check integration
+training_modules
+leaderboard & gamification
+multi-language support
+
+14. EventFlow
+Jenis: Event-Centric Social Platform
+Deskripsi: Platform untuk discover, create, dan manage events dengan ticketing, live updates, networking features, dan post-event community.
+Teknologi:
+
+REST API/GraphQL
+event_discovery dengan AI recommendations
+ticketing_system dengan QR codes
+payment_gateway
+live_event streaming
+Agora SDK untuk live sessions
+networking_features (attendee matching)
+agenda_builder
+expo_hall (virtual booths)
+chat (group + DM)
+BLoC/Clean Architecture
+analytics_dashboard
+check-in system dengan GPS
+post-event surveys
+sponsor_management
+
+15. MentalSpace
+Jenis: Mental Health Support Community
+Deskripsi: Platform support mental health dengan anonymous posting, peer support groups, professional counseling, mood tracking, dan crisis hotline.
+Teknologi:
+
+REST API dengan high security
+end-to-end encryption
+anonymous_chat dengan moderation
+peer_support groups (moderated)
+professional_counseling (Agora video)
+mood_tracker dengan charts
+journal_feature
+crisis_hotline integration
+AI moderation untuk harmful content
+BLoC/Clean Architecture
+offline_support resources
+certification untuk counselors
+HIPAA compliance
+emergency_contacts system
+
+Level 4: Expert Chat/Community (Proyek 16-20)
+16. EduVerse
+Jenis: Educational Metaverse Platform
+Deskripsi: Platform pembelajaran immersive dengan virtual classrooms, 3D avatars, collaborative whiteboards, gamification, dan peer-to-peer tutoring.
+Teknologi:
+
+Microservices architecture
+Unity integration untuk 3D spaces
+WebRTC untuk real-time communication
+Agora SDK untuk multi-user audio/video
+virtual_whiteboard (collaborative)
+avatar_customization
+gamification_engine
+LMS integration
+AI-powered tutoring
+blockchain untuk certificates
+payment_gateway
+BLoC/Clean Architecture
+peer-to-peer matching
+adaptive_learning paths
+VR support (optional)
+
+17. GlobalConnect
+Jenis: International Community Platform
+Deskripsi: Platform global dengan real-time translation, cultural exchange programs, international friend matching, dan cross-border collaboration.
+Teknologi:
+
+Microservices (multi-region)
+ML Kit untuk real-time translation
+language_learning integration
+cultural_exchange programs
+friend_matching algorithm (AI)
+video_calls dengan translation
+timezone_management
+content_moderation (AI + human)
+BLoC/Clean Architecture
+multi-currency support
+geo-specific content
+collaboration_tools
+safety_features (report, block)
+verification_system
+cultural_sensitivity filters
+
+18. DecentralChat
+Jenis: Blockchain-Based Decentralized Chat
+Deskripsi: Platform chat terdesentralisasi dengan end-to-end encryption, token economy, NFT profile, DAO governance, dan censorship resistance.
+Teknologi:
+
+Web3 integration
+IPFS untuk file storage
+blockchain (Ethereum/Polygon)
+smart_contracts untuk governance
+wallet_connect
+token_economy (rewards)
+NFT_integration untuk profiles
+DAO voting system
+end-to-end encryption
+distributed_storage
+BLoC/Clean Architecture
+DeFi integration
+decentralized_identity
+no central server
+open-source protocol
+
+19. EnterpriseSocial
+Jenis: Enterprise Social Network
+Deskripsi: Corporate social network dengan org chart integration, company-wide announcements, department channels, knowledge base, dan HR integration.
+Teknologi:
+
+Enterprise microservices
+LDAP/Active Directory integration
+SSO (Single Sign-On)
+org_chart visualization
+department_channels
+knowledge_base dengan search
+HR_system integration
+approval_workflows
+document_management
+video_conferencing (enterprise-grade)
+BLoC/Clean Architecture
+analytics_dashboard (admin)
+compliance_monitoring
+data_retention policies
+on-premise deployment option
+API for third-party integrations
+
+20. MetaCommune
+Jenis: AI-Powered Metaverse Community
+Deskripsi: Platform community metaverse dengan AI companions, virtual real estate, immersive experiences, creator economy, dan cross-platform integration.
+Teknologi:
+
+Microservices architecture
+Unity3D integration
+AI/ML untuk companions & recommendations
+blockchain untuk virtual assets
+NFT marketplace
+virtual_real_estate system
+spatial_audio
+motion_capture untuk avatars
+creator_economy tools
+cross-platform (mobile, web, VR)
+payment_gateway (crypto + fiat)
+WebRTC untuk communication
+CDN untuk asset delivery
+BLoC/Clean Architecture
+analytics_engine
+moderation_AI
+economy_simulation
+interoperability dengan metaverse lain
+
+
+Level 1: Basic Business Apps (Proyek 1-5)
+1. InvoiceQuick
+Jenis: Simple Invoice Generator
+Deskripsi: Aplikasi pembuat invoice sederhana untuk freelancer dan UMKM dengan template customizable, auto-calculation, dan PDF export.
+Teknologi:
+
+SQLite/Hive untuk local storage
+Provider untuk state management
+pdf package untuk generate invoice
+share_plus untuk sharing
+printing package
+image_picker untuk logo
+currency_formatter
+
+2. StockKeeper
+Jenis: Basic Inventory Management
+Deskripsi: Aplikasi inventory sederhana untuk tracking stok barang dengan barcode scanner, low stock alert, dan basic reporting.
+Teknologi:
+
+SQLite untuk database
+barcode_scan2 untuk scanning
+Provider/GetX
+flutter_local_notifications untuk alerts
+charts_flutter untuk reports
+excel untuk export data
+image_picker untuk product photos
+
+3. CashFlow
+Jenis: Expense & Income Tracker
+Deskripsi: Aplikasi pencatat keuangan bisnis sederhana dengan kategori, recurring transactions, dan monthly reports untuk UMKM.
+Teknologi:
+
+Hive/SQLite
+charts_flutter untuk visualisasi
+Provider/Riverpod
+table_calendar untuk date selection
+excel untuk export
+pdf untuk reports
+currency_text_input_formatter
+pie_chart untuk expense breakdown
+
+4. AppointBook
+Jenis: Appointment Booking System
+Deskripsi: Sistem booking appointment untuk salon, klinik, konsultan dengan calendar management, reminder SMS/WA, dan customer database.
+Teknologi:
+
+Firebase (Auth, Firestore)
+table_calendar untuk booking
+flutter_local_notifications
+twilio/whatsapp_api untuk reminders
+Provider/GetX
+url_launcher untuk calls
+time_slot management
+customer_notes feature
+
+5. ServicePro
+Jenis: Field Service Management
+Deskripsi: Aplikasi untuk teknisi lapangan dengan job assignment, time tracking, photo documentation, dan customer signature.
+Teknologi:
+
+Firebase/SQLite (offline-first)
+geolocator untuk tracking
+image_picker untuk documentation
+signature package untuk customer sign
+Provider/BLoC
+time_tracker
+offline_sync capability
+maps_launcher untuk navigation
+
+Level 2: Intermediate POS/Business (Proyek 6-10)
+6. RetailPOS
+Jenis: Retail Point of Sale
+Deskripsi: POS lengkap untuk toko retail dengan product management, multiple payment methods, daily reports, dan customer loyalty program.
+Teknologi:
+
+SQLite/Isar untuk offline storage
+bluetooth_thermal_printer untuk receipts
+barcode_scanner
+BLoC architecture
+payment_gateway integration
+loyalty_points system
+discount_management
+shift_management
+sales_analytics dengan charts
+offline_mode dengan sync
+multiple_users/cashiers
+end_of_day reporting
+
+7. CafeHub
+Jenis: Restaurant/Cafe POS
+Deskripsi: POS khusus F&B dengan table management, kitchen display system (KDS), split bill, dan modifiers untuk menu items.
+Teknologi:
+
+Firebase/REST API untuk real-time
+table_layout management
+kitchen_display integration
+split_bill calculator
+modifiers (extra, no ice, etc)
+BLoC/Clean Architecture
+receipt_printer integration
+tips_calculation
+reservation_system
+menu_management
+real-time order tracking
+waiter_assignment
+multi-outlet support
+
+8. AutoRepair
+Jenis: Auto Workshop Management
+Deskripsi: Sistem manajemen bengkel dengan service history, parts inventory, job cards, dan customer vehicle profiles.
+Teknologi:
+
+REST API/Firebase
+vehicle_database dengan VIN
+service_checklist
+parts_inventory management
+job_card system
+estimate_creation
+BLoC architecture
+image_annotation untuk damage photos
+pdf_generation untuk reports
+payment_gateway
+SMS/Email notifications
+warranty_tracking
+supplier_management
+
+9. SalonSuite
+Jenis: Salon & Spa Management
+Deskripsi: Aplikasi lengkap untuk salon dengan booking, stylist schedule, commission tracking, product sales, dan membership.
+Teknologia:
+
+Firebase/REST API
+calendar_management multi-stylist
+commission_calculator
+inventory untuk products
+membership_system
+package_deals
+BLoC architecture
+payment_gateway
+customer_history
+before/after photos
+SMS/WhatsApp reminders
+loyalty_rewards
+staff_performance analytics
+online_booking integration
+
+10. MedicalPOS
+Jenis: Pharmacy/Clinic POS
+Deskripsi: POS untuk apotek/klinik dengan prescription management, drug database, expiry tracking, dan insurance claims.
+Teknologi:
+
+REST API dengan secure backend
+drug_database dengan search
+prescription_management
+OCR untuk reading prescriptions
+expiry_alert system
+batch_tracking
+insurance_claims module
+BLoC/Clean Architecture
+patient_records
+doctor_prescription integration
+payment_gateway
+GST/tax calculation
+regulatory_compliance
+controlled_substances tracking
+
+Level 3: Advanced POS/Business (Proyek 11-15)
+11. MultiStore
+Jenis: Multi-Branch Retail Management
+Deskripsi: Sistem POS multi-cabang dengan centralized inventory, inter-branch transfer, consolidated reporting, dan franchise management.
+Teknologi:
+
+REST API/GraphQL
+centralized_database dengan branch sync
+inter-branch transfer system
+consolidated_reporting
+franchise_management
+role-based access control
+BLoC/Clean Architecture
+real-time inventory sync
+price_management per branch
+promotion_engine
+customer_database (shared)
+analytics_dashboard
+stock_transfer workflow
+payment_gateway (multiple)
+offline_mode dengan smart sync
+e-commerce integration
+
+12. HotelPro
+Jenis: Hotel Management System (PMS)
+Deskripsi: Property Management System lengkap dengan front desk, housekeeping, F&B integration, dan channel manager.
+Teknologi:
+
+Microservices architecture
+reservation_system
+room_allocation algorithm
+housekeeping_management
+POS_integration (restaurant/bar)
+channel_manager (OTA integration)
+rate_management (dynamic pricing)
+guest_profile management
+BLoC/Clean Architecture
+payment_gateway (multiple currencies)
+folio_management
+night_audit automation
+reports & analytics
+minibar_management
+laundry_service tracking
+loyalty_program
+
+13. WholesaleHub
+Jenis: B2B Wholesale Distribution
+Deskripsi: Platform distributor wholesale dengan purchase orders, credit management, route planning untuk sales, dan warehouse management.
+Teknologi:
+
+REST API dengan enterprise backend
+purchase_order system
+credit_limit management
+sales_route planning dengan maps
+warehouse_management (WMS)
+order_fulfillment tracking
+pricing_tiers (customer-based)
+BLoC/Clean Architecture
+van_sales module
+payment_terms (net 30/60/90)
+delivery_scheduling
+invoice_generation
+collection_management
+sales_rep mobile app
+GPS_tracking untuk delivery
+barcode/RFID integration
+
+14. ConstructPro
+Jenis: Construction Management System
+Deskripsi: Manajemen proyek konstruksi dengan project costing, material tracking, subcontractor management, dan progress monitoring.
+Teknologi:
+
+REST API/GraphQL
+project_management dengan Gantt
+BOQ (Bill of Quantities) management
+material_requisition system
+subcontractor_management
+timesheet_tracking
+equipment_management
+BLoC/Clean Architecture
+photo_documentation dengan GPS
+daily_progress reports
+budget_vs_actual tracking
+payment_certificates
+change_order management
+safety_checklist
+quality_control modules
+document_management
+CAD_integration (viewer)
+
+15. ManufactureOS
+Jenis: Manufacturing ERP System
+Deskripsi: Sistem ERP manufaktur dengan production planning, shop floor control, quality assurance, dan supply chain management.
+Teknologi:
+
+Microservices architecture
+MRP (Material Requirement Planning)
+production_scheduling
+work_order management
+shop_floor_control
+quality_assurance modules
+inventory_management (raw/WIP/finished)
+BLoC/Clean Architecture
+barcode/RFID tracking
+machine_monitoring integration
+maintenance_scheduling
+costing (job/process)
+supply_chain management
+purchase_requisition
+BOM (Bill of Materials)
+capacity_planning
+real-time dashboards
+IoT_sensor integration
+
+Level 4: Expert POS/Business (Proyek 16-20)
+16. OmniPOS
+Jenis: Omnichannel Retail Platform
+Deskripsi: Platform retail omnichannel dengan unified commerce, endless aisle, clienteling, unified inventory, dan AI-powered insights.
+Teknologi:
+
+Enterprise microservices
+unified_inventory system
+POS (in-store)
+mobile_POS untuk clienteling
+e-commerce_integration
+endless_aisle (order from store)
+click_and_collect (BOPIS)
+ship_from_store
+unified_customer_profile
+loyalty_program (omnichannel)
+AI_recommendations
+BLoC/Clean Architecture
+real-time_sync (all channels)
+payment_gateway (unified)
+return_anywhere
+gift_registry
+personal_shopper tools
+analytics_BI dashboard
+CRM_integration
+marketing_automation
+
+17. CloudRestaurant
+Jenis: Cloud Kitchen Management Platform
+Deskripsi: Platform multi-brand cloud kitchen dengan order aggregation, kitchen workflow optimization, delivery integration, dan menu engineering.
+Teknologi:
+
+Microservices architecture
+order_aggregation (Grab, Gojek, ShopeeFood)
+kitchen_display_system (KDS)
+workflow_optimization AI
+multi-brand management
+recipe_management
+inventory_optimization
+BLoC/Clean Architecture
+delivery_integration (3rd party)
+rider_management
+menu_engineering dengan analytics
+food_costing automation
+waste_tracking
+demand_forecasting (ML)
+preparation_time optimization
+real-time_dashboards
+packaging_management
+QR_ordering integration
+
+18. MedicalERP
+Jenis: Hospital Information System (HIS)
+Deskripsi: Sistem informasi rumah sakit lengkap dengan EMR/EHR, billing, pharmacy, lab, radiology, dan insurance integration.
+Teknologi:
+
+Enterprise microservices
+EMR/EHR_system (FHIR compliant)
+patient_registration
+appointment_scheduling
+OPD/IPD management
+billing_system (itemized)
+pharmacy_management
+lab_information_system (LIS)
+radiology (RIS/PACS integration)
+BLoC/Clean Architecture
+insurance_claims automation
+bed_management
+OT_scheduling
+nursing_station modules
+doctor_mobile_app
+patient_portal
+telemedicine_integration
+inventory_management
+HIPAA_compliance
+HL7_integration
+analytics & reporting
+
+19. SupplyChainAI
+Jenis: AI-Powered Supply Chain Platform
+Deskripsi: Platform supply chain dengan demand forecasting, route optimization, warehouse automation, dan predictive analytics.
+Teknologi:
+
+Microservices + AI/ML
+demand_forecasting (ML models)
+route_optimization algorithm
+warehouse_management (WMS)
+transportation_management (TMS)
+IoT_tracking (containers/vehicles)
+blockchain untuk traceability
+BLoC/Clean Architecture
+predictive_maintenance
+inventory_optimization AI
+supplier_relationship_mgmt
+procurement_automation
+quality_control AI vision
+customs_documentation
+real-time_visibility
+risk_management
+sustainability_tracking
+EDI_integration
+ERP_integration
+
+20. EnterpriseOS
+Jenis: Complete Business Operating System
+Deskripsi: ERP lengkap all-in-one dengan accounting, HRM, CRM, inventory, manufacturing, projects, dan BI - solusi end-to-end untuk enterprise.
+Teknologi:
+
+Enterprise microservices (DDD)
+accounting_module (double-entry)
+financial_reporting
+HRM (payroll, attendance, recruitment)
+CRM (sales pipeline, marketing)
+inventory_management
+manufacturing_module
+project_management
+procurement_system
+BLoC/Clean Architecture
+business_intelligence dashboard
+workflow_automation
+document_management
+asset_management
+multi-company support
+multi-currency/multi-language
+role-based_access_control
+API_gateway untuk integrations
+audit_trail
+compliance_management
+mobile_apps (iOS/Android)
+web_dashboard
+AI_assistant
+predictive_analytics
+customizable_modules
+
+
+Level 1: Basic Learning Apps (Proyek 1-5)
+1. QuizMaster
+Jenis: Simple Quiz & Assessment App
+Deskripsi: Aplikasi quiz sederhana dengan multiple choice, timer, scoring system, dan leaderboard. Cocok untuk sekolah atau training center.
+Teknologi:
+
+Firebase (Auth, Firestore)
+Provider untuk state management
+circular_countdown_timer untuk quiz timer
+charts_flutter untuk hasil
+shared_preferences untuk local storage
+confetti untuk celebration effects
+pdf untuk certificate generation
+
+2. FlashLearn
+Jenis: Flashcard Learning App
+Deskripsi: Aplikasi flashcard dengan spaced repetition algorithm, kategori topik, progress tracking, dan offline mode untuk belajar vocabulary atau konsep.
+Teknologi:
+
+Hive/SQLite untuk offline storage
+flip_card untuk flashcard animation
+Provider/GetX
+spaced_repetition algorithm
+text_to_speech untuk pronunciation
+image_picker untuk visual cards
+charts untuk learning stats
+export/import CSV
+
+3. VideoLearn
+Jenis: Video Course Player
+Deskripsi: Aplikasi streaming video pembelajaran dengan playlist, bookmark, playback speed control, dan note-taking untuk course online sederhana.
+Teknologi:
+
+Firebase (Storage, Firestore)
+video_player/chewie
+Provider/Riverpod
+cached_video_player
+note_taking feature dengan timestamps
+bookmark_system
+completion_tracking
+offline_download (flutter_downloader)
+subtitle support
+
+4. BookShelf
+Jenis: Digital Library & Reading App
+Deskripsi: Perpustakaan digital untuk ebook dan PDF dengan highlight, bookmark, search, dan reading progress tracking untuk institusi pendidikan.
+Teknologi:
+
+Firebase (Auth, Storage, Firestore)
+flutter_pdfview untuk PDF
+epub_reader untuk ebooks
+text_highlight dan annotations
+Provider/GetX
+reading_progress tracker
+search functionality
+offline_reading
+sync across devices
+
+5. SkillTrack
+Jenis: Skill Development Tracker
+Deskripsi: Aplikasi tracking progress pembelajaran skill dengan goal setting, daily challenges, streak counter, dan achievement badges.
+Teknologi:
+
+Firebase/Hive
+table_calendar untuk tracking
+Provider/Riverpod
+charts_flutter untuk progress visualization
+gamification (badges, streaks)
+daily_reminder notifications
+goal_setting features
+habit_tracking
+social_sharing untuk achievements
+
+Level 2: Intermediate Learning Apps (Proyek 6-10)
+6. ClassConnect
+Jenis: Virtual Classroom Platform
+Deskripsi: Platform kelas online dengan live video sessions, screen sharing, whiteboard, attendance, dan assignment submission untuk sekolah.
+Teknologi:
+
+Firebase/REST API
+Agora/Jitsi untuk video conferencing
+screen_sharing capability
+collaborative_whiteboard
+BLoC architecture
+attendance_system dengan face recognition
+assignment_submission dengan file_picker
+grading_system
+chat (real-time)
+recording_playback
+breakout_rooms
+polls & quizzes (live)
+
+7. CodeAcademy
+Jenis: Programming Learning Platform
+Deskripsi: Platform belajar coding dengan code editor, compiler integration, interactive challenges, project-based learning, dan code review.
+Teknologi:
+
+Firebase/REST API
+code_editor package
+syntax_highlighter
+compiler_API integration (JDoodle, Judge0)
+BLoC/Riverpod
+challenge_system dengan auto-grading
+project_templates
+version_control (Git integration)
+peer_code_review
+playground_environment
+multiple_language support
+debugging_tools
+
+8. LanguagePro
+Jenis: Language Learning Platform
+Deskripsi: Aplikasi belajar bahasa dengan speech recognition, conversation practice, grammar lessons, vocabulary builder, dan cultural content.
+Teknologia:
+
+Firebase/REST API
+speech_to_text untuk pronunciation
+text_to_speech
+AI_chatbot untuk conversation practice
+BLoC architecture
+spaced_repetition system
+grammar_checker
+interactive_lessons
+video_content untuk culture
+placement_test
+certificate_system
+progress_tracking
+gamification
+
+9. ExamPrep
+Jenis: Competitive Exam Preparation
+Deskripsi: Platform persiapan ujian kompetitif (UTBK, CPNS, etc) dengan mock tests, adaptive learning, performance analytics, dan peer comparison.
+Teknologi:
+
+REST API/Firebase
+adaptive_learning algorithm
+mock_test engine dengan timer
+detailed_analytics dashboard
+BLoC/Clean Architecture
+performance_comparison
+weak_area identification (AI)
+study_plan generator
+question_bank management
+video_solutions
+discussion_forum
+doubt_clearing sessions
+previous_year_papers
+revision_notes
+
+10. CertifyPro
+Jenis: Professional Certification Platform
+Deskripsi: Platform sertifikasi profesional dengan course modules, proctored exams, digital certificates, CPD tracking, dan career guidance.
+Teknologia:
+
+REST API dengan secure backend
+proctored_exam system (AI monitoring)
+webcam_monitoring
+screen_recording prevention
+BLoC/Clean Architecture
+blockchain_certificates (verification)
+CPD_points tracking
+course_completion tracking
+digital_badge system
+career_path guidance
+job_board integration
+payment_gateway
+installment_plans
+certificate_verification portal
+
+Level 3: Advanced Learning Apps (Proyek 11-15)
+11. UniversityHub
+Jenis: Complete University LMS
+Deskripsi: LMS lengkap untuk universitas dengan course management, grading system, attendance, library integration, dan student portal.
+Teknologi:
+
+REST API/GraphQL
+course_management system
+semester_planning
+grading_system (GPA calculation)
+attendance_tracking (biometric/GPS)
+BLoC/Clean Architecture
+assignment_submission & plagiarism check
+library_integration
+fee_management
+hostel_management
+exam_scheduling
+result_publication
+transcript_generation
+parent_portal
+teacher_dashboard
+student_portal
+notification_system
+event_calendar
+multi-role access
+
+12. CorporateTrain
+Jenis: Corporate Training Platform
+Deskripsi: Platform training korporat dengan onboarding modules, compliance training, skills assessment, performance tracking, dan ROI analytics.
+Teknologi:
+
+Microservices architecture
+employee_onboarding workflows
+compliance_training dengan mandatory completion
+skills_assessment matrix
+BLoC/Clean Architecture
+performance_tracking (KPI integration)
+ROI_analytics
+certification_management
+vendor_training integration
+learning_paths customization
+competency_framework
+succession_planning tools
+training_needs_analysis
+budget_management
+multi-language support
+SCORM_compliance
+HR_system integration
+reporting_dashboard
+
+13. MedicalEdu
+Jenis: Medical Education Platform
+Deskripsi: Platform pembelajaran medis dengan 3D anatomy, case studies, simulation labs, clinical scenarios, dan CME credit tracking.
+Teknologi:
+
+REST API/GraphQL
+3D_anatomy viewer (Unity integration)
+case_study library
+virtual_simulation labs
+BLoC/Clean Architecture
+clinical_scenario builder
+OSCE_preparation
+MCQ_bank (medical questions)
+CME_credit tracking
+journal_access integration
+peer_discussion forums
+expert_webinars
+diagnostic_tools simulation
+prescription_practice
+patient_interaction scenarios
+medical_imaging viewer (DICOM)
+research_paper library
+evidence-based learning
+
+14. TutorMarket
+Jenis: Online Tutoring Marketplace
+Deskripsi: Platform marketplace yang menghubungkan tutor dengan siswa, scheduling, payment escrow, whiteboard, rating system, dan quality assurance.
+Teknologi:
+
+Microservices architecture
+tutor_matching algorithm (AI)
+availability_calendar
+booking_system
+BLoC/Clean Architecture
+escrow_payment system
+video_conferencing (Agora)
+interactive_whiteboard
+screen_sharing
+recording_sessions
+homework_help feature
+rating_review system
+quality_assurance monitoring
+tutor_verification
+payment_gateway
+subscription_packages
+referral_program
+analytics_dashboard
+dispute_resolution
+
+15. SkillMarketplace
+Jenis: Skill-Based Learning Marketplace
+Deskripsi: Platform marketplace untuk berbagai skill (design, music, cooking, etc) dengan project-based learning, peer review, dan portfolio builder.
+Teknologi:
+
+Microservices architecture
+course_creation tools (instructor)
+project_based_learning system
+peer_review mechanism
+BLoC/Clean Architecture
+portfolio_builder
+skill_verification tests
+instructor_dashboard
+student_dashboard
+payment_gateway (revenue share)
+certificate_of_completion
+discussion_forums
+live_sessions
+resource_library
+assignment_grading (auto + manual)
+analytics untuk instructor
+marketing_tools
+coupon_system
+affiliate_program
+mobile + web responsive
+
+Level 4: Expert Learning Apps (Proyek 16-20)
+16. AdaptiveLearn
+Jenis: AI-Powered Adaptive Learning
+Deskripsi: Platform pembelajaran adaptif dengan AI yang menyesuaikan konten berdasarkan learning style, pace, dan performance individual siswa.
+Teknologi:
+
+Microservices + AI/ML
+machine_learning models (TensorFlow)
+adaptive_algorithm (personalized paths)
+learning_style detection
+BLoC/Clean Architecture
+knowledge_graph
+content_recommendation engine (AI)
+predictive_analytics (performance)
+automated_content_tagging
+difficulty_adjustment algorithm
+engagement_tracking
+emotion_detection (optional)
+natural_language_processing
+automated_grading (essays)
+intelligent_tutoring system
+learning_gap identification
+intervention_triggers
+progress_prediction
+multimodal_learning support
+real-time_adaptation
+
+17. MetaLearn
+Jenis: Metaverse Learning Platform
+Deskripsi: Platform pembelajaran metaverse dengan virtual campus, 3D classrooms, avatar interaction, immersive labs, dan collaborative projects.
+Teknologi:
+
+Microservices architecture
+Unity3D_integration
+virtual_campus environment
+avatar_customization
+BLoC/Clean Architecture
+spatial_audio
+gesture_controls
+virtual_labs (science experiments)
+collaborative_3D_workspace
+VR/AR support
+NFT_certificates
+virtual_library
+metaverse_events
+peer_interaction (voice/text)
+gamification (XP, levels)
+virtual_goods marketplace
+cross-platform (mobile/web/VR)
+blockchain_integration
+persistent_world
+social_features
+
+18. GlobalEdu
+Jenis: International Education Platform
+Deskripsi: Platform pendidikan global dengan multi-currency, multi-language, localized content, international accreditation, dan cross-border payments.
+Teknologi:
+
+Enterprise microservices
+multi-currency_support
+real-time_translation (AI)
+localized_content_delivery
+BLoC/Clean Architecture
+accreditation_management (global standards)
+compliance (GDPR, local laws)
+cross-border_payment gateway
+timezone_management
+cultural_adaptation features
+student_visa_assistance
+credential_evaluation
+transfer_credit system
+international_partnerships
+multilingual_support (50+ languages)
+regional_content_libraries
+global_student_community
+career_services (global)
+quality_assurance (international)
+analytics_dashboard (regional)
+
+19. EnterpriseLMS
+Jenis: Enterprise Learning Ecosystem
+Deskripsi: Ekosistem pembelajaran enterprise lengkap dengan LMS, LXP, talent management, skills marketplace, dan business intelligence.
+Teknologi:
+
+Enterprise microservices (DDD)
+LMS_core (learning management)
+LXP_platform (learning experience)
+talent_management integration
+BLoC/Clean Architecture
+skills_marketplace internal
+competency_framework
+career_development paths
+succession_planning
+performance_management integration
+360_feedback
+mentoring_platform
+knowledge_management system
+social_learning features
+content_curation AI
+business_intelligence dashboard
+ROI_measurement
+compliance_tracking
+SCORM/xAPI/cmi5 support
+SSO_integration (LDAP/SAML)
+API_gateway untuk integrations
+white-label capability
+multi-tenant architecture
+
+20. EduOS
+Jenis: Complete Education Operating System
+Deskripsi: Sistem operasi pendidikan all-in-one dengan LMS, SIS, ERP, admission, finance, HR, parent portal, dan AI analytics untuk institusi besar.
+Teknologi:
+
+Enterprise microservices (DDD)
+LMS_module (learning management)
+SIS_module (student information system)
+admission_management (CRM)
+fee_management & accounting
+BLoC/Clean Architecture
+HR_module (payroll, attendance)
+library_management
+hostel_management
+transport_management
+examination_system
+result_processing
+certificate_generation
+alumni_management
+parent_portal
+teacher_portal
+student_portal
+admin_dashboard
+biometric_integration
+RFID_attendance
+SMS/Email/Push notifications
+mobile_app (multi-role)
+web_dashboard
+AI_analytics & predictions
+business_intelligence
+workflow_automation
+document_management
+inventory_management
+asset_management
+visitor_management
+event_management
+grievance_redressal
+accreditation_management
+multi-campus support
+API_integrations
+white-label solution
+
+
+
+Level 1: Basic Booking Apps (Proyek 1-5)
+1. AppointEase
+Jenis: Simple Appointment Booking
+Deskripsi: Aplikasi booking appointment sederhana untuk konsultan, dokter, atau salon dengan calendar selection, time slots, dan reminder notifications.
+Teknologi:
+
+Firebase (Auth, Firestore)
+Provider untuk state management
+table_calendar untuk date selection
+flutter_local_notifications untuk reminders
+url_launcher untuk call/WhatsApp
+time_slot management
+booking_history
+cancellation feature
+
+2. TableReserve
+Jenis: Restaurant Table Booking
+Deskripsi: Aplikasi reservasi meja restoran dengan menu preview, table selection, special requests, dan confirmation SMS untuk restoran lokal.
+Teknologi:
+
+Firebase (Auth, Firestore, Storage)
+Provider/GetX
+floor_plan viewer untuk table layout
+menu_preview dengan images
+SMS/WhatsApp integration
+special_requests field
+booking_confirmation
+waiting_list feature
+rating_system
+photo_gallery
+
+3. ClassBook
+Jenis: Fitness Class Booking
+Deskripsi: Booking kelas fitness/gym dengan class schedule, instructor profiles, capacity limits, waitlist, dan membership integration.
+Teknologi:
+
+Firebase (Auth, Firestore)
+table_calendar untuk schedule
+Provider/Riverpod
+class_capacity management
+waitlist_automation
+instructor_profiles
+membership_verification
+check-in QR code
+class_history
+workout_reminders
+cancellation_policy
+credit_system
+
+4. TutorSchedule
+Jenis: Private Tutor Booking
+Deskripsi: Platform booking les privat dengan tutor profiles, subject filters, availability calendar, payment, dan session notes untuk siswa.
+Teknologi:
+
+Firebase/REST API
+availability_calendar (tutor)
+subject_filter dan search
+Provider/GetX
+tutor_profiles dengan reviews
+hourly_rate calculation
+payment_gateway
+session_notes feature
+progress_tracking
+homework_submission
+parent_dashboard
+reschedule_feature
+
+5. ParkSpot
+Jenis: Parking Slot Booking
+Deskripsi: Aplikasi booking tempat parkir dengan map view, real-time availability, QR code access, dan payment integration untuk mall/airport.
+Teknologi:
+
+Firebase (Auth, Firestore)
+Google Maps API
+Provider/Riverpod
+real-time_availability
+QR_code generation (qr_flutter)
+payment_gateway
+parking_timer
+navigation_to_spot
+booking_history
+favorite_locations
+price_calculator
+exit_notification
+
+Level 2: Intermediate Booking Apps (Proyek 6-10)
+6. SalonPro
+Jenis: Beauty Salon Multi-Service Booking
+Deskripsi: Booking salon dengan multiple services, stylist selection, package deals, loyalty points, before/after photos, dan membership tiers.
+Teknologi:
+
+Firebase/REST API
+multi-service_selection
+stylist_availability matrix
+BLoC architecture
+package_deals logic
+loyalty_points system
+before_after gallery
+membership_tiers
+payment_gateway
+reminder_notifications
+review_rating system
+product_purchases
+gift_vouchers
+referral_program
+
+7. CarService
+Jenis: Auto Service Booking
+Deskripsi: Booking service kendaraan dengan vehicle profile, service packages, pick-up/drop service, real-time progress tracking, dan spare parts ordering.
+Teknologia:
+
+REST API/Firebase
+vehicle_profile management
+service_packages (oil change, etc)
+BLoC/Riverpod
+pick_up_drop scheduling
+real-time_progress updates
+mechanic_assignment
+spare_parts catalog
+estimate_calculator
+service_history
+warranty_tracking
+payment_gateway
+SMS_updates
+photo_documentation
+
+8. HealthHub
+Jenis: Healthcare Appointment Platform
+Deskripsi: Multi-specialty hospital booking dengan doctor profiles, insurance verification, e-prescription, telemedicine option, dan medical records.
+Teknologi:
+
+REST API dengan secure backend
+doctor_search dengan filters
+BLoC/Clean Architecture
+insurance_verification
+telemedicine_integration (Agora)
+e-prescription
+medical_records upload
+appointment_scheduling
+queue_management
+payment_gateway
+lab_test booking
+medicine_reminder
+health_tracker
+emergency_contacts
+HIPAA_compliance
+
+9. EventPass
+Jenis: Event Ticketing Platform
+Deskripsi: Platform booking tiket event dengan seat selection, multiple ticket types, group booking, e-tickets dengan QR, dan event discovery.
+Teknologi:
+
+REST API/GraphQL
+event_discovery dengan filters
+seat_selection interactive map
+BLoC architecture
+multiple_ticket_types
+group_booking discount
+QR_ticket generation
+payment_gateway
+ticket_transfer
+event_reminders
+parking_addon
+food_beverage preorder
+merchandise_shop
+social_sharing
+analytics_dashboard
+
+10. CoWorkSpace
+Jenis: Coworking Space Booking
+Deskripsi: Booking coworking space dengan desk/room selection, amenities, hourly/daily/monthly plans, meeting room booking, dan member community.
+Teknologia:
+
+REST API/Firebase
+space_layout viewer
+desk_room_selection
+BLoC/Clean Architecture
+flexible_pricing (hourly/daily/monthly)
+meeting_room booking
+amenities_list (WiFi, printer, etc)
+member_directory
+community_features
+access_control (QR/RFID)
+payment_gateway
+invoice_generation
+visitor_management
+event_hosting
+networking_features
+
+Level 3: Advanced Booking Apps (Proyek 11-15)
+11. TravelBook
+Jenis: Multi-Service Travel Booking
+Deskripsi: Platform booking travel all-in-one (hotel, flight, tour, car rental) dengan itinerary builder, price comparison, dan travel insurance.
+Teknologi:
+
+REST API/GraphQL
+hotel_search (API integration)
+flight_search (API integration)
+BLoC/Clean Architecture
+tour_packages
+car_rental integration
+itinerary_builder
+price_comparison engine
+multi-currency support
+travel_insurance
+visa_assistance
+payment_gateway (multiple)
+booking_management
+real-time_updates
+loyalty_program
+travel_guide
+offline_access
+group_travel features
+
+12. VenueMatch
+Jenis: Event Venue Marketplace
+Deskripsi: Marketplace booking venue untuk wedding, conference, dll dengan 360° tours, vendor connections, contract management, dan payment milestones.
+Teknologi:
+
+Microservices architecture
+venue_search dengan filters
+360_virtual_tour
+BLoC/Clean Architecture
+capacity_calculator
+vendor_marketplace (catering, decorator)
+contract_management
+e-signature integration
+payment_milestones (escrow)
+availability_calendar
+quote_comparison
+floor_plan viewer
+gallery_showcase
+review_rating system
+booking_timeline
+invoice_management
+cancellation_insurance
+
+13. HomeService
+Jenis: On-Demand Home Services
+Deskripsi: Platform booking layanan rumah (cleaning, plumbing, AC, etc) dengan worker tracking, service quality check, recurring bookings, dan warranty.
+Teknologi:
+
+Microservices backend
+service_category browsing
+worker_matching algorithm
+BLoC/Clean Architecture
+real-time_tracking (GPS)
+service_quality_checklist
+photo_documentation
+recurring_booking automation
+warranty_management
+payment_gateway
+worker_rating
+insurance_coverage
+emergency_service
+spare_parts ordering
+service_packages
+customer_support chat
+feedback_system
+
+14. PropertyRent
+Jenis: Property Rental Platform
+Deskripsi: Platform booking sewa properti (short/long term) dengan virtual tours, contract management, background checks, maintenance requests, dan rent payment.
+Teknologi:
+
+REST API/GraphQL
+property_search dengan filters
+virtual_tour (360° & video)
+BLoC/Clean Architecture
+background_check integration
+contract_generation
+e-signature
+rent_payment automation
+maintenance_request system
+tenant_screening
+property_management tools
+lease_renewal automation
+deposit_management
+utility_management
+insurance_integration
+review_system
+neighborhood_info
+multi-currency support
+
+15. SportsPlex
+Jenis: Sports Facility Booking Complex
+Deskripsi: Booking fasilitas olahraga (court, field, pool) dengan league management, tournament hosting, equipment rental, dan coaching sessions.
+Teknologi:
+
+Microservices architecture
+facility_booking dengan time slots
+court_field selection
+BLoC/Clean Architecture
+league_management system
+tournament_bracket generator
+equipment_rental
+coaching_session booking
+membership_management
+team_formation
+scoring_system
+payment_gateway
+access_control (QR/RFID)
+player_statistics
+ranking_leaderboard
+live_score updates
+social_features
+photo_video_sharing
+
+Level 4: Expert Booking Apps (Proyek 16-20)
+16. MediConnect
+Jenis: Integrated Healthcare Ecosystem
+Deskripsi: Platform healthcare terintegrasi dengan appointment, telemedicine, lab booking, pharmacy, insurance claims, dan complete health records.
+Teknologi:
+
+Enterprise microservices
+multi-specialty_booking
+telemedicine_platform (Agora)
+BLoC/Clean Architecture
+EHR_integration (FHIR compliant)
+lab_test booking dengan home collection
+pharmacy_integration
+insurance_claim automation
+e-prescription
+medication_reminder
+health_tracker (vitals)
+AI_symptom_checker
+second_opinion
+payment_gateway
+ambulance_booking
+diet_fitness plans
+mental_health support
+HIPAA_compliance
+blockchain_health_records
+
+17. HotelChain
+Jenis: Multi-Property Hotel Management
+Deskripsi: Platform hotel chain dengan dynamic pricing, loyalty rewards, room upgrade bidding, concierge services, dan unified guest experience.
+Teknologi:
+
+Enterprise microservices
+property_management_system
+dynamic_pricing engine (AI)
+BLoC/Clean Architecture
+loyalty_program (points, tiers)
+room_upgrade_bidding
+mobile_check_in/out
+digital_room_key
+concierge_services booking
+in-room_dining
+spa_amenity booking
+event_space reservation
+channel_manager (OTA sync)
+revenue_management
+guest_preferences
+CRM_integration
+payment_gateway (multi-currency)
+group_booking management
+corporate_travel integration
+analytics_dashboard
+
+18. FleetBook
+Jenis: Fleet Management & Vehicle Booking
+Deskripsi: Platform corporate fleet booking dengan vehicle tracking, maintenance scheduling, driver assignment, fuel management, dan route optimization.
+Teknologi:
+
+Microservices architecture
+vehicle_booking system
+real-time_GPS_tracking
+BLoC/Clean Architecture
+driver_assignment algorithm
+maintenance_scheduling
+fuel_management
+route_optimization (AI)
+telematics_integration
+expense_management
+vehicle_inspection checklist
+accident_reporting
+insurance_tracking
+compliance_management
+utilization_analytics
+cost_per_mile tracking
+booking_approval_workflow
+mobile_app (driver & admin)
+ERP_integration
+predictive_maintenance
+
+19. GlobalCruise
+Jenis: Cruise Line Booking Platform
+Deskripsi: Platform booking cruise dengan cabin selection, shore excursions, onboard activities, dining reservations, dan complete cruise experience management.
+Teknologi:
+
+Enterprise microservices
+cruise_search & comparison
+interactive_deck_plan (cabin selection)
+BLoC/Clean Architecture
+shore_excursion booking
+dining_reservation system
+onboard_activities scheduling
+spa_fitness booking
+entertainment_shows reservation
+beverage_packages
+photo_packages
+special_occasions (anniversary, birthday)
+group_travel management
+travel_insurance
+payment_gateway (installments)
+loyalty_program
+pre-cruise_planning
+onboard_app (offline)
+disembarkation_planning
+multi-currency support
+
+20. OmniBook
+Jenis: Universal Booking Operating System
+Deskripsi: Platform booking universal yang dapat dikonfigurasi untuk berbagai industri dengan AI scheduling, blockchain verification, IoT integration, dan complete ecosystem.
+Teknologi:
+
+Enterprise microservices (DDD)
+multi-industry_configuration
+AI_scheduling_optimization
+BLoC/Clean Architecture
+blockchain_verification (bookings)
+IoT_integration (smart access)
+dynamic_pricing_engine (ML)
+resource_optimization algorithm
+multi-tenant_architecture
+white-label_solution
+API_gateway (public API)
+webhook_system
+calendar_sync (Google/Outlook)
+payment_gateway (global)
+multi-currency/language
+compliance_framework
+analytics_BI_dashboard
+capacity_planning AI
+demand_forecasting
+inventory_management
+CRM_integration
+marketing_automation
+workflow_builder (no-code)
+mobile_SDK
+web_SDK
+third-party_integrations

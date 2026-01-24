@@ -1,0 +1,330 @@
+1. NewsFlow - News & Content Aggregation (PALING MUDAH)
+Level: Beginner | Durasi: 2-3 minggu
+Deskripsi: Aplikasi berita dengan fitur category browsing, search, bookmarks, reading history, dan personalized recommendations.
+Teknologi & Package:
+
+API Integration: Dio untuk fetch data dari NewsAPI
+State Management: Riverpod (simple provider)
+Local Storage: Hive untuk bookmarks & history
+Image Handling: cached_network_image
+UI Framework: Flutter Material 3
+Additional: intl, timeago, share_plus
+Authentication: Tidak ada (publik)
+
+Kenapa Mudah?
+
+Tidak ada payment integration
+Tidak ada real-time update complexity
+API sederhana tinggal GET data
+UI straightforward list & detail screen
+
+
+2. ProTask - Productivity & Task Management
+Level: Beginner-Intermediate | Durasi: 3-4 minggu
+Deskripsi: Aplikasi manajemen tugas dengan calendar, reminders, progress tracking, dan offline sync.
+Teknologi & Package:
+
+State Management: Riverpod / Provider
+Backend & Database: Firebase Firestore
+Local Database: Sqflite untuk offline-first
+Calendar: table_calendar
+Notifications: flutter_local_notifications
+Authentication: Firebase Auth basic
+File Serialization: json_serializable, freezed
+Additional: intl, jiffy
+
+Kenapa Level 2?
+
+Introduce Firebase (tapi simple CRUD only)
+Local database sync mulai diajarkan
+Notifications local (tidak push notification)
+Mulai kompleks di state management
+
+
+3. FitFlow - Fitness & Health Tracker
+Level: Intermediate | Durasi: 4-5 minggu
+Deskripsi: Aplikasi tracking kesehatan dengan monitor kalori, workout planner, progress tracking, dan social features.
+Teknologi & Package:
+
+State Management: Riverpod with computed selectors
+Database: Firebase Firestore
+Local Storage: Hive untuk cache
+Charts & Analytics: fl_chart (data visualization)
+Health Data: health package (integration dengan device)
+Notifications: Firebase Cloud Messaging + flutter_local_notifications
+Image Management: image_picker, cached_network_image
+Authentication: Firebase Auth
+Real-time Listeners: Firestore listeners untuk live updates
+Animation: flutter_animate, shimmer
+
+Kenapa Level 3?
+
+Introduce FCM (push notifications)
+Charts & data visualization complexity
+Device sensor integration (pedometer)
+Real-time data updates
+
+
+4. TravelEase - Travel & Tour Booking
+Level: Intermediate | Durasi: 4-5 minggu
+Deskripsi: Platform booking destinasi wisata dengan pencarian, filter, booking, payment, dan itinerary management.
+Teknologi & Package:
+
+State Management: Riverpod
+Backend: REST API (Dio) + Firebase Firestore hybrid
+Database: Firebase Firestore, SQLite cache
+Payment: Midtrans SDK integration
+Calendar & Scheduling: table_calendar, intl, jiffy
+Maps & Location: google_maps_flutter, geolocator
+Image Handling: cached_network_image, carousel_slider, photo_view
+PDF Generation: pdf, printing (untuk itinerary)
+Authentication: Firebase Auth
+Additional: flutter_staggered_grid_view, timeline_tile
+
+Kenapa Level 4?
+
+Introduce payment integration (Midtrans)
+Multiple API calls complexity
+PDF generation feature
+Maps & location integration
+
+
+5. CafeHub - Restaurant Management System
+Level: Intermediate-Advanced | Durasi: 5-6 minggu
+Deskripsi: Aplikasi manajemen restoran dengan menu display, table ordering, kitchen display system, dan inventory tracking.
+Teknologi & Package:
+
+State Management: GetX + Riverpod (hybrid approach)
+Real-time Database: Firebase Firestore dengan real-time listeners
+Local Database: SQLite untuk offline backup
+Authentication: Firebase Auth dengan role-based access (admin/waiter/kitchen)
+Payment: Midtrans untuk split billing
+Printing: thermal_printer_flutter, esc_pos_utils
+Image Management: Firebase Storage, image_picker
+QR Code: qr_flutter (generate), qr_code_scanner (scan)
+Charts: fl_chart untuk sales reporting
+Notifications: FCM untuk order notifications ke kitchen
+Transaction Support: Firestore transactions untuk inventory update
+Additional: flutter_slidable, badges, intl
+
+Kenapa Level 5?
+
+Role-based access control complexity
+Real-time sync multiple users simultaneously
+Thermal printer integration (hardware)
+QR code generation & scanning
+Transaction/inventory logic yang kompleks
+
+
+6. ShopHub - E-Commerce Platform
+Level: Advanced | Durasi: 6-7 minggu
+Deskripsi: Aplikasi belanja online lengkap dengan katalog produk, keranjang belanja, checkout, dan tracking pesanan.
+Teknologi & Package:
+
+State Management: Riverpod (complex async state)
+API & Backend: Dio + custom REST API
+Database: Firebase Firestore + Realtime Database
+Local Database: Hive untuk cart & cache
+Payment: Midtrans SDK + webhook handling
+Authentication: Firebase Auth, JWT token
+Image Handling: CachedNetworkImage, image_picker, advanced cropping
+Cloud Storage: Firebase Storage untuk product images
+Notifications: FCM untuk order updates
+Search & Filter: Firestore queries + pagination
+Analytics: firebase_analytics
+Database Transaction: Firestore transactions untuk order creation
+Additional: carousel_slider, badges, flutter_rating_bar, infinite_scroll_pagination
+
+Kenapa Level 6?
+
+Complex payment flow dengan webhook
+Large scale database queries optimization
+Advanced search & filtering logic
+Inventory management integration
+Order state management complexity
+
+
+7. BookingsHub - Service Booking Platform
+Level: Advanced | Durasi: 6-7 minggu
+Deskripsi: Platform booking jasa dengan appointment scheduling, staff management, automated reminders, dan rating system.
+Teknologi & Package:
+
+State Management: Riverpod with async/await patterns
+Backend: Firebase Firestore + Cloud Functions
+Calendar: table_calendar, date_picker_timeline, syncfusion_flutter_calendar
+Real-time Database: Firestore untuk instant availability sync
+Authentication: Firebase Auth, JWT
+Payment: Midtrans / Stripe untuk deposit
+Notifications: FCM untuk reminders + SMS (Twilio SDK)
+Location: google_maps_flutter, geolocator
+OTP Verification: pin_code_fields + Twilio
+Database Local: SQLite untuk offline bookings
+Image Management: image_picker, Firebase Storage
+PDF Export: pdf, printing untuk booking confirmation
+Rating System: cloud_firestore dengan custom logic
+Additional: lottie, flutter_animate, smooth_page_indicator
+
+Kenapa Level 7?
+
+Multi-channel notifications (FCM + SMS)
+Third-party SMS integration (Twilio)
+Complex scheduling algorithm
+OTP verification flow
+Cloud Functions for backend logic
+
+
+8. MarketConnect - Marketplace P2P
+Level: Advanced | Durasi: 7-8 minggu
+Deskripsi: Platform jual-beli dengan listing, search filter advanced, messaging antar user, rating & review, dan escrow payment.
+Teknologi & Package:
+
+State Management: Riverpod + BLoC untuk complex state
+Backend: Firebase Firestore + Cloud Functions
+Real-time Messaging: GetStream Chat SDK OR Firebase Realtime Database
+Search & Filter: Firestore queries + Algolia (optional)
+Payment: Midtrans dengan escrow mechanism
+Authentication: Firebase Auth + social login
+Location Services: google_maps_flutter, geolocator
+Image Management: Firebase Storage, image_picker, advanced image editing
+Notifications: FCM untuk message alerts & transaction updates
+Database Local: Hive untuk cache, Sqflite untuk offline
+Real-time Updates: Firestore listeners untuk listing updates
+Rating System: Firestore nested collections untuk reviews
+Additional: bottom_navigation_bar, persistent_bottom_sheet, shimmer, infinite_scroll_pagination
+
+Kenapa Level 8?
+
+Real-time messaging dengan third-party SDK
+Complex escrow payment logic
+Multi-user real-time sync complexity
+Advanced search algorithms
+Geo-spatial queries
+
+
+9. SocialHub - Community & Social Network
+Level: Very Advanced | Durasi: 8-10 minggu
+Deskripsi: Aplikasi social media dengan feed, posting, like/comment, profiles, follow system, real-time notifications, dan messaging.
+Teknologi & Package:
+
+State Management: Riverpod + BLoC (hybrid complex state)
+Real-time Database: Firebase Firestore dengan multiple listeners
+Real-time Messaging: GetStream Chat SDK untuk direct messaging
+Cloud Storage: Firebase Storage untuk image/video uploads
+Authentication: Firebase Auth dengan multi-provider login
+Push Notifications: FCM untuk likes, comments, messages, follows
+Image Processing: cached_network_image, image_picker, image manipulation
+Video Handling: video_player, flutter_video_compress
+Database Caching: Hive + SQLite untuk offline-first architecture
+Infinite Scroll: infinite_scroll_pagination dengan cursor-based
+Search: Firestore queries + Algolia OR custom search index
+Background Services: background_fetch untuk syncing
+Animations: flutter_animate, lottie, smooth_page_indicator
+Analytics: firebase_analytics untuk user tracking
+Database Transactions: Firestore batch writes untuk consistency
+Additional: flutter_quill untuk rich text posts, emoji picker, @mention tagging
+
+Kenapa Level 9?
+
+Multiple real-time listeners simultaneously
+Complex pagination with cursor-based logic
+GetStream integration complexity
+Video compression & streaming
+Offline-first architecture complexity
+Background sync mechanisms
+
+
+10. DeliveryPro - Order & Delivery Management (PALING KOMPLEKS)
+Level: Very Advanced / Expert | Durasi: 10-12 minggu
+Deskripsi: Aplikasi delivery dengan real-time tracking, order management, driver assignment, payment, dan customer communication.
+Teknologi & Package:
+
+State Management: Riverpod + BLoC (advanced patterns)
+Real-time Location Tracking: google_maps_flutter dengan live polyline updates
+Location Services: geolocator, location, background_location
+Real-time Database: Firebase Firestore + WebSocket untuk continuous updates
+Backend: REST API + WebSocket untuk real-time sync
+Push Notifications: FCM untuk order updates, driver notifications
+Payment Integration: Midtrans dengan multiple payment methods
+Database Local: Sqflite untuk offline orders queue
+Cloud Storage: Firebase Storage untuk proof of delivery photos
+Authentication: Firebase Auth, JWT with refresh tokens
+Background Services: workmanager untuk background location tracking
+Maps & Routing: google_maps_flutter, flutter_polyline_points
+Time Management: intl, jiffy, timezone untuk scheduling
+Image Capture: image_picker, camera untuk delivery proof
+Advanced Animations: flutter_animate, lottie untuk transitions
+Analytics: firebase_analytics untuk delivery metrics
+Database Optimization: Firestore indexes, custom queries optimization
+Conflict Resolution: Local database sync dengan remote (custom logic)
+Performance: Provider atau Riverpod dengan memo selectors
+Additional: permission_handler untuk location background, battery_plus untuk monitoring
+
+Kenapa Level 10 (Paling Kompleks)?
+
+Real-time location tracking dengan background service
+WebSocket implementation untuk continuous updates
+Complex offline-online sync mechanism
+Multiple simultaneous real-time listeners
+Background service with location permission complexity
+Battery optimization challenges
+Routing algorithm complexity
+Multi-user coordination (customer, driver, admin simultaneously)
+Production-grade error handling & recovery
+Payment webhook handling dengan delivery verification
+
+
+11. Proyek: “Deenly – Islamic Learning & Quiz App”
+
+Aplikasi pembelajaran Islam interaktif dengan video, teks, dan kuis untuk memperdalam ilmu agama secara bertahap.
+
+?? Teknologi Stack
+Frontend (Flutter)
+Flutter 3.24+
+Riverpod (state management sederhana & scalable)
+GoRouter (navigasi terstruktur)
+Lottie / Rive (animasi transisi)
+Hive (penyimpanan offline hafalan & skor kuis)
+
+
+Backend & Database
+Firebase Auth — login email, Google, atau guest.
+Firebase Firestore — data materi, ayat, hadis, skor.
+Firebase Storage — upload thumbnail & video ustadz.
+Firebase Cloud Functions — otomatisasi (misal: hitung skor, sertifikat PDF).
+
+?? Fitur Utama
+
+?? Course Islami Terstruktur
+Materi: aqidah, fiqh, tafsir, hadis, adab, sirah.
+Video + teks singkat per bab.
+Progress bar per kursus.
+
+?? Kuis & Evaluasi
+
+Pilihan ganda + penjelasan setelah menjawab.
+
+Skor disimpan lokal dan ke Firestore.
+
+?? Ayat & Hadis Harian
+
+Feed “Daily Reminder” dari koleksi Firestore.
+
+Bisa share ke media sosial.
+
+?? Sertifikat Digital
+
+Setelah menyelesaikan satu kursus ? generate PDF sertifikat dengan nama user.
+
+?? Dark Mode + Arabic Support
+
+Font Arabic (Amiri / Scheherazade).
+
+RTL layout siap.
+
+UI Style
+
+Warna dominan: pastel hijau zaitun (#b8c2a0), putih krem (#fefcf8), coklat lembut (#6b5744).
+
+Tipografi: Noto Sans + Amiri (untuk ayat).
+
+Nuansa: modern, menenangkan, tidak terlalu ramai.

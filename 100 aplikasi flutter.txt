@@ -1,0 +1,809 @@
+﻿Buatkan panduan dan code lengkap aplikasi flutter berikut
+aplikasi sudah multiple file, tampilan UI menarik dan unik, berikan judul app yang unik dan menarik juga
+sertakan panduan setup lengkap dari create flutter, code touch semua file, hingga build akhir
+1. Hello World App
+Teknologi: StatelessWidget, MaterialApp, Scaffold, Text widget.
+Sebelumnya sertakan juga penjelasan Teori:
+Konsep widget statis vs stateful.
+Struktur project Flutter.
+Scaffold & MaterialApp.
+Menampilkan teks menggunakan Text widget.
+Hot reload & debug dasar.
+2. Counter App
+Teknologi: StatefulWidget, setState(), ElevatedButton.
+Sebelumnya sertakan juga penjelasan Teori:
+StatefulWidget dan lifecycle-nya.
+setState() untuk update UI.
+Event handling pada button.
+Variabel state lokal.
+Debugging increment & decrement.
+3. Simple Calculator
+Teknologi: TextField, Button, Row & Column, onChanged, onPressed.
+Sebelumnya sertakan juga penjelasan Teori:
+Input data dengan TextField.
+Button event handling.
+Layout dasar dengan Row & Column.
+Parsing string ke angka.
+Menangani error input sederhana.
+4. Todo List Basic
+Teknologi: ListView.builder, Checkbox, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Dynamic list dengan ListView.builder.
+Mengelola state item list.
+Checkbox interaktivitas.
+Menambahkan & menghapus item.
+Stateless vs stateful dalam daftar.
+5. Profile Card App
+Teknologi: Card, Column, Row, Image, Icon.
+Sebelumnya sertakan juga penjelasan Teori:
+Penggunaan Card widget.
+Layout dasar Row & Column.
+Menampilkan gambar lokal / network.
+Icon & styling teks.
+Padding & margin untuk desain.
+6. Color Picker App
+Teknologi: StatefulWidget, Slider, Container, setState().
+Sebelumnya sertakan juga penjelasan Teori:
+Slider untuk input numerik.
+Mengubah warna dinamis.
+setState() untuk update UI.
+RGB Color manipulation.
+Stateless vs stateful dalam interaktivitas.
+7. Login Form
+Teknologi: Form, TextFormField, Validator, ElevatedButton.
+Sebelumnya sertakan juga penjelasan Teori:
+Form & validasi input.
+Controller untuk TextFormField.
+Validasi email & password.
+Submit form & event handling.
+Error handling di UI.
+8. BMI Calculator
+Teknologi: TextField, Button, StatefulWidget, basic math.
+Sebelumnya sertakan juga penjelasan Teori:
+Pengambilan input user.
+Menghitung formula BMI.
+setState() & update hasil.
+Layout responsive dengan Column & Row.
+Display hasil dinamis.
+9. Temperature Converter
+Teknologi: TextField, DropdownButton, setState().
+Sebelumnya sertakan juga penjelasan Teori:
+Menggunakan DropdownButton.
+Konversi nilai & logika.
+Dynamic state update.
+Menangani input invalid.
+Layout sederhana responsive.
+10. Simple Stopwatch
+Teknologi: Timer, StatefulWidget, Text, Button.
+Sebelumnya sertakan juga penjelasan Teori:
+Timer & periodic update.
+setState() untuk update UI setiap detik.
+Start / stop / reset functionality.
+Mengelola durasi & format waktu.
+Lifecycle widget saat timer aktif.
+11. Notes App (Local Storage)
+Teknologi: ListView, TextField, SharedPreferences.
+Sebelumnya sertakan juga penjelasan Teori:
+Persistent data lokal dengan SharedPreferences.
+CRUD sederhana.
+Dynamic list update.
+Stateless vs stateful.
+Layout & user-friendly UI.
+12. To-Do App dengan SQLite
+Teknologi: sqflite, FutureBuilder, ListView.
+Sebelumnya sertakan juga penjelasan Teori:
+Database SQLite lokal.
+Async & FutureBuilder.
+CRUD dengan SQLite.
+State management sederhana.
+Menampilkan list dari database.
+13. Weather App (API)
+Teknologi: http package, JSON parsing, FutureBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Mengambil data dari REST API.
+Parsing JSON.
+Future & async/await.
+Menampilkan data secara dinamis.
+Error handling request API.
+14. Currency Converter
+Teknologi: TextField, http, API, setState().
+Sebelumnya sertakan juga penjelasan Teori:
+Fetch real-time data API.
+Konversi mata uang.
+Update UI dengan setState().
+Error handling & validation.
+Dropdown untuk memilih mata uang.
+15. Quiz App
+Teknologi: List, StatefulWidget, RadioButton, setState().
+Sebelumnya sertakan juga penjelasan Teori:
+State management soal & jawaban.
+Navigasi antar soal.
+Dynamic list & indexing.
+Validasi jawaban.
+UI & UX sederhana interaktif.
+16. Music Player Basic
+Teknologi: AudioPlayer package, ListView, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Package audio.
+Play / pause / stop control.
+StatefulWidget untuk status musik.
+ListView menampilkan playlist.
+Lifecycle & audio handling.
+17. Chat App Basic
+Teknologi: ListView, TextField, Firebase Realtime Database.
+Sebelumnya sertakan juga penjelasan Teori:
+Firebase Realtime Database setup.
+CRUD chat messages.
+State management chat.
+Scroll ke pesan terakhir.
+Text input handling.
+18. E-commerce Catalog
+Teknologi: GridView, Card, Image, API mock.
+Sebelumnya sertakan juga penjelasan Teori:
+Grid layout untuk katalog.
+Menampilkan gambar produk.
+Dynamic list dengan API mock.
+Stateless vs Stateful.
+UI/UX responsive.
+19. Movie App
+Teknologi: TMDB API, FutureBuilder, ListView.builder, JSON parsing.
+Sebelumnya sertakan juga penjelasan Teori:
+Fetch API movie data.
+Parsing JSON ke model.
+ListView dynamic.
+Error & loading handling.
+Navigation ke detail movie.
+20. Expense Tracker
+Teknologi: Local database (sqflite), Charts package, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Persistent data dengan SQLite.
+Input & validasi expense.
+Chart visualisasi data.
+State management.
+Layout responsive & UX.
+21–40: Intermediate – Integrasi Layanan, State Management, Animasi Dasar
+21. Notes App dengan Firebase Firestore
+Teknologi: Firebase Firestore, StreamBuilder, CRUD.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrasi Firebase Firestore.
+Stream & realtime data update.
+CRUD operations cloud.
+Stateless vs Stateful widget untuk data dinamis.
+Error handling network.
+22. ToDo App dengan Provider
+Teknologi: Provider state management, ListView, TextField.
+Sebelumnya sertakan juga penjelasan Teori:
+Konsep state management Provider.
+ChangeNotifier & notifyListeners().
+Konsumsi state di widget.
+Dynamic list update.
+Integrasi UI dengan Provider.
+23. Theme Switcher App
+Teknologi: Provider, SharedPreferences, Dark & Light Theme.
+Sebelumnya sertakan juga penjelasan Teori:
+Dynamic theming.
+State management theme dengan Provider.
+Menyimpan preferensi user.
+Stateless vs Stateful interaction.
+Hot reload testing.
+24. Counter App with Animation
+Teknologi: AnimatedContainer, Tween, setState.
+Sebelumnya sertakan juga penjelasan Teori:
+AnimatedContainer dasar.
+Tween & animation curves.
+State update dengan animasi.
+Duration & delay.
+Stateless vs Stateful integration.
+25. Image Carousel
+Teknologi: PageView, PageController, NetworkImage.
+Sebelumnya sertakan juga penjelasan Teori:
+PageView & swipe navigation.
+PageController & current page.
+NetworkImage & caching.
+Stateful widget untuk page update.
+Layout & responsive design.
+26. Stopwatch dengan Lap Feature
+Teknologi: Timer, ListView, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Timer & periodic update.
+Menyimpan multiple lap.
+ListView dynamic update.
+Lifecycle widget saat timer aktif.
+Performance optimization.
+27. Personal Diary App (Local + Cloud Sync)
+Teknologi: SQLite + Firebase Firestore sync.
+Sebelumnya sertakan juga penjelasan Teori:
+Hybrid local + cloud storage.
+Sync data mechanism.
+Conflict resolution strategy.
+Async & await handling.
+UI/UX diary interaction.
+28. Music Player with Playlist
+Teknologi: audio_service, just_audio, ListView, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Audio streaming package.
+Playlist & dynamic list.
+Player state management.
+Lifecycle & background audio.
+Event handling play/pause/next.
+29. Chat App dengan Firebase Auth
+Teknologi: Firebase Authentication, Firestore, ListView.
+Sebelumnya sertakan juga penjelasan Teori:
+Firebase Auth setup.
+Login / register user.
+Secure Firestore CRUD.
+Real-time chat & stream.
+Input validation & UI update.
+30. Quiz App with Timer
+Teknologi: Timer, StatefulWidget, ListView, JSON questions.
+Sebelumnya sertakan juga penjelasan Teori:
+Timer countdown & state update.
+Dynamic questions from JSON.
+StatefulWidget & answer tracking.
+Scoring & validation logic.
+User experience timing constraints.
+31. Recipe App (API + Favorites)
+Teknologi: REST API, HTTP package, SQLite, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Fetch data from API.
+Cache favorite recipes locally.
+Provider state management.
+Parsing & displaying JSON data.
+Dynamic UI rendering.
+32. Expense Tracker with Charts
+Teknologi: sqflite, charts_flutter, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Persistent data SQLite.
+Chart visualization.
+Input validation.
+Stateful vs Stateless integration.
+Filtering & aggregation of data.
+33. Weather App with Geolocation
+Teknologi: Geolocator, HTTP, API, FutureBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Access device GPS.
+Fetch API with dynamic location.
+Async / await & FutureBuilder.
+Error handling location & API.
+Responsive UI layout.
+34. Movie App with Infinite Scroll
+Teknologi: TMDB API, ListView.builder, Pagination, FutureBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Infinite scroll & pagination.
+API request & parsing JSON.
+Stateful list dynamic update.
+Error & loading handling.
+Performance optimization.
+35. E-commerce App – Product Detail & Cart
+Teknologi: Provider, ListView, Card, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+State management cart.
+Add/remove item functionality.
+Detail & list navigation.
+Stateless vs Stateful widgets.
+Responsive layout & UX.
+36. PDF Viewer App
+Teknologi: pdf package, FutureBuilder, ListView.
+Sebelumnya sertakan juga penjelasan Teori:
+Load PDF from asset/network.
+Page navigation.
+Async data handling.
+StatefulWidget & performance.
+User interaction scroll & zoom.
+37. Barcode & QR Scanner
+Teknologi: qr_code_scanner package, Camera access.
+Sebelumnya sertakan juga penjelasan Teori:
+Camera permission & access.
+Real-time QR scan.
+StatefulWidget for scan result.
+Event handling scan success.
+UI feedback for user.
+38. Social Media Feed App
+Teknologi: REST API, Pull to Refresh, ListView, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Fetch feed from API.
+Pull-to-refresh mechanism.
+Provider state for likes/comments.
+Dynamic UI update.
+Performance & lazy loading.
+39. Todo App with Notifications
+Teknologi: flutter_local_notifications, Provider, SQLite.
+Sebelumnya sertakan juga penjelasan Teori:
+Local notifications setup.
+Scheduling tasks.
+CRUD todo list.
+State management with Provider.
+UI & notification interaction.
+40. Meditation Timer App
+Teknologi: Timer, AudioPlayer, AnimatedContainer.
+Sebelumnya sertakan juga penjelasan Teori:
+Countdown timer logic.
+Playing background audio.
+Animated UI feedback.
+StatefulWidget for timer & progress.
+User settings & preferences.
+
+41–60: Advanced Flutter – Maps, Animasi, Push Notifications, Realtime Collaboration
+41. Maps App with Marker
+Teknologi: google_maps_flutter, StatefulWidget, LatLng, Marker.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrasi Google Maps SDK.
+Marker placement & dynamic updates.
+LatLng coordinates & camera position.
+StatefulWidget untuk interaksi map.
+Map gestures & user interaction.
+42. Route Planner App
+Teknologi: google_maps_flutter, Polylines, Directions API.
+Sebelumnya sertakan juga penjelasan Teori:
+Drawing routes on map using Polylines.
+Fetching directions via API.
+Updating camera & markers dynamically.
+Async / await handling API responses.
+Map performance optimization.
+43. AR Object Viewer
+Teknologi: ar_flutter_plugin, 3D object import, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+Setting up AR environment.
+Importing 3D models.
+Camera & gesture integration.
+Object scaling & rotation via gestures.
+Performance & device compatibility.
+44. Animation Showcase App
+Teknologi: AnimatedBuilder, Tween, AnimationController.
+Sebelumnya sertakan juga penjelasan Teori:
+AnimationController & lifecycle.
+Tween animation & curves.
+AnimatedBuilder usage.
+Chaining multiple animations.
+Optimizing animation performance.
+45. Push Notification App
+Teknologi: firebase_messaging, Flutter Local Notifications.
+Sebelumnya sertakan juga penjelasan Teori:
+Firebase Cloud Messaging setup.
+Handling foreground/background notifications.
+Displaying local notifications.
+Token management & subscription topics.
+Testing & debugging notifications.
+46. Realtime Collaborative Notes
+Teknologi: Firebase Firestore, StreamBuilder, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Realtime updates via Firestore streams.
+Managing collaborative editing state.
+Provider state integration.
+Conflict resolution strategies.
+UI feedback for multiple users.
+47. E-commerce App with Payment Gateway
+Teknologi: Stripe/PayPal SDK, Provider, REST API.
+Sebelumnya sertakan juga penjelasan Teori:
+Payment gateway integration.
+Secure transaction handling.
+Provider for cart & checkout.
+Async handling of payment confirmation.
+UX for payment flow.
+48. Video Streaming App
+Teknologi: video_player, Chewie, ListView, Network streaming.
+Sebelumnya sertakan juga penjelasan Teori:
+Video streaming setup.
+Player controls (play/pause/seek).
+ListView for video playlist.
+Network handling & buffering.
+StatefulWidget for player state.
+49. Social Media Clone (Feed + Likes + Comments)
+Teknologi: Firebase Auth, Firestore, Provider, ListView.builder.
+Sebelumnya sertakan juga penjelasan Teori:
+Authentication flow setup.
+Realtime feed updates.
+Likes & comments state management.
+Efficient ListView performance.
+User-generated content handling.
+50. Task Management App with Drag & Drop
+Teknologi: DragTarget, Draggable, Provider, SQLite.
+Sebelumnya sertakan juga penjelasan Teori:
+Drag & drop mechanics.
+State management with Provider.
+Persisting task order in database.
+UI feedback during drag events.
+Performance optimization for list updates.
+51. Fitness Tracker App
+Teknologi: Pedometer, Charts_flutter, StatefulWidget, Background service.
+Sebelumnya sertakan juga penjelasan Teori:
+Device sensors & pedometer data.
+Background tracking setup.
+Charting & visualizing data.
+StatefulWidget for dynamic update.
+Data persistence & performance.
+52. Meditation App with Audio & Animation
+Teknologi: audio_service, AnimatedContainer, Timer, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Audio playback & scheduling.
+Animated UI for meditation timer.
+Timer & periodic state updates.
+User preferences & settings.
+Optimizing performance & battery.
+53. AI Chatbot App
+Teknologi: HTTP / WebSocket API, Chat UI, Provider, StreamBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrating AI API (OpenAI / other).
+Handling streaming responses.
+Dynamic chat UI updates.
+State management for conversation.
+Error handling API & connectivity.
+54. Weather App with Animation & Forecast Graph
+Teknologi: HTTP, JSON parsing, Charts_flutter, Lottie animations.
+Sebelumnya sertakan juga penjelasan Teori:
+API integration & data parsing.
+Graphical forecast display.
+Animated weather icons with Lottie.
+Dynamic state update with async/await.
+UX for user-friendly weather info.
+55. Real Estate Listing App
+Teknologi: Firebase Firestore, Maps, ListView, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Displaying listings from cloud DB.
+Map integration for properties.
+State management for filters & favorites.
+Async data fetching.
+Efficient ListView rendering.
+56. Event Booking App
+Teknologi: Firestore, Provider, Calendar package, Stripe integration.
+Sebelumnya sertakan juga penjelasan Teori:
+CRUD event data in Firestore.
+Booking & payment flow.
+Calendar integration & UI.
+State management with Provider.
+Secure payment handling.
+57. Travel Guide App with AR
+Teknologi: AR Flutter plugin, HTTP API, Google Maps.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrating AR models.
+Fetching travel data via API.
+Mapping points of interest.
+User gestures for AR interaction.
+Performance & battery optimization.
+58. Grocery Delivery App
+Teknologi: Firebase Auth, Firestore, Provider, Stripe, Push Notifications.
+Sebelumnya sertakan juga penjelasan Teori:
+User authentication & role management.
+Cart & checkout logic.
+Order status & push notifications.
+State management with Provider.
+Payment gateway & secure transaction.
+59. Food Recipe App with Video Tutorial
+Teknologi: Video_player, HTTP API, JSON, ListView.builder.
+Sebelumnya sertakan juga penjelasan Teori:
+Video tutorial streaming.
+Fetch recipe data via API.
+Display dynamic list of recipes.
+StatefulWidget for video & UI state.
+Performance & caching.
+60. Multi-language Translation App
+Teknologi: Google Translate API, HTTP, StatefulWidget, TextField.
+Sebelumnya sertakan juga penjelasan Teori:
+API request & parsing translation.
+Async state update.
+Handling multiple languages.
+Input & output text UI.
+Error handling & fallback languages.
+
+61–80: Super Advanced – AI, Realtime Collaboration, Complex UI, AR/VR
+61. E-commerce App Full Stack (User + Admin Panel)
+Teknologi: Firebase Auth, Firestore, Provider, Stripe/PayPal, Flutter Web.
+Sebelumnya sertakan juga penjelasan Teori:
+Multi-role authentication (user vs admin).
+CRUD products, inventory, order management.
+Payment gateway integration & secure transactions.
+State management complex flows with Provider.
+Responsive design for web & mobile.
+62. Multiplayer Game (Realtime)
+Teknologi: WebSocket, Firebase Realtime Database, Custom Painter.
+Sebelumnya sertakan juga penjelasan Teori:
+WebSocket & realtime communication.
+Syncing player state across devices.
+Drawing game board with CustomPainter.
+Collision & game logic handling.
+Performance optimization for low-latency updates.
+63. AR Interior Design App
+Teknologi: ar_flutter_plugin, 3D Models, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+Placing virtual furniture with AR.
+Scaling, rotating objects with gestures.
+Handling 3D model assets.
+Camera & AR session management.
+Performance & device compatibility.
+64. AI Image Recognition App
+Teknologi: TensorFlow Lite, Camera, Image Picker.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrating TFLite models in Flutter.
+Capturing image via camera.
+Preprocessing image for model input.
+Running inference & interpreting output.
+Optimizing model performance on mobile.
+65. Voice Assistant App
+Teknologi: Speech-to-Text, Text-to-Speech, AI API.
+Sebelumnya sertakan juga penjelasan Teori:
+Capturing audio input & processing.
+Speech recognition integration.
+Generating voice responses.
+Async handling & UI updates.
+Error handling & fallback logic.
+66. Real-time Collaboration Whiteboard
+Teknologi: Firebase Realtime Database, CustomPainter, StreamBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Sync drawing in real-time.
+Multi-user state management.
+Optimizing Canvas performance.
+Undo/Redo & layers management.
+Handling conflicts & data consistency.
+67. Stock Market Dashboard
+Teknologi: REST API, WebSocket, Charts_flutter, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Real-time stock data via WebSocket.
+Chart plotting & animation.
+Provider for state management.
+Parsing & formatting financial data.
+Error handling & reconnection strategies.
+68. Fitness App with AR Exercise Demo
+Teknologi: AR plugin, Camera, Animation, Timer.
+Sebelumnya sertakan juga penjelasan Teori:
+AR exercise demo overlay.
+Tracking user movement.
+Timer & session management.
+Animated UI feedback.
+Multi-platform AR handling.
+69. Travel App with Booking & AR Tours
+Teknologi: Firestore, Stripe, Google Maps, AR Flutter.
+Sebelumnya sertakan juga penjelasan Teori:
+Fetch travel data & maps integration.
+Payment & booking flows.
+AR tour overlay for attractions.
+State management across screens.
+Offline & online data syncing.
+70. AI Chat App with Sentiment Analysis
+Teknologi: OpenAI API, Sentiment Analysis Model, StreamBuilder.
+Sebelumnya sertakan juga penjelasan Teori:
+Chat streaming & API integration.
+Sentiment analysis on messages.
+Dynamic UI updates.
+State management for conversation.
+Error & rate limit handling.
+71. Music Streaming App with Recommendations
+Teknologi: AudioService, REST API, Firebase, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Streaming audio & background play.
+Personalized recommendations algorithm.
+State management for playlists.
+Async API handling.
+Performance & caching optimization.
+72. Video Conference App
+Teknologi: WebRTC, Firebase Auth, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Real-time video & audio streaming.
+Multi-user session management.
+State handling for participants.
+Camera & microphone permissions.
+Network error handling.
+73. Smart Home Control App
+Teknologi: MQTT, WebSocket, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Realtime device control via MQTT/WebSocket.
+State management for multiple devices.
+Async command handling.
+UI feedback for device state.
+Security & authentication.
+74. Inventory Management with Barcode Scanner
+Teknologi: qr_code_scanner, SQLite/Firebase, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Barcode scanning & decoding.
+Persistent storage for inventory.
+State management & UI update.
+CRUD operations on items.
+Performance with large datasets.
+75. E-learning App with Video & Quiz
+Teknologi: Video_player, Firestore, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Streaming video lessons.
+Quiz integration & scoring.
+State management for course progress.
+Async data fetching from Firestore.
+UI & UX for interactive learning.
+76. AR Measurement App
+Teknologi: AR Flutter plugin, GestureDetector, Math calculations.
+Sebelumnya sertakan juga penjelasan Teori:
+Detect real-world surfaces.
+Measure distances & areas.
+AR overlays & user interaction.
+StatefulWidget for measurements.
+Accuracy & calibration.
+77. Food Delivery App with Maps & Tracking
+Teknologi: Firestore, Google Maps, Provider, Notifications.
+Sebelumnya sertakan juga penjelasan Teori:
+Real-time order tracking on map.
+Provider for order & user state.
+Notifications for status updates.
+Async data fetching.
+UI & UX responsive design.
+78. Social Media App with Video Upload
+Teknologi: Firebase Storage, Firestore, Video_player, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Video upload & storage.
+Display dynamic feed.
+State management with Provider.
+Async data fetch & caching.
+User interaction & likes/comments.
+79. AI-Powered Image Editing App
+Teknologi: TensorFlow Lite, Image Picker, Canvas, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+Running ML models on images.
+Image capture & selection.
+Gesture interaction for editing.
+Canvas drawing & overlays.
+Async processing & performance optimization.
+80. Marketplace App with Real-time Chat
+Teknologi: Firestore, Firebase Auth, Provider, WebSocket.
+Sebelumnya sertakan juga penjelasan Teori:
+User authentication & roles.
+Realtime chat between buyers & sellers.
+CRUD marketplace items.
+State management for dynamic data.
+Security & validation checks.
+81–100: Ultra-Advanced – Immersive, AI/ML, Realtime Multiplayer, Analytics, Deployment
+81. Realtime Multiplayer Racing Game
+Teknologi: Flame Engine, WebSocket, Firebase Realtime Database.
+Sebelumnya sertakan juga penjelasan Teori:
+Game loop & rendering dengan Flame.
+Realtime player state sync via WebSocket.
+Collision detection & physics.
+Leaderboard & scoring system.
+Network latency optimization.
+82. Virtual Reality Tour App
+Teknologi: Flutter + Unity via Platform Channels, AR/VR plugin.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrasi Flutter dengan Unity for VR.
+Navigation in 3D VR space.
+User input via gestures or controllers.
+Performance & frame rate optimization.
+Asset management & loading.
+83. AI-Powered Personal Assistant
+Teknologi: OpenAI API, Speech-to-Text, Text-to-Speech, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Streaming API responses & async handling.
+Speech recognition & TTS integration.
+Stateful conversation flow.
+NLP & command parsing.
+Error handling & fallback commands.
+84. Advanced Analytics Dashboard
+Teknologi: Charts_flutter, REST API, Firebase, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Dynamic chart & graph rendering.
+Data aggregation & filtering.
+Realtime data fetching & update.
+State management complex flows.
+Optimizing for large datasets.
+85. AI Image Generation App
+Teknologi: OpenAI DALL-E API, HTTP, Provider, Image Cache.
+Sebelumnya sertakan juga penjelasan Teori:
+API integration for image generation.
+Handling async response & image data.
+Display & cache generated images.
+Stateful UI updates.
+Error handling & rate limits.
+86. Augmented Reality Game
+Teknologi: AR Flutter plugin, Flame Engine, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+AR session & plane detection.
+Game loop integration in AR.
+Player interaction via gestures.
+Object physics & collisions.
+Optimizing for performance & battery.
+87. AI-Powered Photo Enhancer
+Teknologi: TensorFlow Lite, Image Processing, Canvas, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+Image preprocessing for AI models.
+Running inference & applying enhancements.
+User interaction via gestures.
+Canvas overlays & real-time preview.
+Optimizing for mobile GPU.
+88. Real-time Collaboration Whiteboard Pro
+Teknologi: Firebase Realtime Database, CustomPainter, WebSocket, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Multi-user real-time updates.
+Layer management & drawing history.
+Conflict resolution & data sync.
+Performance optimization for large boards.
+UI/UX for collaborative drawing.
+89. AI Language Learning App
+Teknologi: OpenAI API, Text-to-Speech, Speech-to-Text, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Conversation practice with AI.
+Pronunciation evaluation.
+Stateful lesson & progress tracking.
+Audio input/output handling.
+Async API & error handling.
+90. Smart Home Dashboard
+Teknologi: MQTT, WebSocket, Provider, Flutter Web.
+Sebelumnya sertakan juga penjelasan Teori:
+Realtime device control & status updates.
+Multi-platform dashboard design.
+State management for multiple device types.
+Async handling & error recovery.
+Security & authentication.
+91. AI Video Editor
+Teknologi: TensorFlow Lite / OpenCV, Video_player, Canvas, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+AI filters & scene detection.
+Real-time video frame processing.
+Gesture-based editing.
+Stateful playback & previews.
+Performance & memory optimization.
+92. Crypto Trading App
+Teknologi: WebSocket, REST API, Charts_flutter, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Real-time market data via WebSocket.
+Async trades & order book.
+Dynamic charting & candlestick visualization.
+State management for user portfolio.
+Error handling & network reconnection.
+93. AI-Powered Resume Builder
+Teknologi: OpenAI API, PDF generation, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Generating text via AI API.
+PDF formatting & export.
+Stateful input forms & preview.
+Async handling & error recovery.
+Responsive UI design.
+94. Realtime Multiplayer Strategy Game
+Teknologi: Flame Engine, Firebase Realtime Database, WebSocket, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Syncing complex game state across players.
+Handling collisions, resources, & units.
+Game logic & state updates.
+Leaderboards & scoring system.
+Optimizing network & rendering.
+95. AI Music Composition App
+Teknologi: OpenAI API, Audio playback, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Generating music via AI API.
+Audio streaming & playback.
+Stateful playlist & track management.
+Async API response handling.
+Caching & offline playback.
+96. Advanced AR Shopping App
+Teknologi: AR Flutter plugin, Firebase, Stripe, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+AR preview for products.
+Payment & checkout integration.
+State management for cart & AR session.
+Async data & network handling.
+Performance optimization.
+97. AI-Powered Health Diagnosis App
+Teknologi: TensorFlow Lite, Camera/Image Picker, Provider, StatefulWidget.
+Sebelumnya sertakan juga penjelasan Teori:
+Running ML model on medical images.
+Image preprocessing & inference.
+Stateful UI for diagnosis results.
+Async & error handling.
+Data privacy & security.
+98. Immersive VR Training Simulator
+Teknologi: Flutter + Unity, AR/VR plugin, GestureDetector.
+Sebelumnya sertakan juga penjelasan Teori:
+Integrating Flutter UI with Unity VR scenes.
+VR user navigation & interaction.
+Training scenario logic.
+Performance & frame rate optimization.
+Multi-platform deployment.
+99. AI-Powered Analytics Dashboard
+Teknologi: TensorFlow Lite, Charts_flutter, REST API, Provider.
+Sebelumnya sertakan juga penjelasan Teori:
+Running predictive ML models on data.
+Real-time analytics visualization.
+Stateful dashboard with dynamic widgets.
+Async data fetching & caching.
+Performance & UX optimization.
+100. Full CI/CD Flutter Deployment App
+Teknologi: Flutter Web + Mobile, GitHub Actions / Codemagic / Bitrise.
+Sebelumnya sertakan juga penjelasan Teori:
+Setting up CI/CD pipelines for Flutter apps.
+Automated testing & build.
+Multi-platform deployment (iOS/Android/Web).
+Versioning & release management.
+Monitoring & rollback strategies.

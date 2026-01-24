@@ -1,0 +1,1961 @@
+﻿Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows di bawah ini, 
+Judul : 
+
+
+
+UI/UX standart profesional, designer grade.
+Terapkan modular programming, dan setiap file di tulis di masing-masing artifact agar mudah di copy. pastikan tidak ada missing import di setiap file.
+jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
+mulai dari inisialisasi proyek
+sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
+tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+nama proyek pakai snake case
+
+
+code dalam artifact lengkap dengan penjelasan detail dan lengkap setiap code dalam bentuk komentar, penjelasan level pemula minimal 50 kata setiap barisnya, jangan di ringkas, kecuali code yang pengulangan sudah dibahas sebelumnya
+
+buat code dalam 5-10 tahap dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
+
+kalau terlalu panjang bagi proyek menjadi beberapa part tapi setiap part bisa langsung di lihat hasilnya, agar segera bisa di fix  kalau ada error, kemudian lanjut dengan  part selanjutnya di chat berikutnya.
+
+berikan 5 ide UI theme unik out of the box untuk aplikasi flutter di bawah, UI jangan terlalu ribet tapi menarik dan unik.
+Artifact hanya digunakan untuk coding aplikasi saja. Panduan atau pembahasan, setup dan lain lain di dalam chat saja
+berikan ide teknologi atau 3rd party yang akan digunakan, nanti saya pilih
+berikan 5 ide UI yang out of the box, nanti saya pilih
+
+  <base href="/flutter/001-020/neon_whisper/web/">
+
+# 200 Proyek Flutter untuk Belajar (Pemula → Expert)
+
+# 200 Proyek Flutter - Diurutkan Berdasarkan Kompleksitas
+
+## LEVEL 1: VERY BASIC (1-25)
+*Simple UI, minimal teknologi, code pendek (<500 lines)*
+
+### 1. QuoteDaily
+- **Jenis**: Daily Quotes & Wallpaper
+- **Deskripsi**: Aplikasi quotes harian dengan beautiful backgrounds, sharing, dan favorites collection
+- **Teknologi**: REST API, Provider, share_plus, cached_network_image
+- **Tema UI**: Inspirational - Typography-focused, beautiful imagery, quote card designs
+- **Estimasi Code**: ~300 lines
+
+### 2. UnitConvert
+- **Jenis**: Universal Unit Converter
+- **Deskripsi**: Converter lengkap untuk berbagai unit (length, weight, currency, dll) dengan calculator
+- **Teknologi**: Provider, math_expressions, currency_api, local_storage
+- **Tema UI**: Calculator Modern - Number pad, conversion arrow, category tabs
+- **Estimasi Code**: ~350 lines
+
+### 3. WaterReminder
+- **Jenis**: Water Intake Tracker
+- **Deskripsi**: Aplikasi pengingat minum air dengan goal setting, intake logging, dan hydration stats
+- **Teknologi**: Hive, Provider, flutter_local_notifications, charts_flutter
+- **Tema UI**: Hydration Blue - Water droplet icons, wave animations, fresh blue palette
+- **Estimasi Code**: ~400 lines
+
+### 4. TaskFlow
+- **Jenis**: Simple Task Manager
+- **Deskripsi**: To-do list dengan kategori, prioritas, deadline, dan daily reminders
+- **Teknologi**: Hive/SQLite, Provider, flutter_local_notifications, drag_and_drop
+- **Tema UI**: Clean Productivity - Checkbox-focused, priority colors, minimal interface
+- **Estimasi Code**: ~450 lines
+
+### 5. NotePad Pro
+- **Jenis**: Note Taking App
+- **Deskripsi**: Aplikasi catatan dengan rich text editor, folders, tags, dan cloud sync
+- **Teknologi**: Firebase/Hive, Provider/GetX, quill_editor, tagging_system
+- **Tema UI**: Paper-Inspired - Notebook lines, tab dividers, handwriting fonts optional
+- **Estimasi Code**: ~500 lines
+
+### 6. ZenHabit
+- **Jenis**: Habit Building App
+- **Deskripsi**: Aplikasi pembentukan kebiasaan dengan streak tracking dan statistik.
+- **Teknologi**: Hive, Provider/Riverpod, calendar_heatmap, flutter_local_notifications
+- **Tema UI**: Motivational - Achievement badges, streak flames, progress circles
+- **Estimasi Code**: ~450 lines
+
+### 7. CalorieLog
+- **Jenis**: Food Calorie Counter
+- **Deskripsi**: Aplikasi hitung kalori makanan dengan food database dan daily nutrition tracking
+- **Teknologi**: SQLite, Provider, barcode_scan, nutrition_api, charts_flutter
+- **Tema UI**: Nutrition Fresh - Food icons, clean lists, macro breakdown visuals
+- **Estimasi Code**: ~550 lines
+
+### 8. ZenTime
+- **Jenis**: Time Tracking App
+- **Deskripsi**: Aplikasi tracking waktu untuk freelancer dengan project-based timer dan statistik
+- **Teknologi**: SQLite, Provider, stopwatch_timer, charts_flutter, csv_export
+- **Tema UI**: Chronometer - Clock-inspired, time visualization, professional dashboard
+- **Estimasi Code**: ~500 lines
+
+### 9. BudgetWise
+- **Jenis**: Personal Budget Tracker
+- **Deskripsi**: Aplikasi budget personal dengan expense categories dan monthly summaries
+- **Teknologi**: SQLite/Hive, Provider, pie_chart, line_chart, pdf_export
+- **Tema UI**: Financial Dashboard - Expense/income color coding, wallet metaphors
+- **Estimasi Code**: ~600 lines
+
+### 10. CashFlow
+- **Jenis**: Expense & Income Tracker
+- **Deskripsi**: Aplikasi pencatat keuangan bisnis sederhana dengan monthly reports untuk UMKM
+- **Teknologi**: Hive/SQLite, charts_flutter, Provider/Riverpod, table_calendar, excel, pdf
+- **Tema UI**: Financial Modern - Green for income, red for expenses, clean dashboard
+- **Estimasi Code**: ~650 lines
+
+
+
+#################### NEW ###########################
+
+11-20: List & Data Display
+
+App name: Shopping List
+Desc: Buat daftar belanja dengan checkbox untuk item yang sudah dibeli
+Teknologi: ListView, Checkbox, List management
+Tema UI: Grocery Fresh - hijau segar dengan ilustrasi sayuran
+
+App name: Recipe Book
+Desc: Kumpulan resep makanan dengan gambar dan bahan
+Teknologi: GridView, Card, Image.asset
+Tema UI: Cookbook Warm - earthy tones, handwritten fonts
+
+App name: Movie Watchlist
+Desc: Daftar film yang ingin ditonton dengan rating
+Teknologi: ListView.separated, Rating widget, Dismissible
+Tema UI: Cinema Dark - dark theme dengan gold dan red accents
+
+App name: Contact List
+Desc: Daftar kontak sederhana dengan nama dan nomor
+Teknologi: ListView.builder, SearchDelegate, Alphabet scroll
+Tema UI: iOS Inspired - clean white dengan subtle shadows
+
+App name: Book Library
+Desc: Katalog buku pribadi dengan status baca
+Teknologi: GridView.builder, Filter, Chip widgets
+Tema UI: Library Classic - cokelat gelap dengan texture kayu
+
+App name: Expense Tracker
+Desc: Catat pengeluaran harian dengan kategori
+Teknologi: ListView, DatePicker, Category icons
+Tema UI: Financial Green - mint green dengan white cards
+
+App name: Habit Tracker
+Desc: Track kebiasaan harian dengan calendar view
+Teknologi: GridView for calendar, Boolean state management
+Tema UI: Motivational Gradient - purple to pink gradient
+
+App name: Note Taking App
+Desc: Aplikasi catatan sederhana dengan judul dan isi
+Teknologi: TextField multiline, ListView, DateTime
+Tema UI: Yellow Sticky Notes - kuning cerah dengan shadow
+
+App name: Plant Care Reminder
+Desc: Daftar tanaman dengan jadwal penyiraman
+Teknologi: ListView, Date calculation, Icon library
+Tema UI: Botanical Green - hijau natural dengan ilustrasi daun
+
+App name: Podcast Player UI
+Desc: UI mockup podcast player dengan daftar episode
+Teknologi: ListTile, Slider, Play/pause button
+Tema UI: Audio Wave - dark dengan purple dan sound wave graphics
+
+
+21-30: Form & Input
+
+App name: Survey Form
+Desc: Form survei dengan berbagai tipe input
+Teknologi: Form, TextFormField, Radio, Checkbox
+Tema UI: Corporate Blue - professional blue dengan white background
+
+App name: Registration Form
+Desc: Form pendaftaran dengan validasi email dan password
+Teknologi: Form validation, RegExp, TextInputType
+Tema UI: Modern Signup - gradient background dengan floating cards
+
+App name: Feedback App
+Desc: Form feedback dengan rating bintang dan komentar
+Teknologi: Rating bar, TextField, SnackBar
+Tema UI: Customer Service - friendly orange dan blue
+
+App name: Event RSVP
+Desc: Form konfirmasi kehadiran event dengan pilihan menu
+Teknologi: RadioListTile, DropdownButton, DatePicker
+Tema UI: Party Festive - colorful dengan confetti graphics
+
+App name: Job Application
+Desc: Form lamaran kerja dengan upload CV mockup
+Teknologi: Stepper, Form validation, File picker UI
+Tema UI: Professional Navy - navy blue dengan clean layout
+
+App name: Quiz App
+Desc: Kuis pilihan ganda dengan skor akhir
+Teknologi: PageView, Radio buttons, Score calculation
+Tema UI: Education Bright - yellow dan blue playful
+
+App name: Booking Form
+Desc: Form booking hotel/tiket dengan tanggal dan jumlah
+Teknologi: DateRangePicker, Counter widget, Dropdown
+Tema UI: Travel Sky - light blue dengan cloud illustrations
+
+App name: Donation Form
+Desc: Form donasi dengan pilihan nominal dan metode
+Teknologi: Custom amount input, Payment method selection
+Tema UI: Charity Heart - warm red dengan heart icons
+
+App name: Petition Signature
+Desc: Form tanda tangan petisi digital
+Teknologi: Signature pad widget, Form submission
+Tema UI: Activism Bold - bold typography dengan strong colors
+
+App name: Restaurant Order
+Desc: Form pemesanan makanan dengan quantity
+Teknologi: ListView with quantity counter, Total calculation
+Tema UI: Food Delivery - red dan yellow energetic
+
+
+
+31-40: Navigation & Screens
+
+App name: Onboarding Slides
+Desc: Tutorial slides untuk pengguna baru
+Teknologi: PageView, PageIndicator, Skip button
+Tema UI: Welcome Gradient - smooth color transitions
+
+App name: Profile Page
+Desc: Halaman profil user dengan info dan settings
+Teknologi: Column, Row, CircleAvatar, ListTile
+Tema UI: Social Media - Instagram-inspired layout
+
+App name: Bottom Navigation
+Desc: App dengan bottom navigation 4 tab
+Teknologi: BottomNavigationBar, Multiple screens
+Tema UI: Material Design - vibrant colors dengan elevation
+
+App name: Drawer Menu
+Desc: App dengan side drawer navigation
+Teknologi: Drawer, ListView, Navigation
+Tema UI: Dashboard Pro - sidebar dengan icons dan labels
+
+App name: Tab Bar View
+Desc: App dengan tab bar di atas
+Teknologi: TabBar, TabBarView, DefaultTabController
+Tema UI: News App - clean white dengan category tabs
+
+App name: Settings Screen
+Desc: Halaman pengaturan dengan switches dan options
+Teknologi: SwitchListTile, Navigation, SharedPreferences UI
+Tema UI: iOS Settings - grouped list dengan gray background
+
+App name: Splash Screen
+Desc: Splash screen dengan animasi logo
+Teknologi: Future.delayed, Navigation, AnimatedOpacity
+Tema UI: Brand Launch - centered logo dengan brand colors
+
+App name: Login Screen
+Desc: Halaman login dengan email dan password
+Teknologi: TextField, IconButton, Form validation
+Tema UI: App Login - gradient background dengan rounded inputs
+
+App name: Product Detail
+Desc: Halaman detail produk e-commerce
+Teknologi: Stack, Positioned, Expanded, Button
+Tema UI: E-commerce Modern - white dengan product photos
+
+App name: About Us Page
+Desc: Halaman tentang aplikasi/perusahaan
+Teknologi: SingleChildScrollView, RichText, URL launcher UI
+Tema UI: Corporate Identity - brand colors dengan company info
+
+
+
+41-50: Interactive & Fun
+
+App name: Tic Tac Toe
+Desc: Game tic tac toe 2 pemain
+Teknologi: GridView, Game logic, Winner detection
+Tema UI: Game Board - classic board game aesthetic
+
+App name: Magic 8 Ball
+Desc: Shake untuk dapat jawaban random
+Teknologi: GestureDetector (shake simulation), Random
+Tema UI: Mystical Dark - purple dan black dengan glow effects
+
+App name: Flashcard App
+Desc: Kartu belajar yang bisa diflip
+Teknologi: AnimatedSwitcher, GestureDetector, Card flip
+Tema UI: Study Mode - clean white dengan colorful cards
+
+App name: Memory Game
+Desc: Game mencocokkan kartu
+Teknologi: GridView, Game state, Card matching logic
+Tema UI: Kids Playful - bright colors dengan cute illustrations
+
+App name: Drawing Board
+Desc: Papan gambar sederhana dengan berbagai warna
+Teknologi: CustomPaint, GestureDetector, Canvas
+Tema UI: Artist Studio - palette dengan color picker
+
+App name: Music Player UI
+Desc: Mockup music player dengan controls
+Teknologi: Slider, IconButton, Animation
+Tema UI: Spotify-like - dark dengan album art focus
+
+App name: Pomodoro Timer
+Desc: Timer teknik pomodoro 25/5 menit
+Teknologi: CircularProgressIndicator, Timer, Notification UI
+Tema UI: Productivity Red - red tomato dengan minimal design
+
+App name: Mood Tracker
+Desc: Track mood harian dengan emoji
+Teknologi: GridView emoji, Calendar, Color coding
+Tema UI: Emotional Pastel - soft pastel colors
+
+App name: Step Counter UI
+Desc: UI mockup step counter fitness
+Teknologi: CircularPercentIndicator, Progress display
+Tema UI: Fitness Active - energetic orange dan blue
+
+App name: Breathing Exercise
+Desc: Guided breathing dengan animasi lingkaran
+Teknologi: AnimatedContainer, Timer, Scale animation
+Tema UI: Meditation Calm - blue gradient dengan smooth animations
+
+
+51-60: Advanced Beginner
+
+
+App name: QR Code Display
+Desc: Generate dan tampilkan QR code dari text
+Teknologi: QR Flutter package, TextField input
+Tema UI: Tech Modern - minimalist black dan white
+
+
+App name: BMI History
+Desc: BMI calculator dengan riwayat perhitungan
+Teknologi: List storage, ListView history, Chart mockup
+Tema UI: Health Track - green dengan chart visualization
+
+App name: Alarm Clock UI
+Desc: UI alarm clock dengan multiple alarms
+Teknologi: TimePicker, ListView alarms, Switch
+Tema UI: Digital Clock - dark dengan LED-style numbers
+
+App name: Calculator
+Desc: Kalkulator standar dengan operasi dasar
+Teknologi: GridView buttons, Math operations, State management
+Tema UI: iOS Calculator - clean dengan large buttons
+
+App name: Language Learning
+Desc: Flashcard belajar bahasa dengan audio icon
+Teknologi: PageView, Audio player UI, Progress bar
+Tema UI: Education Fun - colorful dengan language flags
+
+App name: Crypto Tracker UI
+Desc: Mockup crypto price tracker
+Teknologi: ListView coins, Fake data, Chart widget
+Tema UI: Crypto Gold - dark dengan gold dan green/red
+
+App name: Weather Forecast
+Desc: Tampilan forecast 7 hari dengan icons
+Teknologi: ListView horizontal, Custom weather icons
+Tema UI: Weather App - gradient background by condition
+
+App name: Social Media Feed
+Desc: Mockup feed social media dengan posts
+Teknologi: ListView posts, Like button, Comment count
+Tema UI: Social Modern - white cards dengan blue accents
+
+App name: Travel Guide
+Desc: App guide destinasi wisata dengan gambar
+Teknologi: GridView destinations, Detail navigation, Hero animation
+Tema UI: Travel Adventure - vibrant photos dengan overlay text
+
+App name: Coffee Shop Menu
+Desc: Menu kopi dengan gambar dan harga
+Teknologi: GridView menu, Add to cart button, Price calculation
+Tema UI: Coffee Brown - warm brown tones dengan coffee beans
+
+
+
+##################################################################
+
+### 11. StepCounter
+- **Jenis**: Pedometer & Step Tracker
+- **Deskripsi**: Aplikasi penghitung langkah dengan daily goals dan calorie burn estimate
+- **Teknologi**: pedometer package, Provider, charts_flutter, HealthKit/Google Fit integration
+- **Tema UI**: Fitness Tracker - Step visualization, circular progress, activity-focused
+- **Estimasi Code**: ~500 lines
+
+### 12. WeatherPro
+- **Jenis**: Advanced Weather App
+- **Deskripsi**: Aplikasi cuaca dengan forecast 10 hari, radar, dan severe alerts
+- **Teknologi**: Weather API, Provider, maps_integration, flutter_local_notifications
+- **Tema UI**: Weather Visual - Dynamic backgrounds, weather animations, clean data display
+- **Estimasi Code**: ~600 lines
+
+### 13. MovieBox
+- **Jenis**: Movie Discovery App
+- **Deskripsi**: Aplikasi discover film dengan rating, trailer, watchlist, dan recommendation
+- **Teknologi**: TMDB API, Provider/GetX, youtube_player, cached_network_image, local_storage
+- **Tema UI**: Cinematic Dark - Movie poster grid, dark backgrounds, film strip elements
+- **Estimasi Code**: ~700 lines
+
+### 14. MusicMood
+- **Jenis**: Music Player & Mood Tracker
+- **Deskripsi**: Music player dengan playlist berdasarkan mood, equalizer, dan sleep timer
+- **Teknologi**: audio_players, Provider/Riverpod, mood_selection, playlist_management
+- **Tema UI**: Audio Visual - Waveform animations, album art showcase, mood-based gradients
+- **Estimasi Code**: ~750 lines
+
+### 15. RecipeBook
+- **Jenis**: Cooking Recipe App
+- **Deskripsi**: Koleksi resep masakan dengan step-by-step instructions dan shopping list generator
+- **Teknologi**: Firebase/REST API, Provider, video_player, timer_widget, ingredient_list
+- **Tema UI**: Kitchen Warm - Food photography, recipe card design, appetizing colors
+- **Estimasi Code**: ~800 lines
+
+### 16. PodCaster
+- **Jenis**: Podcast Player
+- **Deskripsi**: Aplikasi podcast dengan subscription, download offline, dan playback speed
+- **Teknologi**: audio_service, Provider, rss_parser, download_manager, playback_controls
+- **Tema UI**: Podcast Modern - Minimalist player, episode cards, subscription management
+- **Estimasi Code**: ~850 lines
+
+### 17. QuizMaster
+- **Jenis**: Simple Quiz & Assessment App
+- **Deskripsi**: Aplikasi quiz sederhana dengan multiple choice, timer, dan scoring system
+- **Teknologi**: Firebase, Provider, circular_countdown_timer, charts_flutter, confetti, pdf
+- **Tema UI**: Gamified Learning - Bright colors, achievement badges, progress bars
+- **Estimasi Code**: ~700 lines
+
+### 18. FlashLearn
+- **Jenis**: Flashcard Learning App
+- **Deskripsi**: Aplikasi flashcard dengan spaced repetition algorithm dan progress tracking
+- **Teknologi**: Hive/SQLite, flip_card, Provider/GetX, spaced_repetition, text_to_speech
+- **Tema UI**: Card Deck - Card-based interface, flip animations, minimal distractions
+- **Estimasi Code**: ~750 lines
+
+### 19. MeditateNow
+- **Jenis**: Meditation & Mindfulness App
+- **Deskripsi**: Aplikasi meditasi guided dengan timer, ambient sounds, dan progress tracking
+- **Teknologi**: audio_players, Provider, timer_widget, local_audio, progress_tracking
+- **Tema UI**: Zen Calm - Peaceful imagery, soft colors, minimalist interface, nature themes
+- **Estimasi Code**: ~650 lines
+
+### 20. SleepWell
+- **Jenis**: Sleep Tracker
+- **Deskripsi**: Aplikasi tracking pola tidur dengan sleep sounds dan alarm cerdas
+- **Teknologi**: Hive, Provider, audio_players, alarm_manager, charts_flutter
+- **Tema UI**: Nighttime - Dark purples, moon imagery, soothing gradients, bedtime mode
+- **Estimasi Code**: ~700 lines
+
+### 21. QRMaster
+- **Jenis**: QR Code Generator & Scanner
+- **Deskripsi**: Generate dan scan QR codes dengan history dan berbagai QR types
+- **Teknologi**: qr_flutter, qr_code_scanner, Provider, local_storage, share_plus
+- **Tema UI**: QR Focused - Scanner frame prominent, QR customization options, minimal
+- **Estimasi Code**: ~500 lines
+
+### 22. TranslateNow
+- **Jenis**: Multi-Language Translator
+- **Deskripsi**: Aplikasi translate dengan text, voice, camera OCR, dan conversation mode
+- **Teknologi**: Translation API, speech_to_text, text_to_speech, OCR, camera_package, Provider
+- **Tema UI**: Language Bridge - Flag icons, input/output clear separation, microphone prominent
+- **Estimasi Code**: ~800 lines
+
+### 23. InvoiceQuick
+- **Jenis**: Simple Invoice Generator
+- **Deskripsi**: Aplikasi pembuat invoice sederhana untuk freelancer dan UMKM
+- **Teknologi**: SQLite/Hive, Provider, pdf package, share_plus, printing package, currency_formatter
+- **Tema UI**: Professional Business - Navy & gold, formal typography, template-based layouts
+- **Estimasi Code**: ~700 lines
+
+### 24. StockKeeper
+- **Jenis**: Basic Inventory Management
+- **Deskripsi**: Aplikasi inventory sederhana untuk tracking stok barang dengan barcode scanner
+- **Teknologi**: SQLite, barcode_scan2, Provider/GetX, flutter_local_notifications, charts_flutter, excel
+- **Tema UI**: Warehouse Industrial - Grey tones, grid-based layouts, utilitarian design
+- **Estimasi Code**: ~850 lines
+
+### 25. LoanCalculator
+- **Jenis**: Loan & EMI Calculator
+- **Deskripsi**: Kalkulator komprehensif untuk berbagai jenis loan dengan amortization schedule
+- **Teknologi**: SQLite, Provider, charts_flutter, pdf_generation, comparison_tools
+- **Tema UI**: Financial Tools - Calculator aesthetics, graph comparisons, professional clean
+- **Estimasi Code**: ~600 lines
+
+---
+
+## LEVEL 2: BASIC (26-60)
+*Moderate UI complexity, 2-3 teknologi, code sedang (500-1000 lines)*
+
+### 26. QuickChat
+- **Jenis**: Simple One-to-One Chat
+- **Deskripsi**: Aplikasi chat sederhana untuk komunikasi pribadi dengan text message dan emoji
+- **Teknologi**: Firebase (Auth, Firestore), Provider, emoji_picker_flutter, timeago, cached_network_image
+- **Tema UI**: Bubble Modern - Soft gradients, rounded corners, smooth animations
+- **Estimasi Code**: ~900 lines
+
+### 27. AppointEase
+- **Jenis**: Simple Appointment Booking
+- **Deskripsi**: Booking appointment sederhana untuk konsultan, dokter, atau salon
+- **Teknologi**: Firebase, Provider, table_calendar, flutter_local_notifications, url_launcher
+- **Tema UI**: Appointment Clean - Calendar-first design, time slot grid, professional
+- **Estimasi Code**: ~850 lines
+
+### 28. ParkSpot
+- **Jenis**: Parking Slot Booking
+- **Deskripsi**: Aplikasi booking tempat parkir dengan map view dan real-time availability
+- **Teknologi**: Firebase, Google Maps API, Provider/Riverpod, QR_code generation, payment_gateway
+- **Tema UI**: Map-Centric - Location-first design, parking lot visualization, navigation focus
+- **Estimasi Code**: ~950 lines
+
+### 29. LocalCraft
+- **Jenis**: Single Vendor Handicraft Store
+- **Deskripsi**: Toko online kerajinan tangan lokal dengan katalog produk dan checkout sederhana
+- **Teknologi**: Firebase (Auth, Firestore, Storage), Provider, Razorpay/Midtrans, cached_network_image, flutter_rating_bar
+- **Tema UI**: Rustic & Handmade - Warm earthy tones, handwritten fonts, texture overlays
+- **Estimasi Code**: ~1000 lines
+
+### 30. FreshBasket
+- **Jenis**: Grocery Delivery App
+- **Deskripsi**: Aplikasi belanja sayur dan buah segar dengan kategori produk dan sistem order
+- **Teknologi**: Firebase (Auth, Firestore), Provider/GetX, Google Maps API, flutter_local_notifications, Payment gateway
+- **Tema UI**: Fresh & Organic - Green palette, illustration-based, playful animations
+- **Estimasi Code**: ~1100 lines
+
+### 31. TableReserve
+- **Jenis**: Restaurant Table Booking
+- **Deskripsi**: Aplikasi reservasi meja restoran dengan menu preview dan table selection
+- **Teknologi**: Firebase, Provider/GetX, floor_plan viewer, SMS/WhatsApp integration
+- **Tema UI**: Restaurant Elegant - Food photography, warm lighting effects, table layouts
+- **Estimasi Code**: ~900 lines
+
+### 32. ClassBook
+- **Jenis**: Fitness Class Booking
+- **Deskripsi**: Booking kelas fitness/gym dengan class schedule dan instructor profiles
+- **Teknologi**: Firebase, table_calendar, Provider/Riverpod, QR code, membership_verification
+- **Tema UI**: Fitness Energy - Bold colors, action photos, energy-focused imagery
+- **Estimasi Code**: ~950 lines
+
+### 33. TutorSchedule
+- **Jenis**: Private Tutor Booking
+- **Deskripsi**: Platform booking les privat dengan tutor profiles dan availability calendar
+- **Teknologi**: Firebase/REST API, availability_calendar, Provider/GetX, payment_gateway
+- **Tema UI**: Educational Friendly - Approachable colors, teacher photos, achievement icons
+- **Estimasi Code**: ~1000 lines
+
+### 34. AppointBook
+- **Jenis**: Appointment Booking System
+- **Deskripsi**: Sistem booking appointment untuk salon, klinik, konsultan
+- **Teknologi**: Firebase, table_calendar, flutter_local_notifications, twilio/whatsapp_api, Provider/GetX
+- **Tema UI**: Calendar Focused - Date-centric design, time slot visualization, clean spacing
+- **Estimasi Code**: ~1000 lines
+
+### 35. FamilyCircle
+- **Jenis**: Family Group Chat
+- **Deskripsi**: Chat khusus keluarga dengan shared calendar, shopping list, dan photo album
+- **Teknologi**: Firebase, table_calendar, image_picker, geolocator, Provider/GetX
+- **Tema UI**: Warm & Cozy - Family photos as backgrounds, heart icons, warm color palette
+- **Estimasi Code**: ~1100 lines
+
+### 36. StudyBuddy
+- **Jenis**: Student Study Group Chat
+- **Deskripsi**: Platform chat untuk kelompok belajar dengan file sharing dan assignment tracking
+- **Teknologi**: Firebase, file_picker, flutter_sound, Provider/Riverpod, url_launcher, flutter_downloader
+- **Tema UI**: Academic Clean - Blue & white, notebook-inspired, organizational elements
+- **Estimasi Code**: ~1150 lines
+
+### 37. NeighborNet
+- **Jenis**: Neighborhood Community App
+- **Deskripsi**: Aplikasi komunitas perumahan dengan announcement board dan local marketplace
+- **Teknologi**: Firebase (Auth, Firestore, Storage, FCM), Google Maps, Provider/GetX
+- **Tema UI**: Friendly Neighborhood - Pastel colors, house icons, community-focused imagery
+- **Estimasi Code**: ~1200 lines
+
+### 38. HobbyHub
+- **Jenis**: Interest-Based Community
+- **Deskripsi**: Platform untuk bergabung dengan komunitas berdasarkan hobi
+- **Teknologi**: Firebase, Multi-channel chat, table_calendar, flutter_tags, Provider/Riverpod
+- **Tema UI**: Vibrant & Diverse - Multi-colored sections per hobby, icon-rich interface
+- **Estimasi Code**: ~1200 lines
+
+### 39. BookNook
+- **Jenis**: Digital Bookstore
+- **Deskripsi**: Toko buku online dengan preview, wishlist, dan sistem review
+- **Teknologi**: Firebase, flutter_pdfview, epub_reader, Provider, Payment gateway, download_manager
+- **Tema UI**: Literary Classic - Serif fonts, vintage paper textures, library aesthetic
+- **Estimasi Code**: ~1150 lines
+
+### 40. StyleHub
+- **Jenis**: Fashion Boutique App
+- **Deskripsi**: Aplikasi fashion store dengan filter size/color, wishlist, dan lookbook
+- **Teknologi**: Firebase/REST API, Provider/Riverpod, carousel_slider, flutter_staggered_grid_view, Payment gateway
+- **Tema UI**: Minimalist Chic - Black & white with accent colors, clean typography
+- **Estimasi Code**: ~1200 lines
+
+### 41. TechZone
+- **Jenis**: Electronics Store
+- **Deskripsi**: Toko elektronik dengan perbandingan produk, spesifikasi detail, dan sistem review
+- **Teknologi**: Firebase/REST API, BLoC/Riverpod, compare_products, flutter_html, Payment gateway, QR code
+- **Tema UI**: Futuristic Tech - Dark mode, neon accents, sci-fi elements, glassmorphism
+- **Estimasi Code**: ~1300 lines
+
+### 42. VideoLearn
+- **Jenis**: Video Course Player
+- **Deskripsi**: Aplikasi streaming video pembelajaran dengan playlist dan note-taking
+- **Teknologi**: Firebase, video_player/chewie, Provider/Riverpod, cached_video_player, flutter_downloader
+- **Tema UI**: Video Platform - YouTube-inspired, dark player background, clear controls
+- **Estimasi Code**: ~1100 lines
+
+### 43. BookShelf
+- **Jenis**: Digital Library & Reading App
+- **Deskripsi**: Perpustakaan digital untuk ebook dan PDF dengan highlight dan bookmark
+- **Teknologi**: Firebase, flutter_pdfview, epub_reader, text_highlight, Provider/GetX
+- **Tema UI**: Digital Library - Book spine shelves, reading-friendly backgrounds, serif fonts
+- **Estimasi Code**: ~1200 lines
+
+### 44. SkillTrack
+- **Jenis**: Skill Development Tracker
+- **Deskripsi**: Aplikasi tracking progress pembelajaran skill dengan goal setting
+- **Teknologi**: Firebase/Hive, table_calendar, Provider/Riverpod, charts_flutter, gamification
+- **Tema UI**: Progress Focused - Linear progress visualizations, milestone markers, motivational
+- **Estimasi Code**: ~1000 lines
+
+### 45. ServicePro
+- **Jenis**: Field Service Management
+- **Deskripsi**: Aplikasi untuk teknisi lapangan dengan job assignment dan time tracking
+- **Teknologi**: Firebase/SQLite, geolocator, image_picker, signature package, Provider/BLoC
+- **Tema UI**: Field Worker - Rugged design, high contrast, large touch targets
+- **Estimasi Code**: ~1150 lines
+
+### 46. PhotoShare
+- **Jenis**: Photo Sharing Social Network
+- **Deskripsi**: Platform berbagi foto dengan filters, stories, likes, dan comments
+- **Teknologi**: Firebase/REST API, image_picker, image_filters, BLoC, real-time feed, FCM
+- **Tema UI**: Instagram-Inspired - Photo grid, story circles, double-tap hearts, clean modern
+- **Estimasi Code**: ~1400 lines
+
+### 47. FoodieFeed
+- **Jenis**: Food Social Network
+- **Deskripsi**: Platform food lovers dengan restaurant reviews dan recipe sharing
+- **Teknologi**: Firebase/REST API, image_picker, location_services, rating_system, BLoC, restaurant_api
+- **Tema UI**: Food Photography - Appetizing colors, restaurant cards, recipe layouts, culinary
+- **Estimasi Code**: ~1350 lines
+
+### 48. BlogSphere
+- **Jenis**: Blogging Platform
+- **Deskripsi**: Platform blogging dengan rich text editor dan content discovery
+- **Teknologi**: Firebase/REST API, quill_editor, markdown_support, BLoC, search_engine, tagging
+- **Tema UI**: Reading-Focused - Typography-centric, article cards, author profiles, Medium-inspired
+- **Estimasi Code**: ~1300 lines
+
+### 49. TravelTales
+- **Jenis**: Travel Social Network
+- **Deskripsi**: Social network untuk travelers dengan trip planning dan location check-ins
+- **Teknologi**: Firebase/REST API, Google Maps, image_gallery, trip_planner, BLoC, location_services
+- **Tema UI**: Travel Adventure - Map exploration, destination cards, travel journal aesthetic
+- **Estimasi Code**: ~1400 lines
+
+### 50. CryptoWatch
+- **Jenis**: Cryptocurrency Portfolio Tracker
+- **Deskripsi**: Aplikasi tracking portfolio crypto dengan live prices dan charts
+- **Teknologi**: Crypto API, Provider/BLoC, candlestick_charts, price_alerts, news_aggregator
+- **Tema UI**: Crypto Modern - Dark mode, green/red indicators, candlestick charts, futuristic
+- **Estimasi Code**: ~1200 lines
+
+### 51. StockTrader
+- **Jenis**: Stock Market Simulator
+- **Deskripsi**: Simulasi trading saham dengan virtual money dan real-time data
+- **Teknologi**: Stock API, Provider/BLoC, charts_flutter, watchlist, portfolio_management
+- **Tema UI**: Trading Terminal - Green/red colors, stock charts, ticker displays, professional
+- **Estimasi Code**: ~1300 lines
+
+### 52. ExpenseSplit
+- **Jenis**: Bill Splitting & Group Expenses
+- **Deskripsi**: Aplikasi split bill untuk grup dengan expense tracking
+- **Teknologi**: Firebase/REST API, Provider, payment_integration, group_management, debt_calculation
+- **Tema UI**: Friendly Finance - Casual interface, group avatars, debt visualization, social
+- **Estimasi Code**: ~1100 lines
+
+### 53. InvestLearn
+- **Jenis**: Investment Education Platform
+- **Deskripsi**: Platform edukasi investasi dengan courses dan portfolio simulator
+- **Teknologi**: REST API, Provider/BLoC, video_player, quiz_system, portfolio_simulator
+- **Tema UI**: Financial Education - Trust colors, educational layout, chart explanations
+- **Estimasi Code**: ~1250 lines
+
+### 54. ScanDoc
+- **Jenis**: Document Scanner & PDF
+- **Deskripsi**: Scanner dokumen dengan OCR, PDF creation, dan cloud storage
+- **Teknologi**: camera package, image processing, OCR, pdf_generation, cloud_storage, Provider
+- **Tema UI**: Document Professional - Camera viewfinder, scan preview, folder organization
+- **Estimasi Code**: ~1150 lines
+
+### 55. FashionCloset
+- **Jenis**: Virtual Wardrobe Organizer
+- **Deskripsi**: Organize pakaian digital, mix-match outfit, dan calendar outfit
+- **Teknologi**: Firebase/SQLite, image_picker, outfit_planner, Provider/BLoC, tagging_system
+- **Tema UI**: Fashion Magazine - Clothing grid, outfit boards, seasonal palettes, stylish
+- **Estimasi Code**: ~1200 lines
+
+### 56. PlantCare
+- **Jenis**: Plant Care & Identifier
+- **Deskripsi**: Identifikasi tanaman dengan AI, care schedule, dan watering reminders
+- **Teknologi**: Plant API/ML Kit, camera_package, Provider, flutter_local_notifications, journal
+- **Tema UI**: Botanical Green - Plant illustrations, garden aesthetic, growth tracking, natural
+- **Estimasi Code**: ~1100 lines
+
+### 57. PetPal
+- **Jenis**: Pet Care Companion
+- **Deskripsi**: Pet profile, vaccination tracker, vet appointments, dan weight tracking
+- **Teknologi**: Firebase, Provider, image_gallery, reminder_system, charts_flutter, vet_locator
+- **Tema UI**: Pet Loving - Paw prints, pet photos prominent, playful colors, caring tone
+- **Estimasi Code**: ~1150 lines
+
+### 58. DreamJournal
+- **Jenis**: Dream Diary & Analysis
+- **Deskripsi**: Catat mimpi, voice recording, dream patterns analysis
+- **Teknologi**: Hive, Provider, audio_recorder, sentiment_analysis, search_functionality, tagging
+- **Tema UI**: Dreamy - Night sky gradients, mystical elements, journal entries, soft ethereal
+- **Estimasi Code**: ~1000 lines
+
+### 59. WineVault
+- **Jenis**: Wine Collection Manager
+- **Deskripsi**: Catalog wine collection, tasting notes, rating, dan cellar management
+- **Teknologi**: SQLite, image_picker, barcode_scanner, Provider, search_filter, rating_system
+- **Tema UI**: Wine Elegant - Burgundy tones, bottle imagery, tasting note cards, sophisticated
+- **Estimasi Code**: ~1100 lines
+
+### 60. TriviaChamp
+- **Jenis**: Multiplayer Trivia Game
+- **Deskripsi**: Real-time multiplayer trivia dengan categories dan tournaments
+- **Teknologi**: Firebase/WebSocket, Provider/BLoC, real-time_multiplayer, leaderboard, timer
+- **Tema UI**: Game Show - Quiz show aesthetics, countdown timer, score displays, energetic
+- **Estimasi Code**: ~1300 lines
+
+---
+
+## LEVEL 3: INTERMEDIATE (61-120)
+*Complex UI, 3-5 teknologi, code panjang (1000-2000 lines)*
+
+### 61. PuzzleMania
+- **Jenis**: Puzzle Collection Game
+- **Deskripsi**: Koleksi puzzle games (jigsaw, sudoku, crossword) dengan difficulty levels
+- **Teknologi**: game_engine, Provider, level_management, achievement_system, local_storage
+- **Tema UI**: Puzzle Fun - Grid-based, piece animations, hint systems, brain-teaser aesthetic
+- **Estimasi Code**: ~1500 lines
+
+### 62. DateMatch
+- **Jenis**: Dating App
+- **Deskripsi**: Dating dengan swipe mechanism, matching algorithm, dan chat
+- **Teknologi**: Firebase/REST API, BLoC, matching_algorithm, real-time_chat, location_services, image_upload
+- **Tema UI**: Dating Modern - Card swipes, profile photos prominent, match animations, romantic
+- **Estimasi Code**: ~1600 lines
+
+### 63. FriendFinder
+- **Jenis**: Friendship & Networking
+- **Deskripsi**: Platform cari teman baru berdasarkan interests dan events
+- **Teknologi**: Firebase/REST API, Provider/BLoC, interest_matching, event_discovery, chat_system
+- **Tema UI**: Friendly Social - People-focused, interest badges, event cards, welcoming
+- **Estimasi Code**: ~1500 lines
+
+### 64. RoommateMatch
+- **Jenis**: Roommate Finder
+- **Deskripsi**: Cari roommate dengan lifestyle preferences dan budget filters
+- **Teknologi**: REST API, BLoC, matching_algorithm, chat_messaging, verification_system, payment_split
+- **Tema UI**: Housing Search - Property listings, compatibility scores, profile details, trustworthy
+- **Estimasi Code**: ~1550 lines
+
+### 65. VolunteerConnect
+- **Jenis**: Volunteer Opportunity Finder
+- **Deskripsi**: Connect volunteers dengan NGO, event calendar, dan hour tracking
+- **Teknologi**: Firebase/REST API, Provider/BLoC, calendar_events, time_tracking, location_services
+- **Tema UI**: Community Service - Inspirational imagery, cause-focused, volunteer stories
+- **Estimasi Code**: ~1400 lines
+
+### 66. StudyGroup
+- **Jenis**: Study Partner Finder
+- **Deskripsi**: Platform cari study partner berdasarkan subject dan schedule
+- **Teknologi**: Firebase, Provider/BLoC, matching_algorithm, scheduling_system, video_chat, whiteboard
+- **Tema UI**: Academic Collaborative - Study session focus, subject tags, calendar sync
+- **Estimasi Code**: ~1500 lines
+
+### 67. VideoVibe
+- **Jenis**: Short Video Platform
+- **Deskripsi**: Platform video pendek dengan recording, effects, dan trending feed
+- **Teknologi**: REST API, camera package, video_player, video_editor, BLoC, recommendation_engine
+- **Tema UI**: TikTok-Style - Full-screen video, swipe navigation, creator tools, trendy effects
+- **Estimasi Code**: ~1800 lines
+
+### 68. NewsHub
+- **Jenis**: Personalized News Aggregator
+- **Deskripsi**: News aggregator dengan AI personalization dan offline reading
+- **Teknologi**: News API, Provider/BLoC, ML_recommendations, offline_storage, search_filter
+- **Tema UI**: News Modern - Article cards, category tabs, reading mode, newspaper-inspired
+- **Estimasi Code**: ~1400 lines
+
+### 69. PodcastHub
+- **Jenis**: Podcast Discovery & Player
+- **Deskripsi**: Discover podcasts, subscription management, dan smart playlists
+- **Teknologi**: Podcast API, audio_service, Provider, download_manager, playback_speed, chapters
+- **Tema UI**: Audio Minimal - Episode artwork, player controls, subscription grid, clean
+- **Estimasi Code**: ~1500 lines
+
+### 70. MagazineReader
+- **Jenis**: Digital Magazine Platform
+- **Deskripsi**: Magazine subscription dengan interactive content dan offline reading
+- **Teknologi**: REST API, Provider, flutter_html, pdf_viewer, download_manager, payment_gateway
+- **Tema UI**: Magazine Layout - Cover grid, flip pages, article layouts, editorial design
+- **Estimasi Code**: ~1450 lines
+
+### 71. ComicVerse
+- **Jenis**: Digital Comic Reader
+- **Deskripsi**: Comic/manga reader dengan panel-by-panel mode dan collections
+- **Teknologi**: REST API, image_caching, Provider, gesture_controls, progress_sync, bookmarks
+- **Tema UI**: Comic Book - Speech bubble UI, panel navigation, collection shelves, vibrant
+- **Estimasi Code**: ~1400 lines
+
+### 72. AudiobookPro
+- **Jenis**: Audiobook Player & Library
+- **Deskripsi**: Audiobook player dengan sleep timer dan library management
+- **Teknologi**: audio_service, Provider, book_api, download_manager, progress_tracking, timer
+- **Tema UI**: Literary Audio - Book covers, chapter lists, player elegant, library aesthetic
+- **Estimasi Code**: ~1350 lines
+
+### 73. PharmaQuick
+- **Jenis**: Online Pharmacy
+- **Deskripsi**: Aplikasi apotek online dengan upload resep dan konsultasi apoteker
+- **Teknologi**: Firebase (Auth, Firestore, Storage, FCM), image_picker, OCR, flutter_local_notifications, Stream Chat
+- **Tema UI**: Medical Trust - White & blue, pill icons, prescription-friendly, trustworthy
+- **Estimasi Code**: ~1600 lines
+
+### 74. FoodieMarket
+- **Jenis**: Cloud Kitchen Marketplace
+- **Deskripsi**: Platform multi-restaurant food delivery dengan real-time order tracking
+- **Teknologi**: Firebase/REST API, Google Maps SDK, geolocator, geoflutterfire, BLoC, FCM, rating_dialog
+- **Tema UI**: Food Delivery - Appetizing photos, map-integrated, delivery tracking visuals
+- **Estimasi Code**: ~1700 lines
+
+### 75. PetPalace
+- **Jenis**: Pet Supplies E-Commerce
+- **Deskripsi**: Toko perlengkapan hewan dengan pet profile dan subscription
+- **Teknologi**: Firebase/REST API, Subscription management, Video consultation (Agora/Jitsi), Payment gateway
+- **Tema UI**: Pet Friendly - Paw prints, pet illustrations, warm playful colors, pet photos
+- **Estimasi Code**: ~1650 lines
+
+### 76. RetailPOS
+- **Jenis**: Retail Point of Sale
+- **Deskripsi**: POS lengkap untuk toko retail dengan product management dan loyalty program
+- **Teknologi**: SQLite/Isar, bluetooth_thermal_printer, barcode_scanner, BLoC, payment_gateway
+- **Tema UI**: Retail Dashboard - Product grid, transaction flow, receipt preview, cashier-friendly
+- **Estimasi Code**: ~1800 lines
+
+### 77. CafeHub
+- **Jenis**: Restaurant/Cafe POS
+- **Deskripsi**: POS khusus F&B dengan table management dan kitchen display system
+- **Teknologi**: Firebase/REST API, table_layout, kitchen_display, split_bill, BLoC, receipt_printer
+- **Tema UI**: Cafe Modern - Table layout visual, menu categories, order status colors
+- **Estimasi Code**: ~1900 lines
+
+### 78. SalonPro
+- **Jenis**: Beauty Salon Multi-Service Booking
+- **Deskripsi**: Booking salon dengan multiple services dan stylist selection
+- **Teknologi**: Firebase/REST API, multi-service_selection, stylist_availability, BLoC, loyalty_points
+- **Tema UI**: Beauty Booking - Service menu cards, stylist photos, package deals, glamorous
+- **Estimasi Code**: ~1700 lines
+
+### 79. CarService
+- **Jenis**: Auto Service Booking
+- **Deskripsi**: Booking service kendaraan dengan vehicle profile dan real-time progress
+- **Teknologi**: REST API/Firebase, vehicle_profile, service_packages, pick_up_drop, BLoC
+- **Tema UI**: Auto Service - Vehicle silhouettes, service checklist, garage imagery
+- **Estimasi Code**: ~1750 lines
+
+### 80. HealthHub
+- **Jenis**: Healthcare Appointment Platform
+- **Deskripsi**: Multi-specialty hospital booking dengan doctor profiles dan telemedicine
+- **Teknologi**: REST API, doctor_search, insurance_verification, telemedicine_integration, BLoC
+- **Tema UI**: Healthcare Modern - Doctor profiles, specialty icons, appointment slots
+- **Estimasi Code**: ~1800 lines
+
+### 81. EventPass
+- **Jenis**: Event Ticketing Platform
+- **Deskripsi**: Platform booking tiket event dengan seat selection dan e-tickets QR
+- **Teknologi**: REST API/GraphQL, event_discovery, seat_selection, QR_ticket, BLoC, payment_gateway
+- **Tema UI**: Event Excitement - Event posters, venue layouts, ticket design, vibrant
+- **Estimasi Code**: ~1750 lines
+
+### 82. CoWorkSpace
+- **Jenis**: Coworking Space Booking
+- **Deskripsi**: Booking coworking space dengan desk/room selection dan flexible pricing
+- **Teknologi**: REST API/Firebase, space_layout, desk_room_selection, BLoC, access_control
+- **Tema UI**: Workspace Modern - Floor plans, desk availability, community vibe
+- **Estimasi Code**: ~1650 lines
+
+### 83. TeamSync
+- **Jenis**: Team Collaboration Platform
+- **Deskripsi**: Aplikasi kolaborasi tim dengan channels dan video calls
+- **Teknologi**: Firebase/REST API, Agora/Jitsi, BLoC, file_picker, Task board, FCM
+- **Tema UI**: Workspace - Channel sidebar, thread views, professional yet friendly
+- **Estimasi Code**: ~1850 lines
+
+### 84. ClassConnect
+- **Jenis**: Virtual Classroom Platform
+- **Deskripsi**: Platform kelas online dengan live video sessions dan whiteboard
+- **Teknologi**: Firebase/REST API, Agora/Jitsi, screen_sharing, collaborative_whiteboard, BLoC
+- **Tema UI**: Classroom Virtual - Whiteboard prominent, student grid view, hand raise indicators
+- **Estimasi Code**: ~1900 lines
+
+### 85. CodeAcademy
+- **Jenis**: Programming Learning Platform
+- **Deskripsi**: Platform belajar coding dengan code editor dan compiler integration
+- **Teknologi**: Firebase/REST API, code_editor, syntax_highlighter, compiler_API, BLoC/Riverpod
+- **Tema UI**: Developer - Code syntax highlighting, dark mode, terminal aesthetics
+- **Estimasi Code**: ~1800 lines
+
+### 86. LanguagePro
+- **Jenis**: Language Learning Platform
+- **Deskripsi**: Aplikasi belajar bahasa dengan speech recognition dan conversation practice
+- **Teknologi**: Firebase/REST API, speech_to_text, text_to_speech, AI_chatbot, BLoC
+- **Tema UI**: Language Immersive - Flag icons, cultural imagery, speech bubble focus
+- **Estimasi Code**: ~1750 lines
+
+### 87. ExamPrep
+- **Jenis**: Competitive Exam Preparation
+- **Deskripsi**: Platform persiapan ujian kompetitif dengan mock tests dan adaptive learning
+- **Teknologi**: REST API/Firebase, adaptive_learning, mock_test engine, analytics dashboard, BLoC
+- **Tema UI**: Exam Focused - Timer prominent, question navigation, performance graphs
+- **Estimasi Code**: ~1700 lines
+
+### 88. CertifyPro
+- **Jenis**: Professional Certification Platform
+- **Deskripsi**: Platform sertifikasi profesional dengan proctored exams
+- **Teknologi**: REST API, proctored_exam (AI monitoring), webcam_monitoring, BLoC, blockchain_certificates
+- **Tema UI**: Professional Certification - Certificate showcase, achievement badges
+- **Estimasi Code**: ~1800 lines
+
+### 89. GamerChat
+- **Jenis**: Gaming Community Platform
+- **Deskripsi**: Platform untuk gamers dengan clan system dan tournament organizer
+- **Teknologi**: Firebase/REST API + WebSocket, Agora SDK, Game API integration, Tournament bracket, BLoC
+- **Tema UI**: Gaming Dark - RGB accents, game-inspired UI, clan badges, leaderboards
+- **Estimasi Code**: ~1850 lines
+
+### 90. WellnessTribe
+- **Jenis**: Health & Fitness Community
+- **Deskripsi**: Komunitas kesehatan dengan workout groups dan nutrition tracking
+- **Teknologi**: Firebase/REST API, Video consultation (Agora), HealthKit/Google Fit, charts_flutter, BLoC
+- **Tema UI**: Fitness Motivation - Progress photos, workout animations, energetic colors
+- **Estimasi Code**: ~1800 lines
+
+### 91. LocalBuzz
+- **Jenis**: Hyperlocal Social Network
+- **Deskripsi**: Social network berbasis lokasi untuk discover events dan nearby people
+- **Tecnología**: Firebase/REST API, Google Maps SDK, geofencing, location-based matching, BLoC
+- **Tema UI**: Local Discovery - Map integration prominent, check-in badges, neighborhood feel
+- **Estimasi Code**: ~1750 lines
+
+### 92. MomConnect
+- **Jenis**: Parenting Community App
+- **Deskripsi**: Platform untuk ibu berbagi pengalaman parenting dengan expert Q&A
+- **Teknologi**: Firebase/REST API, Expert consultation, Agora, milestone_tracker, BLoC
+- **Tema UI**: Motherhood Soft - Pastel colors, baby imagery, supportive tone
+- **Estimasi Code**: ~1700 lines
+
+### 93. AutoRepair
+- **Jenis**: Auto Workshop Management
+- **Deskripsi**: Sistem manajemen bengkel dengan service history dan job cards
+- **Teknologi**: REST API/Firebase, vehicle_database, service_checklist, job_card, BLoC, pdf_generation
+- **Tema UI**: Automotive - Car diagrams, mechanic tools imagery, technical aesthetic
+- **Estimasi Code**: ~1850 lines
+
+### 94. SalonSuite
+- **Jenis**: Salon & Spa Management
+- **Deskripsi**: Aplikasi lengkap untuk salon dengan booking dan commission tracking
+- **Teknologi**: Firebase/REST API, calendar_management, commission_calculator, inventory, BLoC
+- **Tema UI**: Salon Luxury - Before/after galleries, stylist profiles, appointment calendar
+- **Estimasi Code**: ~1900 lines
+
+### 95. MedicalPOS
+- **Jenis**: Pharmacy/Clinic POS
+- **Deskripsi**: POS untuk apotek/klinik dengan prescription management
+- **Teknologi**: REST API, drug_database, prescription_management, OCR, expiry_alert, BLoC
+- **Tema UI**: Medical Professional - Prescription-focused, drug interaction alerts, clinical
+- **Estimasi Code**: ~1950 lines
+
+### 96. HomeDecor
+- **Jenis**: Furniture & Home Decor Marketplace
+- **Deskripsi**: Marketplace furniture dengan AR view dan 360° product view
+- **Teknologi**: Firebase/REST API, ARCore, panorama/photo_sphere, BLoC/Riverpod, 3D model viewer
+- **Tema UI**: Interior Design - Room mockups, sophisticated palette, space visualization
+- **Estimasi Code**: ~2000 lines
+
+### 97. BeautyBox
+- **Jenis**: Beauty & Cosmetics Store
+- **Deskripsi**: E-commerce kosmetik dengan virtual try-on AR dan skin analysis
+- **Teknologi**: Firebase/REST API, ML Kit, AR face filters, Camera plugin, Subscription box
+- **Tema UI**: Beauty Glam - Rose gold accents, product swatches, before/after sliders
+- **Estimasi Code**: ~2100 lines
+
+### 98. VirtualPet
+- **Jenis**: Virtual Pet Simulator
+- **Deskripsi**: Pelihara pet virtual dengan feeding, playing, leveling up
+- **Teknologi**: Flame/game_engine, Provider, animations, local_storage, notification_reminders
+- **Tema UI**: Cute Gaming - Cartoon pet, status bars, mini-game UI, playful animations
+- **Estimasi Code**: ~1650 lines
+
+### 99. ARFurniture
+- **Jenis**: AR Furniture Placement
+- **Deskripsi**: Visualisasi furniture di ruangan dengan AR dan measurement tools
+- **Teknologi**: ARCore/ARKit, Provider, 3D_models, camera_package, screenshot_capture
+- **Tema UI**: AR Interface - Camera overlay, placement guides, measurement display
+- **Estimasi Code**: ~1700 lines
+
+### 100. TreasureHunt
+- **Jenis**: Location-Based AR Game
+- **Deskripsi**: Scavenger hunt game dengan GPS, AR markers, dan challenges
+- **Teknologi**: ARCore, Google Maps, geolocation, Provider/BLoC, achievement_system, social_features
+- **Tema UI**: Adventure Map - Treasure map aesthetic, location markers, quest UI
+- **Estimasi Code**: ~1800 lines
+
+### 101. SmartHomePro
+- **Jenis**: Smart Home Control Hub
+- **Deskripsi**: Control berbagai smart home devices dan automation rules
+- **Teknologi**: IoT protocols (MQTT), Provider/BLoC, device_integration, automation_engine, voice_commands
+- **Tema UI**: Smart Home - Device grid, room layouts, automation flows, futuristic dark
+- **Estimasi Code**: ~1900 lines
+
+### 102. SecurityCam
+- **Jenis**: Home Security Camera System
+- **Deskripsi**: Multi-camera viewer, motion detection alerts, dan cloud recording
+- **Teknologi**: WebRTC, Provider/BLoC, video_streaming, motion_detection (AI), cloud_storage, push_notifications
+- **Tema UI**: Security - Camera grid view, motion alerts, dark surveillance aesthetic
+- **Estimasi Code**: ~1950 lines
+
+### 103. EnergyMonitor
+- **Jenis**: Smart Energy Management
+- **Deskripsi**: Monitor konsumsi energi per device dan cost analysis
+- **Teknologi**: IoT sensors, REST API, Provider/BLoC, data_analytics, charts_flutter, ML_predictions
+- **Tema UI**: Energy Dashboard - Consumption graphs, device breakdown, eco-green theme
+- **Estimasi Code**: ~1750 lines
+
+### 104. GardenSmart
+- **Jenis**: Smart Garden & Irrigation
+- **Deskripsi**: Automated watering system, soil sensors, dan plant health monitoring
+- **Teknologi**: IoT sensors, Weather API, Provider/BLoC, automation_scheduling, sensor_data_visualization
+- **Tema UI**: Garden Green - Plant health indicators, soil moisture displays, garden layout
+- **Estimasi Code**: ~1700 lines
+
+### 105. PetMonitor
+- **Jenis**: Smart Pet Monitoring
+- **Deskripsi**: Pet camera dengan treats dispenser dan AI behavior analysis
+- **Teknologi**: IoT devices, WebRTC, Provider/BLoC, activity_tracking, AI_behavior_analysis, video_streaming
+- **Tema UI**: Pet Care - Pet camera view, activity graphs, playful pet-themed
+- **Estimasi Code**: ~1850 lines
+
+### 106. CryptoWallet
+- **Jenis**: Multi-Chain Crypto Wallet
+- **Deskripsi**: Wallet untuk multiple cryptocurrencies, send/receive, dan swap
+- **Teknologi**: Web3, blockchain_integration, Provider/BLoC, wallet_connect, swap_protocols, security_encryption
+- **Tema UI**: Crypto Secure - Dark mode, wallet address, transaction history
+- **Estimasi Code**: ~1900 lines
+
+### 107. NFTGallery
+- **Jenis**: NFT Marketplace & Gallery
+- **Deskripsi**: Browse, buy, sell NFTs dengan minting dan auction
+- **Teknologi**: Web3, blockchain (Ethereum/Polygon), Provider/BLoC, IPFS, smart_contracts, wallet_integration
+- **Tema UI**: NFT Artistic - Gallery showcase, artwork cards, auction timers
+- **Estimasi Code**: ~2000 lines
+
+### 108. DeFiHub
+- **Jenis**: DeFi Dashboard & Analytics
+- **Deskripsi**: Track DeFi investments, yield farming, dan staking
+- **Teknologi**: Web3, DeFi protocols, Provider/BLoC, wallet_connect, APY_calculators, real-time_data
+- **Tema UI**: DeFi Financial - Protocol cards, yield charts, staking interface
+- **Estimasi Code**: ~1950 lines
+
+### 109. BeatMaker
+- **Jenis**: Music Production Studio
+- **Deskripsi**: Create beats dengan sequencer, drum pads, dan synthesizers
+- **Teknologi**: audio_processing, Provider/BLoC, sequencer_engine, sound_synthesis, effects_chain, export_audio
+- **Tema UI**: Studio Dark - Grid sequencer, pad controller, mixer interface
+- **Estimasi Code**: ~2100 lines
+
+### 110. LoopStation
+- **Jenis**: Live Looping App
+- **Deskripsi**: Record dan loop audio layers live dengan effects
+- **Teknologi**: audio_recorder, Provider/BLoC, loop_engine, effects_processing, real-time_playback, export
+- **Tema UI**: Performer - Loop pads, record buttons, waveform display
+- **Estimasi Code**: ~1850 lines
+
+### 111. VoiceChanger
+- **Jenis**: Real-Time Voice Effects
+- **Deskripsi**: Real-time voice modulation dengan berbagai effects
+- **Teknologi**: audio_processing, Provider, real-time_effects, voice_modulation, recording, share_audio
+- **Tema UI**: Sound Effects - Effect presets, voice visualization, playful interface
+- **Estimasi Code**: ~1500 lines
+
+### 112. CarbonTracker
+- **Jenis**: Personal Carbon Footprint
+- **Deskripsi**: Track carbon footprint dari activities dan recommendations
+- **Teknologi**: REST API, Provider/BLoC, activity_tracking, carbon_calculation, charts_analytics, offset_marketplace
+- **Tema UI**: Eco-Friendly - Green theme, carbon visualization, eco-tips cards
+- **Estimasi Code**: ~1650 lines
+
+### 113. RecycleGuide
+- **Jenis**: Recycling Helper & Locator
+- **Deskripsi**: Identify recyclable materials dan find recycling centers
+- **Teknologi**: Image recognition, Google Maps, Provider/BLoC, material_database, location_services, habit_tracking
+- **Tema UI**: Recycling - Material icons, map locator, green aesthetic, educational
+- **Estimasi Code**: ~1600 lines
+
+### 114. EcoCommute
+- **Jenis**: Sustainable Transportation
+- **Deskripsi**: Plan eco-friendly routes dan compare transport carbon footprint
+- **Teknologi**: Maps API, Provider/BLoC, route_optimization, carbon_calculation, carpool_matching, public_transport_api
+- **Tema UI**: Transit - Route maps, transport mode icons, carbon savings
+- **Estimasi Code**: ~1700 lines
+
+### 115. FoodWaste
+- **Jenis**: Food Waste Reducer
+- **Deskripsi**: Track food inventory, expiry alerts, dan recipe suggestions from leftovers
+- **Teknologi**: SQLite, image_recognition, Provider/BLoC, expiry_tracking, recipe_api, donation_locator, barcode_scanner
+- **Tema UI**: Food Conscious - Pantry organization, expiry warnings, recipe cards
+- **Estimasi Code**: ~1750 lines
+
+### 116. WildlifeSpotter
+- **Jenis**: Wildlife Conservation & Tracking
+- **Deskripsi**: Log wildlife sightings dan species identification with AI
+- **Teknologi**: REST API, ML_species_recognition, Provider/BLoC, geolocation, iNaturalist_integration, community_feed
+- **Tema UI**: Nature Explorer - Wildlife photos, map sightings, species cards
+- **Estimasi Code**: ~1650 lines
+
+### 117. TravelBook
+- **Jenis**: Multi-Service Travel Booking
+- **Deskripsi**: Platform booking travel all-in-one dengan itinerary builder
+- **Teknologi**: REST API/GraphQL, hotel_search (API), flight_search (API), itinerary_builder, BLoC
+- **Tema UI**: Travel Planning - Destination imagery, itinerary timeline, booking cards
+- **Estimasi Code**: ~2000 lines
+
+### 118. VenueMatch
+- **Jenis**: Event Venue Marketplace
+- **Deskripsi**: Marketplace booking venue dengan 360° tours dan vendor connections
+- **Teknologi**: Microservices, venue_search, 360_virtual_tour, contract_management, escrow payment, BLoC
+- **Tema UI**: Venue Showcase - Venue galleries, floor plans, vendor marketplace
+- **Estimasi Code**: ~2100 lines
+
+### 119. HomeService
+- **Jenis**: On-Demand Home Services
+- **Deskripsi**: Platform booking layanan rumah dengan worker tracking
+- **Teknologi**: Microservices, worker_matching (AI), real-time_tracking (GPS), warranty_management, BLoC
+- **Tema UI**: Home Services - Service categories, worker profiles, tracking map
+- **Estimasi Code**: ~2000 lines
+
+### 120. PropertyRent
+- **Jenis**: Property Rental Platform
+- **Deskripsi**: Platform sewa properti dengan virtual tours dan contract management
+- **Teknologi**: REST API/GraphQL, virtual_tour (360°), contract_generation, e-signature, BLoC
+- **Tema UI**: Real Estate - Property photos, virtual tour viewer, contract documents
+- **Estimasi Code**: ~2100 lines
+
+---
+
+## LEVEL 4: ADVANCED (121-170)
+*Very complex UI, 5-8 teknologi, code sangat panjang (2000-4000 lines)*
+
+### 121. SportsPlex
+- **Jenis**: Sports Facility Booking Complex
+- **Deskripsi**: Booking fasilitas olahraga dengan league management
+- **Teknologi**: Microservices, facility_booking, league_management, tournament_bracket, BLoC/Clean Architecture
+- **Tema UI**: Sports Complex - Facility layouts, league tables, tournament brackets
+- **Estimasi Code**: ~2200 lines
+
+### 122. MarketHub
+- **Jenis**: Multi-Vendor Marketplace (B2C)
+- **Deskripsi**: Platform marketplace lengkap mirip Tokopedia/Shopee
+- **Teknologi**: REST API (Node.js/Laravel), Multi-role auth, Vendor dashboard, Escrow payment, BLoC, Firebase Analytics
+- **Tema UI**: Marketplace - Vendor stores, product grids, trust badges, category navigation
+- **Estimasi Code**: ~2500 lines
+
+### 123. LuxeWear
+- **Jenis**: Premium Fashion E-Commerce
+- **Deskripsi**: High-end fashion dengan personal shopper dan live streaming shopping
+- **Teknologi**: REST API/GraphQL, Live streaming (Agora), Video commerce, BLoC/Clean Architecture
+- **Tema UI**: Luxury Premium - Black/gold palette, high-fashion photography
+- **Estimasi Code**: ~2400 lines
+
+### 124. FarmToTable
+- **Jenis**: Farm-to-Consumer Platform
+- **Deskripsi**: Hubungkan petani dengan konsumen dengan traceability
+- **Teknologi**: REST API/GraphQL, Blockchain traceability (optional), QR scanning, Subscription management
+- **Tema UI**: Farm Fresh - Green organic, farm imagery, product journey visualization
+- **Estimasi Code**: ~2300 lines
+
+### 125. AutoParts
+- **Jenis**: Automotive Parts Marketplace
+- **Deskripsi**: Marketplace spare part dengan VIN decoder dan compatibility checker
+- **Teknologi**: REST API, VIN decoder API, Part compatibility database, Image recognition, Google Maps
+- **Tema UI**: Automotive Technical - Parts diagrams, compatibility charts
+- **Estimasi Code**: ~2400 lines
+
+### 126. WholesalePro
+- **Jenis**: B2B Wholesale Platform
+- **Deskripsi**: Platform wholesale untuk bisnis dengan MOQ dan bulk pricing
+- **Teknologi**: REST API (enterprise), Tiered pricing engine, MOQ logic, Credit management, BLoC/Clean Architecture
+- **Tema UI**: B2B Professional - Bulk order interface, tiered pricing tables
+- **Estimasi Code**: ~2500 lines
+
+### 127. MultiStore
+- **Jenis**: Multi-Branch Retail Management
+- **Deskripsi**: Sistem POS multi-cabang dengan centralized inventory
+- **Teknologi**: REST API/GraphQL, centralized_database, inter-branch transfer, BLoC/Clean Architecture
+- **Tema UI**: Multi-Store Dashboard - Branch selector, consolidated reports
+- **Estimasi Code**: ~2600 lines
+
+### 128. HotelPro
+- **Jenis**: Hotel Management System (PMS)
+- **Deskripsi**: Property Management System lengkap dengan front desk
+- **Teknologi**: Microservices, reservation_system, room_allocation (AI), channel_manager, BLoC/Clean Architecture
+- **Tema UI**: Hotel Management - Room status boards, reservation calendar
+- **Estimasi Code**: ~2800 lines
+
+### 129. WholesaleHub
+- **Jenis**: B2B Wholesale Distribution
+- **Deskripsi**: Platform distributor wholesale dengan purchase orders
+- **Teknologi**: REST API (enterprise), purchase_order system, WMS, route_planning, BLoC/Clean Architecture
+- **Tema UI**: Distribution - Warehouse views, route maps, order fulfillment
+- **Estimasi Code**: ~2700 lines
+
+### 130. ConstructPro
+- **Jenis**: Construction Management System
+- **Deskripsi**: Manajemen proyek konstruksi dengan project costing
+- **Teknologi**: REST API/GraphQL, project_management (Gantt), BOQ management, BLoC/Clean Architecture
+- **Tema UI**: Construction - Blueprint aesthetics, Gantt charts, progress photos
+- **Estimasi Code**: ~2900 lines
+
+### 131. ManufactureOS
+- **Jenis**: Manufacturing ERP System
+- **Deskripsi**: Sistem ERP manufaktur dengan production planning
+- **Teknologi**: Microservices, MRP, production_scheduling, quality_assurance, BLoC/Clean Architecture
+- **Tema UI**: Manufacturing - Production flow diagrams, machine status, factory floor
+- **Estimasi Code**: ~3200 lines
+
+### 132. UniversityHub
+- **Jenis**: Complete University LMS
+- **Deskripsi**: LMS lengkap untuk universitas dengan course management
+- **Teknologi**: REST API/GraphQL, course_management, grading_system (GPA), attendance_tracking, BLoC
+- **Tema UI**: Academic Portal - University branding, course cards, grade displays
+- **Estimasi Code**: ~2800 lines
+
+### 133. CorporateTrain
+- **Jenis**: Corporate Training Platform
+- **Deskripsi**: Platform training korporat dengan onboarding modules
+- **Teknologi**: Microservices, employee_onboarding, compliance_training, ROI_analytics, BLoC/Clean Architecture
+- **Tema UI**: Corporate Learning - Professional dashboard, training modules
+- **Estimasi Code**: ~2700 lines
+
+### 134. MedicalEdu
+- **Jenis**: Medical Education Platform
+- **Deskripsi**: Platform pembelajaran medis dengan 3D anatomy
+- **Teknologi**: REST API/GraphQL, 3D_anatomy (Unity), case_study library, CME_credit tracking, BLoC
+- **Tema UI**: Medical Education - Anatomical visuals, clinical case cards
+- **Estimasi Code**: ~2900 lines
+
+### 135. TutorMarket
+- **Jenis**: Online Tutoring Marketplace
+- **Deskripsi**: Platform marketplace tutor-siswa dengan scheduling
+- **Teknologi**: Microservices, tutor_matching (AI), escrow_payment, video_conferencing (Agora), BLoC
+- **Tema UI**: Tutoring Marketplace - Tutor profiles, session booking, whiteboard
+- **Estimasi Code**: ~2600 lines
+
+### 136. SkillMarketplace
+- **Jenis**: Skill-Based Learning Marketplace
+- **Deskripsi**: Platform marketplace berbagai skill dengan project-based learning
+- **Teknologi**: Microservices, course_creation tools, peer_review, portfolio_builder, BLoC/Clean Architecture
+- **Tema UI**: Skills Platform - Course catalog, project showcases, instructor dashboard
+- **Estimasi Code**: ~2700 lines
+
+### 137. ProNetwork
+- **Jenis**: Professional Networking Platform
+- **Deskripsi**: LinkedIn-style dengan profile building dan job board
+- **Teknologi**: REST API/GraphQL, Profile builder, job_board, mentorship_matching (ML), BLoC/Clean Architecture
+- **Tema UI**: Professional Network - LinkedIn-inspired, profile cards, job listings
+- **Estimasi Code**: ~2600 lines
+
+### 138. CreatorSpace
+- **Jenis**: Content Creator Community
+- **Deskripsi**: Platform content creator dengan portfolio showcase
+- **Teknologi**: REST API/GraphQL, portfolio_builder, video_analytics, monetization_integration (Stripe), BLoC
+- **Tema UI**: Creator Studio - Portfolio showcase, video thumbnails, analytics dashboard
+- **Estimasi Code**: ~2500 lines
+
+### 139. VolunteerHub
+- **Jenis**: Volunteer & NGO Platform
+- **Deskripsi**: Hubungkan volunteers dengan NGO dan impact tracking
+- **Teknologi**: REST API/microservices, volunteer_matching (AI), impact_metrics, donation_gateway, BLoC
+- **Tema UI**: Social Impact - Inspirational stories, impact visualizations
+- **Estimasi Code**: ~2400 lines
+
+### 140. EventFlow
+- **Jenis**: Event-Centric Social Platform
+- **Deskripsi**: Discover dan manage events dengan ticketing
+- **Teknologi**: REST API/GraphQL, ticketing_system, QR codes, networking_features, Agora SDK, BLoC
+- **Tema UI**: Event Experience - Event posters, attendee networking, agenda timelines
+- **Estimasi Code**: ~2500 lines
+
+### 141. MentalSpace
+- **Jenis**: Mental Health Support Community
+- **Deskripsi**: Support mental health dengan anonymous posting
+- **Teknologi**: REST API (high security), end-to-end encryption, anonymous_chat, professional_counseling (Agora), BLoC
+- **Tema UI**: Supportive Calm - Soothing colors, anonymous profiles, safe space design
+- **Estimasi Code**: ~2600 lines
+
+### 142. MusicCollaborator
+- **Jenis**: Remote Music Collaboration
+- **Deskripsi**: Collaborate on music projects remotely dengan multi-track
+- **Teknologi**: REST API, Provider/BLoC, multi-track_engine, version_control, real-time_sync, audio_streaming
+- **Tema UI**: Collaborative Studio - Track layers, collaborator list, project timeline
+- **Estimasi Code**: ~2400 lines
+
+### 143. AudioBookCreator
+- **Jenis**: Audiobook Recording Studio
+- **Deskripsi**: Record audiobooks dengan chapter management dan editing tools
+- **Teknologi**: audio_recorder, Provider/BLoC, audio_editor, chapter_markers, noise_reduction, export_formats
+- **Tema UI**: Recording Studio - Waveform editor, chapter list, recording controls
+- **Estimasi Code**: ~2300 lines
+
+### 144. VideoEditor Pro
+- **Jenis**: Mobile Video Editor
+- **Deskripsi**: Full-featured video editor dengan timeline dan transitions
+- **Teknologi**: video_editor package, Provider/BLoC, timeline_engine, transitions, color_grading, export_rendering
+- **Tema UI**: Editor Professional - Timeline view, preview player, tool panels
+- **Estimasi Code**: ~2800 lines
+
+### 145. LiveStreamer
+- **Jenis**: Live Streaming Platform
+- **Deskripsi**: Go live dengan chat interaction dan donations
+- **Teknologi**: Agora/AWS IVS, Provider/BLoC, real-time_chat, donation_integration, stream_management, analytics
+- **Tema UI**: Streaming - Live indicator, chat overlay, viewer count, streamer dashboard
+- **Estimasi Code**: ~2600 lines
+
+### 146. ScreenRecorder
+- **Jenis**: Screen Recording & Tutorial
+- **Deskripsi**: Screen recording dengan face cam dan annotations
+- **Teknologi**: screen_recording, camera_overlay, Provider/BLoC, annotation_tools, video_editing, export
+- **Tema UI**: Recording Interface - Recording controls, annotation toolbar, preview window
+- **Estimasi Code**: ~2400 lines
+
+### 147. VideoConference
+- **Jenis**: Advanced Video Conferencing
+- **Deskripsi**: Video conference dengan breakout rooms dan recording
+- **Teknologi**: WebRTC/Agora, Provider/BLoC, room_management, recording, transcription_AI, virtual_backgrounds
+- **Tema UI**: Conference - Grid view, participant list, meeting controls
+- **Estimasi Code**: ~2700 lines
+
+### 148. AnimationStudio
+- **Jenis**: 2D Animation Creator
+- **Deskripsi**: Create 2D animations dengan frame-by-frame dan tweening
+- **Teknologi**: custom_painting, Provider/BLoC, animation_engine, frame_management, tweening, export_video
+- **Tema UI**: Animation Tools - Canvas workspace, timeline frames, tool palette
+- **Estimasi Code**: ~2500 lines
+
+### 149. DAOGovernance
+- **Jenis**: DAO Voting & Governance
+- **Deskripsi**: Participate dalam DAO governance dengan proposal voting
+- **Teknologi**: Web3, smart_contracts, Provider/BLoC, voting_mechanisms, blockchain_verification, IPFS
+- **Tema UI**: DAO Democratic - Proposal cards, voting interface, member profiles
+- **Estimasi Code**: ~2300 lines
+
+### 150. BlockchainExplorer
+- **Jenis**: Blockchain Transaction Explorer
+- **Deskripsi**: Explore blockchain transactions dan smart contracts
+- **Teknologi**: Blockchain APIs, Provider/BLoC, transaction_parsing, address_lookup, charts_analytics
+- **Tema UI**: Explorer Technical - Transaction lists, block information, network stats
+- **Estimasi Code**: ~2200 lines
+
+### 151. AIAssistant
+- **Jenis**: Personal AI Assistant
+- **Deskripsi**: AI chatbot dengan voice commands dan task automation
+- **Teknologi**: AI/ML APIs (OpenAI/Claude), speech_to_text, text_to_speech, Provider/BLoC, context_management
+- **Tema UI**: AI Conversational - Chat bubbles, voice waveform, suggestion chips
+- **Estimasi Code**: ~2400 lines
+
+### 152. FaceRecognition
+- **Jenis**: Face Recognition System
+- **Deskripsi**: Face detection, recognition, dan tagging dalam photo library
+- **Teknologi**: ML Kit/TensorFlow, camera_package, Provider/BLoC, face_embedding, local_database
+- **Tema UI**: Recognition - Face boxes, photo grids, tagging interface
+- **Estimasi Code**: ~2300 lines
+
+### 153. ObjectDetector
+- **Jenis**: Real-Time Object Detection
+- **Deskripsi**: Detect dan classify objects via camera real-time
+- **Teknologi**: TensorFlow Lite, camera_package, Provider/BLoC, object_classification, real-time_inference
+- **Tema UI**: Camera Overlay - Detection boxes, object labels, confidence scores
+- **Estimasi Code**: ~2200 lines
+
+### 154. TextGeneration
+- **Jenis**: AI Content Generator
+- **Deskripsi**: Generate text content dengan AI dan templates
+- **Teknologi**: AI APIs (GPT), Provider/BLoC, template_engine, content_formatting, export_options
+- **Tema UI**: Writer's Tool - Text editor, template gallery, generation settings
+- **Estimasi Code**: ~2100 lines
+
+### 155. ImageEnhancer
+- **Jenis**: AI Photo Enhancement
+- **Deskripsi**: Enhance photos dengan AI (upscaling, denoising, colorization)
+- **Teknologi**: AI image processing APIs, image_picker, Provider/BLoC, enhancement_algorithms, save/share
+- **Tema UI**: Photo Studio - Before/after slider, enhancement tools, gallery grid
+- **Estimasi Code**: ~2200 lines
+
+### 156. ARMuseum
+- **Jenis**: Virtual Museum with AR
+- **Deskripsi**: Museum virtual dengan AR exhibits dan 3D artifacts
+- **Teknologi**: ARCore/ARKit, Unity integration, Provider/BLoC, 3D_models, audio_narration, location_based
+- **Tema UI**: Museum Elegant - Exhibit cards, AR placement guides, artifact info
+- **Estimasi Code**: ~2500 lines
+
+### 157. VirtualShowroom
+- **Jenis**: AR Product Showroom
+- **Deskripsi**: Virtual showroom untuk products dengan AR try-on
+- **Teknologi**: ARCore/ARKit, 3D_models, Provider/BLoC, customization_options, e-commerce_integration
+- **Tema UI**: Showroom Modern - Product catalog, AR viewer, customization panel
+- **Estimasi Code**: ~2400 lines
+
+### 158. AREducation
+- **Jenis**: AR Educational Content
+- **Deskripsi**: Pembelajaran interaktif dengan AR dan 3D models
+- **Teknologi**: ARCore/ARKit, Unity, Provider/BLoC, 3D_educational_models, interactive_elements, quizzes
+- **Tema UI**: Educational Interactive - AR instructions, 3D model viewer, lesson cards
+- **Estimasi Code**: ~2600 lines
+
+### 159. VRMeeting
+- **Jenis**: VR Meeting Room
+- **Deskripsi**: Virtual meeting space dengan avatars dan spatial audio
+- **Teknologi**: VR SDK, Unity, Provider/BLoC, spatial_audio, avatar_system, screen_sharing, real-time_sync
+- **Tema UI**: VR Environment - Virtual room, avatar customization, meeting controls
+- **Estimasi Code**: ~2800 lines
+
+### 160. ARNavigation
+- **Jenis**: AR Indoor Navigation
+- **Deskripsi**: Indoor navigation dengan AR arrows dan point of interest
+- **Teknologi**: ARCore/ARKit, indoor_positioning, Provider/BLoC, pathfinding_algorithm, POI_database
+- **Tema UI**: Navigation AR - AR arrows overlay, map view toggle, POI markers
+- **Estimasi Code**: ~2500 lines
+
+### 161. MediConnect
+- **Jenis**: Integrated Healthcare Ecosystem
+- **Deskripsi**: Platform healthcare terintegrasi dengan appointment dan telemedicine
+- **Teknologi**: Enterprise microservices, multi-specialty_booking, telemedicine (Agora), EHR (FHIR), blockchain_health_records
+- **Tema UI**: Healthcare Ecosystem - Patient journey, health dashboard, telemedicine interface
+- **Estimasi Code**: ~3200 lines
+
+### 162. HotelChain
+- **Jenis**: Multi-Property Hotel Management
+- **Deskripsi**: Platform hotel chain dengan dynamic pricing AI
+- **Teknologi**: Enterprise microservices, PMS, dynamic_pricing (AI), loyalty_program, mobile_check-in, revenue_management
+- **Tema UI**: Hotel Chain - Property selector, guest preferences, luxury hospitality
+- **Estimasi Code**: ~3100 lines
+
+### 163. FleetBook
+- **Jenis**: Fleet Management & Vehicle Booking
+- **Deskripsi**: Platform corporate fleet booking dengan vehicle tracking
+- **Teknologi**: Microservices, vehicle_booking, real-time_GPS_tracking, route_optimization (AI), telematics_integration
+- **Tema UI**: Fleet Management - Vehicle grid, GPS tracking map, maintenance schedule
+- **Estimasi Code**: ~3000 lines
+
+### 164. NeoBank
+- **Jenis**: Digital Banking Platform
+- **Deskripsi**: Full digital bank dengan accounts, transfers, loans, dan investments
+- **Teknologi**: Enterprise microservices, core_banking_system, KYC/AML, payment_gateway, investment_engine, BLoC
+- **Tema UI**: Modern Banking - Card displays, transaction timeline, financial dashboard
+- **Estimasi Code**: ~3400 lines
+
+### 165. TradingPlatform
+- **Jenis**: Advanced Trading Terminal
+- **Deskripsi**: Professional trading platform dengan real-time charts dan algo trading
+- **Teknologi**: WebSocket (real-time), algo_trading_engine, candlestick_charts, technical_indicators, BLoC/Clean Architecture
+- **Tema UI**: Trading Terminal - Multi-chart layout, order book, ticker tape
+- **Estimasi Code**: ~3300 lines
+
+### 166. InsuranceTech
+- **Jenis**: Digital Insurance Platform
+- **Deskripsi**: Platform asuransi digital dengan instant quotes dan claims processing AI
+- **Teknologi**: Microservices, quote_engine, AI_claims_processing, OCR_document, underwriting_automation, BLoC
+- **Tema UI**: Insurance Modern - Policy cards, claims workflow, quote calculator
+- **Estimasi Code**: ~3000 lines
+
+### 167. LendingMarket
+- **Jenis**: P2P Lending Platform
+- **Deskripsi**: Peer-to-peer lending dengan credit scoring AI
+- **Teknologi**: Microservices, credit_scoring (AI/ML), borrower_lender_matching, risk_assessment, escrow_payment, BLoC
+- **Tema UI**: Lending Marketplace - Borrower/lender profiles, loan listings
+- **Estimasi Code**: ~3100 lines
+
+### 168. WealthManagement
+- **Jenis**: Robo-Advisor Platform
+- **Deskripsi**: Automated investment management dengan portfolio optimization AI
+- **Teknologi**: Microservices, portfolio_optimization (AI), rebalancing_algorithm, tax_optimization, market_data_integration
+- **Tema UI**: Wealth Advisory - Portfolio allocation, performance charts, goal tracking
+- **Estimasi Code**: ~3200 lines
+
+### 169. TelemedicineOS
+- **Jenis**: Complete Telemedicine Operating System
+- **Deskripsi**: Platform telemedicine enterprise dengan AI diagnosis assistant
+- **Teknologia**: Enterprise microservices, video_consultation (Agora), AI_diagnosis_assistant, EHR_integration, IoT_health_devices
+- **Tema UI**: Telemedicine - Video consultation interface, health vitals display
+- **Estimasi Code**: ~3300 lines
+
+### 170. DrugDiscovery
+- **Jenis**: Pharmaceutical R&D Platform
+- **Deskripsi**: Platform drug discovery dengan molecular modeling
+- **Teknologi**: Microservices, molecular_modeling, AI_drug_predictions, clinical_trial_management, data_analytics, BLoC
+- **Tema UI**: Pharma Research - Molecular structures, trial dashboards, research data
+- **Estimasi Code**: ~3400 lines
+
+---
+
+## LEVEL 5: EXPERT (171-200)
+*Enterprise-level complexity, 8+ teknologi, massive codebase (4000+ lines)*
+
+### 171. GlobalTrade
+- **Jenis**: Cross-Border E-Commerce Platform
+- **Deskripsi**: Platform perdagangan internasional dengan multi-currency dan customs
+- **Teknologi**: Microservices, REST API/GraphQL, multi-currency, customs_calculator, KYC/AML, BLoC/Clean Architecture
+- **Tema UI**: Global Commerce - World map, currency flags, customs documents
+- **Estimasi Code**: ~3800 lines
+
+### 172. SocialShop
+- **Jenis**: Social Commerce Platform
+- **Deskripsi**: E-commerce berbasis social media dengan live selling
+- **Teknologi**: Microservices, Live streaming (Agora/AWS IVS), UGC management, affiliate_system, AI_moderation
+- **Tema UI**: Social Shopping - Live video feed, shoppable posts, influencer profiles
+- **Estimasi Code**: ~3600 lines
+
+### 173. AuctionBay
+- **Jenis**: Auction & Bidding Platform
+- **Deskripsi**: Platform lelang online dengan live bidding dan proxy bidding
+- **Teknologia**: Real-time WebSocket, countdown_timer, proxy_bidding_algorithm, escrow_payment, Clean Architecture
+- **Tema UI**: Auction House - Bid counter, auction lots, gavel imagery
+- **Estimasi Code**: ~3500 lines
+
+### 174. SubscriptBox
+- **Jenis**: Subscription Box Platform
+- **Deskripsi**: Platform subscription box dengan personalization algorithm
+- **Teknologia**: Microservices, ML_recommendation_engine, Subscription management (Stripe/Chargebee), churn_prediction
+- **Tema UI**: Subscription - Box unboxing imagery, personalization quiz
+- **Estimasi Code**: ~3400 lines
+
+### 175. OmniRetail
+- **Jenis**: Omnichannel Retail Platform
+- **Deskripsi**: Platform retail omnichannel dengan unified inventory
+- **Tecnología**: Enterprise microservices, unified_inventory, POS_integration, click_collect, Clean Architecture/DDD
+- **Tema UI**: Unified Commerce - Store/online toggle, inventory visibility
+- **Estimasi Code**: ~4000 lines
+
+### 176. EduVerse
+- **Jenis**: Educational Metaverse Platform
+- **Deskripsi**: Platform pembelajaran immersive dengan virtual classrooms
+- **Tecnología**: Microservices, Unity integration, WebRTC, Agora SDK, avatar_customization, blockchain_certificates
+- **Tema UI**: Metaverse Education - 3D virtual spaces, avatar UI, immersive learning
+- **Estimasi Code**: ~4200 lines
+
+### 177. GlobalConnect
+- **Jenis**: International Community Platform
+- **Deskripsi**: Platform global dengan real-time translation
+- **Tecnología**: Microservices (multi-region), ML_real-time_translation, friend_matching (AI), BLoC/Clean Architecture
+- **Tema UI**: Global Community - Language flags, translation interface, cultural exchange
+- **Estimasi Code**: ~3800 lines
+
+### 178. DecentralChat
+- **Jenis**: Blockchain-Based Decentralized Chat
+- **Deskripsi**: Platform chat terdesentralisasi dengan token economy
+- **Tecnología**: Web3 integration, IPFS, blockchain (Ethereum/Polygon), smart_contracts, end-to-end_encryption
+- **Tema UI**: Decentralized - Web3 wallet, crypto elements, DAO voting
+- **Estimasi Code**: ~3700 lines
+
+### 179. EnterpriseSocial
+- **Jenis**: Enterprise Social Network
+- **Deskripsi**: Corporate social network dengan org chart integration
+- **Tecnología**: Enterprise microservices, LDAP/Active Directory, SSO, knowledge_base, BLoC/Clean Architecture
+- **Tema UI**: Corporate Enterprise - Org chart visualization, department channels
+- **Estimasi Code**: ~3900 lines
+
+### 180. MetaCommune
+- **Jenis**: AI-Powered Metaverse Community
+- **Deskripsi**: Platform community metaverse dengan AI companions
+- **Tecnología**: Microservices, Unity3D, AI/ML companions, blockchain, NFT_marketplace, spatial_audio, WebRTC
+- **Tema UI**: Metaverse Futuristic - Virtual worlds, AI avatars, NFT showcases
+- **Estimasi Code**: ~4500 lines
+
+### 181. OmniPOS
+- **Jenis**: Omnichannel Retail Platform
+- **Deskripsi**: Platform retail omnichannel dengan unified commerce
+- **Tecnología**: Enterprise microservices, unified_inventory, mobile_POS, AI_recommendations, BLoC/Clean Architecture
+- **Tema UI**: Omnichannel - Channel unified dashboard, clienteling tools
+- **Estimasi Code**: ~4100 lines
+
+### 182. CloudRestaurant
+- **Jenis**: Cloud Kitchen Management Platform
+- **Deskripsi**: Platform multi-brand cloud kitchen dengan workflow optimization AI
+- **Tecnología**: Microservices, order_aggregation, KDS, workflow_optimization (AI), demand_forecasting (ML), BLoC
+- **Tema UI**: Cloud Kitchen - Order dashboard, kitchen workflow, multi-brand management
+- **Estimasi Code**: ~3800 lines
+
+### 183. MedicalERP
+- **Jenis**: Hospital Information System (HIS)
+- **Deskripsi**: Sistem informasi rumah sakit lengkap dengan EMR/EHR
+- **Tecnología**: Enterprise microservices, EMR/EHR (FHIR compliant), billing_system, LIS, RIS/PACS, BLoC
+- **Tema UI**: Hospital System - Patient records, ward management, medical dashboard
+- **Estimasi Code**: ~4300 lines
+
+### 184. SupplyChainAI
+- **Jenis**: AI-Powered Supply Chain Platform
+- **Deskripsi**: Platform supply chain dengan demand forecasting AI
+- **Tecnología**: Microservices + AI/ML, demand_forecasting (ML), route_optimization, WMS, TMS, blockchain_traceability
+- **Tema UI**: Supply Chain - Logistics maps, warehouse visualization, demand charts
+- **Estimasi Code**: ~4000 lines
+
+### 185. EnterpriseOS
+- **Jenis**: Complete Business Operating System
+- **Deskripsi**: ERP lengkap all-in-one dengan accounting, HRM, CRM untuk enterprise
+- **Tecnología**: Enterprise microservices (DDD), accounting_module, HRM, CRM, inventory, manufacturing, BLoC
+- **Tema UI**: Enterprise ERP - Module dashboard, business intelligence, workflow automation
+- **Estimasi Code**: ~4800 lines
+
+### 186. AdaptiveLearn
+- **Jenis**: AI-Powered Adaptive Learning
+- **Deskripsi**: Platform pembelajaran adaptif dengan AI personalized paths
+- **Tecnología**: Microservices + AI/ML, machine_learning (TensorFlow), adaptive_algorithm, knowledge_graph, NLP
+- **Tema UI**: AI Learning - Adaptive paths visualization, AI tutor interface
+- **Estimasi Code**: ~4000 lines
+
+### 187. MetaLearn
+- **Jenis**: Metaverse Learning Platform
+- **Deskripsi**: Platform pembelajaran metaverse dengan virtual campus
+- **Tecnología**: Microservices, Unity3D, virtual_campus, avatar_customization, spatial_audio, VR/AR_support, blockchain
+- **Tema UI**: Learning Metaverse - Virtual campus map, 3D classrooms, avatar customization
+- **Estimasi Code**: ~4300 lines
+
+### 188. GlobalEdu
+- **Jenis**: International Education Platform
+- **Deskripsi**: Platform pendidikan global dengan multi-currency dan multi-language
+- **Tecnología**: Enterprise microservices, multi-currency, real-time_translation (AI), accreditation_management, BLoC
+- **Tema UI**: Global Education - Country flags, language selector, international curriculum
+- **Estimasi Code**: ~3900 lines
+
+### 189. EnterpriseLMS
+- **Jenis**: Enterprise Learning Ecosystem
+- **Deskripsi**: Ekosistem pembelajaran enterprise dengan LMS, LXP
+- **Tecnología**: Enterprise microservices (DDD), LMS_core, LXP_platform, talent_management, skills_marketplace, BLoC
+- **Tema UI**: Enterprise Learning - Corporate dashboard, learning paths, talent matrix
+- **Estimasi Code**: ~4200 lines
+
+### 190. EduOS
+- **Jenis**: Complete Education Operating System
+- **Deskripsi**: Sistem operasi pendidikan all-in-one dengan LMS, SIS, ERP
+- **Tecnología**: Enterprise microservices (DDD), LMS, SIS, admission_management, fee_management, HR_module, BLoC
+- **Tema UI**: Education OS - Multi-portal (student/teacher/parent/admin), campus management
+- **Estimasi Code**: ~5000 lines
+
+### 191. GlobalCruise
+- **Jenis**: Cruise Line Booking Platform
+- **Deskripsi**: Platform booking cruise dengan cabin selection
+- **Tecnología**: Enterprise microservices, cruise_search, interactive_deck_plan, shore_excursion, onboard_app, BLoC
+- **Tema UI**: Cruise Luxury - Ship deck plans, ocean imagery, cruise itinerary
+- **Estimasi Code**: ~3700 lines
+
+### 192. OmniBook
+- **Jenis**: Universal Booking Operating System
+- **Deskripsi**: Platform booking universal dengan AI scheduling
+- **Tecnología**: Enterprise microservices (DDD), multi-industry_config, AI_scheduling_optimization, blockchain_verification, IoT
+- **Tema UI**: Universal Booking - Industry adaptable, resource calendar, booking intelligence
+- **Estimasi Code**: ~4400 lines
+
+### 193. DNAAnalyzer
+- **Jenis**: Genomics & Personalized Medicine
+- **Deskripsi**: Platform analisis DNA dengan ancestry dan health risks prediction
+- **Tecnología**: Microservices, genome_sequencing_integration, AI_health_predictions, ancestry_algorithm, secure_data_encryption
+- **Tema UI**: Genomics - DNA helix, ancestry maps, health risk cards
+- **Estimasi Code**: ~3600 lines
+
+### 194. MentalHealthAI
+- **Jenis**: AI Mental Health Platform
+- **Deskripsi**: Platform mental health dengan AI therapist dan crisis detection
+- **Tecnología**: Microservices, AI_chatbot_therapist, sentiment_analysis, crisis_detection (ML), HIPAA_compliance, BLoC
+- **Tema UI**: Mental Wellness - Calming interface, mood tracker, therapy chat
+- **Estimasi Code**: ~3500 lines
+
+### 195. SurgicalAR
+- **Jenis**: AR Surgical Planning & Training
+- **Deskripsi**: Platform AR untuk surgical planning dan training simulation
+- **Tecnología**: ARCore/ARKit, Unity integration, 3D_medical_models, DICOM_integration, surgical_simulation, BLoC
+- **Tema UI**: Surgical AR - AR overlay, 3D anatomy, surgical planning tools
+- **Estimasi Code**: ~3800 lines
+
+### 196. CloudOrchestr8
+- **Jenis**: Multi-Cloud Management Platform
+- **Deskripsi**: Manage multiple cloud providers dengan cost optimization
+- **Tecnología**: Enterprise microservices, cloud_APIs (AWS/GCP/Azure), cost_optimization (AI), monitoring_dashboard, BLoC
+- **Tema UI**: Cloud Infrastructure - Server racks, resource graphs, cost analytics
+- **Estimasi Code**: ~4000 lines
+
+### 197. CyberShield
+- **Jenis**: Cybersecurity Management Platform
+- **Deskripsi**: Security monitoring dengan threat detection AI
+- **Tecnología**: Microservices, threat_detection (AI/ML), SIEM_integration, vulnerability_scanner, incident_management, BLoC
+- **Tema UI**: Security Operations - Threat map, alert dashboard, security metrics
+- **Estimasi Code**: ~4100 lines
+
+### 198. DataLakeOS
+- **Jenis**: Big Data Analytics Platform
+- **Deskripsi**: Data lake management dengan ETL pipelines dan real-time analytics
+- **Tecnología**: Enterprise microservices, data_pipeline_orchestration, real-time_analytics, ML_ops, BI_engine, BLoC
+- **Tema UI**: Data Analytics - Pipeline visualization, data flow diagrams, analytics dashboards
+- **Estimasi Code**: ~4300 lines
+
+### 199. DevOpsHub
+- **Jenis**: Complete DevOps Platform
+- **Deskripsi**: CI/CD management dengan container orchestration
+- **Tecnología**: Enterprise microservices, CI/CD_pipeline, Kubernetes_integration, monitoring_stack, GitOps, BLoC
+- **Tema UI**: DevOps - Pipeline stages, deployment visualization, monitoring charts
+- **Estimasi Code**: ~4200 lines
+
+### 200. QuantumCompute
+- **Jenis**: Quantum Computing Interface
+- **Deskripsi**: Platform akses quantum computing dengan circuit designer
+- **Tecnología**: Quantum computing APIs (IBM Q/AWS Braket), circuit_designer, quantum_algorithm_library, visualization, BLoC
+- **Tema UI**: Quantum - Quantum circuit diagrams, qubit visualization, probability amplitudes
+- **Estimasi Code**: ~4000 lines
+
+---
+
+## ������ Ringkasan Statistik
+
+### Distribusi Berdasarkan Level:
+- **Level 1 (Very Basic)**: Proyek 1-25 (300-650 lines)
+- **Level 2 (Basic)**: Proyek 26-60 (650-1300 lines)
+- **Level 3 (Intermediate)**: Proyek 61-120 (1300-2200 lines)
+- **Level 4 (Advanced)**: Proyek 121-170 (2200-3400 lines)
+- **Level 5 (Expert)**: Proyek 171-200 (3400-5000 lines)
+
+### Teknologi Paling Banyak Digunakan:
+1. **Provider/BLoC** - State Management (hampir semua proyek)
+2. **Firebase** - Backend untuk basic-intermediate (60+ proyek)
+3. **REST API** - Backend untuk advanced-expert (80+ proyek)
+4. **Microservices** - Backend untuk expert (30+ proyek)
+5. **Google Maps/Location Services** (40+ proyek)
+6. **Payment Gateway Integration** (50+ proyek)
+7. **AI/ML** (30+ proyek)
+8. **AR/VR** (15+ proyek)
+9. **Blockchain/Web3** (10+ proyek)
+
+### Rekomendasi Learning Path:
+1. **Bulan 1-2**: Proyek 1-25 (Very Basic) - Pelajari Flutter basics
+2. **Bulan 3-4**: Proyek 26-60 (Basic) - Firebase & REST API
+3. **Bulan 5-8**: Proyek 61-120 (Intermediate) - Complex state management & real-time features
+4. **Bulan 9-12**: Proyek 121-170 (Advanced) - Microservices & advanced technologies
+5. **Tahun 2+**: Proyek 171-200 (Expert) - Enterprise-level applications
+
+Setiap proyek diurutkan berdasarkan kompleksitas teknologi dan estimasi jumlah code! ������
+
+1. QuoteDaily - Aplikasi quotes harian dengan beautiful backgrounds, sharing, dan favorites collection
+2. UnitConvert - Converter lengkap untuk berbagai unit (length, weight, currency, dll) dengan calculator
+3. WaterReminder - Aplikasi pengingat minum air dengan goal setting, intake logging, dan hydration stats
+4. TaskFlow - To-do list dengan kategori, prioritas, deadline, dan daily reminders untuk produktivitas personal
+5. NotePad Pro - Aplikasi catatan dengan rich text editor, folders, tags, dan cloud sync untuk organisasi ide
+6. ZenHabit - Aplikasi pembentukan kebiasaan dengan streak tracking dan statistik.
+7. CalorieLog - Aplikasi hitung kalori makanan dengan food database, barcode scanner, dan nutrition tracking
+8. ZenTime - Aplikasi tracking waktu dengan project-based timer dan statistik
+9. BudgetWise - Aplikasi budget personal dengan expense categories, income tracking, dan monthly summaries
+10. CashFlow - Aplikasi pencatat keuangan bisnis sederhana dengan kategori, recurring transactions.
+11. StepCounter - Aplikasi penghitung langkah dengan daily goals, calorie burn estimate, dan achievement
+12. WeatherPro - Aplikasi cuaca dengan forecast 10 hari, radar, severe alerts, dan weather widgets
+13. MovieBox - Aplikasi discover film dengan rating, trailer, watchlist, dan recommendation berdasarkan genre
+14. MusicMood - Music player dengan playlist berdasarkan mood, equalizer, dan sleep timer
+15. RecipeBook - Koleksi resep masakan dengan step-by-step instructions, timer, dan shopping list generator
+16. PodCaster - Aplikasi podcast dengan subscription, download offline, playback speed, dan chapter markers
+17. QuizMaster - Aplikasi quiz sederhana dengan multiple choice, timer, scoring system, dan leaderboard
+18. FlashLearn - Aplikasi flashcard dengan spaced repetition algorithm, kategori topik, dan progress tracking
+19. MeditateNow - Aplikasi meditasi guided dengan timer, ambient sounds, dan progress tracking
+20. SleepWell - Aplikasi tracking pola tidur dengan sleep sounds, alarm cerdas, dan sleep quality analysis
+21. QRMaster - Generate dan scan QR codes dengan history, berbagai QR types, dan customization
+22. TranslateNow - Aplikasi translate dengan text, voice, camera OCR, dan conversation mode
+23. InvoiceQuick - Aplikasi pembuat invoice sederhana untuk UMKM dengan template customizable
+24. StockKeeper - Aplikasi inventory sederhana untuk tracking stok barang dengan low stock alert
+25. LoanCalculator - Kalkulator komprehensif untuk berbagai jenis loan dengan amortization schedule
+26. QuickChat - Aplikasi chat sederhana untuk komunikasi pribadi dengan text message, emoji, dan typing indicator
+27. AppointEase - Booking appointment sederhana untuk konsultan, dokter, atau salon dengan calendar selection
+28. ParkSpot - Aplikasi booking tempat parkir dengan map view, real-time availability, dan QR code access
+29. LocalCraft - Toko online kerajinan tangan lokal dengan katalog produk, keranjang belanja, dan checkout sederhana
+30. FreshBasket - Aplikasi belanja sayur dan buah segar dengan kategori produk, pencarian, dan sistem order sederhana
+31. TableReserve - Aplikasi reservasi meja restoran dengan menu preview, table selection, dan special requests
+32. ClassBook - Booking kelas fitness/gym dengan class schedule, instructor profiles, capacity limits, dan waitlist
+33. TutorSchedule - Platform booking les privat dengan tutor profiles, subject filters, availability calendar, dan payment
+34. AppointBook - Sistem booking appointment untuk salon, klinik, konsultan dengan calendar management dan reminder SMS/WA
+35. FamilyCircle - Chat khusus keluarga dengan shared calendar, shopping list, photo album, dan location sharing
+36. StudyBuddy - Platform chat untuk kelompok belajar dengan file sharing, assignment tracking, dan voice notes
+37. NeighborNet - Aplikasi komunitas perumahan dengan announcement board, local marketplace, dan emergency contacts
+38. HobbyHub - Platform untuk bergabung dengan komunitas berdasarkan hobi dengan forum diskusi dan event organizer
+39. BookNook - Toko buku online dengan preview, wishlist, sistem review, ebook download, dan physical book delivery
+40. StyleHub - Aplikasi fashion store dengan filter size/color, wishlist, lookbook, fokus pada single brand atau boutique
+41. TechZone - Toko elektronik dengan perbandingan produk, spesifikasi detail, sistem review, dan warranty tracking
+42. VideoLearn - Aplikasi streaming video pembelajaran dengan playlist, bookmark, playback speed control, dan note-taking
+43. BookShelf - Perpustakaan digital untuk ebook dan PDF dengan highlight, bookmark, search, dan reading progress tracking
+44. SkillTrack - Aplikasi tracking progress pembelajaran skill dengan goal setting, daily challenges, dan achievement badges
+45. ServicePro - Aplikasi untuk teknisi lapangan dengan job assignment, time tracking, photo documentation, dan customer signature
+46. PhotoShare - Platform berbagi foto dengan filters, stories, likes, comments, dan explore feed
+47. FoodieFeed - Platform food lovers dengan restaurant reviews, recipe sharing, dan food photos
+48. BlogSphere - Platform blogging dengan rich text editor, following system, dan content discovery
+49. TravelTales - Social network untuk travelers dengan trip planning, photo albums, dan location check-ins
+50. CryptoWatch - Aplikasi tracking portfolio crypto dengan live prices, charts, dan news feed
+51. StockTrader - Simulasi trading saham dengan virtual money, real-time data, dan learning materials
+52. ExpenseSplit - Aplikasi split bill untuk grup dengan expense tracking dan settlement calculation
+53. InvestLearn - Platform edukasi investasi dengan courses, portfolio simulator, dan financial news
+54. ScanDoc - Scanner dokumen dengan OCR, PDF creation, cloud storage, dan document organization
+55. FashionCloset - Organize pakaian digital, mix-match outfit, calendar outfit, dan donation tracker
+56. PlantCare - Identifikasi tanaman dengan AI, care schedule, watering reminders, dan plant journal
+57. PetPal - Pet profile, vaccination tracker, vet appointments, weight tracking, dan pet social
+58. DreamJournal - Catat mimpi, voice recording, dream patterns analysis, dan symbol dictionary
+59. WineVault - Catalog wine collection, tasting notes, rating, cellar management, dan pairing suggestions
+60. TriviaChamp - Real-time multiplayer trivia dengan categories, tournaments, dan global leaderboard
+61. PuzzleMania - Koleksi puzzle games (jigsaw, sudoku, crossword) dengan difficulty levels dan achievements
+62. DateMatch - Dating dengan swipe mechanism, matching algorithm, chat, dan profile verification
+63. FriendFinder - Platform cari teman baru berdasarkan interests, events, dan location
+64. RoommateMatch - Cari roommate dengan lifestyle preferences, budget filters, dan verification system
+65. VolunteerConnect - Connect volunteers dengan NGO, event calendar, hour tracking, dan impact metrics
+66. StudyGroup - Platform cari study partner berdasarkan subject, schedule, dan learning style
+67. VideoVibe - Platform video pendek dengan recording, effects, trending feed, dan creator dashboard
+68. NewsHub - News aggregator dengan AI personalization, bookmarks, offline reading, dan categories
+69. PodcastHub - Discover podcasts, subscription management, smart playlists, dan social sharing
+70. MagazineReader - Magazine subscription dengan interactive content, bookmarks, dan offline reading
+71. ComicVerse - Comic/manga reader dengan panel-by-panel mode, collections, dan reading progress
+72. AudiobookPro - Audiobook player dengan sleep timer, bookmarks, playback speed, dan library management
+73. PharmaQuick - Aplikasi apotek online dengan upload resep, konsultasi apoteker via chat, dan pengingat minum obat
+74. FoodieMarket - Platform multi-restaurant food delivery dengan real-time order tracking dan rating system
+75. PetPalace - Toko perlengkapan hewan dengan pet profile, subscription untuk recurring orders, dan vet consultation
+76. RetailPOS - POS lengkap untuk toko retail dengan product management, multiple payment methods, dan loyalty program
+77. CafeHub - POS khusus F&B dengan table management, kitchen display system (KDS), dan split bill
+78. SalonPro - Booking salon dengan multiple services, stylist selection, package deals, dan loyalty points
+79. CarService - Booking service kendaraan dengan vehicle profile, service packages, dan real-time progress tracking
+80. HealthHub - Multi-specialty hospital booking dengan doctor profiles, insurance verification, dan telemedicine option
+81. EventPass - Platform booking tiket event dengan seat selection, multiple ticket types, dan e-tickets dengan QR
+82. CoWorkSpace - Booking coworking space dengan desk/room selection, amenities, dan hourly/daily/monthly plans
+83. TeamSync - Aplikasi kolaborasi tim dengan channels, direct messages, task management, dan video calls
+84. ClassConnect - Platform kelas online dengan live video sessions, screen sharing, whiteboard, dan attendance
+85. CodeAcademy - Platform belajar coding dengan code editor, compiler integration, interactive challenges, dan project-based learning
+86. LanguagePro - Aplikasi belajar bahasa dengan speech recognition, conversation practice, dan grammar lessons
+87. ExamPrep - Platform persiapan ujian kompetitif dengan mock tests, adaptive learning, dan performance analytics
+88. CertifyPro - Platform sertifikasi profesional dengan proctored exams, digital certificates, dan CPD tracking
+89. GamerChat - Platform untuk gamers dengan clan system, tournament organizer, voice chat, dan streaming support
+90. WellnessTribe - Komunitas kesehatan dengan workout groups, nutrition tracking, challenge system, dan expert consultation
+91. LocalBuzz - Social network berbasis lokasi untuk discover events, local businesses, dan nearby people
+92. MomConnect - Platform untuk ibu berbagi pengalaman parenting dengan expert Q&A dan playdate scheduler
+93. AutoRepair - Sistem manajemen bengkel dengan service history, parts inventory, job cards, dan customer vehicle profiles
+94. SalonSuite - Aplikasi lengkap untuk salon dengan booking, stylist schedule, commission tracking, dan membership
+95. MedicalPOS - POS untuk apotek/klinik dengan prescription management, drug database, dan expiry tracking
+96. HomeDecor - Marketplace furniture dengan AR view untuk visualisasi produk di ruangan dan 360° product view
+97. BeautyBox - E-commerce kosmetik dengan virtual try-on menggunakan AR, skin analysis, dan product recommendation
+98. VirtualPet - Pelihara pet virtual dengan feeding, playing, leveling up, dan mini-games
+99. ARFurniture - Visualisasi furniture di ruangan dengan AR, measurement tools, dan save designs
+100. TreasureHunt - Scavenger hunt game dengan GPS, AR markers, challenges, dan rewards
+101. SmartHomePro - Control berbagai smart home devices, automation rules, energy monitoring, dan voice commands
+102. SecurityCam - Multi-camera viewer, motion detection alerts, cloud recording, dan two-way audio
+103. EnergyMonitor - Monitor konsumsi energi per device, cost analysis, recommendations, dan usage patterns
+104. GardenSmart - Automated watering system, soil sensors, weather integration, dan plant health monitoring
+105. PetMonitor - Pet camera dengan treats dispenser, activity tracking, health alerts, dan AI behavior analysis
+106. CryptoWallet - Wallet untuk multiple cryptocurrencies, send/receive, swap, dan portfolio tracking
+107. NFTGallery - Browse, buy, sell NFTs dengan minting, auction, dan virtual gallery display
+108. DeFiHub - Track DeFi investments, yield farming, staking, dan cross-protocol analytics
+109. BeatMaker - Create beats dengan sequencer, drum pads, synthesizers, dan audio effects
+110. LoopStation - Record dan loop audio layers live, effects, metronome, dan performance mode
+111. VoiceChanger - Real-time voice modulation dengan berbagai effects, recording, dan sharing
+112. CarbonTracker - Track carbon footprint dari activities, recommendations untuk reduce, dan offset options
+113. RecycleGuide - Identify recyclable materials, find recycling centers, track recycling habits
+114. EcoCommute - Plan eco-friendly routes, compare transport carbon footprint, carpool matching
+115. FoodWaste - Track food inventory, expiry alerts, recipe suggestions from leftovers, donation connection
+116. WildlifeSpotter - Log wildlife sightings, contribute to conservation data, species identification with AI
+117. TravelBook - Platform booking travel all-in-one (hotel, flight, tour, car rental) dengan itinerary builder
+118. VenueMatch - Marketplace booking venue untuk wedding, conference dengan 360° tours dan vendor connections
+119. HomeService - Platform booking layanan rumah (cleaning, plumbing, AC) dengan worker tracking
+120. PropertyRent - Platform sewa properti (short/long term) dengan virtual tours dan contract management
+121. SportsPlex - Booking fasilitas olahraga (court, field, pool) dengan league management dan tournament hosting
+122. MarketHub - Platform marketplace lengkap dengan vendor dashboard, komisi system, dan escrow payment (mirip Tokopedia/Shopee)
+123. LuxeWear - High-end fashion app dengan personal shopper, live streaming shopping, dan exclusive member benefits
+124. FarmToTable - Platform yang menghubungkan petani langsung dengan konsumen dengan traceability produk
+125. AutoParts - Marketplace spare part kendaraan dengan pencarian berdasarkan VIN dan compatibility checker
+126. WholesalePro - Platform wholesale untuk bisnis dengan MOQ, bulk pricing, credit terms, dan purchase orders
+127. MultiStore - Sistem POS multi-cabang dengan centralized inventory, inter-branch transfer, dan consolidated reporting
+128. HotelPro - Property Management System lengkap dengan front desk, housekeeping, F&B integration, dan channel manager
+129. WholesaleHub - Platform distributor wholesale dengan purchase orders, credit management, dan route planning untuk sales
+130. ConstructPro - Manajemen proyek konstruksi dengan project costing, material tracking, dan progress monitoring
+131. ManufactureOS - Sistem ERP manufaktur dengan production planning, shop floor control, dan quality assurance
+132. UniversityHub - LMS lengkap untuk universitas dengan course management, grading system, attendance, dan student portal
+133. CorporateTrain - Platform training korporat dengan onboarding modules, compliance training, dan skills assessment
+134. MedicalEdu - Platform pembelajaran medis dengan 3D anatomy, case studies, simulation labs, dan clinical scenarios
+135. TutorMarket - Platform marketplace yang menghubungkan tutor dengan siswa, scheduling, payment escrow, dan whiteboard
+136. SkillMarketplace - Platform marketplace untuk berbagai skill (design, music, cooking) dengan project-based learning
+137. ProNetwork - LinkedIn-style app dengan profile building, job board, mentorship matching, dan industry groups
+138. CreatorSpace - Platform untuk content creator dengan portfolio showcase, collaboration finder, dan monetization tools
+139. VolunteerHub - Platform menghubungkan volunteers dengan NGO, project management, impact tracking, dan donation system
+140. EventFlow - Platform untuk discover, create, dan manage events dengan ticketing, live updates, dan networking features
+141. MentalSpace - Platform support mental health dengan anonymous posting, peer support groups, dan professional counseling
+142. MusicCollaborator - Collaborate on music projects remotely dengan multi-track, version control, dan chat
+143. AudioBookCreator - Record audiobooks dengan chapter management, editing tools, dan export for distribution
+144. VideoEditor Pro - Full-featured video editor dengan timeline, transitions, effects, dan export options
+145. LiveStreamer - Go live dengan chat interaction, donations, multi-camera, dan stream to multiple platforms
+146. ScreenRecorder - Screen recording dengan face cam, annotations, editing, dan tutorial creation
+147. VideoConference - Video conference dengan breakout rooms, recording, transcription, dan virtual backgrounds
+148. AnimationStudio - Create 2D animations dengan frame-by-frame, tweening, onion skinning, dan export
+149. DAOGovernance - Participate dalam DAO governance, proposal voting, treasury management, dan member forums
+150. BlockchainExplorer - Explore blockchain transactions, addresses, smart contracts, dan network statistics
+151. AIAssistant - AI chatbot dengan voice commands, task automation, learning from user, dan smart suggestions
+152. FaceRecognition - Face detection, recognition, tagging dalam photo library, dan access control
+153. ObjectDetector - Detect dan classify objects via camera, shopping assistant, accessibility helper
+154. TextGeneration - Generate text content (articles, emails, captions) dengan AI, templates, dan customization
+155. ImageEnhancer - Enhance photos dengan AI (upscaling, denoising, colorization), before/after comparison
+156. ARMuseum - Museum virtual dengan AR exhibits, 3D artifacts, audio guides, dan interactive tours
+157. VirtualShowroom - Virtual showroom untuk products dengan AR try-on, customization, dan purchase integration
+158. AREducation - Pembelajaran interaktif dengan AR (anatomy, chemistry, history) dan 3D models
+159. VRMeeting - Virtual meeting space dengan avatars, spatial audio, screen sharing, dan collaboration tools
+160. ARNavigation - Indoor navigation dengan AR arrows, point of interest, dan accessibility features
+161. MediConnect - Platform healthcare terintegrasi dengan appointment, telemedicine, lab booking, pharmacy, dan health records
+162. HotelChain - Platform hotel chain dengan dynamic pricing, loyalty rewards, room upgrade bidding, dan concierge services
+163. FleetBook - Platform corporate fleet booking dengan vehicle tracking, maintenance scheduling, dan route optimization
+164. NeoBank - Full digital bank dengan accounts, transfers, loans, investments, dan financial planning
+165. TradingPlatform - Professional trading platform dengan real-time charts, algo trading, dan portfolio analytics
+166. InsuranceTech - Platform asuransi digital dengan instant quotes, claims processing AI, dan policy management
+167. LendingMarket - Peer-to-peer lending dengan credit scoring AI, automated matching, dan risk management
+168. WealthManagement - Automated investment management dengan portfolio optimization AI dan tax-loss harvesting
+169. TelemedicineOS - Platform telemedicine enterprise dengan AI diagnosis assistant dan remote monitoring
+170. DrugDiscovery - Platform drug discovery dengan molecular modeling, clinical trial management, dan AI predictions
+171. GlobalTrade - Platform perdagangan internasional dengan multi-currency, multi-language, customs calculation, dan compliance
+172. SocialShop - Platform e-commerce berbasis social media dengan live selling, user-generated content, dan influencer marketplace
+173. AuctionBay - Platform lelang online dengan live bidding, proxy bidding, buy-it-now option, dan escrow service
+174. SubscriptBox - Platform subscription box dengan personalization algorithm, recurring billing, dan pause/skip features
+175. OmniRetail - Platform retail omnichannel lengkap yang mengintegrasikan online, offline store, warehouse dengan unified inventory
+176. EduVerse - Platform pembelajaran immersive dengan virtual classrooms, 3D avatars, collaborative whiteboards, dan gamification
+177. GlobalConnect - Platform global dengan real-time translation, cultural exchange programs, dan international friend matching
+178. DecentralChat - Platform chat terdesentralisasi dengan end-to-end encryption, token economy, NFT profile, dan DAO governance
+179. EnterpriseSocial - Corporate social network dengan org chart integration, company-wide announcements, dan knowledge base
+180. MetaCommune - Platform community metaverse dengan AI companions, virtual real estate, immersive experiences, dan creator economy
+181. OmniPOS - Platform retail omnichannel dengan unified commerce, endless aisle, clienteling, dan AI-powered insights
+182. CloudRestaurant - Platform multi-brand cloud kitchen dengan order aggregation, kitchen workflow optimization, dan menu engineering
+183. MedicalERP - Hospital Information System lengkap dengan EMR/EHR, billing, pharmacy, lab, radiology, dan insurance integration
+184. SupplyChainAI - Platform supply chain dengan demand forecasting, route optimization, warehouse automation, dan predictive analytics
+185. EnterpriseOS - ERP lengkap all-in-one dengan accounting, HRM, CRM, inventory, manufacturing, projects, dan BI
+186. AdaptiveLearn - Platform pembelajaran adaptif dengan AI yang menyesuaikan konten berdasarkan learning style individual
+187. MetaLearn - Platform pembelajaran metaverse dengan virtual campus, 3D classrooms, avatar interaction, dan immersive labs
+188. GlobalEdu - Platform pendidikan global dengan multi-currency, multi-language, localized content, dan international accreditation
+189. EnterpriseLMS - Ekosistem pembelajaran enterprise lengkap dengan LMS, LXP, talent management, dan skills marketplace
+190. EduOS - Sistem operasi pendidikan all-in-one dengan LMS, SIS, ERP, admission, finance, HR, dan parent portal
+191. GlobalCruise - Platform booking cruise dengan cabin selection, shore excursions, onboard activities, dan cruise experience management
+192. OmniBook - Platform booking universal yang dapat dikonfigurasi untuk berbagai industri dengan AI scheduling dan blockchain
+193. DNAAnalyzer - Platform analisis DNA dengan ancestry, health risks prediction, dan personalized treatment plans
+194. MentalHealthAI - Platform mental health dengan AI therapist, mood prediction, crisis detection, dan professional network
+195. SurgicalAR - Platform AR untuk surgical planning, 3D anatomy visualization, dan training simulation
+196. CloudOrchestr8 - Multi-cloud management platform dengan cost optimization, resource monitoring, dan automation
+197. CyberShield - Cybersecurity management platform dengan threat detection AI, incident response, dan vulnerability scanning
+198. DataLakeOS - Big data analytics platform dengan ETL pipelines, real-time analytics, ML model deployment, dan BI dashboards
+199. DevOpsHub - Complete DevOps platform dengan CI/CD management, container orchestration, monitoring, dan logging
+200. QuantumCompute - Platform akses quantum computing dengan circuit designer, algorithm library, dan result visualization
