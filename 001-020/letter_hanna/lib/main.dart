@@ -7,6 +7,8 @@ void main() {
 
 // Widget utama aplikasi
 class LetterHannaApp extends StatelessWidget {
+  const LetterHannaApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,6 +24,8 @@ class LetterHannaApp extends StatelessWidget {
 
 // Halaman utama
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

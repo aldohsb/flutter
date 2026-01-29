@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:zentime/providers/project_provider.dart';
+import 'package:zentime/providers/overlay_provider.dart';
 import 'package:zentime/screens/add_edit_project_screen.dart';
 import 'package:zentime/screens/project_detail_screen.dart';
 import 'package:zentime/screens/settings_screen.dart';
@@ -10,35 +12,25 @@ import 'package:zentime/widgets/reorderable_grid_view.dart';
 import 'package:zentime/utils/constants.dart';
 import 'package:zentime/services/hive_service.dart';
 import 'package:zentime/utils/time_formatter.dart';
+import 'dart:io';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   
   @override
   Widget build(BuildContext context) {
+    final bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+    
     return Scaffold(
-      appBar: AppBar(
+      appBar: isDesktop ? null : AppBar(
         title: const Text('ZenTime'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => _showInfo(context),
-          ),
-        ],
+        actions: _buildActions(context),
       ),
       body: Column(
         children: [
+          // Custom draggable title bar for desktop
+          if (isDesktop) _buildCustomTitleBar(context),
+          
           const TimerWidget(),
           
           // Statistics Summary
@@ -142,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                 return ReorderableGridView(
                   padding: const EdgeInsets.fromLTRB(12, 4, 12, 80),
                   crossAxisCount: 2,
-                  childAspectRatio: 2.3,
+                  childAspectRatio: 2,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
                   itemCount: projects.length,
@@ -185,6 +177,94 @@ class HomeScreen extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
     );
+  }
+  
+  Widget _buildCustomTitleBar(BuildContext context) {
+    return GestureDetector(
+      onPanStart: (details) async {
+        await windowManager.startDragging();
+      },
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: AppConstants.primaryColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            const SizedBox(width: 16),
+            const Text(
+              'ZenTime',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const Spacer(),
+            ..._buildActions(context),
+            const SizedBox(width: 8),
+            // Window controls
+            IconButton(
+              icon: const Icon(Icons.minimize, size: 20),
+              color: Colors.white,
+              onPressed: () async {
+                await windowManager.minimize();
+              },
+              tooltip: 'Minimize',
+            ),
+            IconButton(
+              icon: const Icon(Icons.close, size: 20),
+              color: Colors.white,
+              onPressed: () async {
+                await windowManager.close();
+              },
+              tooltip: 'Close',
+            ),
+            const SizedBox(width: 8),
+          ],
+        ),
+      ),
+    );
+  }
+  
+  List<Widget> _buildActions(BuildContext context) {
+    final bool isDesktop = Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+    
+    return [
+      if (isDesktop)
+        IconButton(
+          icon: const Icon(Icons.picture_in_picture_alt),
+          tooltip: 'Overlay Mode',
+          color: isDesktop ? Colors.white : null,
+          onPressed: () {
+            context.read<OverlayProvider>().toggleOverlayMode();
+          },
+        ),
+      IconButton(
+        icon: const Icon(Icons.settings),
+        color: isDesktop ? Colors.white : null,
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const SettingsScreen(),
+            ),
+          );
+        },
+      ),
+      IconButton(
+        icon: const Icon(Icons.info_outline),
+        color: isDesktop ? Colors.white : null,
+        onPressed: () => _showInfo(context),
+      ),
+    ];
   }
   
   void _showInfo(BuildContext context) {
