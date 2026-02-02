@@ -5,6 +5,7 @@ import 'package:zentime/models/session_model.dart';
 import 'package:zentime/services/hive_service.dart';
 import 'package:zentime/services/notification_service.dart';
 import 'package:zentime/services/audio_service.dart';
+import 'package:zentime/services/keyboard_shortcut_service.dart';
 import 'package:zentime/utils/constants.dart';
 import 'package:zentime/utils/time_formatter.dart';
 
@@ -16,12 +17,16 @@ class TimerProvider extends ChangeNotifier {
   
   final NotificationService _notificationService = NotificationService();
   final AudioService _audioService = AudioService();
+  final KeyboardShortcutService _keyboardShortcutService = KeyboardShortcutService();
   
   bool _isInitialized = false;
   
   SessionModel? get activeSession => _activeSession;
   int get elapsedSeconds => _elapsedSeconds;
   bool get isRunning => _activeSession?.isRunning ?? false;
+  
+  // Expose keyboard shortcuts info
+  KeyboardShortcutService get keyboardShortcuts => _keyboardShortcutService;
   
   TimerProvider() {
     _initialize();
@@ -33,9 +38,46 @@ class TimerProvider extends ChangeNotifier {
     try {
       await _notificationService.initialize();
       _initializeActiveSession();
+      await _initializeKeyboardShortcuts();
       _isInitialized = true;
     } catch (e) {
       debugPrint('Error initializing timer provider: $e');
+    }
+  }
+  
+  Future<void> _initializeKeyboardShortcuts() async {
+    try {
+      await _keyboardShortcutService.initialize(
+        onPlayPause: _handlePlayPauseShortcut,
+        onStop: _handleStopShortcut,
+      );
+    } catch (e) {
+      debugPrint('Error initializing keyboard shortcuts: $e');
+    }
+  }
+  
+  void _handlePlayPauseShortcut() {
+    if (_activeSession == null) {
+      // No active session, cannot play/pause without project
+      debugPrint('Cannot play/pause: No active session');
+      return;
+    }
+    
+    if (_activeSession!.isRunning) {
+      // Timer is running, pause it
+      pauseTimer();
+    } else {
+      // Timer is paused, resume it
+      final project = HiveService.getProject(_activeSession!.projectId);
+      if (project != null) {
+        resumeTimer(project.name);
+      }
+    }
+  }
+  
+  void _handleStopShortcut() {
+    if (_activeSession != null) {
+      stopTimer();
     }
   }
   
@@ -261,6 +303,7 @@ class TimerProvider extends ChangeNotifier {
     _timer?.cancel();
     _timer = null;
     _audioService.dispose();
+    _keyboardShortcutService.dispose();
     super.dispose();
   }
 }

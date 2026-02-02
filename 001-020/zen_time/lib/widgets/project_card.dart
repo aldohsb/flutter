@@ -26,18 +26,8 @@ class ProjectCard extends StatelessWidget {
         final todayProgress = projectProvider.getTodayProgress(project.id);
         final weekProgress = projectProvider.getWeekProgress(project.id);
         
-        if (isCompact) {
-          return _CompactCard(
-            project: project,
-            todayDuration: todayDuration,
-            weekDuration: weekDuration,
-            todayProgress: todayProgress,
-            weekProgress: weekProgress,
-            onTap: onTap,
-          );
-        }
-        
-        return _FullCard(
+        // Always use compact mode for consistency
+        return _CompactCard(
           project: project,
           todayDuration: todayDuration,
           weekDuration: weekDuration,
@@ -74,133 +64,128 @@ class _CompactCard extends StatelessWidget {
       elevation: 2,
       shadowColor: Colors.black.withOpacity(0.08),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: InkWell(
         onTap: onTap,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
         child: Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
+          padding: const EdgeInsets.all(16),
+          child: Row(
             children: [
-              // Header with color indicator
-              Row(
-                children: [
-                  Container(
-                    width: 4,
-                    height: 28,
-                    decoration: BoxDecoration(
-                      color: Color(project.colorValue),
-                      borderRadius: BorderRadius.circular(2),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(project.colorValue).withOpacity(0.3),
-                          blurRadius: 4,
-                          offset: const Offset(0, 1),
-                        ),
-                      ],
+              // Color indicator
+              Container(
+                width: 6,
+                height: 60,
+                decoration: BoxDecoration(
+                  color: Color(project.colorValue),
+                  borderRadius: BorderRadius.circular(3),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(project.colorValue).withOpacity(0.3),
+                      blurRadius: 4,
+                      offset: const Offset(0, 1),
                     ),
-                  ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          project.name,
-                          style: const TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: -0.2,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                        if (project.description != null &&
-                            project.description!.isNotEmpty)
-                          Text(
-                            project.description!,
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: Colors.grey[600],
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                      ],
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(width: 16),
               
-              // Today Progress
+              // Project info
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      project.name,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: -0.2,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    if (project.description != null &&
+                        project.description!.isNotEmpty) ...[
+                      const SizedBox(height: 2),
+                      Text(
+                        project.description!,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.grey[600],
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ],
+                ),
+              ),
+              const SizedBox(width: 16),
+              
+              // Progress indicators
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
                 children: [
+                  // Today
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Today',
+                        'Today: ',
                         style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey[700],
+                          fontSize: 12,
+                          color: Colors.grey[600],
                         ),
                       ),
                       Text(
-                        '${TimeFormatter.formatDurationToHours(todayDuration)} / ${project.dailyTargetHours.toStringAsFixed(1)}h',
+                        TimeFormatter.formatDurationToHours(todayDuration),
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(project.colorValue),
+                        ),
+                      ),
+                      Text(
+                        ' / ${project.dailyTargetHours.toStringAsFixed(1)}h',
+                        style: TextStyle(
+                          fontSize: 12,
                           color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  ProgressBarWidget(
-                    progress: todayProgress,
-                    color: Color(project.colorValue),
-                    height: 6,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 8),
-              
-              // Week Progress
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+                  const SizedBox(height: 6),
+                  // Week
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Week',
+                        'Week: ',
                         style: TextStyle(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey[700],
+                          fontSize: 12,
+                          color: Colors.grey[600],
                         ),
                       ),
                       Text(
-                        '${TimeFormatter.formatDurationToHours(weekDuration)} / ${project.weeklyTargetHours.toStringAsFixed(1)}h',
+                        TimeFormatter.formatDurationToHours(weekDuration),
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Color(project.colorValue),
+                        ),
+                      ),
+                      Text(
+                        ' / ${project.weeklyTargetHours.toStringAsFixed(1)}h',
+                        style: TextStyle(
+                          fontSize: 12,
                           color: Colors.grey[600],
-                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(height: 4),
-                  ProgressBarWidget(
-                    progress: weekProgress,
-                    color: Color(project.colorValue),
-                    height: 6,
                   ),
                 ],
               ),

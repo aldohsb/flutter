@@ -35,8 +35,7 @@ dependencies:
   desktop_window: ^0.4.0
   system_tray: ^2.0.3
   window_manager: ^0.4.2
-  hotkey_manager: ^0.2.3  # NEW!
-
+  hotkey_manager: ^0.2.3
 
 dev_dependencies:
   flutter_test:
@@ -44,8 +43,6 @@ dev_dependencies:
   flutter_lints: ^4.0.0
   hive_generator: ^2.0.1
   build_runner: ^2.4.12
-  hotkey_manager: ^0.2.3  # NEW!
-
 
 flutter:
   uses-material-design: true
