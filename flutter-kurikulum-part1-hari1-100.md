@@ -1,53 +1,22 @@
+Buatkan panduan materi flutter di bawah ini, beserta file proyek terkait 
+
+
+materi dengan bahasa yang mudah dimengerti, tambahkan tips trik industri terkait materi jika ada, tambahkan tanya jawab pendalaman materi.
+proyek yang dibuat setiap file di tulis di masing-masing artifact agar mudah di copy berikan komentar penjelasan code setiap baris
+jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date mulai dari inisialisasi proyek sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
+buatkan juga artifact tersendiri untuk penjelasan algoritma dan logika code utama proyek di atas, penjelasan untuk pemula, mengapa sebuah code ditulis, apa logikanya, untuk apa dan mengapa. 
+
+
+buatkan quiz pilihan ganda, 15 soal, pilihan jawaban ada 8, pilihan e. benar semua, f. salah semua, g yang benar a dan c, pilihan h yang benar b dan d
+tulis di chat bukan html
+
 # 🐣 Flutter Kurikulum — Part 1: Hari 1–100
 ### Level: Absolute Beginner → Beginner
 > Pace sangat lambat di awal. Fokus pada pondasi, bukan kecepatan.
 
 ---
 
-## 🗓️ FASE 1 — Mengenal Dunia Flutter (Hari 1–20)
-> Tujuan: Bisa install, paham konsep dasar, dan nyaman dengan lingkungan Flutter
 
----
-
-### Hari 1 : Apa Itu Flutter & Dart?
-* Mengenal Flutter — framework apa ini dan kenapa populer
-* Perbedaan Flutter vs React Native vs native Android/iOS
-* Mengenal bahasa Dart — kenapa Flutter pakai Dart
-* Melihat contoh-contoh aplikasi yang dibuat dengan Flutter
-
-**Project terkait : `flutter_explore`** *(bukan project koding, project riset)*
-- Buka YouTube, cari 3 video demo aplikasi Flutter yang kamu suka
-- Screenshot UI-nya, simpan di folder, dan tulis catatan: "Saya ingin bisa bikin ini"
-- Tujuan: Membangun motivasi dengan visualisasi tujuan akhir
-
----
-
-### Hari 2 : Instalasi Flutter & Setup Environment
-* Install Flutter SDK (ikuti flutter.dev resmi)
-* Install Android Studio & setup Android Emulator
-* Install VS Code + ekstensi Flutter & Dart
-* Menjalankan `flutter doctor` dan memahami outputnya
-
-**Project terkait : `hello_setup`**
-- Buat project Flutter pertama dengan `flutter create hello_setup`
-- Jalankan di emulator — lihat counter app default muncul
-- Tujuan: Memastikan environment benar-benar berjalan
-
----
-
-### Hari 3 : Struktur Folder Project Flutter
-* Memahami folder `lib/`, `android/`, `ios/`, `pubspec.yaml`
-* Mengenal file `main.dart` — titik awal semua Flutter app
-* Apa itu `pubspec.yaml` — tempat mendaftarkan dependency & asset
-* Memahami `runApp()` dan fungsinya
-
-**Project terkait : `struktur_explorer`**
-- Buka project `hello_setup` kemarin
-- Buka setiap folder dan baca isinya satu per satu
-- Tulis di Notion/notes: "Folder ini fungsinya untuk apa"
-- Hapus semua komentar di `main.dart` agar kode terlihat lebih bersih
-
----
 
 ### Hari 4 : Dart Basics — Variabel & Tipe Data
 * Tipe data dasar: `int`, `double`, `String`, `bool`
