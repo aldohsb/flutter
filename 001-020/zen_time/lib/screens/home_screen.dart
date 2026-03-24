@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zentime/providers/project_provider.dart';
-import 'package:zentime/providers/timer_provider.dart';
 import 'package:zentime/screens/add_edit_project_screen.dart';
 import 'package:zentime/screens/project_detail_screen.dart';
 import 'package:zentime/screens/settings_screen.dart';
