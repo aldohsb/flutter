@@ -1,9 +1,11 @@
 Buatkan panduan materi flutter di bawah ini, beserta file proyek terkait
 
 materi dengan bahasa yang mudah dimengerti, tambahkan tips trik industri terkait materi jika ada, tambahkan tanya jawab pendalaman materi.
-proyek yang dibuat setiap file di tulis di masing-masing artifact agar mudah di copy berikan komentar penjelasan code setiap baris
+proyek yang dibuat setiap file di tulis di masing-masing artifact agar mudah di copy, di bagian code yang penting berikan komentar petunjuk singkat saja bukan penjelasan panjang, penjelasan nanti di artefact atau dokumen tersendiri saja
+
 jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date mulai dari inisialisasi proyek sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
 buatkan juga artifact tersendiri untuk penjelasan algoritma dan logika code utama proyek di atas, penjelasan untuk pemula, mengapa sebuah code ditulis, apa logikanya, untuk apa dan mengapa.
+buatkan juga panduan copy paste code, mana dulu yang dibuka di vscode, mana yang di copy paste kemudian file berikutnya, sekalian jelaskan alur programmingnya
 
 buatkan quiz pilihan ganda, 15 soal, pilihan jawaban ada 8, pilihan e. benar semua, f. salah semua, g yang benar a dan c, pilihan h yang benar b dan d
 tulis di chat bukan html
