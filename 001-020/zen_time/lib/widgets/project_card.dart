@@ -70,13 +70,13 @@ class _CompactCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(16),
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           child: Row(
             children: [
               // Color indicator
               Container(
-                width: 6,
-                height: 60,
+                width: 5,
+                height: 44,
                 decoration: BoxDecoration(
                   color: Color(project.colorValue),
                   borderRadius: BorderRadius.circular(3),
@@ -89,7 +89,7 @@ class _CompactCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
               
               // Project info
               Expanded(
@@ -123,7 +123,7 @@ class _CompactCard extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 12),
               
               // Progress indicators
               Column(
@@ -158,8 +158,7 @@ class _CompactCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 6),
-                  // Week
+                  const SizedBox(height: 4),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

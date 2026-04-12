@@ -14,8 +14,15 @@ class TimeFormatter {
   }
   
   static String formatDurationToHours(int seconds) {
-    final hours = seconds / 3600;
-    return '${hours.toStringAsFixed(1)}h';
+    final hours = seconds ~/ 3600;
+    final minutes = (seconds % 3600) ~/ 60;
+    if (hours > 0 && minutes > 0) {
+      return '${hours}h${minutes}m';
+    } else if (hours > 0) {
+      return '${hours}h';
+    } else {
+      return '${minutes}m';
+    }
   }
   
   static String formatDate(DateTime date) {

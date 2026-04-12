@@ -17,28 +17,9 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('ZenTime'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
-              );
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.info_outline),
-            onPressed: () => _showInfo(context),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
+      body: SafeArea(
+        child: Column(
+          children: [
           const TimerWidget(),
           
           // Statistics Summary
@@ -142,9 +123,9 @@ class HomeScreen extends StatelessWidget {
                 return ReorderableGridView(
                   padding: const EdgeInsets.fromLTRB(12, 4, 12, 80),
                   crossAxisCount: 1,
-                  childAspectRatio: 2.5,
+                  childAspectRatio: 3.2,
                   crossAxisSpacing: 0,
-                  mainAxisSpacing: 8,
+                  mainAxisSpacing: 5,
                   itemCount: projects.length,
                   onReorder: (oldIndex, newIndex) {
                     projectProvider.reorderProjects(oldIndex, newIndex);
@@ -173,6 +154,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -183,6 +165,33 @@ class HomeScreen extends StatelessWidget {
           );
         },
         child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.settings_outlined),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SettingsScreen(),
+                    ),
+                  );
+                },
+                tooltip: 'Settings',
+              ),
+              IconButton(
+                icon: const Icon(Icons.info_outline),
+                onPressed: () => _showInfo(context),
+                tooltip: 'About',
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

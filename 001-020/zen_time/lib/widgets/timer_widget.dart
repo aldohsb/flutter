@@ -26,8 +26,8 @@ class TimerWidget extends StatelessWidget {
         final isRunning = timerProvider.isRunning;
         
         return Container(
-          margin: const EdgeInsets.all(16),
-          padding: const EdgeInsets.all(24),
+          margin: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
               begin: Alignment.topLeft,
@@ -37,94 +37,92 @@ class TimerWidget extends StatelessWidget {
                 AppConstants.primaryDark,
               ],
             ),
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(16),
             boxShadow: [
               BoxShadow(
                 color: AppConstants.primaryColor.withOpacity(0.3),
-                blurRadius: 20,
-                offset: const Offset(0, 8),
+                blurRadius: 12,
+                offset: const Offset(0, 4),
               ),
             ],
           ),
-          child: Column(
+          child: Row(
             children: [
-              Row(
-                children: [
-                  Container(
-                    width: 12,
-                    height: 12,
-                    decoration: BoxDecoration(
-                      color: isRunning ? Colors.red : Colors.orange,
-                      shape: BoxShape.circle,
+              // Left: status dot + project name + timer
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 8,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: isRunning ? Colors.red : Colors.orange,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(
+                            project.name,
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    isRunning ? 'Running' : 'Paused',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
+                    const SizedBox(height: 2),
+                    Text(
+                      TimeFormatter.formatDuration(timerProvider.elapsedSeconds),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'monospace',
+                        height: 1.1,
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 12),
-              
-              Text(
-                project.name,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+                  ],
                 ),
-                textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 8),
-              
-              Text(
-                TimeFormatter.formatDuration(timerProvider.elapsedSeconds),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'monospace',
-                ),
-              ),
-              const SizedBox(height: 16),
-              
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (isRunning)
-                    _ActionButton(
-                      onPressed: () async {
-                        await timerProvider.pauseTimer();
-                      },
-                      icon: Icons.pause,
-                      label: 'Pause',
-                      backgroundColor: Colors.white,
-                      foregroundColor: AppConstants.primaryColor,
-                    )
-                  else
-                    _ActionButton(
-                      onPressed: () async {
-                        await timerProvider.resumeTimer(project.name);
-                      },
-                      icon: Icons.play_arrow,
-                      label: 'Resume',
-                      backgroundColor: Colors.white,
-                      foregroundColor: AppConstants.primaryColor,
-                    ),
-                  const SizedBox(width: 12),
-                  _ActionButton(
-                    onPressed: () => _showStopConfirmation(context, timerProvider),
-                    icon: Icons.stop,
-                    label: 'Stop',
+              const SizedBox(width: 12),
+              // Right: Stop button (tall)
+              SizedBox(
+                width: 56,
+                child: ElevatedButton(
+                  onPressed: () => _showStopConfirmation(context, timerProvider),
+                  style: ElevatedButton.styleFrom(
                     backgroundColor: AppConstants.errorColor,
-                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 14),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                    minimumSize: const Size(56, 64),
                   ),
-                ],
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.stop, color: Colors.white, size: 22),
+                      SizedBox(height: 2),
+                      Text(
+                        'Stop',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ],
           ),
