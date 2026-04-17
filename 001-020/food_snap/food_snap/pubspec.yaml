@@ -1,0 +1,25 @@
+name: food_snap
+description: "Galeri makanan — latihan Image.asset, BoxFit, ClipRRect."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_fonts: ^6.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/food/
+    # Daftarkan subfolder food/ secara eksplisit
+    # Trailing slash (/) = daftarkan semua file di dalam folder ini
+    # Subfolder tidak otomatis ikut terdaftar — harus didaftarkan sendiri
