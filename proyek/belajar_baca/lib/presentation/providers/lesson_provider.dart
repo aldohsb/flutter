@@ -8,7 +8,7 @@ class LessonProvider extends ChangeNotifier {
 
   int _currentChapterIndex = 0;
   int _currentCardIndex = 0;
-  Map<int, int> _chapterProgress = {}; // chapterIndex -> last card index
+  final Map<int, int> _chapterProgress = {}; // chapterIndex -> last card index
 
   int get currentChapterIndex => _currentChapterIndex;
   int get currentCardIndex => _currentCardIndex;

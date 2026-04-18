@@ -76,7 +76,7 @@ abstract class FoodData {
     // .map() → konversi setiap FoodItem ke String category-nya
     // .toList() → ubah Iterable<String> menjadi List<String>
 
-    return ['Semua', ...cats.toSet().toList()];
+    return ['Semua', ...cats.toSet()];
     // .toSet() → hapus duplikat (kategori yang muncul lebih dari sekali)
     // .toList() → konversi kembali ke List
     // ['Semua', ...] → spread operator (...) untuk gabungkan dua list:
