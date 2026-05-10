@@ -7,8 +7,20 @@ jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang pal
 buatkan juga artifact tersendiri untuk penjelasan algoritma dan logika code utama proyek di atas, penjelasan untuk pemula, mengapa sebuah code ditulis, apa logikanya, untuk apa dan mengapa.
 buatkan juga panduan copy paste code, mana dulu yang dibuka di vscode, mana yang di copy paste kemudian file berikutnya, sekalian jelaskan alur programmingnya
 
-buatkan quiz pilihan ganda, 15 soal, pilihan jawaban ada 8, pilihan e. benar semua, f. salah semua, g yang benar a dan c, pilihan h yang benar b dan d
-tulis di chat bukan html
+####
+
+buat 24 soal serta  pembahasannya materi flutter :
+
+
+soal pilihan ganda dengan pilihan jawaban yang mengecoh, semua pilihan jawabannya panjangnya mirip, dan tidak mudah di tebak, sebar kunci jawaban merata di semua huruf jawaban a-d. 
+kunci jawaban jangan kebanyakan B dan jangan selalu yang paling banyak karakter hurufnya
+
+buat interface quiz yang kalau di klik jawaban langsung bisa di cek benar atau salahnya, dan pembahasan langsung muncul di bawah soal.
+pembahasannya cukup detail 20-100 kata
+bagi menjadi 3 part, jadi setiap part 8 soal, mulai dari part 1 dulu
+langsung tampilkan 8 soal dalam 1 halaman
+
+
 
 # 🚀 Kurikulum Flutter 300 Hari — Berbasis Proyek
 
