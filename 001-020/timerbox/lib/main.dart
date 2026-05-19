@@ -1,9 +1,9 @@
-import 'dart:async';                              // impor library async — diperlukan untuk kelas Timer
-import 'package:flutter/material.dart';          // impor Material Design — wajib ada di setiap app Flutter
+import 'dart:async';
+import 'package:flutter/material.dart';
 
-void main() => runApp(const TimerBoxApp());      // titik masuk app — langsung jalankan TimerBoxApp
+void main() => runApp(const TimerBoxApp());
 
-enum TimerState { idle, running, paused }        // tiga kemungkinan status timer — idle=belum mulai, running=jalan, paused=dijeda
+enum TimerState { idle, running, paused }
 
 class TimerBoxApp extends StatelessWidget {
   const TimerBoxApp({super.key});
@@ -30,41 +30,38 @@ class TimerScreen extends StatefulWidget {
 }
 
 class _TimerScreenState extends State<TimerScreen> {
-  int _seconds = 0;                              // jumlah detik yang sudah berjalan
-  Timer? _timer;                                 // objek timer — null saat idle atau paused
-  TimerState _state = TimerState.idle;           // status awal: belum mulai — menentukan tombol mana yang muncul
+  int _seconds = 0;
+  Timer? _timer;
+  TimerState _state = TimerState.idle;
 
   @override
   void initState() {
-    super.initState();                           // initState sekarang kosong — timer tidak auto-start
+    super.initState();
   }
 
   @override
   void dispose() {
-    _timer?.cancel();                            // pastikan timer berhenti saat widget dihancurkan
+    _timer?.cancel();
     super.dispose();
   }
 
-  void _start() {                                // dipanggil saat tombol Start atau Resume ditekan
-    setState(() => _state = TimerState.running); // ubah status ke running — UI akan rebuild dan tampilkan tombol Pause
-    _timer = Timer.periodic(                     // mulai timer baru
-      const Duration(seconds: 1),
-      (timer) {
-        setState(() => _seconds++);              // naikkan detik setiap tick — setState agar UI ikut update
-      },
-    );
+  void _start() {
+    setState(() => _state = TimerState.running);
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() => _seconds++);
+    });
   }
 
-  void _pause() {                                // dipanggil saat tombol Pause ditekan
-    _timer?.cancel();                            // hentikan timer — tapi _seconds tidak direset, jadi bisa dilanjut
-    setState(() => _state = TimerState.paused);  // ubah status ke paused — UI rebuild, tombol Resume muncul
+  void _pause() {
+    _timer?.cancel();
+    setState(() => _state = TimerState.paused);
   }
 
-  void _reset() {                                // dipanggil saat tombol Reset ditekan
-    _timer?.cancel();                            // hentikan timer dulu sebelum reset
+  void _reset() {
+    _timer?.cancel();
     setState(() {
-      _seconds = 0;                              // kembalikan angka ke 0
-      _state = TimerState.idle;                  // kembalikan status ke idle — tombol Start muncul lagi
+      _seconds = 0;
+      _state = TimerState.idle;
     });
   }
 
@@ -74,17 +71,14 @@ class _TimerScreenState extends State<TimerScreen> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text(
-          'TimerBox',
-          style: TextStyle(color: Colors.white),
-        ),
+        title: const Text('TimerBox', style: TextStyle(color: Colors.white)),
         centerTitle: true,
       ),
-      body: Column(                              // susun angka dan tombol secara vertikal
-        mainAxisAlignment: MainAxisAlignment.center, // pusatkan seluruh kolom ke tengah layar
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '$_seconds',                         // tampilkan detik yang sudah berjalan
+            '$_seconds',
             style: const TextStyle(
               fontSize: 80,
               fontWeight: FontWeight.bold,
@@ -92,20 +86,20 @@ class _TimerScreenState extends State<TimerScreen> {
               fontFeatures: [FontFeature.tabularFigures()],
             ),
           ),
-          const SizedBox(height: 48),            // jarak vertikal antara angka dan tombol
-          Row(                                   // susun tombol secara horizontal
-            mainAxisAlignment: MainAxisAlignment.center, // pusatkan baris tombol
+          const SizedBox(height: 48),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              if (_state == TimerState.idle) ...[          // idle: hanya tampilkan tombol Start
+              if (_state == TimerState.idle) ...[
                 _buildButton('Start', Colors.green, _start),
               ],
-              if (_state == TimerState.running) ...[       // running: tampilkan Pause dan Reset
+              if (_state == TimerState.running) ...[
                 _buildButton('Pause', Colors.orange, _pause),
-                const SizedBox(width: 16),                // jarak antar tombol
+                const SizedBox(width: 16),
                 _buildButton('Reset', Colors.red, _reset),
               ],
-              if (_state == TimerState.paused) ...[        // paused: tampilkan Resume dan Reset
-                _buildButton('Resume', Colors.green, _start), // Resume pakai _start — logikanya sama, lanjut dari _seconds sekarang
+              if (_state == TimerState.paused) ...[
+                _buildButton('Resume', Colors.green, _start),
                 const SizedBox(width: 16),
                 _buildButton('Reset', Colors.red, _reset),
               ],
@@ -116,22 +110,17 @@ class _TimerScreenState extends State<TimerScreen> {
     );
   }
 
-  Widget _buildButton(String label, Color color, VoidCallback onPressed) { // helper buat tombol agar tidak duplikasi kode
-    return ElevatedButton(                       // tombol dengan efek bayangan
-      onPressed: onPressed,                      // callback — fungsi yang dipanggil saat ditekan
+  Widget _buildButton(String label, Color color, VoidCallback onPressed) {
+    return ElevatedButton(
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: color,                  // warna latar tombol sesuai parameter
-        foregroundColor: Colors.white,           // warna teks dan ikon putih
-        padding: const EdgeInsets.symmetric(     // padding dalam tombol — supaya tidak terlalu sempit
-          horizontal: 28,
-          vertical: 14,
-        ),
-        shape: RoundedRectangleBorder(           // bentuk tombol — sudut membulat
-          borderRadius: BorderRadius.circular(12),
-        ),
+        backgroundColor: color,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 14),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
       child: Text(
-        label,                                   // teks tombol sesuai parameter
+        label,
         style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       ),
     );
