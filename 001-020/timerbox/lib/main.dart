@@ -65,6 +65,14 @@ class _TimerScreenState extends State<TimerScreen> {
     });
   }
 
+  String _formatTime() {
+    final int minutes = _seconds ~/ 60;
+    final int seconds = _seconds % 60;
+    final String mm = minutes.toString().padLeft(2, '0');
+    final String ss = seconds.toString().padLeft(2, '0');
+    return '$mm:$ss';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,12 +86,13 @@ class _TimerScreenState extends State<TimerScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '$_seconds',
+            _formatTime(),
             style: const TextStyle(
               fontSize: 80,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               fontFeatures: [FontFeature.tabularFigures()],
+              letterSpacing: 4,
             ),
           ),
           const SizedBox(height: 48),
