@@ -1,0 +1,1 @@
+enum TimerState { idle, running, paused } // tiga status timer — dipindah ke file sendiri agar bisa diimpor di mana saja
