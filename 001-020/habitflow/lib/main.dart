@@ -1,20 +1,24 @@
-import 'package:flutter/material.dart';          // impor Material Design — wajib di setiap app Flutter
+import 'package:flutter/material.dart'; // impor Material Design — wajib di setiap app Flutter
 
-void main() => runApp(const HabitFlowApp());     // titik masuk app
+void main() => runApp(const HabitFlowApp()); // titik masuk app
 
-class Habit {                                    // model data satu habit — menyimpan nama dan status selesai
-  final String title;                            // nama habit — tidak berubah setelah dibuat
-  final bool isDone;                             // status apakah habit sudah selesai hari ini
+class Habit {
+  // model data satu habit
+  final String title; // nama habit — tidak berubah setelah dibuat
+  final bool isDone; // status selesai hari ini
 
-  const Habit({                                  // constructor — semua field required agar tidak ada yang kosong
+  const Habit({
     required this.title,
-    this.isDone = false,                         // default false — habit baru selalu belum selesai
+    this.isDone = false, // default false — habit baru selalu belum selesai
   });
 
-  Habit copyWith({bool? isDone}) {               // buat salinan Habit dengan isDone yang baru — field lain tetap sama
+  Habit copyWith({bool? isDone}) {
+    // buat salinan dengan isDone baru — title tetap sama
     return Habit(
-      title: title,                              // title tidak berubah — disalin apa adanya
-      isDone: isDone ?? this.isDone,             // pakai nilai baru kalau ada, kalau tidak pakai nilai lama
+      title: title,
+      isDone:
+          isDone ??
+          this.isDone, // ?? pakai nilai lama kalau parameter tidak diisiR
     );
   }
 }
@@ -44,9 +48,9 @@ class HabitScreen extends StatefulWidget {
 }
 
 class _HabitScreenState extends State<HabitScreen> {
-  final DateTime _today = DateTime.now();        // tanggal hari ini — dipakai di header
+  final DateTime _today = DateTime.now();
 
-  List<Habit> _habits = [                        // list habit awal — pakai var bukan final karena nanti diganti saat toggle
+  List<Habit> _habits = [
     const Habit(title: 'Minum 8 gelas air'),
     const Habit(title: 'Olahraga 30 menit'),
     const Habit(title: 'Baca buku 20 menit'),
@@ -56,17 +60,46 @@ class _HabitScreenState extends State<HabitScreen> {
 
   String _formatDate(DateTime date) {
     const List<String> months = [
-      '', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
-      'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember',
+      '',
+      'Januari',
+      'Februari',
+      'Maret',
+      'April',
+      'Mei',
+      'Juni',
+      'Juli',
+      'Agustus',
+      'September',
+      'Oktober',
+      'November',
+      'Desember',
     ];
     const List<String> days = [
-      '', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu',
+      '',
+      'Senin',
+      'Selasa',
+      'Rabu',
+      'Kamis',
+      'Jumat',
+      'Sabtu',
+      'Minggu',
     ];
     return '${days[date.weekday]}, ${date.day} ${months[date.month]} ${date.year}';
   }
 
-  int get _doneCount =>                          // getter — hitung jumlah habit yang sudah selesai
-    _habits.where((h) => h.isDone).length;       // where() filter item yang memenuhi kondisi, .length hitung hasilnya
+  int get _doneCount =>
+      _habits.where((h) => h.isDone).length; // hitung habit yang sudah selesai
+
+  void _toggleHabit(int index) {
+    // toggle status habit di posisi index
+    setState(() {
+      _habits[index] = _habits[index].copyWith(
+        // ganti item di index dengan salinan baru
+        isDone: !_habits[index]
+            .isDone, // balik nilai boolean — true jadi false, false jadi true
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,36 +131,48 @@ class _HabitScreenState extends State<HabitScreen> {
               ),
               const SizedBox(height: 8),
               Text(
-                '$_doneCount dari ${_habits.length} selesai', // hitung dinamis dari list — bukan hardcode "0 dari 0"
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey.shade500,
-                ),
+                '$_doneCount dari ${_habits.length} selesai', // update otomatis setiap setState
+                style: TextStyle(fontSize: 14, color: Colors.grey.shade500),
               ),
-              const SizedBox(height: 24),        // jarak antara header dan list
-              Expanded(                          // beri sisa tinggi layar ke ListView
+              const SizedBox(height: 24),
+              Expanded(
                 child: ListView.builder(
-                  itemCount: _habits.length,     // jumlah item = jumlah habit
+                  itemCount: _habits.length,
                   itemBuilder: (context, index) {
-                    final Habit habit = _habits[index]; // ambil habit di posisi index
-                    return Card(                 // Card memberi efek bayangan tipis dan sudut membulat
-                      margin: const EdgeInsets.only(bottom: 8), // jarak antar card
+                    final Habit habit = _habits[index];
+                    return Card(
+                      margin: const EdgeInsets.only(bottom: 8),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: CheckboxListTile(   // list tile dengan checkbox bawaan — lebih praktis dari Row manual
-                        value: habit.isDone,     // status checkbox — true=centang, false=kosong
-                        onChanged: null,         // null = tidak bisa ditekan — interaksi menyusul di Part 3
+                      child: CheckboxListTile(
+                        value: habit.isDone,
+                        onChanged: (bool? value) => _toggleHabit(
+                          index,
+                        ), // aktif — panggil toggle saat ditekan
                         title: Text(
-                          habit.title,           // nama habit sebagai label utama
-                          style: const TextStyle(
+                          habit.title,
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w500,
+                            decoration:
+                                habit
+                                    .isDone // coret teks kalau sudah selesai
+                                ? TextDecoration.lineThrough
+                                : null, // null = tidak ada dekorasi
+                            color: habit.isDone
+                                ? Colors
+                                      .grey
+                                      .shade400 // abu-abu kalau selesai — terasa "mundur"
+                                : const Color(
+                                    0xFF1A1A1A,
+                                  ), // gelap kalau belum — lebih menonjol
                           ),
                         ),
-                        activeColor: Colors.teal, // warna centang dan kotak saat isDone=true
+                        activeColor:
+                            Colors.teal, // warna centang saat isDone=true
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12), // sudut card dan tile harus sama
+                          borderRadius: BorderRadius.circular(12),
                         ),
                       ),
                     );
