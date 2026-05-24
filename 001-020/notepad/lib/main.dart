@@ -2,36 +2,36 @@ import 'package:flutter/material.dart';          // impor Material Design — wa
 
 void main() => runApp(const NotepadApp());       // titik masuk app
 
-class NotepadApp extends StatelessWidget {       // root widget — hanya konfigurasi, tidak ada logika
+class NotepadApp extends StatelessWidget {
   const NotepadApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Notepad',
-      debugShowCheckedModeBanner: false,          // hilangkan banner DEBUG
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo), // tema indigo — kesan serius dan fokus
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
         useMaterial3: true,
       ),
-      home: const NoteListScreen(),              // layar pertama: daftar catatan
+      home: const NoteListScreen(),
     );
   }
 }
 
 class Note {                                     // model data satu catatan
-  final String title;                            // judul catatan — ditampilkan di list
-  final String body;                             // isi catatan — ditampilkan di layar detail
-  final DateTime createdAt;                      // waktu dibuat — dipakai untuk urutan dan preview
+  final String title;
+  final String body;
+  final DateTime createdAt;
 
-  Note({                                         // constructor — createdAt otomatis kalau tidak diisi
+  Note({
     required this.title,
     required this.body,
     DateTime? createdAt,
   }) : createdAt = createdAt ?? DateTime.now();  // initializer list — set createdAt sebelum body constructor
 }
 
-class NoteListScreen extends StatefulWidget {    // layar daftar — StatefulWidget karena list akan berubah
+class NoteListScreen extends StatefulWidget {
   const NoteListScreen({super.key});
 
   @override
@@ -39,7 +39,7 @@ class NoteListScreen extends StatefulWidget {    // layar daftar — StatefulWid
 }
 
 class _NoteListScreenState extends State<NoteListScreen> {
-  final List<Note> _notes = [                    // list catatan awal — data statis untuk tampilan awal
+  final List<Note> _notes = [
     Note(
       title: 'Ide Proyek Flutter',
       body: 'Buat app timer, habit tracker, dan notepad dalam 365 hari.',
@@ -54,42 +54,49 @@ class _NoteListScreenState extends State<NoteListScreen> {
     ),
   ];
 
-  String _preview(String body) {                 // potong isi catatan untuk ditampilkan di list — max 60 karakter
-    if (body.length <= 60) return body;          // kalau pendek, tampilkan semua
-    return '${body.substring(0, 60)}...';        // kalau panjang, potong dan tambah "..."
+  String _preview(String body) {
+    if (body.length <= 60) return body;
+    return '${body.substring(0, 60)}...';
+  }
+
+  void _openNote(BuildContext context, int index) {    // buka layar detail untuk catatan di index ini
+    Navigator.push(                                    // push: tambah layar baru di atas stack navigasi
+      context,                                         // context diperlukan Navigator untuk tahu di mana posisi kita
+      MaterialPageRoute(                               // bungkus layar dalam route dengan animasi slide bawaan Material
+        builder: (context) => NoteDetailScreen(        // buat NoteDetailScreen dan oper catatan yang dipilih
+          note: _notes[index],                         // kirim objek Note ke layar detail lewat constructor
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8), // putih keabu-abuan — lebih lembut dari putih murni
+      backgroundColor: const Color(0xFFF8F8F8),
       appBar: AppBar(
-        backgroundColor: Colors.indigo,          // header indigo — konsisten dengan tema
+        backgroundColor: Colors.indigo,
         title: const Text(
           'Catatan',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        elevation: 0,                            // hilangkan bayangan AppBar — tampilan lebih flat dan modern
+        elevation: 0,
       ),
-      body: ListView.separated(                  // separated: otomatis tambah divider antar item
-        padding: const EdgeInsets.all(16),       // padding di luar list
+      body: ListView.separated(
+        padding: const EdgeInsets.all(16),
         itemCount: _notes.length,
-        separatorBuilder: (context, index) =>    // widget yang muncul di antara setiap dua item
-            const SizedBox(height: 8),           // jarak 8px antar card — lebih rapi dari divider garis
+        separatorBuilder: (context, index) => const SizedBox(height: 8),
         itemBuilder: (context, index) {
           final Note note = _notes[index];
           return Card(
-            elevation: 1,                        // bayangan tipis — memberi kesan card mengambang
+            elevation: 1,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
-            child: ListTile(                     // tile standar dengan judul, subjudul, dan aksi
+            child: ListTile(
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
-                vertical: 8,                     // padding vertikal lebih besar agar tile tidak terlalu sempit
+                vertical: 8,
               ),
               title: Text(
                 note.title,
@@ -97,31 +104,71 @@ class _NoteListScreenState extends State<NoteListScreen> {
                   fontWeight: FontWeight.w600,
                   fontSize: 16,
                 ),
-                maxLines: 1,                     // judul satu baris — potong kalau terlalu panjang
-                overflow: TextOverflow.ellipsis, // tampilkan "..." kalau terpotong
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text(
-                _preview(note.body),             // preview isi — dipotong max 60 karakter
-                style: TextStyle(
-                  color: Colors.grey.shade600,
-                  fontSize: 13,
-                ),
+                _preview(note.body),
+                style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
-              trailing: const Icon(             // ikon panah di kanan — sinyal visual "bisa dibuka"
-                Icons.chevron_right,
-                color: Colors.grey,
-              ),
+              trailing: const Icon(Icons.chevron_right, color: Colors.grey),
+              onTap: () => _openNote(context, index),  // tap card → buka layar detail
             ),
           );
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},                        // belum ada aksi — navigasi menyusul di Part 2
+        onPressed: () {},                              // tambah catatan menyusul di Part 3
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
         child: const Icon(Icons.add),
+      ),
+    );
+  }
+}
+
+class NoteDetailScreen extends StatelessWidget {      // layar detail — StatelessWidget karena hanya tampilkan data
+  final Note note;                                    // catatan yang akan ditampilkan — diterima dari NoteListScreen
+
+  const NoteDetailScreen({                            // constructor — note wajib diisi
+    super.key,
+    required this.note,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFF8F8F8),
+      appBar: AppBar(
+        backgroundColor: Colors.indigo,
+        leading: IconButton(                          // tombol back kustom di kiri AppBar
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.pop(context),   // pop: kembali ke layar sebelumnya (NoteListScreen)
+        ),
+        title: Text(
+          note.title,                                // judul catatan sebagai judul AppBar
+          style: const TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,           // potong judul panjang di AppBar
+        ),
+        elevation: 0,
+      ),
+      body: SingleChildScrollView(                   // scroll jika isi catatan sangat panjang
+        padding: const EdgeInsets.all(24),
+        child: Text(
+          note.body,                                 // tampilkan isi catatan lengkap — tanpa batas maxLines
+          style: const TextStyle(
+            fontSize: 16,
+            height: 1.6,                            // jarak antar baris 1.6× ukuran font — lebih mudah dibaca
+            color: Color(0xFF2A2A2A),
+          ),
+        ),
       ),
     );
   }
