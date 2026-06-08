@@ -30,7 +30,7 @@ class AppRouter {
         builder: (context, state) {
           final chapterIdStr = state.pathParameters['chapterId'] ?? '1';
           final chapterId = int.tryParse(chapterIdStr) ?? 1;
-          final repo = ChapterRepository();
+          const repo = ChapterRepository();
           final chapter = repo.getChapterById(chapterId);
           if (chapter == null) {
             return const HomeScreen();

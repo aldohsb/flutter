@@ -30,7 +30,7 @@ class ReadingScreen extends StatefulWidget {
 class _ReadingScreenState extends State<ReadingScreen> {
   late PageController _pageController;
   late int _currentIndex;
-  bool _isAnimating = false;
+  final bool _isAnimating = false;
   late ChapterProgress _progress;
   bool _showCelebration = false;
 
@@ -344,14 +344,14 @@ class _CelebrationOverlay extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.star_rounded,
+                  Icon(Icons.star_rounded,
                       color: AppColors.starFilled, size: 32),
-                  const Icon(Icons.star_rounded,
+                  Icon(Icons.star_rounded,
                       color: AppColors.starFilled, size: 32),
-                  const Icon(Icons.star_rounded,
+                  Icon(Icons.star_rounded,
                       color: AppColors.starFilled, size: 32),
                 ],
               )

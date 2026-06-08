@@ -76,7 +76,7 @@ class ProgressBadge extends StatelessWidget {
                   child: LinearProgressIndicator(
                     value: progress,
                     backgroundColor: AppColors.starEmpty,
-                    valueColor: AlwaysStoppedAnimation<Color>(
+                    valueColor: const AlwaysStoppedAnimation<Color>(
                       AppColors.secondary,
                     ),
                     minHeight: 8,
