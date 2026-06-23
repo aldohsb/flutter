@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'data/models/chapter_model.dart';
 import 'data/repositories/chapter_repository.dart';
 import 'features/home/screens/home_screen.dart';
 import 'features/reading/screens/reading_screen.dart';

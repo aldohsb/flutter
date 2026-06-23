@@ -360,7 +360,7 @@ class _ToggleScreenState extends State<ToggleScreen> {
               Switch(                                              // widget toggle bawaan Flutter
                 value: value,                                      // status saat ini — true = aktif, false = nonaktif
                 onChanged: onChanged,                              // fungsi yang dipanggil saat user menggeser
-                activeColor: accentColor,                          // warna thumb (lingkaran) saat aktif
+                activeThumbColor: accentColor,                          // warna thumb (lingkaran) saat aktif
                 activeTrackColor: accentColor.withOpacity(0.30),   // warna track (latar) saat aktif
               ),
             ],

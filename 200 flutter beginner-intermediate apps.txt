@@ -4,7 +4,7 @@ Judul :
 
 
 UI/UX standart profesional, designer grade.
-Terapkan modular programming, dan setiap file di tulis di masing-masing artifact agar mudah di copy. pastikan tidak ada missing import di setiap file.
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing artifact agar mudah di copy. pastikan tidak ada missing import di setiap file.
 jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
 mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
@@ -12,18 +12,19 @@ tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 nama proyek pakai snake case
 
 
-code dalam artifact lengkap dengan penjelasan detail dan lengkap setiap code dalam bentuk komentar, penjelasan level pemula, jelaskan logika algoritmanya, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya
+code dalam artifact lengkap dengan penjelasan singkat setiap code dalam bentuk komentar, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya, komentar selalu di atas code yang dijelaskan, jangan di bawahnya
 
-buat code dalam beberapa tahap dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
+buat code dalam beberapa 10-15 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
+setiap tahap harus sudah bisa langsung dilihat hasilnya.
+
+mulai dari tahap 1 dulu, sertakan juga 1 dokumen khusus di artifact, penjelasan code level pemula, jelaskan logika algoritmanya dan pengetahuan penting lainnya
 
 
-kalau terlalu panjang bagi proyek menjadi beberapa part tapi setiap part bisa langsung di lihat hasilnya, agar segera bisa di fix  kalau ada error, kemudian lanjut dengan  part selanjutnya di chat berikutnya.
 
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 200 PROYEK FLUTTER
 
-í ½í³± 200 PROYEK FLUTTER
-
-í ½í¿¢ BEGINNER (1â€“80)
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ BEGINNER (1â€“80)
 
 1.
 App name: moodly
@@ -505,7 +506,7 @@ Deskripsi: Buat sesi belajar dengan interval, misal 5 menit baca lalu 1 menit re
 Teknologi: flutter_local_notifications, Provider
 Tema UI: Dark Neon â€“ progress bar neon
 
-í ½í¿¡ INTERMEDIATE (81â€“200)
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ INTERMEDIATE (81â€“200)
 
 81.
 App name: pixlboard
