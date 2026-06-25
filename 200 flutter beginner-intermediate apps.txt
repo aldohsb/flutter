@@ -12,7 +12,7 @@ tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 nama proyek pakai snake case
 
 
-code dalam artifact lengkap dengan penjelasan singkat setiap code dalam bentuk komentar, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya, komentar selalu di atas code yang dijelaskan, jangan di bawahnya
+code dalam artifact lengkap dengan penjelasan singkat setiap code dalam bentuk komentar, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya, komentar wajib selalu di bawah code yang dijelaskan, jangan di atasnya
 
 buat code dalam beberapa 10-15 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter

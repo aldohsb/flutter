@@ -1,31 +1,17 @@
-// ============================================================
-// main.dart (Part 4 update)
-// Demo interaktif StorageService:
-// - Simpan mood ke SharedPreferences
-// - Baca kembali dari storage
-// - Hapus entri
-// - Lihat info storage
-// Semua operasi REAL menggunakan SharedPreferences sungguhan!
-// ============================================================
-
+// lib/main.dart (Part 6 update)
+// Showcase semua clay widget yang baru dibuat.
+// Tidak ada Provider di sini — kita fokus pada tampilan widget.
 import 'package:flutter/material.dart';
 
 import 'package:moodly/theme/app_theme.dart';
 import 'package:moodly/theme/app_colors.dart';
 import 'package:moodly/theme/app_text_styles.dart';
-import 'package:moodly/models/mood_entry.dart';
-import 'package:moodly/utils/mood_constants.dart';
-import 'package:moodly/utils/date_formatter.dart';
 
-// Import service baru yang kita buat di Part 4
-import 'package:moodly/services/storage_service.dart';
+// Import widget clay yang baru dibuat
+import 'package:moodly/widgets/clay_button.dart';
+import 'package:moodly/widgets/clay_card.dart';
 
 void main() {
-  // WidgetsFlutterBinding.ensureInitialized() WAJIB dipanggil sebelum
-  // kode async di main(). Ini menginisialisasi binding Flutter
-  // agar plugin (SharedPreferences) bisa bekerja.
-  WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MoodlyApp());
 }
 
@@ -38,445 +24,288 @@ class MoodlyApp extends StatelessWidget {
       title: 'Moodly',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const StorageDemoScreen(),
+      home: const ClayShowcaseScreen(),
     );
   }
 }
 
-// ============================================================
-// StorageDemoScreen – Demo CRUD StorageService
-// C = Create (tambah mood)
-// R = Read (baca semua mood)
-// U = Update (tidak di-demo tapi ada di service)
-// D = Delete (hapus mood)
-// ============================================================
-class StorageDemoScreen extends StatefulWidget {
-  const StorageDemoScreen({super.key});
+class ClayShowcaseScreen extends StatefulWidget {
+  const ClayShowcaseScreen({super.key});
 
   @override
-  State<StorageDemoScreen> createState() => _StorageDemoScreenState();
+  State<ClayShowcaseScreen> createState() => _ClayShowcaseScreenState();
 }
 
-class _StorageDemoScreenState extends State<StorageDemoScreen> {
-  // Instance StorageService – satu instance untuk seluruh screen
-  final StorageService _storage = StorageService();
-
-  // State: daftar mood yang sudah dimuat dari storage
-  List<MoodEntry> _entries = [];
-
-  // State: status loading (saat operasi async sedang berjalan)
+class _ClayShowcaseScreenState extends State<ClayShowcaseScreen> {
   bool _isLoading = false;
+  String _lastTapped = '(belum ada)';
 
-  // State: pesan log operasi terakhir
-  String _logMessage = 'Tap tombol untuk mulai operasi storage';
-
-  // State: mood yang dipilih untuk ditambahkan
-  MoodEmoji? _selectedMood;
-
-  // ============================================================
-  // initState() – dipanggil SEKALI saat widget pertama dibuat
-  // Tempat yang tepat untuk load data awal
-  // ============================================================
-  @override
-  void initState() {
-    super.initState(); // Wajib panggil super.initState() pertama
-    // Load data dari storage saat screen pertama muncul
-    _loadEntries();
-    // Simpan tanggal buka app
-    _storage.saveLastOpenedDate();
-  }
-
-  // ============================================================
-  // OPERASI ASYNC – semua method yang menyentuh storage
-  // ============================================================
-
-  // Load semua entries dari storage
-  Future<void> _loadEntries() async {
-    // setState dengan isLoading = true → tampilkan loading indicator
+  void _simulateLoading() async {
     setState(() => _isLoading = true);
-
-    // await = tunggu sampai Future selesai
-    final entries = await _storage.loadMoods();
-
-    // setState lagi untuk update UI dengan data baru
+    await Future.delayed(const Duration(seconds: 2));
+    // Future.delayed = tunggu N durasi tanpa melakukan apa-apa (simulasi proses)
     setState(() {
-      _entries = entries;
       _isLoading = false;
-      _logMessage = '✅ Loaded ${entries.length} entries dari storage';
+      _lastTapped = 'Loading button';
     });
   }
 
-  // Tambah mood baru ke storage
-  Future<void> _addMood() async {
-    // Guard: tidak bisa tambah jika belum pilih mood
-    if (_selectedMood == null) {
-      setState(() => _logMessage = '⚠️ Pilih emoji mood dulu!');
-      return;
-    }
-
-    setState(() => _isLoading = true);
-
-    // Buat MoodEntry baru menggunakan factory constructor
-    final newEntry = MoodEntry.create(
-      mood: _selectedMood!,
-      note: 'Demo entry – ${DateFormatter.formatTime(DateTime.now())}',
-    );
-
-    // Simpan ke storage via service
-    final saved = await _storage.addMood(newEntry);
-
-    if (saved != null) {
-      // Reload untuk menampilkan data terbaru
-      await _loadEntries();
-      setState(() {
-        _logMessage =
-            '✅ Mood "${newEntry.label}" berhasil disimpan! ID: ${newEntry.id}';
-        _selectedMood = null; // Reset pilihan setelah simpan
-      });
-    } else {
-      setState(() {
-        _isLoading = false;
-        _logMessage = '❌ Gagal menyimpan mood!';
-      });
-    }
-  }
-
-  // Hapus satu entry dari storage
-  Future<void> _deleteEntry(MoodEntry entry) async {
-    setState(() => _isLoading = true);
-
-    final success = await _storage.deleteMood(entry.id);
-
-    if (success) {
-      await _loadEntries();
-      setState(() {
-        _logMessage = '🗑️ Entry "${entry.label}" berhasil dihapus';
-      });
-    } else {
-      setState(() {
-        _isLoading = false;
-        _logMessage = '❌ Gagal menghapus entry!';
-      });
-    }
-  }
-
-  // Hapus semua data
-  Future<void> _clearAll() async {
-    // Konfirmasi dulu via dialog
-    final confirm = await showDialog<bool>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Hapus Semua?'),
-        content: const Text('Semua data mood akan dihapus permanen.'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, false),
-            child: const Text('Batal'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, true),
-            child: const Text('Hapus', style: TextStyle(color: Colors.red)),
-          ),
-        ],
-      ),
-    );
-
-    // Jika user tap "Batal" atau dismiss dialog, confirm = null atau false
-    if (confirm != true) return;
-
-    setState(() => _isLoading = true);
-    await _storage.clearAllMoods();
-    await _loadEntries();
-    setState(() => _logMessage = '🗑️ Semua data dihapus');
-  }
-
-  // ============================================================
-  // BUILD – UI utama
-  // ============================================================
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('💾 Part 4 – Storage Demo'),
-        // actions = widget di kanan AppBar
-        actions: [
-          // Tombol refresh
-          IconButton(
-            icon: const Icon(Icons.refresh_rounded),
-            onPressed: _loadEntries,
-            tooltip: 'Reload dari storage',
-          ),
-        ],
+        title: const Text('🎨 Part 6 – Clay Widgets'),
       ),
-      body: Column(
-        children: [
-          // ====================================================
-          // LOG MESSAGE – Pesan status operasi terakhir
-          // ====================================================
-          AnimatedContainer(
-            duration: const Duration(milliseconds: 300),
-            width: double.infinity, // Lebar penuh
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-            color: AppColors.surfaceSecondary,
-            child: Text(
-              _logMessage,
-              style: AppTextStyles.bodyMedium.copyWith(
-                color: AppColors.textSecondary,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+
+            // ================================================
+            // SECTION 1: ClayButton variants
+            // ================================================
+            Text('ClayButton – Semua Varian', style: AppTextStyles.headlineLarge),
+            const SizedBox(height: 16),
+
+            // Tombol pink penuh - ukuran full width
+            ClayButton(
+              label: 'Simpan Mood Hari Ini',
+              icon: Icons.favorite_rounded,
+              color: AppColors.pink,
+              shadowColor: AppColors.pinkShadow,
+              width: double.infinity,
+              onPressed: () => setState(() => _lastTapped = 'Pink full-width'),
+            ),
+            const SizedBox(height: 12),
+
+            // Baris dua tombol berdampingan
+            Row(
+              children: [
+                Expanded(
+                  child: ClayButton(
+                    label: 'Lihat Chart',
+                    icon: Icons.bar_chart_rounded,
+                    color: AppColors.lavender,
+                    shadowColor: AppColors.lavenderShadow,
+                    onPressed: () => setState(() => _lastTapped = 'Lavender'),
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: ClayButton(
+                    label: 'Riwayat',
+                    icon: Icons.history_rounded,
+                    color: AppColors.mint,
+                    shadowColor: AppColors.mintShadow,
+                    onPressed: () => setState(() => _lastTapped = 'Mint'),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+
+            // Tombol dengan state loading
+            ClayButton(
+              label: _isLoading ? 'Menyimpan...' : 'Simulasi Loading',
+              icon: Icons.sync_rounded,
+              color: AppColors.peach,
+              shadowColor: AppColors.peachShadow,
+              width: double.infinity,
+              isLoading: _isLoading,
+              onPressed: _simulateLoading,
+            ),
+            const SizedBox(height: 12),
+
+            // Tombol nonaktif (disabled) — onPressed: null
+            ClayButton(
+              label: 'Tombol Nonaktif',
+              color: AppColors.pink,
+              shadowColor: AppColors.pinkShadow,
+              width: double.infinity,
+              onPressed: null,
+              // onPressed null = tombol abu-abu & tidak merespons tap
+            ),
+
+            const SizedBox(height: 8),
+            // Feedback teks yang terakhir ditekan
+            Center(
+              child: Text(
+                'Terakhir ditekan: $_lastTapped',
+                style: AppTextStyles.bodySmall,
               ),
             ),
-          ),
 
-          // ====================================================
-          // PANEL TAMBAH MOOD
-          // ====================================================
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Pilih mood & simpan:', style: AppTextStyles.headlineSmall),
-                const SizedBox(height: 12),
+            const SizedBox(height: 32),
+            const Divider(),
+            const SizedBox(height: 24),
 
-                // Baris emoji pilihan
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: MoodConstants.allMoods.map((config) {
-                    final isSelected = _selectedMood == config.mood;
-                    return GestureDetector(
-                      onTap: () => setState(() => _selectedMood = config.mood),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 150),
-                        width: isSelected ? 58 : 50,
-                        height: isSelected ? 58 : 50,
-                        decoration: BoxDecoration(
-                          color: config.color,
-                          shape: BoxShape.circle,
-                          boxShadow: [
-                            BoxShadow(
-                              color: config.shadowColor,
-                              offset: Offset(0, isSelected ? 6 : 4),
-                              blurRadius: 0,
-                            ),
-                          ],
-                        ),
-                        child: Center(
-                          child: Text(
-                            config.emoji,
-                            style: TextStyle(fontSize: isSelected ? 28 : 22),
-                          ),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
+            // ================================================
+            // SECTION 2: ClayCard
+            // ================================================
+            Text('ClayCard – Container Fleksibel', style: AppTextStyles.headlineLarge),
+            const SizedBox(height: 16),
 
-                const SizedBox(height: 12),
+            // ClayCard biasa dengan konten
+            ClayCard(
+              color: AppColors.surfaceSecondary,
+              shadowColor: AppColors.cardShadow,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('😊 Senang', style: AppTextStyles.headlineMedium),
+                  const SizedBox(height: 4),
+                  Text('Hari ini terasa menyenangkan sekali.',
+                      style: AppTextStyles.bodyMedium),
+                  const SizedBox(height: 8),
+                  Text('Senin, 23 Juni 2026 · 08:30',
+                      style: AppTextStyles.bodySmall),
+                ],
+              ),
+            ),
+            const SizedBox(height: 12),
 
-                // Tombol simpan – hanya aktif jika ada pilihan
-                SizedBox(
-                  width: double.infinity,
-                  child: GestureDetector(
-                    onTap: _isLoading ? null : _addMood,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 150),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
-                      decoration: BoxDecoration(
-                        // Warna abu-abu jika loading/tidak ada pilihan
-                        color: _selectedMood != null
-                            ? AppColors.pink
-                            : AppColors.border,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: _selectedMood != null
-                                ? AppColors.pinkShadow
-                                : AppColors.textHint,
-                            offset: const Offset(0, 5),
-                            blurRadius: 0,
-                          ),
-                        ],
-                      ),
-                      child: Center(
-                        child: Text(
-                          _isLoading ? 'Menyimpan...' : '💾 Simpan ke Storage',
-                          style: AppTextStyles.labelLarge,
-                        ),
-                      ),
+            // ClayCard yang bisa ditekan (onTap)
+            ClayCard(
+              color: AppColors.pinkHighlight,
+              shadowColor: AppColors.cardShadow,
+              onTap: () => setState(() => _lastTapped = 'ClayCard tappable'),
+              child: Row(
+                children: [
+                  ClayContainer(
+                    color: AppColors.pink,
+                    shadowColor: AppColors.pinkShadow,
+                    borderRadius: 14,
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text('🥰', style: TextStyle(fontSize: 28)),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ),
-
-          const Divider(height: 1),
-
-          // ====================================================
-          // HEADER DAFTAR + TOMBOL CLEAR
-          // ====================================================
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Dari Storage (${_entries.length} entries):',
-                  style: AppTextStyles.headlineSmall,
-                ),
-                // Tampilkan tombol "Hapus Semua" hanya jika ada data
-                if (_entries.isNotEmpty)
-                  TextButton(
-                    onPressed: _clearAll,
-                    child: Text(
-                      'Hapus Semua',
-                      style: AppTextStyles.bodyMedium.copyWith(
-                        color: Colors.red.shade400,
-                      ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Tap untuk buka detail',
+                            style: AppTextStyles.headlineSmall),
+                        Text('ClayCard dengan onTap callback',
+                            style: AppTextStyles.bodySmall),
+                      ],
                     ),
                   ),
-              ],
+                  Icon(Icons.chevron_right_rounded,
+                      color: AppColors.textHint),
+                ],
+              ),
             ),
-          ),
 
-          // ====================================================
-          // LIST ENTRIES – hasil baca dari storage
-          // ====================================================
-          Expanded(
-            // Expanded = mengisi sisa ruang vertikal
-            child: _isLoading
-                // Tampilkan loading spinner saat operasi berlangsung
-                ? const Center(child: CircularProgressIndicator())
-                : _entries.isEmpty
-                    // Tampilkan pesan kosong jika tidak ada data
-                    ? _buildEmptyState()
-                    // Tampilkan list jika ada data
-                    : ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        // itemCount = jumlah item dalam list
-                        itemCount: _entries.length,
-                        // itemBuilder dipanggil untuk setiap item
-                        // index = posisi item (0, 1, 2, ...)
-                        itemBuilder: (context, index) {
-                          final entry = _entries[index];
-                          return _EntryCard(
-                            entry: entry,
-                            // Kirim callback untuk hapus
-                            onDelete: () => _deleteEntry(entry),
-                          );
-                        },
-                      ),
-          ),
-        ],
-      ),
-    );
-  }
+            const SizedBox(height: 32),
+            const Divider(),
+            const SizedBox(height: 24),
 
-  // Widget saat list kosong
-  Widget _buildEmptyState() {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text('📭', style: TextStyle(fontSize: 48)),
-          const SizedBox(height: 12),
-          Text(
-            'Belum ada data di storage',
-            style: AppTextStyles.bodyMedium,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Pilih mood dan tap "Simpan" untuk mencoba',
-            style: AppTextStyles.bodySmall,
-          ),
-        ],
-      ),
-    );
-  }
-}
+            // ================================================
+            // SECTION 3: ClayChip
+            // ================================================
+            Text('ClayChip – Label & Tag', style: AppTextStyles.headlineLarge),
+            const SizedBox(height: 16),
 
-// ============================================================
-// Widget _EntryCard – Satu kartu entri mood di list
-// ============================================================
-class _EntryCard extends StatelessWidget {
-  final MoodEntry entry;
-  final VoidCallback onDelete;
-
-  const _EntryCard({
-    required this.entry,
-    required this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: AppColors.border),
-        boxShadow: [
-          BoxShadow(
-            color: AppColors.cardShadow,
-            blurRadius: 8,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          // Lingkaran emoji
-          Container(
-            width: 44,
-            height: 44,
-            decoration: BoxDecoration(
-              color: AppColors.moodColors[entry.colorIndex],
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.moodShadowColors[entry.colorIndex],
-                  offset: const Offset(0, 3),
-                  blurRadius: 0,
-                ),
-              ],
-            ),
-            child: Center(
-              child: Text(entry.emoji,
-                  style: const TextStyle(fontSize: 22)),
-            ),
-          ),
-          const SizedBox(width: 12),
-
-          // Data entry
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Wrap(
+              // Wrap = seperti Row tapi otomatis pindah baris jika penuh
+              spacing: 10,
+              // spacing = jarak horizontal antar chip
+              runSpacing: 10,
+              // runSpacing = jarak vertikal antar baris
               children: [
-                Text(entry.label, style: AppTextStyles.headlineSmall),
-                Text(
-                  DateFormatter.formatRelative(entry.date),
-                  style: AppTextStyles.bodySmall,
+                ClayChip(
+                  label: 'Senang',
+                  color: AppColors.mint,
+                  shadowColor: AppColors.mintShadow,
+                  leading: const Text('😊',
+                      style: TextStyle(fontSize: 16)),
                 ),
-                // Tampilkan note jika ada
-                if (entry.hasNote)
-                  Text(
-                    entry.note,
-                    style: AppTextStyles.bodySmall,
-                    // Batasi 1 baris, sisanya "..."
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                ClayChip(
+                  label: 'Minggu Ini',
+                  color: AppColors.lavender,
+                  shadowColor: AppColors.lavenderShadow,
+                  leading: const Icon(Icons.date_range_rounded,
+                      size: 16, color: AppColors.textOnClay),
+                ),
+                ClayChip(
+                  label: 'Skor: 4.2',
+                  color: AppColors.lemon,
+                  shadowColor: AppColors.lemonShadow,
+                  leading: const Icon(Icons.star_rounded,
+                      size: 16, color: AppColors.textOnClay),
+                ),
+                ClayChip(
+                  label: '7 Entri',
+                  color: AppColors.skyBlue,
+                  shadowColor: AppColors.skyBlueShadow,
+                ),
+                ClayChip(
+                  label: 'Hapus Filter',
+                  color: AppColors.pink,
+                  shadowColor: AppColors.pinkShadow,
+                  leading: const Icon(Icons.close_rounded,
+                      size: 14, color: AppColors.textOnClay),
+                ),
               ],
             ),
-          ),
 
-          // Tombol hapus
-          IconButton(
-            icon: const Icon(Icons.delete_outline_rounded),
-            color: AppColors.textHint,
-            onPressed: onDelete,
-          ),
-        ],
+            const SizedBox(height: 32),
+            const Divider(),
+            const SizedBox(height: 24),
+
+            // ================================================
+            // SECTION 4: ClayContainer — elemen bebas
+            // ================================================
+            Text('ClayContainer – Elemen Bebas', style: AppTextStyles.headlineLarge),
+            const SizedBox(height: 16),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                // Lingkaran clay besar (mood indicator)
+                ClayContainer(
+                  color: AppColors.pink,
+                  shadowColor: AppColors.pinkShadow,
+                  borderRadius: 50,
+                  shadowDepth: 8,
+                  child: const Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text('😊', style: TextStyle(fontSize: 40)),
+                  ),
+                ),
+
+                // Kotak clay medium
+                ClayContainer(
+                  color: AppColors.mint,
+                  shadowColor: AppColors.mintShadow,
+                  borderRadius: 20,
+                  shadowDepth: 5,
+                  child: const Padding(
+                    padding: EdgeInsets.all(16),
+                    child: Text('🥰', style: TextStyle(fontSize: 32)),
+                  ),
+                ),
+
+                // Kotak clay kecil
+                ClayContainer(
+                  color: AppColors.lemon,
+                  shadowColor: AppColors.lemonShadow,
+                  borderRadius: 14,
+                  shadowDepth: 4,
+                  child: const Padding(
+                    padding: EdgeInsets.all(12),
+                    child: Text('😐', style: TextStyle(fontSize: 24)),
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 40),
+          ],
+        ),
       ),
     );
   }
