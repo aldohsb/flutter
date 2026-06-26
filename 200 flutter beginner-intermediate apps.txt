@@ -1,5 +1,5 @@
 ﻿Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows di bawah ini, 
-Judul : 
+
 
 
 
@@ -9,1221 +9,1681 @@ jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang pal
 mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
 tidak usah pakai demo tampilan, tidak usah pakai README.MD,
-nama proyek pakai snake case
-
 
 code dalam artifact lengkap dengan penjelasan singkat setiap code dalam bentuk komentar, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya, komentar wajib selalu di bawah code yang dijelaskan, jangan di atasnya
 
-buat code dalam beberapa 10-15 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
+buat code dalam beberapa 3 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
 setiap tahap harus sudah bisa langsung dilihat hasilnya.
 
-mulai dari tahap 1 dulu, sertakan juga 1 dokumen khusus di artifact, penjelasan code level pemula, jelaskan logika algoritmanya dan pengetahuan penting lainnya
+mulai dari tahap 1 dulu, sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya dan pengetahuan penting lainnya
 
+
+001-050 => beginner => 200-300 lines code => 3 part
+051-100 => upper beginner => 300-500 lines code => 5 part
+101-130 => lower intermediate => 500-700 lines code => 7 part
+131-160 => intermediate => 700-1000 lines code => 10 part
+161-180 => upper intermediate => 1000-2000 lines code => 15 part
+181-200 => advance => 2000-5000 lines code => 20 part
+
+beginner
+upper beginner
+lower intermediate
+intermediate
+upper intermediate
+advance
 
 
 ������ 200 PROYEK FLUTTER
 
-������ BEGINNER (1–80)
-
-1.
-App name: moodly
-Deskripsi: Pencatat mood harian dengan emoji, user pilih emoji yang merepresentasikan perasaan mereka hari ini lalu simpan catatannya
-Teknologi: SharedPreferences, fl_chart
-Tema UI: Claymorphism – warna pastel, tombol 3D clay
-
-2.
-App name: tiply
-Deskripsi: Kalkulator tip restoran dengan opsi split bill untuk beberapa orang, bisa atur persentase tip custom
-Teknologi: Flutter math, TextEditingController
-Tema UI: Brutalism – border hitam tebal, warna kuning cerah
-
-3.
-App name: quotra
-Deskripsi: App tampilan quote harian inspiratif dengan animasi swipe, bisa simpan favorit dan share ke media sosial
-Teknologi: http, SharedPreferences, share_plus
-Tema UI: Aurora Gradient – teks putih di atas gradien dinamis
-
-4.
-App name: drinqua
-Deskripsi: Pengingat minum air harian, user set target liter per hari, tap tombol setiap minum segelas
-Teknologi: flutter_local_notifications, SharedPreferences
-Tema UI: Glassmorphism – gelembung air, latar biru jernih
-
-5.
-App name: fokusly
-Deskripsi: Timer Pomodoro sederhana dengan sesi kerja 25 menit dan istirahat 5 menit, ada notifikasi dan statistik sesi
-Teknologi: flutter_local_notifications, Provider
-Tema UI: Dark Neon – ring timer berwarna neon hijau
-
-6.
-App name: grocio
-Deskripsi: App daftar belanja dengan kategori (sayur, buah, daging), bisa centang item yang sudah dibeli
-Teknologi: Hive, flutter_slidable
-Tema UI: Paper/Skeuomorphic – tampilan catatan kertas robek
-
-7.
-App name: bmicheck
-Deskripsi: Kalkulator BMI dengan visualisasi gauge meter, tampilkan kategori berat badan dan saran singkat
-Teknologi: CustomPainter, AnimatedContainer
-Tema UI: Monochrome Minimal – hitam putih + satu aksen merah
-
-8.
-App name: colorpeek
-Deskripsi: Generator palet warna acak, tap untuk generate, bisa copy hex code, simpan palet favorit
-Teknologi: SharedPreferences, flutter_colorpicker
-Tema UI: Memphis Design – latar putih dengan dot pattern
-
-9.
-App name: ageify
-Deskripsi: Kalkulator umur yang menampilkan usia dalam tahun, bulan, hari, jam, bahkan detik secara real-time
-Teknologi: DateTime, Timer, AnimatedText
-Tema UI: Retro/Y2K – font pixel, warna chrome metalik
-
-10.
-App name: unitswap
-Deskripsi: Konverter unit lengkap (panjang, berat, suhu, kecepatan) dengan UI tab per kategori
-Teknologi: Flutter stateful widget
-Tema UI: Bento Grid – setiap kategori dalam kotak grid
-
-11.
-App name: loanly
-Deskripsi: Kalkulator cicilan pinjaman, masukkan jumlah pinjaman, bunga, dan tenor lalu lihat cicilan per bulan
-Teknologi: Flutter math, AnimatedList
-Tema UI: Glassmorphism – card kaca di atas latar gradient hijau
-
-12.
-App name: tossify
-Deskripsi: Simulasi lempar koin dan dadu dengan animasi 3D flip, ada histori hasil lemparan
-Teknologi: AnimationController, Lottie
-Tema UI: Claymorphism – koin dan dadu 3D clay
-
-13.
-App name: passgen
-Deskripsi: Generator password kuat dengan opsi panjang karakter, huruf besar, angka, simbol, langsung copy ke clipboard
-Teknologi: dart:math, Clipboard
-Tema UI: Cyberpunk – terminal-like, font monospace neon
-
-14.
-App name: snappy
-Deskripsi: Flashcard belajar sederhana, user buat kartu soal-jawab, bisa flip kartu, ada mode quiz
-Teknologi: Hive, flip_card
-Tema UI: Tropical Maximalism – warna cerah, pattern dot
-
-15.
-App name: budgetr
-Deskripsi: Pencatat keuangan harian sederhana, input pemasukan dan pengeluaran dengan kategori, lihat saldo
-Teknologi: SQLite (sqflite), fl_chart
-Tema UI: Neumorphism – soft shadow abu-abu muda
-
-16.
-App name: habitra
-Deskripsi: Tracker kebiasaan harian, checklist kebiasaan tiap hari, lihat streak terpanjang
-Teknologi: Hive, TableCalendar
-Tema UI: Cottagecore – warna earthy, ilustrasi daun
-
-17.
-App name: stopwatchr
-Deskripsi: Stopwatch dengan fitur lap time, simpan dan bandingkan catatan waktu terbaik
-Teknologi: Ticker, ListView
-Tema UI: Dark Neon – angka besar glowing
-
-18.
-App name: alarmly
-Deskripsi: App alarm sederhana, set waktu alarm, pilih nada, beri label alarm
-Teknologi: flutter_local_notifications, TimeOfDay
-Tema UI: Glassmorphism – card jam transparan
-
-19.
-App name: noteflip
-Deskripsi: Aplikasi catatan cepat dengan warna-warni sticky note, bisa pin catatan penting di atas
-Teknologi: Hive, flutter_staggered_grid
-Tema UI: Memphis Design – sticky notes dengan border lucu
-
-20.
-App name: dicely
-Deskripsi: Roller dadu RPG dengan pilihan jenis dadu (D4, D6, D8, D10, D12, D20), animasi roll
-Teknologi: AnimationController, Lottie
-Tema UI: Retro/Y2K – pixel art style
-
-21.
-App name: spendo
-Deskripsi: Scan struk belanja manual lalu catat total pengeluaran per toko, lihat grafik pengeluaran mingguan
-Teknologi: fl_chart, sqflite
-Tema UI: Bento Grid – layout dashboard kotak-kotak
-
-22.
-App name: numbrix
-Deskripsi: Kuis matematika cepat, jawab soal sebanyak mungkin dalam 60 detik, ada leaderboard lokal
-Teknologi: SharedPreferences, AnimatedSwitcher
-Tema UI: Claymorphism – tombol angka clay warna-warni
-
-23.
-App name: flagzy
-Deskripsi: Kuis tebak bendera negara, tampilkan bendera lalu user pilih nama negara yang benar dari 4 opsi
-Teknologi: http (REST Countries API), SharedPreferences
-Tema UI: Monochrome Minimal – desain bersih fokus ke bendera
-
-24.
-App name: weekplan
-Deskripsi: Planner mingguan sederhana, tambah kegiatan per hari, warna-kode berdasarkan prioritas
-Teknologi: Hive, TableCalendar
-Tema UI: Paper/Skeuomorphic – tampilan agenda kertas
-
-25.
-App name: currex
-Deskripsi: Konverter mata uang real-time dengan pilihan 30+ mata uang, simpan pasangan favorit
-Teknologi: http (ExchangeRate API), SharedPreferences
-Tema UI: Glassmorphism – card kaca hijau emerald
-
-26.
-App name: breathly
-Deskripsi: Panduan latihan pernapasan dengan animasi lingkaran expand-contract, pilih teknik (4-7-8, box breathing)
-Teknologi: AnimationController, CustomPainter
-Tema UI: Aurora Gradient – warna biru-ungu soft berpindah
-
-27.
-App name: rockpapr
-Deskripsi: Game suit batu-gunting-kertas vs AI, ada statistik menang-kalah-seri, animasi karakter lucu
-Teknologi: dart:math, Lottie
-Tema UI: Tropical Maximalism – karakter ilustrasi bold
-
-28.
-App name: stringkey
-Deskripsi: App cheat sheet shortcut keyboard (VS Code, Figma, dll), bisa search, simpan favorit
-Teknologi: SharedPreferences, FuzzySearch
-Tema UI: Cyberpunk – dark, teks monospace neon hijau
-
-29.
-App name: plantpad
-Deskripsi: Jurnal tanaman, catat nama, tanggal tanam, foto, dan jadwal penyiraman tiap tanaman
-Teknologi: image_picker, sqflite, flutter_local_notifications
-Tema UI: Cottagecore – hijau lembut, ilustrasi botanikal
-
-30.
-App name: randname
-Deskripsi: Generator nama karakter/bisnis/proyek acak berdasarkan kategori (fantasy, tech, cute, scary)
-Teknologi: dart:math, SharedPreferences
-Tema UI: Memphis Design – tipografi ekspresif, bentuk geometrik
-
-31.
-App name: timerx
-Deskripsi: Multi-timer serentak, jalankan beberapa timer berbeda label secara bersamaan
-Teknologi: Timer, Provider
-Tema UI: Dark Neon – setiap timer berwarna neon berbeda
-
-32.
-App name: calcy
-Deskripsi: Kalkulator scientific dengan animasi tombol, history kalkulasi, mode standard/scientific
-Teknologi: math_expressions, SharedPreferences
-Tema UI: Neumorphism – tombol emboss abu terang
-
-33.
-App name: spellbee
-Deskripsi: Latihan ejaan kata bahasa Inggris, dengar pengucapan lalu ketik ejaannya, ada level kesulitan
-Teknologi: flutter_tts, SharedPreferences
-Tema UI: Claymorphism – lebah lucu 3D clay
-
-34.
-App name: fueltrax
-Deskripsi: Tracker konsumsi BBM kendaraan, catat pengisian bensin, hitung km per liter
-Teknologi: sqflite, fl_chart
-Tema UI: Brutalism – border tebal, warna merah-hitam
-
-35.
-App name: lovelist
-Deskripsi: App wishlist hadiah, tulis nama orang dan list hadiah yang ingin diberi, centang jika sudah beli
-Teknologi: Hive
-Tema UI: Tropical Maximalism – warna merah muda cerah, confetti
-
-36.
-App name: wordcount
-Deskripsi: Analisis teks, paste atau ketik teks lalu dapatkan statistik kata, karakter, kalimat, paragraf
-Teknologi: Flutter text analysis, Clipboard
-Tema UI: Monochrome Minimal – tipografi bersih, satu aksen biru
-
-37.
-App name: spinwheel
-Deskripsi: Roda keberuntungan yang bisa dikustomisasi isinya, spin untuk pilih secara acak
-Teknologi: CustomPainter, AnimationController
-Tema UI: Retro/Y2K – warna-warni metalik glitter
-
-38.
-App name: langcard
-Deskripsi: Flashcard belajar bahasa (vocab), pilih bahasa, belajar 10 kata baru per hari
-Teknologi: Hive, flip_card, flutter_tts
-Tema UI: Glassmorphism – card transparan di latar bendera negara
-
-39.
-App name: lottopick
-Deskripsi: Generator nomor lotre acak dengan animasi bola berputar, simpan kombinasi favorit
-Teknologi: dart:math, SharedPreferences
-Tema UI: Cyberpunk – bola neon berputar
-
-40.
-App name: notibox
-Deskripsi: App to-do dengan reminder notifikasi, task bisa diberi deadline dan prioritas
-Teknologi: flutter_local_notifications, sqflite
-Tema UI: Bento Grid – task card dalam grid
-
-41.
-App name: skinlog
-Deskripsi: Jurnal rutinitas skincare, catat produk yang dipakai pagi dan malam, foto progress kulit
-Teknologi: image_picker, sqflite
-Tema UI: Glassmorphism – putih bersih, aksen pink soft
-
-42.
-App name: typeracer
-Deskripsi: Latihan mengetik cepat, tampilkan teks lalu ukur WPM dan akurasi user
-Teknologi: Timer, TextEditingController
-Tema UI: Brutalism – font bold besar, warna kuning-hitam
-
-43.
-App name: coinjar
-Deskripsi: Simulasi menabung visual, isi toples koin virtual setiap menambah tabungan, ada target amount
-Teknologi: SharedPreferences, CustomPainter, AnimationController
-Tema UI: Claymorphism – toples dan koin 3D clay imut
-
-44.
-App name: caloriex
-Deskripsi: Pencatat kalori makanan sederhana, search makanan dari database lokal, lihat total kalori per hari
-Teknologi: sqflite, fl_chart
-Tema UI: Monochrome Minimal – tipografi bersih, aksen oranye
-
-45.
-App name: marblr
-Deskripsi: App meditasi visual, animasi marble/bola bergerak halus, pilih durasi meditasi
-Teknologi: CustomPainter, AnimationController
-Tema UI: Aurora Gradient – warna mengalir lembut
-
-46.
-App name: snaproute
-Deskripsi: Catatan perjalanan harian, catat destinasi yang dikunjungi hari ini, foto dan deskripsi singkat
-Teknologi: image_picker, sqflite, geolocator
-Tema UI: Paper/Skeuomorphic – passport stamp aesthetic
-
-47.
-App name: statsy
-Deskripsi: Dashboard statistik pribadi, user input data custom (misal: jam tidur, mood, olahraga) lalu lihat grafik
-Teknologi: fl_chart, sqflite
-Tema UI: Dark Neon – grafik glowing neon
-
-48.
-App name: wordmatch
-Deskripsi: Game tebak kata dengan kata yang diacak hurufnya (anagram), ada timer 30 detik per soal
-Teknologi: dart:math, SharedPreferences
-Tema UI: Retro/Y2K – papan huruf pixel
-
-49.
-App name: chatro
-Deskripsi: App obrolan dummy/simulasi UI chat (tanpa backend), latihan bikin UI chat bubble yang bagus
-Teknologi: ListView, CustomScrollView
-Tema UI: Glassmorphism – bubble chat transparan frosted
-
-50.
-App name: mapnote
-Deskripsi: Catatan berbasis lokasi, buat catatan yang ter-tag ke koordinat lokasi tertentu
-Teknologi: geolocator, sqflite, flutter_map
-Tema UI: Cottagecore – peta bergaya ilustrasi vintage
-
-51.
-App name: qrcraft
-Deskripsi: Generator dan scanner QR code, buat QR dari teks/link, scan QR dari kamera atau galeri
-Teknologi: qr_flutter, mobile_scanner
-Tema UI: Cyberpunk – QR dengan efek glow
-
-52.
-App name: focusbeat
-Deskripsi: Player white noise / ambient sound untuk fokus belajar (hujan, hutan, kafe, api)
-Teknologi: audioplayers, SharedPreferences
-Tema UI: Aurora Gradient – warna berubah sesuai suara dipilih
-
-53.
-App name: emojidex
-Deskripsi: Ensiklopedi emoji, cari emoji berdasarkan kata, lihat arti, copy emoji ke clipboard
-Teknologi: http (emoji API), Clipboard
-Tema UI: Memphis Design – penuh warna dan bentuk lucu
-
-54.
-App name: recapy
-Deskripsi: App resep masakan personal, tambah resep sendiri dengan bahan dan langkah, foto hidangan
-Teknologi: image_picker, sqflite
-Tema UI: Paper/Skeuomorphic – kartu resep kertas bergaris
-
-55.
-App name: sprintlog
-Deskripsi: Pencatat lari/jogging, input jarak, durasi, tanggal, lihat progress dalam grafik mingguan
-Teknologi: fl_chart, sqflite
-Tema UI: Dark Neon – grafik neon di latar gelap
-
-56.
-App name: binaryz
-Deskripsi: Konverter bilangan (biner, oktal, desimal, heksadesimal) dengan penjelasan langkah konversi
-Teknologi: Flutter stateful widget
-Tema UI: Cyberpunk – terminal-style dark
-
-57.
-App name: tapncount
-Deskripsi: Tally counter digital dengan animasi tap, multiple counter serentak, reset per sesi
-Teknologi: SharedPreferences, AnimationController
-Tema UI: Claymorphism – tombol besar 3D clay
-
-58.
-App name: solarwatch
-Deskripsi: Jam analog custom dengan tema planet, jarum jam berbentuk roket/alien
-Teknologi: CustomPainter, AnimationController
-Tema UI: Aurora Gradient – latar galaksi gradient
-
-59.
-App name: pricecmp
-Deskripsi: Perbandingan harga produk, input nama produk dan harga dari beberapa toko, lihat mana termurah
-Teknologi: sqflite
-Tema UI: Brutalism – bold, straightforward, warna kuning
-
-60.
-App name: typeset
-Deskripsi: Preview font Google Fonts, ketik teks lalu lihat dalam berbagai font, simpan favorit
-Teknologi: google_fonts, SharedPreferences
-Tema UI: Monochrome Minimal – fokus pada tipografi
-
-61.
-App name: petlog
-Deskripsi: Jurnal hewan peliharaan, catat vaksin, makan, berat badan, foto, dan catatan kesehatan
-Teknologi: sqflite, image_picker, flutter_local_notifications
-Tema UI: Tropical Maximalism – warna cerah, ilustrasi hewan lucu
-
-62.
-App name: readlog
-Deskripsi: Tracker buku yang sedang dan sudah dibaca, pencatat progress halaman, rating dan review singkat
-Teknologi: sqflite, fl_chart
-Tema UI: Paper/Skeuomorphic – rak buku kayu virtual
-
-63.
-App name: luckynum
-Deskripsi: Generator nomor keberuntungan berdasarkan nama dan tanggal lahir (fun, bukan serius)
-Teknologi: dart:math, SharedPreferences
-Tema UI: Retro/Y2K – mesin slot bergaya 2000s
-
-64.
-App name: netpeek
-Deskripsi: Cek kecepatan internet sederhana, ping test, tampilkan info koneksi WiFi
-Teknologi: connectivity_plus, http
-Tema UI: Bento Grid – info jaringan dalam tile kotak
-
-65.
-App name: cardvault
-Deskripsi: Penyimpan kartu member (kartu diskon toko, library card, dll) dalam format digital dengan barcode
-Teknologi: qr_flutter, SharedPreferences, image_picker
-Tema UI: Glassmorphism – kartu transparan berlapis
-
-66.
-App name: timezony
-Deskripsi: Tampilkan jam dari berbagai kota dunia sekaligus, tambah kota sendiri, lihat selisih waktu
-Teknologi: timezone, intl
-Tema UI: Dark Neon – jam digital neon tiap kota
-
-67.
-App name: votepoll
-Deskripsi: Buat dan isi polling lokal sederhana, cocok untuk keputusan kelompok kecil offline
-Teknologi: sqflite, fl_chart
-Tema UI: Claymorphism – tombol voting 3D clay besar
-
-68.
-App name: memorygrid
-Deskripsi: Game memory card matching, temukan pasangan kartu yang sama, ada level dan timer
-Teknologi: dart:math, AnimationController
-Tema UI: Tropical Maximalism – kartu warna-warni ilustratif
-
-69.
-App name: billsplit
-Deskripsi: Pembagi tagihan kelompok, input item dan siapa saja yang ikut, hitung berapa yang harus dibayar tiap orang
-Teknologi: Flutter stateful widget, SharedPreferences
-Tema UI: Memphis Design – warna cerah, bentuk geometrik
-
-70.
-App name: astroday
-Deskripsi: Horoskop harian fun (tidak serius), pilih zodiak dan baca prediksi lucu hari ini
-Teknologi: SharedPreferences (data lokal)
-Tema UI: Aurora Gradient – bintang-bintang berkilau
-
-71.
-App name: inkdiary
-Deskripsi: Jurnal harian dengan mood tracker, tulisan bisa dikunci dengan PIN, tampilkan streak menulis
-Teknologi: sqflite, local_auth, fl_chart
-Tema UI: Paper/Skeuomorphic – buku diary kulit coklat
-
-72.
-App name: chesstime
-Deskripsi: Chess clock sederhana untuk dua pemain, pilih waktu per pemain, tap untuk ganti giliran
-Teknologi: Timer, AnimationController
-Tema UI: Monochrome Minimal – hitam putih bersih
-
-73.
-App name: noodlr
-Deskripsi: Timer masak mie instan dengan berbagai merek (Indomie, Sedaap, dll) preset waktu berbeda, lucu
-Teknologi: flutter_local_notifications, AnimationController
-Tema UI: Brutalism – bold humor, warna merah cerah
-
-74.
-App name: pixelfont
-Deskripsi: Keyboard emoji/sticker karakter piksel, buat kata-kata dengan karakter ASCII art
-Teknologi: Clipboard, CustomPainter
-Tema UI: Retro/Y2K – full pixel aesthetic
-
-75.
-App name: shiftplan
-Deskripsi: Pengatur jadwal shift kerja, input shift pagi/siang/malam per hari, tampilkan di kalender
-Teknologi: TableCalendar, sqflite
-Tema UI: Glassmorphism – card jadwal frosted glass
-
-76.
-App name: trashsort
-Deskripsi: Panduan pemilahan sampah, input nama sampah lalu lihat kategorinya (organik, plastik, dll)
-Teknologi: Flutter search, SharedPreferences
-Tema UI: Cottagecore – ilustrasi bumi hijau lembut
-
-77.
-App name: snipboard
-Deskripsi: Clipboard manager, simpan teks yang sering dikopi, akses cepat dan copy ulang kapan saja
-Teknologi: SharedPreferences, Clipboard
-Tema UI: Cyberpunk – terminal clipboard manager
-
-78.
-App name: mirrorme
-Deskripsi: Kamera cermin untuk makeup/merapikan diri, ada grid overlay, zoom, dan freeze frame
-Teknologi: camera, CustomPainter
-Tema UI: Glassmorphism – frame cermin kaca mewah
-
-79.
-App name: packwise
-Deskripsi: Checklist packing perjalanan, pilih tipe perjalanan (pantai, gunung, bisnis) untuk template otomatis
-Teknologi: sqflite, SharedPreferences
-Tema UI: Bento Grid – kategori packing dalam kotak grid
-
-80.
-App name: flashtimer
-Deskripsi: Buat sesi belajar dengan interval, misal 5 menit baca lalu 1 menit review, bisa custom pattern
-Teknologi: flutter_local_notifications, Provider
-Tema UI: Dark Neon – progress bar neon
-
-������ INTERMEDIATE (81–200)
-
-81.
-App name: pixlboard
-Deskripsi: Pixel art editor sederhana di HP, grid 16x16 dan 32x32, pilih warna, export gambar
-Teknologi: CustomPainter, GestureDetector, image package
-Tema UI: Retro/Y2K – pixel aesthetic total
-
-82.
-App name: chartsy
-Deskripsi: App visualisasi data personal, user upload CSV sederhana dan pilih jenis grafik (bar, line, pie)
-Teknologi: fl_chart, file_picker, csv
-Tema UI: Bento Grid – dashboard data kotak-kotak
-
-83.
-App name: notionlite
-Deskripsi: Mini note app dengan rich text editor (bold, italic, list), bisa nested page (halaman di dalam halaman)
-Teknologi: flutter_quill, sqflite
-Tema UI: Monochrome Minimal – bersih seperti Notion asli
-
-84.
-App name: sketchpad
-Deskripsi: App menggambar freehand dengan pilihan warna, ketebalan, tipe brush, bisa export PNG
-Teknologi: CustomPainter, GestureDetector, image package
-Tema UI: Paper/Skeuomorphic – papan gambar putih bersih
-
-85.
-App name: budgetly
-Deskripsi: Manajemen keuangan bulanan dengan kategori pengeluaran, set budget per kategori, notifikasi batas
-Teknologi: sqflite, fl_chart, flutter_local_notifications, Provider
-Tema UI: Glassmorphism – chart kaca di latar gradient
-
-86.
-App name: habitsync
-Deskripsi: Habit tracker dengan heatmap github-style, streak, statistik bulanan, reminder notifikasi
-Teknologi: Hive, flutter_local_notifications, CustomPainter
-Tema UI: Dark Neon – heatmap neon hijau
-
-87.
-App name: recipeai
-Deskripsi: Resep berdasarkan bahan yang ada di kulkas, input bahan, AI (Gemini API) sarankan resep
-Teknologi: http (Gemini API), sqflite, SharedPreferences
-Tema UI: Cottagecore – dapur hangat, ilustrasi sayur
-
-88.
-App name: memovid
-Deskripsi: App catatan video singkat (max 30 detik), rekam, tambah judul, organisasi dalam folder
-Teknologi: camera, video_player, sqflite
-Tema UI: Dark Neon – thumbnail video dengan neon label
-
-89.
-App name: triplanner
-Deskripsi: Planner perjalanan lengkap, buat itinerary per hari, tambah tempat, transportasi, budget
-Teknologi: flutter_map, sqflite, fl_chart
-Tema UI: Aurora Gradient – peta dengan pin warna-warni
-
-90.
-App name: langlearn
-Deskripsi: App belajar bahasa asing dengan sistem spaced repetition, quiz vocab, statistik progres
-Teknologi: sqflite, flutter_tts, SharedPreferences, Riverpod
-Tema UI: Claymorphism – karakter belajar 3D clay
-
-91.
-App name: photojournal
-Deskripsi: Jurnal foto harian, satu foto per hari dengan caption dan mood, tampilan kalender foto
-Teknologi: image_picker, sqflite, TableCalendar
-Tema UI: Glassmorphism – grid foto dengan overlay kaca
-
-92.
-App name: budgettrip
-Deskripsi: Kalkulator budget perjalanan, input semua pengeluaran selama trip, split dengan teman, lihat summary
-Teknologi: sqflite, fl_chart, Provider
-Tema UI: Brutalism – tabel pengeluaran bold dan direct
-
-93.
-App name: codebank
-Deskripsi: Snippet code manager, simpan potongan kode favorit dengan tag bahasa, syntax highlighting
-Teknologi: sqflite, flutter_highlight, Clipboard
-Tema UI: Cyberpunk – editor gelap neon
-
-94.
-App name: moodmap
-Deskripsi: Visualisasi mood tahunan dalam bentuk peta panas (heatmap), lihat pola emosi sepanjang tahun
-Teknologi: sqflite, CustomPainter, fl_chart
-Tema UI: Aurora Gradient – gradien warna per mood
-
-95.
-App name: artgallery
-Deskripsi: Galeri seni personal, upload karya sendiri, beri judul dan deskripsi, tampilan masonry grid
-Teknologi: image_picker, sqflite, flutter_staggered_grid
-Tema UI: Monochrome Minimal – white gallery bersih
-
-96.
-App name: wordsmith
-Deskripsi: App latihan menulis kreatif, setiap hari dapat prompt acak, tulis dan simpan cerita pendek
-Teknologi: sqflite, SharedPreferences, flutter_quill
-Tema UI: Paper/Skeuomorphic – mesin ketik vintage
-
-97.
-App name: gymtrack
-Deskripsi: Tracker latihan gym, catat exercise, set, rep, berat, lihat progress kekuatan dari waktu ke waktu
-Teknologi: sqflite, fl_chart, Riverpod
-Tema UI: Dark Neon – otot dan neon merah
-
-98.
-App name: storyboard
-Deskripsi: App storyboard komik sederhana, buat panel-panel komik, tambah gambar dan dialog balon
-Teknologi: CustomPainter, image_picker, sqflite
-Tema UI: Memphis Design – komik pop art
-
-99.
-App name: weatherly
-Deskripsi: App cuaca cantik dengan animasi lottie per kondisi cuaca, 7-hari forecast, locasi otomatis
-Teknologi: http (OpenWeather API), Lottie, geolocator
-Tema UI: Aurora Gradient – langit gradient per cuaca
-
-100.
-App name: mindfeed
-Deskripsi: RSS reader minimalis, subscribe feed blog favorit, baca artikel offline, bookmark
-Teknologi: http, webfeed (RSS parser), sqflite
-Tema UI: Monochrome Minimal – reader bersih fokus teks
-
-101.
-App name: portfol
-Deskripsi: App portofolio personal interaktif, tampilkan foto, skill, proyek, dan kontak dengan animasi
-Teknologi: flutter_animate, CustomPainter, url_launcher
-Tema UI: Glassmorphism – profil card berlapis kaca
-
-102.
-App name: investsim
-Deskripsi: Simulasi investasi saham sederhana dengan data historis, pilih saham dan lihat pertumbuhan
-Teknologi: http (Yahoo Finance API), fl_chart, sqflite
-Tema UI: Dark Neon – grafik saham neon hijau
-
-103.
-App name: meditimer
-Deskripsi: App meditasi dengan sesi guided teks, ambient sound, jurnal meditasi, statistik streak
-Teknologi: audioplayers, sqflite, flutter_local_notifications
-Tema UI: Aurora Gradient – visual meditasi lembut
-
-104.
-App name: craftlog
-Deskripsi: Tracker proyek kerajinan tangan, catat material, langkah, foto progress, estimasi waktu dan biaya
-Teknologi: image_picker, sqflite, fl_chart
-Tema UI: Cottagecore – ilustrasi benang, jarum, crafty
-
-105.
-App name: studyflow
-Deskripsi: Study session manager dengan pomodoro, catatan per sesi, statistik produktivitas harian/mingguan
-Teknologi: sqflite, fl_chart, flutter_local_notifications, Riverpod
-Tema UI: Bento Grid – dashboard belajar dalam kotak
-
-106.
-App name: eventcount
-Deskripsi: Countdown ke multiple event penting (ulang tahun, deadline, liburan) dengan widget cantik
-Teknologi: sqflite, home_widget, flutter_animate
-Tema UI: Tropical Maximalism – konfeti dan warna pesta
-
-107.
-App name: tourguide
-Deskripsi: Panduan wisata kota lokal offline, tampilkan tempat wisata dengan peta, deskripsi, jam buka
-Teknologi: flutter_map, sqflite (data offline), image_picker
-Tema UI: Paper/Skeuomorphic – peta wisata bergaya vintage
-
-108.
-App name: cryptowatch
-Deskripsi: Watchlist kriptokurensi, lihat harga real-time, grafik 7 hari, set alert harga
-Teknologi: http (CoinGecko API), fl_chart, flutter_local_notifications
-Tema UI: Cyberpunk – grafik crypto neon gelap
-
-109.
-App name: linkstash
-Deskripsi: Bookmark manager, simpan link dengan judul dan tag, preview gambar otomatis, cari dan filter
-Teknologi: http (Open Graph metadata), sqflite, url_launcher
-Tema UI: Glassmorphism – card link berlapis frosted
-
-110.
-App name: kcalsync
-Deskripsi: Diet tracker lengkap, log makanan per hari, hitung kalori & makronutrisi, grafik mingguan
-Teknologi: http (Nutritionix API), sqflite, fl_chart, Riverpod
-Tema UI: Monochrome Minimal – health-focused bersih
-
-111.
-App name: soundboard
-Deskripsi: Papan suara efek lucu/meme kustom, tambah file audio sendiri, tap untuk putar
-Teknologi: audioplayers, file_picker, sqflite
-Tema UI: Retro/Y2K – tombol fisik keyboard aesthetic
-
-112.
-App name: kanbanly
-Deskripsi: Kanban board personal (Todo, In Progress, Done) dengan drag and drop, warna label
-Teknologi: flutter_kanban / drag_and_drop_lists, sqflite
-Tema UI: Glassmorphism – kolom kanban transparan
-
-113.
-App name: localnews
-Deskripsi: Agregator berita dari RSS feed sumber lokal, kategorisasi otomatis, baca offline
-Teknologi: http, webfeed, sqflite
-Tema UI: Brutalism – headline besar, kontras kuat
-
-114.
-App name: plantid
-Deskripsi: Identifikasi tanaman dari foto menggunakan Plant.id API, lihat info perawatan
-Teknologi: http (Plant.id API), image_picker, camera
-Tema UI: Cottagecore – hijau lembut, ilustrasi botanikal
-
-115.
-App name: fitnessplan
-Deskripsi: Rencana latihan mingguan custom, pilih tujuan (kurus/berotot/sehat), jadwal exercise per hari
-Teknologi: sqflite, Riverpod, flutter_animate
-Tema UI: Dark Neon – workout plan neon bold
-
-116.
-App name: pokecards
-Deskripsi: Pokédex viewer sederhana, browse dan search Pokémon, lihat stats, type, evolusi
-Teknologi: http (PokeAPI), cached_network_image, Riverpod
-Tema UI: Claymorphism – card Pokémon clay 3D
-
-117.
-App name: spendlens
-Deskripsi: Analisis pengeluaran kartu kredit/debit, input data transaksi, visualisasi kategori pengeluaran
-Teknologi: sqflite, fl_chart, csv (import data)
-Tema UI: Bento Grid – financial dashboard kotak
-
-118.
-App name: chatgptlite
-Deskripsi: Interface chat ke OpenAI/Gemini API, simpan history percakapan, multi-session, export chat
-Teknologi: http (OpenAI/Gemini API), sqflite, flutter_animate
-Tema UI: Glassmorphism – bubble chat transparan
-
-119.
-App name: musicviz
-Deskripsi: Visualizer audio sederhana, rekam suara dari mikrofon dan tampilkan animasi gelombang suara
-Teknologi: record, fftea (FFT analysis), CustomPainter
-Tema UI: Aurora Gradient – gelombang suara berwarna
-
-120.
-App name: filmlog
-Deskripsi: Tracker film dan serial TV, cari dari TMDB API, tandai sudah/belum nonton, beri rating
-Teknologi: http (TMDB API), sqflite, cached_network_image
-Tema UI: Dark Neon – poster film dengan glow effect
-
-121.
-App name: mapmarks
-Deskripsi: Simpan tempat-tempat personal di peta (spot mancing favorit, warung tersembunyi, dll)
-Teknologi: flutter_map, sqflite, geolocator
-Tema UI: Paper/Skeuomorphic – peta kertas dengan pin
-
-122.
-App name: breathwrk
-Deskripsi: Panduan latihan pernapasan berbasis sains (Wim Hof, box, 4-7-8) dengan timer animasi dan suara
-Teknologi: audioplayers, AnimationController, CustomPainter
-Tema UI: Aurora Gradient – animasi lingkaran bernapas
-
-123.
-App name: notecast
-Deskripsi: Catatan suara (voice memo) dengan transkripsi otomatis menggunakan speech-to-text
-Teknologi: record, speech_to_text, sqflite
-Tema UI: Neumorphism – waveform recorder lembut
-
-124.
-App name: aichat
-Deskripsi: Chatbot AI dengan persona/karakter kustom, user bisa pilih persona (asisten, guru, teman)
-Teknologi: http (OpenAI API), sqflite, SharedPreferences
-Tema UI: Retro/Y2K – chat terminal komputer lama
-
-125.
-App name: pricetag
-Deskripsi: Price tracker produk online, user input produk dan target harga, notifikasi jika harga turun
-Teknologi: http (web scraping lite), sqflite, flutter_local_notifications
-Tema UI: Brutalism – label harga bold
-
-126.
-App name: draftbox
-Deskripsi: Writing assistant, draft tulisan dengan bantuan AI untuk improve grammar dan gaya bahasa
-Teknologi: http (Gemini API), flutter_quill
-Tema UI: Paper/Skeuomorphic – dokumen kertas dengan koreksi merah
-
-127.
-App name: sleeplog
-Deskripsi: Tracker kualitas tidur, input jam tidur dan bangun, catat kualitas, lihat grafik pola tidur
-Teknologi: sqflite, fl_chart, flutter_local_notifications
-Tema UI: Aurora Gradient – langit malam ke pagi
-
-128.
-App name: geoquiz
-Deskripsi: Kuis geografi interaktif, tap negara di peta, jawab pertanyaan ibu kota, bendera, dll
-Teknologi: flutter_svg (peta SVG), sqflite
-Tema UI: Monochrome Minimal – peta bersih
-
-129.
-App name: coffeedex
-Deskripsi: Jurnal kopi, catat minuman kopi yang pernah dicoba, rating, catatan rasa, foto
-Teknologi: image_picker, sqflite, SharedPreferences
-Tema UI: Cottagecore – earthy coklat, ilustrasi kopi
-
-130.
-App name: taskpomo
-Deskripsi: Kombinasi task manager + pomodoro, tiap task punya sesi pomodoro, statistik per task
-Teknologi: sqflite, flutter_local_notifications, fl_chart, Riverpod
-Tema UI: Bento Grid – task + timer dalam satu dashboard
-
-131.
-App name: textlens
-Deskripsi: OCR sederhana, foto teks dari gambar lalu extract jadi teks yang bisa disalin
-Teknologi: google_ml_kit (text recognition), camera, Clipboard
-Tema UI: Glassmorphism – overlay scanner kaca
-
-132.
-App name: colormatch
-Deskripsi: Game tebak warna, tampilkan nilai RGB/HEX lalu pilih warna yang tepat dari pilihan
-Teknologi: dart:math, SharedPreferences
-Tema UI: Tropical Maximalism – warna-warni penuh layar
-
-133.
-App name: spendsplit
-Deskripsi: App hutang-piutang antar teman, catat siapa berhutang berapa kepada siapa, settlement
-Teknologi: sqflite, fl_chart
-Tema UI: Memphis Design – playful tapi jelas
-
-134.
-App name: goalboard
-Deskripsi: Vision board digital interaktif, tambah gambar dan teks goals, lihat tiap hari sebagai motivasi
-Teknologi: image_picker, sqflite, flutter_staggered_grid
-Tema UI: Aurora Gradient – glowing inspiratif
-
-135.
-App name: wordvault
-Deskripsi: Kamus kata bahasa Inggris personal, cari kata dengan Dictionary API, simpan kata baru yang dipelajari
-Teknologi: http (Free Dictionary API), sqflite, flutter_tts
-Tema UI: Paper/Skeuomorphic – kamus kertas vintage
-
-136.
-App name: heatpulse
-Deskripsi: Workout HIIT timer dengan interval custom, suara hitungan, animasi olahraga Lottie
-Teknologi: audioplayers, Lottie, flutter_local_notifications
-Tema UI: Dark Neon – api neon merah olahraga
-
-137.
-App name: nftgallery
-Deskripsi: Galeri karya digital personal untuk display koleksi seni digital/ilustrasi dengan mode fullscreen
-Teknologi: image_picker, sqflite, flutter_animate
-Tema UI: Cyberpunk – galeri gelap dengan frame neon
-
-138.
-App name: studybuddy
-Deskripsi: App belajar bersama virtual, buat sesi belajar, catat topik, timer, dan jurnal pemahaman
-Teknologi: sqflite, fl_chart, flutter_local_notifications
-Tema UI: Claymorphism – karakter belajar lucu 3D
-
-139.
-App name: promptly
-Deskripsi: Library prompt AI personal, simpan, tag, dan kelola prompt untuk ChatGPT/Gemini
-Teknologi: sqflite, Clipboard, SharedPreferences
-Tema UI: Monochrome Minimal – developer-friendly bersih
-
-140.
-App name: lifestat
-Deskripsi: Dashboard statistik kehidupan personal, visualisasi data kebiasaan, tidur, mood, olahraga
-Teknologi: sqflite, fl_chart, Riverpod
-Tema UI: Bento Grid – life dashboard dalam tile
-
-141.
-App name: artstudio
-Deskripsi: App melukis digital sederhana dengan layer, berbagai brush, color picker, export gambar
-Teknologi: CustomPainter, GestureDetector, image package
-Tema UI: Dark Neon – studio melukis gelap profesional
-
-142.
-App name: chatbuddy
-Deskripsi: App chat dengan AI berbasis Gemini, dengan fitur role play, save conversation, share
-Teknologi: http (Gemini API), sqflite, share_plus
-Tema UI: Glassmorphism – UI chat kaca modern
-
-143.
-App name: petsim
-Deskripsi: Virtual pet sederhana (Tamagotchi lite), rawat hewan dengan makan/bermain/tidur, animasi Lottie
-Teknologi: Lottie, SharedPreferences, Timer
-Tema UI: Claymorphism – hewan peliharaan 3D clay lucu
-
-144.
-App name: storyai
-Deskripsi: Generator cerita pendek AI, user pilih genre dan karakter, AI generate cerita unik tiap hari
-Teknologi: http (OpenAI/Gemini API), sqflite, flutter_animate
-Tema UI: Paper/Skeuomorphic – buku cerita bergaya
-
-145.
-App name: workoutgen
-Deskripsi: Generator workout plan otomatis berdasarkan peralatan yang tersedia dan level fitness
-Teknologi: sqflite, Riverpod, flutter_animate
-Tema UI: Dark Neon – atletis neon
-
-146.
-App name: speedread
-Deskripsi: Latihan speed reading (RSVP), paste teks dan latih baca cepat kata per kata, atur kecepatan WPM
-Teknologi: Timer, TextEditingController, flutter_animate
-Tema UI: Monochrome Minimal – fokus ke kata tunggal
-
-147.
-App name: brainwave
-Deskripsi: Whiteboard brainstorming digital, tulis catatan sticky, buat mindmap sederhana, drag dan drop
-Teknologi: CustomPainter, GestureDetector, sqflite
-Tema UI: Glassmorphism – sticky note kaca di latar terang
-
-148.
-App name: biketrack
-Deskripsi: Tracker bersepeda, catat rute, jarak, waktu, kalori terbakar, lihat peta rute
-Teknologi: geolocator, flutter_map, sqflite, fl_chart
-Tema UI: Aurora Gradient – jalur peta berwarna
-
-149.
-App name: arfact
-Deskripsi: Tampilkan model 3D sederhana (furniture, tanaman) menggunakan AR kit di kamera
-Teknologi: ar_flutter_plugin / model_viewer_plus, camera
-Tema UI: Glassmorphism – AR overlay bersih
-
-150.
-App name: codequiz
-Deskripsi: Kuis coding harian (syntax, output, logic), pilih bahasa (Dart, Python, JS), leaderboard lokal
-Teknologi: sqflite, SharedPreferences, flutter_animate
-Tema UI: Cyberpunk – terminal quiz gelap neon
-
-151.
-App name: recipebox
-Deskripsi: Resep masakan dengan filter diet (vegan, gluten-free, dll), rating, timer memasak terintegrasi
-Teknologi: http (Spoonacular API), sqflite, flutter_local_notifications
-Tema UI: Cottagecore – ilustrasi dapur hangat
-
-152.
-App name: cardmake
-Deskripsi: Pembuat kartu ucapan digital, pilih template, edit teks dan warna, export PNG atau share
-Teknologi: flutter_colorpicker, screenshot, share_plus
-Tema UI: Tropical Maximalism – template kartu warna-warni
-
-153.
-App name: spotitrack
-Deskripsi: Tracker lagu favorit personal (bukan integrasi Spotify), catat lagu yang lagi sering didengar
-Teknologi: sqflite, http (Last.fm API), fl_chart
-Tema UI: Dark Neon – musik visualizer neon
-
-154.
-App name: tablogger
-Deskripsi: Tab bar tracker untuk browser di HP, simpan grup tab yang terbuka untuk dibuka ulang nanti
-Teknologi: sqflite, url_launcher, SharedPreferences
-Tema UI: Monochrome Minimal – minimalist web vibes
-
-155.
-App name: menucreate
-Deskripsi: Pembuat menu makanan digital untuk warung/restoran kecil, tambah menu, harga, foto
-Teknologi: image_picker, sqflite, screenshot (export PDF)
-Tema UI: Paper/Skeuomorphic – menu restoran kertas
-
-156.
-App name: streakfire
-Deskripsi: Tracker streak kebiasaan dengan api animasi yang semakin besar sesuai streak, gamifikasi
-Teknologi: sqflite, Lottie, flutter_animate
-Tema UI: Dark Neon – api neon yang berkobar
-
-157.
-App name: mapwalk
-Deskripsi: Tracker jalan kaki harian, tampilkan rute di peta secara real-time, hitung langkah dan kalori
-Teknologi: geolocator, flutter_map, pedometer, sqflite
-Tema UI: Aurora Gradient – jalur gradient di peta
-
-158.
-App name: quillpost
-Deskripsi: Micro-blogging lokal (seperti Twitter/X offline), tulis post, like, save favorit
-Teknologi: sqflite, flutter_quill, flutter_animate
-Tema UI: Brutalism – timeline bold dan direct
-
-159.
-App name: tagboard
-Deskripsi: Mood board visual dengan tag, drag foto dan note ke kanvas, kategorisasi dengan tag
-Teknologi: image_picker, sqflite, flutter_staggered_grid
-Tema UI: Glassmorphism – kanvas transparan
-
-160.
-App name: aicoach
-Deskripsi: Personal life coach AI, tanya seputar produktivitas, kesehatan, karir, AI berikan saran personal
-Teknologi: http (OpenAI/Gemini API), sqflite
-Tema UI: Claymorphism – karakter coach 3D clay lucu
-
-161.
-App name: draftmail
-Deskripsi: Template email generator, pilih tipe (formal, permohonan, komplain) dan AI bantu tulis draft
-Teknologi: http (Gemini API), Clipboard, sqflite
-Tema UI: Monochrome Minimal – email editor bersih
-
-162.
-App name: foodmap
-Deskripsi: Peta kuliner lokal personal, pin warung favorit di peta dengan catatan dan foto
-Teknologi: flutter_map, geolocator, image_picker, sqflite
-Tema UI: Cottagecore – peta makanan ilustratif
-
-163.
-App name: gymbuddy
-Deskripsi: Partner gym virtual, generate workout plan, timer rest, log progress otot per area tubuh
-Teknologi: sqflite, fl_chart, flutter_local_notifications, Riverpod
-Tema UI: Dark Neon – tubuh manusia dengan otot highlight neon
-
-164.
-App name: lexify
-Deskripsi: Belajar kosakata bahasa asing dengan gambar (tidak hanya teks), quiz bergambar, SRS sistem
-Teknologi: http (Unsplash API), sqflite, SharedPreferences
-Tema UI: Tropical Maximalism – warna-warni flashcard
-
-165.
-App name: shelfie
-Deskripsi: Perpustakaan buku digital personal, scan barcode buku, lihat info dari Google Books API
-Teknologi: mobile_scanner, http (Google Books API), sqflite
-Tema UI: Paper/Skeuomorphic – rak buku kayu hangat
-
-166.
-App name: calmspace
-Deskripsi: App journaling terpandu untuk mental health, prompt pertanyaan reflektif, visualisasi emosi
-Teknologi: sqflite, fl_chart, flutter_animate
-Tema UI: Aurora Gradient – ruang tenang berwarna lembut
-
-167.
-App name: minicrm
-Deskripsi: CRM personal sederhana, kelola kontak bisnis, catatan interaksi, follow-up reminder
-Teknologi: sqflite, flutter_local_notifications, Riverpod
-Tema UI: Glassmorphism – contact card kaca
-
-168.
-App name: stickywall
-Deskripsi: Dinding sticky note virtual (infinite canvas), zoom in/out, warna-warni, koneksi antar note
-Teknologi: InteractiveViewer, sqflite, CustomPainter
-Tema UI: Memphis Design – sticky warna-warni berantakan indah
-
-169.
-App name: cardio360
-Deskripsi: Tracker kesehatan jantung, catat detak jantung manual, olahraga, tekanan darah, visualisasi
-Teknologi: sqflite, fl_chart, flutter_animate
-Tema UI: Dark Neon – detak jantung EKG neon merah
-
-170.
-App name: invoicely
-Deskripsi: Pembuat invoice sederhana untuk freelancer, isi data klien dan item pekerjaan, export PDF
-Teknologi: pdf (dart package), sqflite, share_plus
-Tema UI: Monochrome Minimal – invoice profesional bersih
-
-171.
-App name: artprompt
-Deskripsi: Generator prompt ilustrasi/seni acak berdasarkan style, subject, mood untuk inspirasi menggambar
-Teknologi: dart:math, SharedPreferences, Clipboard
-Tema UI: Retro/Y2K – poster seni retro
-
-172.
-App name: flashdeck
-Deskripsi: Flashcard dengan spaced repetition (algoritma SM-2), import deck, statistik review, streak
-Teknologi: sqflite, Riverpod, flutter_animate
-Tema UI: Glassmorphism – card flip transparan
-
-173.
-App name: packtrack
-Deskripsi: Tracker paket kiriman, input no resi dari berbagai ekspedisi, cek status pengiriman
-Teknologi: http (RajaOngkir API), sqflite, flutter_local_notifications
-Tema UI: Bento Grid – status paket dalam tile kotak
-
-174.
-App name: voicenote
-Deskripsi: Voice memo dengan auto-transcribe, tag catatan suara, filter per tanggal dan tag
-Teknologi: record, speech_to_text, sqflite, flutter_animate
-Tema UI: Neumorphism – waveform recorder lembut
-
-175.
-App name: moodcast
-Deskripsi: App yang prediksi mood berdasarkan data historis (mood + cuaca + hari) dengan ML sederhana
-Teknologi: sqflite, http (OpenWeather API), tflite_flutter
-Tema UI: Aurora Gradient – visual prediksi mood
-
-176.
-App name: formcraft
-Deskripsi: Form builder sederhana, buat form survey lokal dengan berbagai tipe field, lihat respons
-Teknologi: sqflite, Riverpod, flutter_animate
-Tema UI: Glassmorphism – form card kaca
-
-177.
-App name: bookclub
-Deskripsi: Club buku personal, buat daftar baca bersama (bisa multi device via Supabase), vote buku selanjutnya
-Teknologi: Supabase, fl_chart, sqflite
-Tema UI: Cottagecore – buku dan teh, earthy hangat
-
-178.
-App name: twistedbrain
-Deskripsi: Game puzzle logika (tebak pola, urutan angka, visual puzzle), 100+ soal dengan level progresif
-Teknologi: sqflite, SharedPreferences, flutter_animate
-Tema UI: Cyberpunk – puzzle neural neon
-
-179.
-App name: weatherwear
-Deskripsi: Saran pakaian berdasarkan cuaca hari ini, tampilkan outfit yang cocok dengan ikon ilustratif
-Teknologi: http (OpenWeather API), geolocator
-Tema UI: Claymorphism – pakaian 3D clay lucu
-
-180.
-App name: gradetrax
-Deskripsi: Tracker nilai akademik mahasiswa/pelajar, input nilai per mata kuliah, hitung IPK otomatis
-Teknologi: sqflite, fl_chart, SharedPreferences
-Tema UI: Bento Grid – dashboard akademik kotak
-
-181.
-App name: pairify
-Deskripsi: App matchmaking random untuk kelompok (misal pembagian tim, secret santa), animasi undian
-Teknologi: dart:math, flutter_animate, share_plus
-Tema UI: Tropical Maximalism – confetti dan warna pesta
-
-182.
-App name: langpocket
-Deskripsi: Kamus bahasa Indonesia-Inggris offline lengkap dengan contoh kalimat, dan kata terkait
-Teknologi: sqflite (database kamus lokal), flutter_tts
-Tema UI: Paper/Skeuomorphic – kamus saku bergaya
-
-183.
-App name: taskflow
-Deskripsi: Project manager personal sederhana, buat proyek, task, subtask, progress bar per proyek
-Teknologi: sqflite, Riverpod, fl_chart, flutter_animate
-Tema UI: Glassmorphism – project card kaca bertumpuk
-
-184.
-App name: heatmap365
-Deskripsi: Visualisasi aktivitas 365 hari seperti GitHub contribution graph untuk tracking apapun (baca, olahraga, dll)
-Teknologi: CustomPainter, sqflite
-Tema UI: Dark Neon – heatmap neon hijau
-
-185.
-App name: pettalk
-Deskripsi: "Translator" suara hewan peliharaan (fun app), rekam suara kucing/anjing, tampilkan terjemahan lucu
-Teknologi: record, dart:math (random responses), flutter_animate
-Tema UI: Claymorphism – hewan 3D clay menggemaskan
-
-186.
-App name: logbook
-Deskripsi: Buku log aktivitas harian dengan template (kerja, belajar, olahraga), statistik waktu per aktivitas
-Teknologi: sqflite, fl_chart, Riverpod
-Tema UI: Monochrome Minimal – log bersih seperti terminal
-
-187.
-App name: colorblend
-Deskripsi: Lab percobaan warna, mix dua warna dan lihat hasilnya, simpan palet campuran, export hex
-Teknologi: flutter_colorpicker, CustomPainter, Clipboard
-Tema UI: Memphis Design – lab warna ekspresif
-
-188.
-App name: bilingualr
-Deskripsi: Baca artikel dwibahasa side-by-side (Indonesia-Inggris), klik kata untuk lihat terjemahannya
-Teknologi: http (LibreTranslate API), sqflite, flutter_tts
-Tema UI: Aurora Gradient – dua kolom berwarna berbeda
-
-189.
-App name: bodymap
-Deskripsi: Tracker nyeri/kondisi tubuh, tap bagian tubuh di gambar untuk catat rasa nyeri atau catatan
-Teknologi: CustomPainter, GestureDetector, sqflite
-Tema UI: Glassmorphism – tubuh transparan overlay kaca
-
-190.
-App name: learnpath
-Deskripsi: Buat learning path belajar sendiri, susun topik, tambah sumber belajar, track progress
-Teknologi: sqflite, Riverpod, flutter_animate, fl_chart
-Tema UI: Bento Grid – kurikulum dalam tile kotak
-
-191.
-App name: noisebox
-Deskripsi: Mixer white noise custom, mix beberapa suara (hujan+kafe+fan) dengan volume slider masing-masing
-Teknologi: audioplayers, SharedPreferences
-Tema UI: Dark Neon – mixer audio neon
-
-192.
-App name: qrboard
-Deskripsi: Papan QR code untuk berbagi info kontak/link, buat QR personal dengan styling custom
-Teknologi: qr_flutter, screenshot, share_plus, flutter_colorpicker
-Tema UI: Cyberpunk – QR glow neon
-
-193.
-App name: localdex
-Deskripsi: Direktori bisnis lokal buatan sendiri, catat warung, bengkel, dll dengan kontak dan peta
-Teknologi: flutter_map, sqflite, geolocator, url_launcher
-Tema UI: Paper/Skeuomorphic – direktori kuning fisik
-
-194.
-App name: flowtask
-Deskripsi: To-do dengan flow state tracker, catat task yang diselesaikan saat "dalam zona", analisis kapan paling produktif
-Teknologi: sqflite, fl_chart, SharedPreferences
-Tema UI: Aurora Gradient – flow state visual mengalir
-
-195.
-App name: wealthsim
-Deskripsi: Simulasi kekayaan jangka panjang, input gaji, pengeluaran, investasi, lihat proyeksi 30 tahun
-Teknologi: fl_chart, flutter_animate, SharedPreferences
-Tema UI: Glassmorphism – grafik keuangan kaca
-
-196.
-App name: typecraft
-Deskripsi: Pembuat poster tipografi, pilih font, warna, layout, export PNG untuk share di sosmed
-Teknologi: google_fonts, screenshot, share_plus, flutter_colorpicker
-Tema UI: Memphis Design – poster tipografi ekspresif
-
-197.
-App name: filedrop
-Deskripsi: Transfer file lokal antar HP dalam satu WiFi menggunakan HTTP server lokal (seperti AirDrop)
-Teknologi: shelf (HTTP server), file_picker, wifi_info_flutter
-Tema UI: Monochrome Minimal – file sharing bersih
-
-198.
-App name: mindnode
-Deskripsi: Mind mapping sederhana, buat node, sambungkan dengan garis, drag dan zoom pada kanvas
-Teknologi: InteractiveViewer, CustomPainter, GestureDetector, sqflite
-Tema UI: Dark Neon – node jaringan bercahaya
-
-199.
-App name: snapflash
-Deskripsi: Flashcard dari foto, foto halaman buku atau whiteboard, crop teks menjadi flashcard otomatis
-Teknologi: camera, google_ml_kit, sqflite, flip_card
-Tema UI: Glassmorphism – card foto transparan
-
-200.
-App name: lifewheel
-Deskripsi: Wheel of Life assessment, nilai 8 area kehidupan (karir, kesehatan, dll), tampilkan sebagai radar chart, track perubahan tiap bulan
-Teknologi: fl_chart (radar), sqflite, flutter_animate
-Tema UI: Aurora Gradient – roda kehidupan berwarna spektrum
+# 🚀 200 Flutter Learning Apps — Kurikulum Lengkap
+
+> Daftar 200 app belajar Flutter dari Beginner hingga Advanced, lengkap dengan nama brandable, deskripsi, teknologi, dan tema UI.
+
+---
+
+## 🟢 BEGINNER (001–050)
+> **Target:** 200–300 lines of code | Fokus: Widget dasar, layout, state sederhana
+
+---
+
+### 001
+**App Name:** `Hellow`
+**Deskripsi:** App Hello World yang dipercantik — menampilkan nama pengguna dengan animasi teks sederhana dan tombol ganti nama.
+**Teknologi:** `StatefulWidget`, `setState`, `TextField`, `Text`
+**Tema UI:** Flat pastel — background putih bersih, teks besar bold berwarna coral, satu tombol rounded teal
+
+---
+
+### 002
+**App Name:** `Clickly`
+**Deskripsi:** Counter app klasik dengan desain modern — tombol increment, decrement, dan reset dengan feedback visual.
+**Teknologi:** `StatefulWidget`, `FloatingActionButton`, `Column`, `Row`
+**Tema UI:** Skeuomorphic ringan — tombol dengan shadow lembut, angka counter besar di tengah dengan font serif
+
+---
+
+### 003
+**App Name:** `Chromato`
+**Deskripsi:** Color picker sederhana — pilih warna dari grid dan tampilkan hex code-nya secara real-time.
+**Teknologi:** `GridView`, `GestureDetector`, `Color`, `setState`
+**Tema UI:** Dark mode minimalis — grid warna-warni kontras di background hitam, hex code dengan font monospace
+
+---
+
+### 004
+**App Name:** `TipSplit`
+**Deskripsi:** Kalkulator tip & bill split — masukkan total tagihan, pilih persentase tip, bagi ke beberapa orang.
+**Teknologi:** `TextEditingController`, `Slider`, `double parsing`, `Column`
+**Tema UI:** Material You — card putih di background hijau mint, typography bersih, angka hasil berukuran besar
+
+---
+
+### 005
+**App Name:** `Quotiday`
+**Deskripsi:** Tampilkan satu kutipan motivasi per hari dari list statis, dengan tombol shuffle untuk kutipan acak.
+**Teknologi:** `List<String>`, `Random`, `setState`, `Card`
+**Tema UI:** Warm editorial — background krem, teks kutipan italic besar, garis dekoratif kuning mustard
+
+---
+
+### 006
+**App Name:** `Nomy`
+**Deskripsi:** Konverter nama — ubah teks menjadi huruf kapital, lowercase, title case, atau balik teksnya.
+**Teknologi:** `String methods`, `TextEditingController`, `Column`, `ElevatedButton`
+**Tema UI:** Typewriter retro — font monospace, background putih dengan noise texture tipis, aksen warna ink-blue
+
+---
+
+### 007
+**App Name:** `DiceRollo`
+**Deskripsi:** Dadu digital — tap layar untuk roll dadu animasi sederhana, tampilkan angka 1–6 dengan gambar dadu.
+**Teknologi:** `Random`, `Image.asset`, `GestureDetector`, `setState`
+**Tema UI:** Board game vintage — background hijau felt, dadu putih dengan shadow, font bold retro
+
+---
+
+### 008
+**App Name:** `Lumino`
+**Deskripsi:** Toggle lampu ON/OFF dengan animasi perubahan background — terang saat ON, gelap saat OFF.
+**Teknologi:** `AnimatedContainer`, `setState`, `bool`, `Icon`
+**Tema UI:** Minimal dramatic — transisi smooth hitam ke putih, ikon bola lampu di tengah layar
+
+---
+
+### 009
+**App Name:** `FizzBuzz UI`
+**Deskripsi:** Visualisasi FizzBuzz — tampilkan daftar angka 1–100 dengan highlight berbeda untuk Fizz, Buzz, FizzBuzz.
+**Teknologi:** `ListView.builder`, `List`, `modulo operator`, `Container color`
+**Tema UI:** Colorblock bold — setiap kategori punya warna blok berbeda: merah, biru, ungu, abu
+
+---
+
+### 010
+**App Name:** `WeighMate`
+**Deskripsi:** Konverter berat — masukkan nilai dalam kg, tampilkan equivalen dalam pound, gram, dan ons.
+**Teknologi:** `TextEditingController`, `double.tryParse`, `Column`, `Text`
+**Tema UI:** Health & wellness — hijau sage, tipografi bersih, ikon timbangan dengan aksen lime
+
+---
+
+### 011
+**App Name:** `TempoC`
+**Deskripsi:** Konverter suhu — Celsius ke Fahrenheit, Kelvin, dan Rankine dengan slider input interaktif.
+**Teknologi:** `Slider`, `setState`, `math formula`, `Row`, `Column`
+**Tema UI:** Cold-to-hot gradient — background berubah dari biru es ke oranye api sesuai nilai suhu
+
+---
+
+### 012
+**App Name:** `Profiler`
+**Deskripsi:** App kartu profil sederhana — foto avatar, nama, bio, dan tiga ikon sosial media yang bisa ditap.
+**Teknologi:** `CircleAvatar`, `Column`, `Icon`, `InkWell`, `Padding`
+**Tema UI:** LinkedIn meets Instagram — card putih dengan shadow, foto profil besar, layout bersih profesional
+
+---
+
+### 013
+**App Name:** `Checklisto`
+**Deskripsi:** Checklist sederhana dengan item yang bisa dicentang — tidak perlu database, hanya state list boolean.
+**Teknologi:** `ListView`, `CheckboxListTile`, `List<bool>`, `setState`
+**Tema UI:** Notebook digital — background putih kertas, garis horizontal tipis, centang dengan warna hijau
+
+---
+
+### 014
+**App Name:** `BMIfy`
+**Deskripsi:** Kalkulator BMI — input tinggi dan berat, tampilkan BMI dan kategori (underweight/normal/overweight/obese).
+**Teknologi:** `TextEditingController`, `double parsing`, `conditional logic`, `Column`
+**Tema UI:** Medical clean — putih steril dengan aksen biru rumah sakit, indikator kategori berwarna
+
+---
+
+### 015
+**App Name:** `Stario`
+**Deskripsi:** Rating bintang interaktif — tap bintang untuk memberi rating 1–5, tampilkan teks deskripsi rating.
+**Teknologi:** `Row`, `GestureDetector`, `Icon (star)`, `setState`, `List<bool>`
+**Tema UI:** Cinema ticket — background merah marun, bintang emas bercahaya, font poster vintage
+
+---
+
+### 016
+**App Name:** `Paletto`
+**Deskripsi:** Tampilkan palet warna dari tema app — list warna primary, secondary, surface, dan variannya dalam card.
+**Teknologi:** `Theme.of(context)`, `ColorScheme`, `ListView`, `Container`
+**Tema UI:** Designer tool — layout grid rapi, chip warna dengan hex label, background abu gelap
+
+---
+
+### 017
+**App Name:** `Splashy`
+**Deskripsi:** Splash screen + onboarding 3 halaman sederhana dengan gambar, judul, deskripsi, dan tombol Next/Skip.
+**Teknologi:** `PageView`, `PageController`, `dots indicator manual`, `Navigator.pushReplacement`
+**Tema UI:** App launch modern — ilustrasi flat per halaman, warna berbeda tiap slide, tombol pill rounded
+
+---
+
+### 018
+**App Name:** `AgeCalc`
+**Deskripsi:** Kalkulator umur — pilih tanggal lahir dengan date picker, tampilkan umur dalam tahun, bulan, dan hari.
+**Teknologi:** `showDatePicker`, `DateTime`, `Duration`, `difference()`
+**Tema UI:** Birthday celebration — aksen konfeti, angka umur besar berwarna-warni, background krem festive
+
+---
+
+### 019
+**App Name:** `Loopy`
+**Deskripsi:** Visualisasi loop — pilih tipe loop (for/while/do-while), set nilai, lihat output loop dianimasi satu per satu.
+**Teknologi:** `Future.delayed`, `async/await`, `setState`, `ListView`
+**Tema UI:** Code terminal — background hitam, teks hijau terminal, efek typing sederhana
+
+---
+
+### 020
+**App Name:** `Phonify`
+**Deskripsi:** Formatter nomor telepon Indonesia — input angka, otomatis format jadi +62-xxx-xxxx-xxxx.
+**Teknologi:** `TextInputFormatter`, `RegExp`, `TextEditingController`, `InputDecoration`
+**Tema UI:** Telecom modern — biru cobalt, ikon telepon, card input dengan highlight aktif
+
+---
+
+### 021
+**App Name:** `Flagzy`
+**Deskripsi:** Tebak bendera negara — tampilkan bendera (emoji/gambar), pilih dari 4 opsi jawaban, hitung skor.
+**Teknologi:** `List<Map>`, `Random`, `ElevatedButton`, `setState`, `score counter`
+**Tema UI:** Quiz show — background biru gelap, kartu jawaban putih, konfirmasi benar/salah berwarna
+
+---
+
+### 022
+**App Name:** `Boxio`
+**Deskripsi:** Visualisasi Flutter box model — ubah padding, margin, border radius via slider dan lihat efeknya real-time.
+**Teknologi:** `Slider`, `Container`, `BoxDecoration`, `setState`, `EdgeInsets`
+**Tema UI:** Dev tools inspektur — background abu gelap, widget preview di tengah, panel kontrol bawah
+
+---
+
+### 023
+**App Name:** `Wordo`
+**Deskripsi:** Word counter sederhana — paste atau ketik teks, tampilkan jumlah kata, karakter, kalimat, dan paragraf.
+**Teknologi:** `TextEditingController`, `String.split()`, `RegExp`, `Column`
+**Tema UI:** Writing tool minimal — putih bersih, font sans-serif lebar, statistik dalam chip kecil
+
+---
+
+### 024
+**App Name:** `Pomodoro Lite`
+**Deskripsi:** Timer Pomodoro sederhana — 25 menit kerja, 5 menit istirahat, dengan tombol start/pause/reset.
+**Teknologi:** `Timer` (dart:async), `setState`, `Duration`, `countdown logic`
+**Tema UI:** Focus mode — merah tomat saat kerja, hijau segar saat istirahat, angka timer besar di tengah
+
+---
+
+### 025
+**App Name:** `Currento`
+**Deskripsi:** Konverter mata uang dengan rate statis — IDR, USD, EUR, JPY, SGD dengan input dan output bersamaan.
+**Teknologi:** `Map<String, double>`, `DropdownButton`, `TextEditingController`, `setState`
+**Tema UI:** Banking premium — hitam dan emas, dropdown elegan, angka rate dengan font monospace
+
+---
+
+### 026
+**App Name:** `Shadio`
+**Deskripsi:** Pilih warna dengan tiga slider RGB — geser slider merah, hijau, biru dan lihat preview warna hasilnya.
+**Teknologi:** `Slider`, `Color(r,g,b)`, `setState`, `Column`
+**Tema UI:** Creative studio — background gelap, slider berwarna RGB, kotak preview besar di tengah
+
+---
+
+### 027
+**App Name:** `Gravataro`
+**Deskripsi:** Avatar generator berbasis inisial — masukkan nama, pilih warna, hasilkan avatar lingkaran dengan inisial.
+**Teknologi:** `CircleAvatar`, `String manipulation`, `Color`, `setState`
+**Tema UI:** Profile card minimalis — card putih dengan shadow, avatar berwarna-warni, nama di bawahnya
+
+---
+
+### 028
+**App Name:** `Fontastic`
+**Deskripsi:** Showcase Google Fonts — tampilkan sample teks dengan berbagai font Google, bisa filter berdasarkan kategori.
+**Teknologi:** `google_fonts` package, `ListView`, `DropdownButton`, `TextStyle`
+**Tema UI:** Typography specimen — putih bersih seperti majalah desain, teks sample besar, metadata font kecil
+
+---
+
+### 029
+**App Name:** `Snappy`
+**Deskripsi:** Tampilkan SnackBar dengan berbagai konfigurasi — warna, durasi, action button, posisi — dari panel kontrol.
+**Teknologi:** `ScaffoldMessenger`, `SnackBar`, `SnackBarAction`, `showSnackBar`
+**Tema UI:** Toast notification demo — layout panel kontrol kiri, preview area kanan, background abu terang
+
+---
+
+### 030
+**App Name:** `Numbero`
+**Deskripsi:** Number to words converter — masukkan angka (hingga miliaran), tampilkan dalam teks bahasa Indonesia.
+**Teknologi:** `int parsing`, `recursive logic`, `Map`, `String concatenation`
+**Tema UI:** Edukasi anak — warna-warni cerah, font rounded playful, animasi sederhana saat konversi
+
+---
+
+### 031
+**App Name:** `Stacko`
+**Deskripsi:** Visualisasi Stack vs Column vs Row — pilih layout, tambah/hapus widget kotak, lihat perbedaannya.
+**Teknologi:** `Stack`, `Column`, `Row`, `Positioned`, `setState`
+**Tema UI:** Flutter playground — background krem, kotak berwarna transparan, label overlay
+
+---
+
+### 032
+**App Name:** `Emojipad`
+**Deskripsi:** Emoji keyboard sederhana — grid emoji per kategori, tap untuk copy ke clipboard, history 10 terakhir.
+**Teknologi:** `Clipboard`, `GridView`, `DefaultTabController`, `List`
+**Tema UI:** iOS-inspired — rounded corners, background blur tipis, kategori tab di bawah
+
+---
+
+### 033
+**App Name:** `Spinny`
+**Deskripsi:** Roda keberuntungan sederhana — daftar pilihan bisa diedit, spin animasi sederhana, tampilkan hasil.
+**Teknologi:** `Transform.rotate`, `AnimationController`, `Tween`, `setState`
+**Tema UI:** Carnival fun — warna-warni cerah, segmen roda kontras, efek sparkle sederhana
+
+---
+
+### 034
+**App Name:** `Markdowny`
+**Deskripsi:** Markdown previewer sederhana — split view editor kiri, preview kanan dengan render heading dan bold.
+**Teknologi:** `flutter_markdown` package, `TextEditingController`, `Row`
+**Tema UI:** Developer notes — dark mode, font monospace di editor, preview bersih di sebelahnya
+
+---
+
+### 035
+**App Name:** `Timezono`
+**Deskripsi:** World clock — tampilkan waktu saat ini di 6 kota besar dunia, update setiap detik.
+**Teknologi:** `Timer.periodic`, `DateTime.now()`, `timezone` (statis offset), `ListView`
+**Tema UI:** Global minimalis — background biru tengah malam, jam digital putih besar per kota
+
+---
+
+### 036
+**App Name:** `Passwurdo`
+**Deskripsi:** Password generator — pilih panjang dan karakter set (huruf besar, angka, simbol), generate & copy.
+**Teknologi:** `Random`, `String.fromCharCodes`, `Clipboard`, `Switch`, `Slider`
+**Tema UI:** Security hacker — background hitam, teks hijau, animasi generate karakter satu per satu
+
+---
+
+### 037
+**App Name:** `Catchy`
+**Deskripsi:** Tap game sederhana — kotak merah muncul di posisi acak, tap sebelum menghilang, hitung skor.
+**Teknologi:** `Random`, `Timer`, `Positioned`, `Stack`, `GestureDetector`
+**Tema UI:** Arcade retro — background biru gelap, kotak merah berkedip, skor counter di atas
+
+---
+
+### 038
+**App Name:** `Gradio`
+**Deskripsi:** Gradient builder — pilih dua warna dan arah gradient, preview real-time, copy kode Flutter-nya.
+**Teknologi:** `LinearGradient`, `RadialGradient`, `ColorPicker sederhana`, `setState`
+**Tema UI:** Design tool — split panel, gradient preview besar di atas, kontrol di bawah
+
+---
+
+### 039
+**App Name:** `Moodlog`
+**Deskripsi:** Mood tracker harian — pilih emoji mood untuk hari ini, simpan ke list, lihat history minggu ini.
+**Teknologi:** `SharedPreferences`, `DateTime`, `List<Map>`, `GridView emoji`
+**Tema UI:** Journaling soft — warna pastel berbeda per mood, kalender mini week view, font rounded
+
+---
+
+### 040
+**App Name:** `Typingo`
+**Deskripsi:** Typing speed test — tampilkan kalimat, ketik ulang, hitung WPM dan akurasi saat selesai.
+**Teknologi:** `Stopwatch`, `String comparison`, `TextEditingController`, `StreamBuilder`
+**Tema UI:** Typeracer clean — putih bersih, teks yang sudah benar hijau, salah merah, WPM besar di akhir
+
+---
+
+### 041
+**App Name:** `Shapify`
+**Deskripsi:** Visualisasi CustomPaint dasar — pilih bentuk (circle, rectangle, triangle, star) dan warna, render on canvas.
+**Teknologi:** `CustomPainter`, `Canvas`, `Paint`, `Path`, `setState`
+**Tema UI:** Art canvas — background abu terang, bentuk di tengah dengan shadow, panel pilih di bawah
+
+---
+
+### 042
+**App Name:** `Birthdayz`
+**Deskripsi:** Countdown ulang tahun — masukkan tanggal lahir, tampilkan berapa hari lagi ulang tahun berikutnya.
+**Teknologi:** `DateTime`, `difference()`, `showDatePicker`, `Duration`
+**Tema UI:** Birthday celebratory — background confetti pattern, angka countdown besar, warna pink dan ungu
+
+---
+
+### 043
+**App Name:** `Switchy`
+**Deskripsi:** Demo semua widget toggle Flutter — Switch, Checkbox, Radio, CupertinoSwitch dalam satu halaman.
+**Teknologi:** `Switch`, `Checkbox`, `Radio`, `CupertinoSwitch`, `setState`
+**Tema UI:** Component library — background putih, setiap toggle dalam card terpisah, label jelas
+
+---
+
+### 044
+**App Name:** `Spacero`
+**Deskripsi:** Space calculator — hitung jarak antar planet dalam AU, km, dan light-minutes dengan data statis.
+**Teknologi:** `DropdownButton`, `Map<String,double>`, `num calculation`, `Column`
+**Tema UI:** Space dark — background hitam berbintang (dots pattern), font futuristik, angka oranye neon
+
+---
+
+### 045
+**App Name:** `Planner Lite`
+**Deskripsi:** Daily planner sederhana — tambah tugas dengan waktu, tampilkan dalam timeline vertikal hari ini.
+**Teknologi:** `TimeOfDay`, `showTimePicker`, `List<Map>`, `ListView`, `sort`
+**Tema UI:** Paper planner — garis jam vertikal kiri, event dalam blok warna, background putih kertas
+
+---
+
+### 046
+**App Name:** `Iconify`
+**Deskripsi:** Browse Material Icons — grid semua icon Material, search by name, tap untuk copy nama icon.
+**Teknologi:** `Icons class`, `GridView`, `TextField search`, `Clipboard`
+**Tema UI:** Icon browser — background abu gelap, grid ikon putih, search bar di atas
+
+---
+
+### 047
+**App Name:** `Alertify`
+**Deskripsi:** Demo semua jenis dialog Flutter — AlertDialog, SimpleDialog, BottomSheet, CupertinoDialog.
+**Teknologi:** `showDialog`, `showModalBottomSheet`, `AlertDialog`, `SimpleDialog`
+**Tema UI:** Component showcase — card per tipe dialog, tombol "Show" per card, highlight on trigger
+
+---
+
+### 048
+**App Name:** `Metrio`
+**Deskripsi:** Konverter satuan panjang — mm, cm, m, km, inch, feet, yard, mile dalam satu input, semua output.
+**Teknologi:** `TextEditingController`, `Map<String,double>`, `ListView`, `double conversion`
+**Tema UI:** Engineering precision — font monospace, background putih, unit label abu, nilai bold hitam
+
+---
+
+### 049
+**App Name:** `Floato`
+**Deskripsi:** Demo FloatingActionButton extended dan regular dengan SpeedDial manual — show/hide sub-action.
+**Teknologi:** `FloatingActionButton`, `AnimatedContainer`, `Column`, `setState`
+**Tema UI:** Material3 expressive — warna teal, FAB besar, sub-action muncul smooth dari bawah
+
+---
+
+### 050
+**App Name:** `Starmap`
+**Deskripsi:** Rating produk dengan breakdown bintang — tampilkan distribusi rating 1–5 dalam progress bar horizontal.
+**Teknologi:** `LinearProgressIndicator`, `Row`, `Column`, `double calculation`, `List<int>`
+**Tema UI:** E-commerce review — putih bersih, bintang emas, progress bar slim oranye, angka di kanan
+
+---
+
+## 🔵 UPPER BEGINNER (051–100)
+> **Target:** 300–500 lines of code | Fokus: Navigation, list dinamis, local data, package sederhana
+
+---
+
+### 051
+**App Name:** `Journify`
+**Deskripsi:** Diary app sederhana — tulis jurnal harian, simpan ke SharedPreferences, lihat history, hapus entry.
+**Teknologi:** `SharedPreferences`, `ListView`, `TextEditingController`, `DateTime`, `multi-screen`
+**Tema UI:** Moleskine digital — background krem, font handwriting (Caveat), garis ruled tipis
+
+---
+
+### 052
+**App Name:** `Reciply`
+**Deskripsi:** Resep masakan statis — list resep dengan gambar, detail bahan dan langkah, fitur search by name.
+**Teknologi:** `Navigator.push`, `ListView.builder`, `SearchDelegate`, `List<Map>`
+**Tema UI:** Food magazine — foto full-bleed, overlay gradient, typography bold editorial
+
+---
+
+### 053
+**App Name:** `Flixcard`
+**Deskripsi:** Movie card collection — scroll horizontal card film dengan poster, genre tag, dan rating bintang.
+**Teknologi:** `ListView` horizontal, `Stack`, `Chip`, `Hero widget`, `PageRouteBuilder`
+**Tema UI:** Netflix dark — background hitam, card rounded dengan poster, badge merah
+
+---
+
+### 054
+**App Name:** `Contacto`
+**Deskripsi:** App kontak sederhana — CRUD kontak (nama, telepon, email) dengan avatar inisial, simpan di memori.
+**Teknologi:** `List<Contact>`, `Navigator`, `Form`, `TextFormField`, `showDialog`
+**Tema UI:** iOS Contacts-inspired — list alphabetical, avatar berwarna, swipe hint di item
+
+---
+
+### 055
+**App Name:** `Memoize`
+**Deskripsi:** Sticky notes app — buat, edit, warnai, dan hapus catatan dengan layout grid masonry sederhana.
+**Teknologi:** `SharedPreferences`, `GridView`, `json encode/decode`, `ColorPicker`
+**Tema UI:** Google Keep-inspired — warna-warni sticky notes, grid tidak seragam (staggered manual)
+
+---
+
+### 056
+**App Name:** `Newscard`
+**Deskripsi:** News reader dengan data mock JSON — list artikel, detail halaman, bookmark favorit ke SharedPreferences.
+**Teknologi:** `json_decode`, `ListView`, `SharedPreferences`, `Bookmark state`
+**Tema UI:** Editorial newspaper — header hitam, konten putih, foto full-width, readability focus
+
+---
+
+### 057
+**App Name:** `Quizapp`
+**Deskripsi:** Quiz trivia 10 soal — pilih jawaban, lihat highlight benar/salah, tampilkan skor akhir dengan ringkasan.
+**Teknologi:** `List<Question>`, `Navigator`, `AnimatedContainer`, `score logic`
+**Tema UI:** Game show neon — background ungu gelap, pilihan dalam card neon, progress bar soal
+
+---
+
+### 058
+**App Name:** `Habito`
+**Deskripsi:** Habit tracker mingguan — tambah kebiasaan, centang per hari, lihat streak dan persentase konsistensi.
+**Teknologi:** `SharedPreferences`, `DateTime`, `streak calculation`, `ListView`, `CheckboxListTile`
+**Tema UI:** Productivity clean — hijau sebagai warna sukses, chart batang mini per habit, badge streak
+
+---
+
+### 059
+**App Name:** `Shopo`
+**Deskripsi:** Shopping list dengan kategori — tambah item ke kategori (buah, sayur, daging), centang saat dibeli.
+**Teknologi:** `ExpansionTile`, `ListView`, `SharedPreferences`, `groupBy manual`
+**Tema UI:** Grocery app — hijau segar, ikon kategori berwarna, item yang dicentang menjadi transparan
+
+---
+
+### 060
+**App Name:** `Pokédex Lite`
+**Deskripsi:** Daftar 20 Pokémon dengan data hardcoded — list, detail, search, dan filter berdasarkan tipe.
+**Teknologi:** `List<Pokemon> model`, `Navigator`, `SearchDelegate`, `filter logic`
+**Tema UI:** Pokémon red classic — merah dan putih, kartu Pokémon dengan tipe badge berwarna
+
+---
+
+### 061
+**App Name:** `Expensio`
+**Deskripsi:** Expense tracker sederhana — tambah pengeluaran dengan kategori, lihat total, chart batang per kategori.
+**Teknologi:** `fl_chart` (BarChart), `SharedPreferences`, `json`, `List<Expense>`
+**Tema UI:** Fintech modern — hitam dan hijau lime, chart batang tebal, summary card di atas
+
+---
+
+### 062
+**App Name:** `Countryz`
+**Deskripsi:** Explore negara dunia dari JSON lokal — list, search, detail dengan bendera, populasi, dan ibu kota.
+**Teknologi:** `rootBundle.loadString`, `json.decode`, `ListView`, `Navigator`
+**Tema UI:** Atlas digital — putih bersih, bendera emoji besar, label data rapi dalam row
+
+---
+
+### 063
+**App Name:** `Flashcardo`
+**Deskripsi:** Flashcard belajar bahasa — buat deck kartu depan (kata) dan belakang (terjemahan), flip animasi.
+**Teknologi:** `AnimationController`, `Transform` (flip), `SharedPreferences`, `Card`
+**Tema UI:** Language school — biru dan kuning, kartu tebal dengan shadow, tombol flip di bawah
+
+---
+
+### 064
+**App Name:** `Trackify`
+**Deskripsi:** Package tracker mockup — input nomor resi, tampilkan timeline perjalanan paket dari data statis.
+**Teknologi:** `Timeline manual dengan Column`, `List<TrackEvent>`, `Icon status`, `Navigator`
+**Tema UI:** Logistics modern — oranye JNE-style, timeline vertikal dengan dot dan garis, status badge
+
+---
+
+### 065
+**App Name:** `Bodyclock`
+**Deskripsi:** Body clock visualizer — tampilkan aktivitas organ tubuh per jam dalam 24 jam dengan animasi circular.
+**Teknologi:** `CustomPainter`, `Timer`, `Arc drawing`, `List<Map>`, `animation`
+**Tema UI:** Medical infographic — lingkaran jam besar, segmen organ berwarna, background gelap teal
+
+---
+
+### 066
+**App Name:** `Pomosh`
+**Deskripsi:** Pomodoro dengan session tracker — hitung berapa sesi selesai hari ini, simpan riwayat, atur durasi custom.
+**Teknologi:** `Timer`, `SharedPreferences`, `session list`, `setState`, `BottomSheet setting`
+**Tema UI:** Deep work aesthetic — merah bata, minimal distraksi, progress ring tipis di tengah
+
+---
+
+### 067
+**App Name:** `Gallerio`
+**Deskripsi:** Photo gallery dari asset lokal — grid foto, tap untuk fullscreen, swipe antar foto, pinch-to-zoom.
+**Teknologi:** `photo_view` package, `GridView`, `PageView`, `GestureDetector`
+**Tema UI:** Instagram-like — grid 3 kolom tanpa gap, fullscreen hitam, kontrol minimal
+
+---
+
+### 068
+**App Name:** `Taskmaster`
+**Deskripsi:** To-do app dengan prioritas dan due date — sort berdasarkan prioritas, filter by status, badge jumlah pending.
+**Teknologi:** `List<Task>`, `Enum priority`, `sort()`, `SharedPreferences`, `FilterChip`
+**Tema UI:** Notion-inspired — putih dan abu, ikon prioritas berwarna (merah/kuning/hijau), layout list compact
+
+---
+
+### 069
+**App Name:** `Lexicon`
+**Deskripsi:** Kamus mini dengan data JSON lokal — 500 kata Inggris-Indonesia, search realtime, favorit.
+**Teknologi:** `rootBundle`, `json`, `SearchDelegate`, `SharedPreferences favorites`, `ListView`
+**Tema UI:** Dictionary classic — serif font untuk definisi, pembatas tipis antar kata, aksen merah
+
+---
+
+### 070
+**App Name:** `Planto`
+**Deskripsi:** Plant care reminder — daftar tanaman dengan jadwal siram, notifikasi manual (popup in-app), catatan tumbuh.
+**Teknologi:** `List<Plant>`, `DateTime reminder`, `SharedPreferences`, `showDialog alert`
+**Tema UI:** Botanical — hijau daun, kartu tanaman dengan ilustrasi emoji, background parchment
+
+---
+
+### 071
+**App Name:** `Memoji Quiz`
+**Deskripsi:** Memory card game — grid kartu terbalik, tap dua kartu, temukan pasangan emoji yang sama, hitung waktu.
+**Teknologi:** `GridView`, `List<Card>`, `Timer`, `match logic`, `setState`
+**Tema UI:** Puzzle pastel — kartu putih rounded, emoji besar, background lavender, animasi flip sederhana
+
+---
+
+### 072
+**App Name:** `Wallio`
+**Deskripsi:** Digital wallet mockup UI — tampilkan saldo, list transaksi terakhir, send/receive button (UI only).
+**Teknologi:** `ListView`, `custom card widget`, `Navigator`, `animated balance reveal`
+**Tema UI:** Fintech premium — gradient ungu-biru gelap, angka saldo putih besar, transaksi dalam list bersih
+
+---
+
+### 073
+**App Name:** `Bookmarky`
+**Deskripsi:** URL bookmark manager — simpan URL dengan judul dan tag, filter by tag, buka di browser.
+**Teknologi:** `url_launcher`, `SharedPreferences`, `json`, `FilterChip`, `TextField`
+**Tema UI:** Browser extension — biru browser, favicon emoji placeholder, tag chip berwarna
+
+---
+
+### 074
+**App Name:** `Currancy`
+**Deskripsi:** Currency converter dengan rate update dari API publik (fixer.io free tier atau exchangerate-api).
+**Teknologi:** `http` package, `json`, `FutureBuilder`, `DropdownButton`, `API call`
+**Tema UI:** Bloomberg terminal-lite — hitam dengan angka kuning, rate update timestamp, dropdown compact
+
+---
+
+### 075
+**App Name:** `Gymlog`
+**Deskripsi:** Gym workout logger — catat latihan (exercise, set, rep, weight), lihat log per hari.
+**Teknologi:** `SharedPreferences`, `json`, `List<Exercise>`, `ExpansionTile`, `DateTime`
+**Tema UI:** Fitness dark — hitam dan merah, font bold angular, progress per set dalam dots
+
+---
+
+### 076
+**App Name:** `Cinescope`
+**Deskripsi:** Browse top movie list dari TMDB API — poster, rating, genre, halaman detail sinopsis.
+**Teknologi:** `http`, `FutureBuilder`, `json`, `Navigator`, `Image.network`
+**Tema UI:** Cinema premium — hitam, merah bioskop, poster card dengan rating overlay
+
+---
+
+### 077
+**App Name:** `Feedr`
+**Deskripsi:** RSS feed reader — masukkan URL feed, parse XML (atau mock), tampilkan artikel dalam list card.
+**Teknologi:** `http`, `xml` package, `ListView`, `url_launcher`, `Navigator`
+**Tema UI:** Feedly inspired — putih bersih, gambar thumbnail kiri, judul bold, meta data abu
+
+---
+
+### 078
+**App Name:** `Sketchpad`
+**Deskripsi:** Drawing app sederhana — gambar bebas dengan jari, pilih warna dan ukuran brush, clear canvas.
+**Teknologi:** `CustomPainter`, `GestureDetector (onPanUpdate)`, `List<Offset>`, `Paint`
+**Tema UI:** Sketchbook — background putih kertas bertekstur, toolbar brush di bawah, warna dalam circle
+
+---
+
+### 079
+**App Name:** `Soundboard`
+**Deskripsi:** Soundboard tombol — grid tombol dengan label suara berbeda, tap untuk play (menggunakan audioplayers).
+**Teknologi:** `audioplayers` package, `GridView`, `asset audio`, `setState`
+**Tema UI:** DJ mixer — background hitam glossy, tombol kotak berwarna neon, efek ripple saat tap
+
+---
+
+### 080
+**App Name:** `Reado`
+**Deskripsi:** Reading progress tracker — tambah buku, set total halaman, update halaman saat ini, lihat % selesai.
+**Teknologi:** `SharedPreferences`, `LinearProgressIndicator`, `List<Book>`, `form`, `percentage`
+**Tema UI:** Bookshelf warm — background krem, cover buku warna-warni, progress bar tebal coklat
+
+---
+
+### 081
+**App Name:** `Mappio`
+**Deskripsi:** Static map viewer — tampilkan peta dengan Google Static Maps API, pin lokasi dari list tempat.
+**Teknologi:** `Image.network`, `http query params`, `ListView`, `url_launcher`
+**Tema UI:** Travel guide — kartu lokasi dengan thumbnail map, aksen kuning Google Maps
+
+---
+
+### 082
+**App Name:** `Focusbrew`
+**Deskripsi:** Ambient sound player untuk fokus — toggle suara (hujan, kafe, alam), mix volume masing-masing.
+**Teknologi:** `audioplayers`, `Slider volume`, `looping audio`, `setState`
+**Tema UI:** Lo-fi aesthetic — ilustrasi pixel art sederhana, warna warm amber, kontrol minimal
+
+---
+
+### 083
+**App Name:** `Journo`
+**Deskripsi:** Bullet journal digital — daily log dengan format BuJo (task, event, note) dengan simbol berbeda per tipe.
+**Teknologi:** `SharedPreferences`, `Enum BujoType`, `ListView`, `custom ListTile`
+**Tema UI:** BuJo authentic — font monospace, dot grid background, simbol BuJo (•, ○, –) besar
+
+---
+
+### 084
+**App Name:** `Lyriko`
+**Deskripsi:** Simpan lirik lagu favorit — tambah judul, artis, dan lirik, lihat dalam tampilan fullscreen scrollable.
+**Teknologi:** `SharedPreferences`, `json`, `ListView`, `fullscreen text view`, `search`
+**Tema UI:** Music app dark — background hitam, teks lirik putih besar, gradient blur di bawah
+
+---
+
+### 085
+**App Name:** `Travellist`
+**Deskripsi:** Bucket list perjalanan — tambah destinasi dengan foto (asset atau URL), catatan, dan status visited/wishlist.
+**Teknologi:** `SharedPreferences`, `List<Destination>`, `FilterChip`, `Image handling`
+**Tema UI:** Travel pin board — foto full card, overlay gradient, badge "Visited" hijau atau "Wishlist" abu
+
+---
+
+### 086
+**App Name:** `Animato`
+**Deskripsi:** Demo animasi Flutter — showcase 10 animasi (fade, scale, slide, rotate, dll) dalam satu app demo.
+**Teknologi:** `AnimationController`, `CurvedAnimation`, `Tween`, `FadeTransition`, `ScaleTransition`
+**Tema UI:** Motion design showcase — background hitam, setiap animasi dalam card, play/replay button
+
+---
+
+### 087
+**App Name:** `Podio`
+**Deskripsi:** Podcast episode list mockup — artwork, judul, durasi, progress play bar, play/pause toggle.
+**Teknologi:** `audioplayers`, `Slider progress`, `Image.network`, `ListView`, `duration format`
+**Tema UI:** Spotify-inspired — background hampir hitam, artwork square, bar progress tipis
+
+---
+
+### 088
+**App Name:** `Langoo`
+**Deskripsi:** Phrasebook bahasa — pilih bahasa (ID, EN, JP, KR), browse frasa per kategori (salam, restoran, darurat).
+**Teknologi:** `json assets`, `rootBundle`, `TabBar`, `ListView`, `clipboard copy`
+**Tema UI:** Travel companion — tiap bahasa punya warna aksen berbeda, frasa dalam card dengan transliterasi
+
+---
+
+### 089
+**App Name:** `Votify`
+**Deskripsi:** Poll creator dan voter — buat pertanyaan dengan 2–4 pilihan, vote, lihat hasil dalam pie chart.
+**Teknologi:** `fl_chart` (PieChart), `SharedPreferences`, `List<Poll>`, `Navigator`
+**Tema UI:** Survey modern — putih dan biru, pie chart animasi, bar hasil warna-warni
+
+---
+
+### 090
+**App Name:** `Snapnote`
+**Deskripsi:** Photo note — ambil foto dari kamera atau galeri, tambahkan catatan teks di atasnya, simpan ke list.
+**Teknologi:** `image_picker`, `SharedPreferences`, `Stack overlay text`, `List<Note>`
+**Tema UI:** Instagram Story editor-lite — fullscreen foto, teks overlay putih, toolbar sederhana
+
+---
+
+### 091
+**App Name:** `Colorblind`
+**Deskripsi:** Simulasi buta warna — upload foto atau pilih dari asset, apply filter simulasi (deuteranopia, protanopia, dll).
+**Teknologi:** `image` package, `pixel manipulation`, `ColorFilter`, `DropdownButton`
+**Tema UI:** Medical awareness — putih steril, side-by-side comparison, label kondisi buta warna
+
+---
+
+### 092
+**App Name:** `Stepio`
+**Deskripsi:** Step counter mock — sensor accelerometer untuk simulate step count, daily goal, progress ring.
+**Teknologi:** `sensors_plus`, `accelerometer`, `step detection simple`, `CustomPainter ring`
+**Tema UI:** Health ring — background putih, ring progress tebal seperti Apple Watch, angka step besar
+
+---
+
+### 093
+**App Name:** `Inkflow`
+**Deskripsi:** Calligraphy brush simulator — gambar di canvas dengan brush yang responsif terhadap kecepatan gestur.
+**Teknologi:** `CustomPainter`, `GestureDetector velocity`, `Paint strokeWidth dynamic`, `Path`
+**Tema UI:** Japanese zen — background parchment, tinta hitam tebal, bingkai bambu sederhana
+
+---
+
+### 094
+**App Name:** `Funnelz`
+**Deskripsi:** Sales funnel tracker — input data per tahap (prospect, lead, proposal, deal), visualisasi funnel.
+**Teknologi:** `CustomPainter funnel shape`, `TextField`, `List<Stage>`, `percentage calculation`
+**Tema UI:** Business dashboard — biru korporat, funnel berwarna gradient, angka konversi di tiap tahap
+
+---
+
+### 095
+**App Name:** `Readtime`
+**Deskripsi:** Estimator waktu baca — paste artikel atau teks, hitung estimasi waktu baca berdasarkan WPM rata-rata.
+**Teknologi:** `TextEditingController`, `word count`, `WPM calculation`, `Column`
+**Tema UI:** Medium-inspired — putih, font Georgia, estimasi di card abu di atas teks
+
+---
+
+### 096
+**App Name:** `Sleeplog`
+**Deskripsi:** Sleep tracker manual — input waktu tidur dan bangun, hitung durasi, tampilkan bar chart per minggu.
+**Teknologi:** `showTimePicker`, `DateTime`, `fl_chart BarChart`, `SharedPreferences`
+**Tema UI:** Night mode indigo — ungu gelap, bintang kecil, angka jam tidur dalam warna kuning hangat
+
+---
+
+### 097
+**App Name:** `Snapquote`
+**Deskripsi:** Quote card maker — masukkan teks kutipan dan nama penulis, pilih template, export sebagai gambar.
+**Teknologi:** `RepaintBoundary`, `RenderRepaintBoundary`, `ByteData`, `Share plus`
+**Tema UI:** Canva-lite — template card bergaya majalah, font besar, background gradient pilihan
+
+---
+
+### 098
+**App Name:** `Matho`
+**Deskripsi:** Math quiz generator — generate soal aritmatika sesuai level kesulitan, hitung skor dan waktu per soal.
+**Teknologi:** `Random`, `Timer`, `Stopwatch`, `List<Question>`, `level logic`
+**Tema UI:** Classroom edu — papan tulis hijau, font chalk (Caveat), angka putih, efek chalk stroke
+
+---
+
+### 099
+**App Name:** `Localo`
+**Deskripsi:** Location finder — tampilkan koordinat GPS pengguna saat ini, hitung jarak ke beberapa landmark statis.
+**Teknologi:** `geolocator`, `permission_handler`, `distance calculation`, `ListView`
+**Tema UI:** Explorer minimal — koordinat monospace, landmark dalam list card, aksen kompas
+
+---
+
+### 100
+**App Name:** `Vibecheck`
+**Deskripsi:** Daily vibes tracker — pilih vibe hari ini dari set kata sifat mood, simpan dan tampilkan word cloud sederhana.
+**Teknologi:** `SharedPreferences`, `Wrap widget`, `List<String>`, `frequency count`, `font size scaling`
+**Tema UI:** Gen Z aesthetic — warna gradient Y2K, font bold bubbly, chip vibe dengan size berbeda
+
+---
+
+## 🟡 LOWER INTERMEDIATE (101–130)
+> **Target:** 500–700 lines of code | Fokus: State management, API, navigation kompleks, arsitektur awal
+
+---
+
+### 101
+**App Name:** `Newsflow`
+**Deskripsi:** News aggregator dengan kategori — fetch berita dari NewsAPI, infinite scroll, detail artikel in-app WebView.
+**Teknologi:** `http`, `Riverpod`, `WebView`, `InfiniteScroll`, `CachedNetworkImage`
+**Tema UI:** The Verge-inspired — header biru, tipografi bold, gambar penuh lebar, tag kategori berwarna
+
+---
+
+### 102
+**App Name:** `Shopzone`
+**Deskripsi:** E-commerce product catalog — list produk dengan filter harga dan kategori, keranjang belanja dengan total.
+**Teknologi:** `Riverpod StateProvider`, `cart logic`, `FilterChip`, `BottomSheet`, `Image.network`
+**Tema UI:** Tokopedia-green — hijau dan putih, badge diskon merah, card produk dengan rating
+
+---
+
+### 103
+**App Name:** `Weatherly`
+**Deskripsi:** Weather app lengkap — lokasi otomatis GPS, cuaca hari ini + 7 hari, ikon cuaca dinamis, unit toggle C/F.
+**Teknologi:** `OpenWeatherMap API`, `geolocator`, `Riverpod`, `FutureProvider`, `json model`
+**Tema UI:** Gradient sky — background gradient berubah sesuai kondisi cuaca, ikon animasi lottie/SVG
+
+---
+
+### 104
+**App Name:** `Chatbubble`
+**Deskripsi:** Chat UI mockup — daftar percakapan, chat room dengan bubble chat, gambar, dan timestamp.
+**Teknologi:** `ListView.builder reversed`, `custom bubble widget`, `image_picker`, `SharedPreferences`
+**Tema UI:** WhatsApp-inspired — latar hijau bubble milik, putih untuk orang lain, timestamp kecil abu
+
+---
+
+### 105
+**App Name:** `Budgeteer`
+**Deskripsi:** Budget planner bulanan — input pendapatan, alokasikan ke kategori, pie chart pengeluaran, saldo tersisa.
+**Teknologi:** `Riverpod`, `fl_chart PieChart`, `SharedPreferences`, `json`, `total calculation`
+**Tema UI:** YNAB-inspired — biru tua dan kuning, breakdown kategori jelas, progress bar per kategori
+
+---
+
+### 106
+**App Name:** `Recipebox`
+**Deskripsi:** Recipe app dengan Spoonacular API — search resep, filter diet (vegan/keto/gluten-free), detail dengan instruksi.
+**Teknologi:** `http`, `Riverpod`, `FutureProvider`, `Navigator 2.0 dasar`, `CachedNetworkImage`
+**Tema UI:** Food blog premium — foto full-bleed, overlay gelap, font serif besar, ingredient card scroll
+
+---
+
+### 107
+**App Name:** `Musicmate`
+**Deskripsi:** Music player lokal — browse MP3 dari storage, now playing screen, seek bar, playlist sederhana.
+**Teknologi:** `just_audio`, `on_audio_query`, `Riverpod`, `Slider`, `AnimatedRotation album art`
+**Tema UI:** iTunes 2010-nostalgia — cover art besar, equalizer bar mini animasi, knob volume analog
+
+---
+
+### 108
+**App Name:** `Stockwatch`
+**Deskripsi:** Stock tracker — search simbol saham, lihat harga real-time dari Alpha Vantage, tambah ke watchlist.
+**Teknologi:** `http`, `Riverpod`, `json parsing`, `SharedPreferences watchlist`, `line chart fl_chart`
+**Tema UI:** Trading terminal — hitam atau putih, angka hijau (naik) merah (turun), chart tipis
+
+---
+
+### 109
+**App Name:** `Tripmate`
+**Deskripsi:** Trip planner — buat itinerari per hari, tambah aktivitas dengan lokasi dan waktu, packing list terintegrasi.
+**Teknologi:** `Riverpod`, `Hive`, `TabBar`, `ReorderableListView`, `DateTime`
+**Tema UI:** Travel journal — foto destinasi header, timeline harian, aksen teal dan putih
+
+---
+
+### 110
+**App Name:** `Skillo`
+**Deskripsi:** Skill tracker dan learning path — tambah skill, buat milestone, update progress per milestone, visualisasi.
+**Teknologi:** `Hive`, `Riverpod`, `LinearProgressIndicator`, `nested list`, `custom painter`
+**Tema UI:** Duolingo-lite — gamifikasi warna-warni, XP bar hijau, badge per milestone selesai
+
+---
+
+### 111
+**App Name:** `Artgallery`
+**Deskripsi:** Virtual art gallery — browse karya seni dari Art Institute API, detail artwork, filter by medium dan era.
+**Teknologi:** `http`, `Riverpod`, `CachedNetworkImage`, `SearchDelegate`, `Hero animation`
+**Tema UI:** Museum minimalis — putih gallery, foto full karya, font serif klasik, metadata elegan
+
+---
+
+### 112
+**App Name:** `Cryptoview`
+**Deskripsi:** Crypto portfolio tracker — tambah koin dengan jumlah, fetch harga CoinGecko API, hitung nilai total.
+**Teknologi:** `http`, `Riverpod`, `json`, `SharedPreferences`, `fl_chart LineChart`, `percentage change`
+**Tema UI:** Crypto dark — hitam dan kuning Bitcoin, angka portfolio besar, mini chart per koin
+
+---
+
+### 113
+**App Name:** `Flashmaster`
+**Deskripsi:** SRS (Spaced Repetition) flashcard — algoritma SM-2 sederhana untuk jadwal review kartu.
+**Teknologi:** `Hive`, `Riverpod`, `SM-2 algorithm`, `DateTime scheduling`, `Card flip animation`
+**Tema UI:** Academic focus — biru gelap dan putih, kartu besar di tengah, tombol "Again/Hard/Good/Easy"
+
+---
+
+### 114
+**App Name:** `Taskcal`
+**Deskripsi:** Task + calendar integration — tampilkan tugas dalam calendar view, drag-drop sederhana ke hari lain.
+**Teknologi:** `table_calendar`, `Riverpod`, `Hive`, `drag and drop`, `custom event marker`
+**Tema UI:** Fantastical-inspired — calendar putih bersih, event berwarna, selected day dengan dot biru
+
+---
+
+### 115
+**App Name:** `Pricelist`
+**Deskripsi:** Menu/price list builder — freelancer atau UMKM buat daftar harga layanan, export PDF sederhana.
+**Teknologi:** `Riverpod`, `pdf` package, `path_provider`, `share_plus`, `List<Item>`
+**Tema UI:** Business formal — hitam dan emas, layout tabel rapi, header brand di atas
+
+---
+
+### 116
+**App Name:** `Breathe`
+**Deskripsi:** Guided breathing app — animasi lingkaran expand/contract untuk 4-7-8 breathing, pilih pola napas.
+**Teknologi:** `AnimationController`, `CurvedAnimation`, `ScaleTransition`, `Timer`, `Riverpod`
+**Tema UI:** Calm/Headspace-inspired — background gradient biru laut, lingkaran blur bergerak, suara ambient
+
+---
+
+### 117
+**App Name:** `Scanly`
+**Deskripsi:** QR code scanner dan generator — scan kode dari kamera, generate QR dari teks, simpan history scan.
+**Teknologi:** `mobile_scanner`, `qr_flutter`, `SharedPreferences`, `Clipboard`, `url_launcher`
+**Tema UI:** Utility clean — scanner view frame, hasil dalam card, tab scan/generate di bawah
+
+---
+
+### 118
+**App Name:** `Inkjournal`
+**Deskripsi:** Journal dengan rich text — bold, italic, heading dalam jurnal harian, simpan ke Hive.
+**Teknologi:** `flutter_quill`, `Hive`, `Riverpod`, `DateTime`, `search`
+**Tema UI:** Notion minimal — sidebar kategori, editor lebar, toolbar formatting mengapung
+
+---
+
+### 119
+**App Name:** `Mapexplorer`
+**Deskripsi:** Interactive map app — tampilkan peta, pin lokasi favorit, hitung jarak antar pin, cluster marker.
+**Teknologi:** `flutter_map` + OpenStreetMap, `Riverpod`, `Geolocator`, `LatLng`
+**Tema UI:** OSM cartography — peta tile bersih, marker merah custom, info panel slide-up
+
+---
+
+### 120
+**App Name:** `Formbuilder`
+**Deskripsi:** Dynamic form builder — tambah field (text, dropdown, checkbox, date) secara dinamis, preview form, submit.
+**Teknologi:** `Riverpod`, `flutter_form_builder`, `List<FormField>`, `json export`
+**Tema UI:** Admin panel — putih dan abu, field dengan border bawah, preview fullscreen toggle
+
+---
+
+### 121
+**App Name:** `Medilog`
+**Deskripsi:** Medication reminder — tambah obat dengan dosis dan jadwal, notifikasi lokal, history konsumsi.
+**Teknologi:** `flutter_local_notifications`, `Hive`, `Riverpod`, `Time scheduling`, `RepeatInterval`
+**Tema UI:** Health app Apple-style — putih bersih, aksen biru, pill icon, jadwal dalam timeline
+
+---
+
+### 122
+**App Name:** `Artprompt`
+**Deskripsi:** AI art prompt generator — pilih kategori (portrait, landscape, abstract), generate prompt teks, copy ke clipboard.
+**Teknologi:** `http` (ke Anthropic API), `Riverpod`, `FutureProvider`, `Clipboard`
+**Tema UI:** Creative studio — gradient ungu, output prompt dalam card gelap, tag style sebagai chip
+
+---
+
+### 123
+**App Name:** `Langlearn`
+**Deskripsi:** Language learning mini-app — vocab, frasa, dan quiz sederhana untuk satu bahasa target dengan streak.
+**Teknologi:** `Hive`, `Riverpod`, `SharedPreferences streak`, `AnimatedSwitcher`, `quiz logic`
+**Tema UI:** Duolingo-inspired tapi lebih gelap — hijau dan hitam, XP bar, owl maskot SVG
+
+---
+
+### 124
+**App Name:** `Codesnip`
+**Deskripsi:** Code snippet manager — simpan snippet dengan bahasa, tag, dan syntax highlight, search dan copy.
+**Teknologi:** `flutter_highlight`, `Hive`, `Riverpod`, `Clipboard`, `SearchDelegate`
+**Tema UI:** VS Code dark — background #1e1e1e, syntax color per bahasa, sidebar kategori bahasa
+
+---
+
+### 125
+**App Name:** `Inventry`
+**Deskripsi:** Inventory tracker sederhana untuk UMKM — tambah produk, stok, harga, alert stok rendah, export CSV.
+**Teknologi:** `Hive`, `Riverpod`, `csv` package, `share_plus`, `low stock alert logic`
+**Tema UI:** Warehouse utilitarian — oranye dan hitam, card stok, badge "Low Stock" merah
+
+---
+
+### 126
+**App Name:** `Photodiary`
+**Deskripsi:** Visual diary — satu foto per hari wajib, tambah caption dan mood, galeri kalender foto bulanan.
+**Teknologi:** `image_picker`, `Hive`, `Riverpod`, `table_calendar`, `GridView`
+**Tema UI:** Instax polaroid — frame putih tebal di bawah foto, font handwriting, background hijau sage
+
+---
+
+### 127
+**App Name:** `Audiobook`
+**Deskripsi:** Audiobook player — browse daftar audiobook (asset lokal), chapter list, resume posisi terakhir, speed control.
+**Teknologi:** `just_audio`, `Hive (posisi)`, `Riverpod`, `PlaybackSpeed`, `chapter logic`
+**Tema UI:** Reading lamp warm — krem dan coklat, cover buku besar, kontrol minimal di bawah
+
+---
+
+### 128
+**App Name:** `Nutritio`
+**Deskripsi:** Nutrisi harian — tambah makanan dengan data kalori dari JSON lokal, hitung total makro harian.
+**Teknologi:** `Hive`, `Riverpod`, `json assets`, `macro calculation`, `fl_chart DonutChart`
+**Tema UI:** Nutrition app — putih dan hijau, donut chart makro, meal log bersih per waktu makan
+
+---
+
+### 129
+**App Name:** `Debato`
+**Deskripsi:** Debate timer app — timer per sisi bicara, bell alert, log sesi debat, format olimpiade/parlemen.
+**Teknologi:** `Timer`, `Riverpod`, `audio alert`, `speech log`, `custom format logic`
+**Tema UI:** Parliamentary — merah dan biru sisi berlawanan, timer besar digital, bell icon animasi
+
+---
+
+### 130
+**App Name:** `Chartify`
+**Deskripsi:** Chart builder dari input manual — masukkan data label-value, pilih tipe chart, render langsung.
+**Teknologi:** `fl_chart`, `Riverpod`, `List<ChartData>`, `DropdownButton tipe`, `TextField input`
+**Tema UI:** Data visualization tool — putih bersih, chart preview besar di atas, input panel di bawah
+
+---
+
+## 🟠 INTERMEDIATE (131–160)
+> **Target:** 700–1000 lines of code | Fokus: Arsitektur solid, database lokal, state kompleks, fitur lengkap
+
+---
+
+### 131
+**App Name:** `Vaultpass`
+**Deskripsi:** Password manager lokal — enkripsi dengan master password, kategori, generator, autofill clipboard.
+**Teknologi:** `Hive + encrypt`, `flutter_secure_storage`, `Riverpod`, `Clipboard`, `biometric auth`
+**Tema UI:** Security dark — hitam total, aksen cyan, kunci animasi saat unlock, layout sangat clean
+
+---
+
+### 132
+**App Name:** `Kanbanly`
+**Deskripsi:** Kanban board — kolom Todo/Doing/Done, drag kartu antar kolom, sub-task, label warna, due date.
+**Teknologi:** `Hive`, `Riverpod`, `drag_and_drop_lists`, `AnimatedList`, `color labels`
+**Tema UI:** Trello-minimalis — background abu terang, kolom card putih, drag shadow, label chip warna
+
+---
+
+### 133
+**App Name:** `Invoicly`
+**Deskripsi:** Invoice generator — data klien, item layanan, total auto, generate PDF profesional, kirim via email.
+**Teknologi:** `pdf` package, `Hive`, `Riverpod`, `mailer` atau `share_plus`, `form validation`
+**Tema UI:** Business formal — hitam dan putih bersih, header brand menonjol, angka bold
+
+---
+
+### 134
+**App Name:** `Trekker`
+**Deskripsi:** Hiking route recorder — record GPS track saat hiking, tampilkan polyline di peta, statistik jarak/elevasi.
+**Teknologi:** `flutter_map`, `geolocator stream`, `polyline`, `Riverpod StreamProvider`, `Hive`
+**Tema UI:** Outdoor adventure — hijau alam, peta topografi, statistik dalam overlay card
+
+---
+
+### 135
+**App Name:** `Studyroom`
+**Deskripsi:** Study session app — Pomodoro terintegrasi, catatan per sesi, flashcard review, statistik belajar mingguan.
+**Teknologi:** `Hive`, `Riverpod`, `TabBar`, `fl_chart`, `flutter_local_notifications`, `Timer`
+**Tema UI:** Academia dark — navy dan krem, layout perpustakaan, ikon buku dan jam
+
+---
+
+### 136
+**App Name:** `Fittrack`
+**Deskripsi:** Fitness tracker — log workout dengan gerakan dan set, body weight history, progress foto, chart progress.
+**Teknologi:** `Hive`, `Riverpod`, `fl_chart LineChart`, `image_picker`, `date filtering`
+**Tema UI:** Nike Training-inspired — hitam total, tipografi besar dan bold, merah untuk PR
+
+---
+
+### 137
+**App Name:** `Blogify`
+**Deskripsi:** Blog reader + bookmarker dari beberapa RSS feed — multi-source, offline cache, reading mode bersih.
+**Teknologi:** `http`, `xml parsing`, `Hive cache`, `Riverpod`, `flutter_html`, `offline detection`
+**Tema UI:** Readability focus — font Georgia, background putih atau sepia, progress reading bar
+
+---
+
+### 138
+**App Name:** `Eventify`
+**Deskripsi:** Event planner — buat event dengan guest list, task checklist, budget tracker, timeline countdown.
+**Teknologi:** `Hive`, `Riverpod`, `table_calendar`, `budget logic`, `multi-screen navigation`
+**Tema UI:** Wedding planner — warna blush dan emas, elegant typography, card event dengan foto
+
+---
+
+### 139
+**App Name:** `Cryptowallet`
+**Deskripsi:** Crypto tracker lanjutan — multi-portfolio, chart harga 7/30/90 hari, news dari API, alert price.
+**Teknologi:** `http`, `Riverpod`, `fl_chart`, `WebSocket (CoinGecko)`, `flutter_local_notifications`
+**Tema UI:** Binance-inspired — hitam dan kuning, chart candlestick manual, grid data tabel
+
+---
+
+### 140
+**App Name:** `Learnpath`
+**Deskripsi:** Learning path creator — buat kurikulum pembelajaran custom, track progress per topik, sertifikat selesai.
+**Teknologi:** `Hive`, `Riverpod`, `nested navigation`, `progress calculation`, `pdf certificate`
+**Tema UI:** EdTech modern — biru dan putih, progress path visual zig-zag, badge gamifikasi
+
+---
+
+### 141
+**App Name:** `Portfolioapp`
+**Deskripsi:** Developer portfolio mobile — showcase proyek, skill, pengalaman, kontak — siap dipresentasikan.
+**Teknologi:** `Riverpod`, `url_launcher`, `AnimationController`, `custom scroll`, `Hero`
+**Tema UI:** Dev portfolio dark — hitam, aksen hijau terminal, animasi text glitch subtle
+
+---
+
+### 142
+**App Name:** `Mindmap`
+**Deskripsi:** Mind map creator — tambah node, hubungkan dengan garis, drag posisi, warna per cabang, export gambar.
+**Teknologi:** `CustomPainter (lines)`, `GestureDetector drag`, `Riverpod`, `RepaintBoundary`
+**Tema UI:** Creative brainstorm — background putih infinite, node berwarna-warni, garis kurva elegan
+
+---
+
+### 143
+**App Name:** `Scanbook`
+**Deskripsi:** Book scanner — scan barcode ISBN, fetch info buku dari Open Library API, simpan ke rak buku virtual.
+**Teknologi:** `mobile_scanner`, `http`, `Open Library API`, `Hive`, `Riverpod`, `GridView`
+**Tema UI:** Library digital — kayu hangat, buku dalam grid shelf, metadata buku detail
+
+---
+
+### 144
+**App Name:** `Dashify`
+**Deskripsi:** Personal analytics dashboard — aggregat data dari habit, sleep, expense, dan workout app dalam satu view.
+**Teknologi:** `Hive multi-box`, `Riverpod`, `fl_chart`, `grid dashboard`, `DateRange filter`
+**Tema UI:** Quantified self — gelap elegan, widget card per kategori, warna berbeda per data type
+
+---
+
+### 145
+**App Name:** `Memorize`
+**Deskripsi:** Memory palace app — buat "lokasi" imajiner, tempatkan item untuk diingat, quiz recall dengan hints.
+**Teknologi:** `Hive`, `Riverpod`, `CustomPainter (room view)`, `quiz logic`, `image assets`
+**Tema UI:** Ancient memory — background parchment, ilustrasi ruangan kuno, ikon item 3D sederhana
+
+---
+
+### 146
+**App Name:** `Voicenote`
+**Deskripsi:** Voice memo recorder — record audio, playback dengan waveform visual, transkripsi dengan Whisper API.
+**Teknologi:** `record` package, `just_audio`, `waveform painter`, `http Whisper API`, `Hive`
+**Tema UI:** Voice memos Apple-style — merah rekam, waveform oranye, daftar memo bersih
+
+---
+
+### 147
+**App Name:** `Recipebook`
+**Deskripsi:** Personal recipe book — tambah resep dengan foto step-by-step, timer per langkah, servings scaler.
+**Teknologi:** `Hive`, `image_picker`, `Riverpod`, `step timer`, `ingredient scaling math`
+**Tema UI:** Chef's notebook — foto makanan besar, instruksi step card, timer floating button
+
+---
+
+### 148
+**App Name:** `Stockroom`
+**Deskripsi:** Home inventory — track barang di rumah per ruangan, foto item, garansi/expired date alert.
+**Teknologi:** `Hive`, `image_picker`, `flutter_local_notifications`, `Riverpod`, `room filter`
+**Tema UI:** Home organizer — warm beige, ikon per ruangan, card item dengan foto thumbnail
+
+---
+
+### 149
+**App Name:** `Codequiz`
+**Deskripsi:** Programming quiz app — soal coding multiple choice dari JSON, hint, penjelasan jawaban, leaderboard lokal.
+**Teknologi:** `Hive leaderboard`, `json assets`, `Riverpod`, `timer per soal`, `animation benar/salah`
+**Tema UI:** HackerRank-dark — background sangat gelap, font monospace, highlight syntax dalam soal
+
+---
+
+### 150
+**App Name:** `Newsfeed`
+**Deskripsi:** Personalized news — pilih topik favorit, aggregate dari multiple NewsAPI endpoint, infinite scroll, share.
+**Teknologi:** `http`, `Riverpod`, `infinite_scroll_pagination`, `SharedPreferences preference`, `share_plus`
+**Tema UI:** Flipboard-lite — card besar dengan foto penuh, kategori berwarna, swipe gestur
+
+---
+
+### 151
+**App Name:** `Speako`
+**Deskripsi:** Public speaking timer — mode speech (countdown), mode meeting (per speaker), history dengan notes.
+**Teknologi:** `Timer`, `Riverpod`, `flutter_local_notifications`, `Hive history`, `custom timer UI`
+**Tema UI:** Podium professional — merah countdown, hijau speaking, history dalam list clean
+
+---
+
+### 152
+**App Name:** `Dribblo`
+**Deskripsi:** Design inspiration browser — fetch dari Dribbble-like mock atau Behance API, lightbox viewer, save to board.
+**Teknologi:** `http`, `Riverpod`, `CachedNetworkImage`, `MasonryGridView`, `Hive boards`
+**Tema UI:** Design community — dark mode, grid masonry, modal fullscreen dengan detail
+
+---
+
+### 153
+**App Name:** `Gymplan`
+**Deskripsi:** Workout plan builder — buat program latihan per hari, exercise library, log tiap set dengan RPE, rest timer.
+**Teknologi:** `Hive`, `Riverpod`, `RestTimer`, `ReorderableListView`, `exercise JSON`
+**Tema UI:** Athletic dark — hitam dan merah, exercise card tebal, rest timer mencolok
+
+---
+
+### 154
+**App Name:** `Langpractice`
+**Deskripsi:** Language exchange journal — tulis kalimat dalam bahasa target, submit ke API untuk koreksi grammar.
+**Teknologi:** `http (Claude API)`, `Hive`, `Riverpod`, `diff highlight`, `correction markup`
+**Tema UI:** Language lab — kuning dan biru, koreksi dalam highlight merah/hijau, font bilingual
+
+---
+
+### 155
+**App Name:** `Socialwall`
+**Deskripsi:** Social media mockup — feed post dengan like/comment (lokal), profil pengguna, stories bar horizontal.
+**Teknologi:** `Hive`, `Riverpod`, `image_picker`, `animation like`, `story view sederhana`
+**Tema UI:** Instagram + Twitter hybrid — putih bersih, like animation merah, story ring gradient
+
+---
+
+### 156
+**App Name:** `Contractgen`
+**Deskripsi:** Kontrak kerja generator — isi form data klien dan proyek, generate dokumen kontrak PDF dari template.
+**Teknologi:** `pdf` package, `Hive`, `form validation`, `Riverpod`, `share_plus`
+**Tema UI:** Legal document — putih formal, field dengan underline, preview kontrak scroll
+
+---
+
+### 157
+**App Name:** `Mapwalk`
+**Deskripsi:** Walking tour guide — daftar titik wisata, navigasi antar titik dengan peta, info dan foto tiap titik.
+**Teknologi:** `flutter_map`, `geolocator`, `Riverpod`, `json tour data`, `CachedNetworkImage`
+**Tema UI:** Tourist map — peta warm, pin berwarna per kategori, panel bawah info lokasi
+
+---
+
+### 158
+**App Name:** `Skincare`
+**Deskripsi:** Skincare routine tracker — pagi/malam routine, produk yang dipakai, foto progress kulit mingguan.
+**Teknologi:** `Hive`, `image_picker`, `Riverpod`, `routine logic`, `progress comparison view`
+**Tema UI:** Beauty minimalist — putih dan rose gold, foto sebelum-sesudah split, produk dalam card elegan
+
+---
+
+### 159
+**App Name:** `Podcastmaker`
+**Deskripsi:** Podcast episode planner — buat outline episode, timer untuk setiap segmen, export rundown PDF.
+**Teknologi:** `Hive`, `Riverpod`, `pdf package`, `DraggableList`, `segment timer`
+**Tema UI:** Radio broadcast — merah dan hitam, waveform dekoratif, rundown seperti prompter
+
+---
+
+### 160
+**App Name:** `Storygen`
+**Deskripsi:** AI story generator — masukkan karakter dan setting, generate cerita pendek dari Claude API, simpan cerita.
+**Teknologi:** `http (Claude API)`, `streaming response`, `Hive`, `Riverpod`, `AnimatedText`
+**Tema UI:** Creative writing — kertas parchment digital, font serif, loading typing animation efek mesin ketik
+
+---
+
+## 🔴 UPPER INTERMEDIATE (161–180)
+> **Target:** 1000–2000 lines of code | Fokus: Fitur kompleks, performa, arsitektur layered, integrasi advance
+
+---
+
+### 161
+**App Name:** `Wealthview`
+**Deskripsi:** Personal finance suite — multi-akun, transaksi berulang, anggaran bulanan, investasi tracker, laporan tahunan PDF.
+**Teknologi:** `Drift (SQLite)`, `Riverpod`, `fl_chart multi`, `pdf`, `background sync`, `recurring logic`
+**Tema UI:** Mint.com-inspired — hijau dan putih, dashboard komprehensif, chart interaktif
+
+---
+
+### 162
+**App Name:** `Learncode`
+**Deskripsi:** Interactive coding tutorial app — bab per bab, quiz kode, code editor in-app, run code via API judge.
+**Teknologi:** `flutter_highlight`, `http (Judge0 API)`, `Riverpod`, `Hive progress`, `animated lesson`
+**Tema UI:** Codecademy dark — hitam, hijau neon, code editor dengan line number, quiz interaktif
+
+---
+
+### 163
+**App Name:** `Socialcompass`
+**Deskripsi:** Social network analysis tool — visualisasi koneksi antar orang dalam graph interaktif, insight hubungan.
+**Teknologi:** `CustomPainter graph`, `GestureDetector pan/zoom`, `Riverpod`, `Hive`, `graph algorithm`
+**Tema UI:** Network visualization — gelap dengan node bercahaya, edge garis tipis, detail panel
+
+---
+
+### 164
+**App Name:** `Mediasuite`
+**Deskripsi:** Media editor sederhana — crop foto, filter, tambah teks, stiker; edit audio (trim, volume); export.
+**Teknologi:** `image` package, `ffmpeg_kit_flutter`, `Riverpod`, `custom canvas editor`, `file_picker`
+**Tema UI:** Canva mobile-inspired — dark mode, toolbar floating, preview real-time edit
+
+---
+
+### 165
+**App Name:** `Shopmaster`
+**Deskripsi:** Full e-commerce client — auth, catalog dengan filter advance, cart, checkout flow, order history, review.
+**Teknologi:** `Drift`, `Riverpod`, `http`, `go_router`, `shimmer loading`, `form validation`
+**Tema UI:** Shopify store mobile — putih dan hitam premium, foto produk besar, UX checkout sangat smooth
+
+---
+
+### 166
+**App Name:** `Classmanager`
+**Deskripsi:** Classroom management — daftar siswa, absensi, nilai per tugas, rata-rata otomatis, laporan rapor PDF.
+**Teknologi:** `Drift`, `Riverpod`, `pdf`, `DataTable`, `chart fl_chart`, `export Excel`
+**Tema UI:** Teacher dashboard — biru akademik, tabel siswa, grafik nilai per kelas
+
+---
+
+### 167
+**App Name:** `Projecthub`
+**Deskripsi:** Project management mini — multi-project, Gantt chart sederhana, team member, file attachment, status update.
+**Teknologi:** `Drift`, `Riverpod`, `CustomPainter Gantt`, `file_picker`, `go_router`
+**Tema UI:** Asana-inspired — putih bersih, Gantt bar berwarna, member avatar cluster
+
+---
+
+### 168
+**App Name:** `Aiassist`
+**Deskripsi:** AI assistant multi-fitur — chat, summarizer teks/PDF, translator, image analyzer — semua dari Claude API.
+**Teknologi:** `http (Claude API multi-modal)`, `Riverpod`, `flutter_markdown`, `file_picker`, `Hive history`
+**Tema UI:** AI product premium — gelap elegan, gradient ungu, typing indicator animasi bubble
+
+---
+
+### 169
+**App Name:** `Videoplayer`
+**Deskripsi:** Video player full-featured — playlist, subtitle (SRT), chapter marker, picture-in-picture, gesture kontrol.
+**Teknologi:** `video_player`, `chewie`, `flutter_subtitle`, `Riverpod`, `WillPopScope`, `gesture`
+**Tema UI:** VLC-inspired modern — hitam total, progress bar timeline dengan chapter marker, overlay kontrol
+
+---
+
+### 170
+**App Name:** `Farmlog`
+**Deskripsi:** Farm management app — track tanaman per petak, jadwal tanam/panen, log cuaca, input/output keuangan.
+**Teknologi:** `Drift`, `Riverpod`, `flutter_map`, `weather API`, `fl_chart`, `pdf laporan`
+**Tema UI:** Agri-tech modern — hijau dan coklat tanah, peta petak interaktif, icon tanaman
+
+---
+
+### 171
+**App Name:** `Realtor`
+**Deskripsi:** Property listing app — search dengan filter kompleks (harga, luas, lokasi radius), map view, detail 360.
+**Teknologi:** `flutter_map`, `Riverpod`, `http`, `go_router`, `CachedNetworkImage`, `filter state`
+**Tema UI:** Zillow-inspired — putih dan biru, peta dengan property pin, card listing foto besar
+
+---
+
+### 172
+**App Name:** `Craftstore`
+**Deskripsi:** Online craft marketplace mockup — penjual upload produk, pembeli browse dan cart, chat penjual-pembeli.
+**Teknologi:** `Drift`, `Riverpod`, `image_picker`, `mock chat dengan Hive`, `go_router`, `role-based UI`
+**Tema UI:** Etsy-inspired — oranye hangat, foto handmade, rating dan review sistem
+
+---
+
+### 173
+**App Name:** `Codereviewer`
+**Deskripsi:** AI code reviewer — paste kode, pilih bahasa, submit ke Claude API, dapatkan review dengan saran perbaikan.
+**Teknologi:** `http (Claude API)`, `flutter_highlight`, `Riverpod`, `Hive history`, `diff view`
+**Tema UI:** Code review IDE-like — split view kode asli vs saran, warna diff merah/hijau, sidebar comment
+
+---
+
+### 174
+**App Name:** `Eventlive`
+**Deskripsi:** Live event companion — agenda real-time, speaker bio, networking map, Q&A session, push update.
+**Teknologi:** `WebSocket`, `Riverpod StreamProvider`, `flutter_map`, `firebase_messaging`, `Hive`
+**Tema UI:** Conference app — dark dengan aksen brand event, schedule timeline, speaker card foto
+
+---
+
+### 175
+**App Name:** `Smartcart`
+**Deskripsi:** Grocery app cerdas — scan barcode produk, cek info nutrisi, hitung kalori total cart, split pembayaran.
+**Teknologi:** `mobile_scanner`, `http (Open Food Facts API)`, `Riverpod`, `Drift`, `split logic`
+**Tema UI:** Health grocery — hijau dan putih, scan frame bersih, nutrition card detail
+
+---
+
+### 176
+**App Name:** `Sportstracker`
+**Deskripsi:** Multi-sport tracker — pilih olahraga (lari, bersepeda, renang), GPS track, pace, split, kalori, history.
+**Teknologi:** `geolocator stream`, `flutter_map polyline`, `Riverpod`, `Drift`, `pace calculation`
+**Tema UI:** Strava-inspired — oranye dan putih, map dengan route, stat card besar, achievement badge
+
+---
+
+### 177
+**App Name:** `Clinicapp`
+**Deskripsi:** Klinik management — registrasi pasien, antrean digital, rekam medis dasar, jadwal dokter, resep.
+**Teknologi:** `Drift`, `Riverpod`, `go_router`, `pdf resep`, `queue management logic`
+**Tema UI:** Medical professional — putih bersih, aksen biru hospital, queue number besar
+
+---
+
+### 178
+**App Name:** `Learnanki`
+**Deskripsi:** Anki-like SRS — import deck dari CSV, algoritma SM-2 penuh, statistik belajar, streak, tipe kartu berbeda.
+**Teknologi:** `Drift`, `Riverpod`, `SM-2 full implementation`, `csv`, `fl_chart`, `card type enum`
+**Tema UI:** Academic serious — gelap biru navy, kartu bersih, statistik learning curve
+
+---
+
+### 179
+**App Name:** `Radiostream`
+**Deskripsi:** Internet radio player — browse stasiun dari Radio Browser API, favorite, sleep timer, background play.
+**Teknologi:** `just_audio (stream URL)`, `http (RadioBrowser API)`, `Riverpod`, `background service`, `Hive`
+**Tema UI:** Retro radio modern — gradient analog, equalizer bar animasi, dial metafor
+
+---
+
+### 180
+**App Name:** `Realestate`
+**Deskripsi:** Property investment calculator — analisis ROI sewa, simulasi KPR, perbandingan properti, laporan investasi PDF.
+**Teknologi:** `Riverpod`, `fl_chart`, `pdf`, `financial formula`, `Drift`, `go_router`
+**Tema UI:** Investment pro — navy dan emas, angka keuangan prominent, grafik ROI proyeksi
+
+---
+
+## ⚫ ADVANCED (181–200)
+> **Target:** 2000–5000 lines of code | Fokus: Arsitektur enterprise, fitur real-world kompleks, performa optimal
+
+---
+
+### 181
+**App Name:** `Superbase`
+**Deskripsi:** Full-stack app dengan Supabase backend — auth (email/Google/Apple), CRUD real-time, storage file, RLS policy.
+**Teknologi:** `supabase_flutter`, `Riverpod`, `go_router`, `Drift sync`, `Realtime subscriptions`
+**Tema UI:** SaaS dashboard modern — sidebar navigasi, dark mode toggle, card data realtime berkedip saat update
+
+---
+
+### 182
+**App Name:** `Streamchat`
+**Deskripsi:** Real-time chat app — multi-room, direct message, file sharing, read receipts, online/offline status, push notification.
+**Teknologi:** `Firebase (Firestore + FCM + Storage)`, `Riverpod`, `go_router`, `image_picker`, `encryption`
+**Tema UI:** Slack-inspired — sidebar workspace, channel list, bubble chat warna-warni per user
+
+---
+
+### 183
+**App Name:** `Shopengine`
+**Deskripsi:** Full e-commerce engine — vendor management, produk variant, inventory otomatis, payment gateway mock, analytics.
+**Teknologi:** `Drift`, `Riverpod`, `go_router`, `fl_chart analytics`, `pdf`, `barcode`, `background job`
+**Tema UI:** Shopify admin — putih profesional, sidebar multi-level, grafik penjualan besar
+
+---
+
+### 184
+**App Name:** `Fitcoach`
+**Deskripsi:** AI personal trainer — buat program latihan dengan AI, real-time pose estimation dari kamera, skor form.
+**Teknologi:** `google_mlkit_pose_detection`, `camera`, `Claude API program`, `Riverpod`, `Drift`, `fl_chart`
+**Tema UI:** Fitness tech futuristik — hitam dengan overlay skeleton pose, guidance teks mencolok
+
+---
+
+### 185
+**App Name:** `Mapquest`
+**Deskripsi:** Ride-hailing mockup — driver/rider mode, real-time tracking GPS stream, route planning, fare calculation, rating.
+**Teknologi:** `flutter_map`, `geolocator stream`, `WebSocket mock`, `Riverpod`, `Drift`, `go_router`
+**Tema UI:** Grab-inspired — hijau dan putih, peta real-time, driver card slide up, fare prominent
+
+---
+
+### 186
+**App Name:** `Aiwriter`
+**Deskripsi:** AI writing suite — editor rich text, generate dengan AI per section, grammar check, plagiarism checker, export multi-format.
+**Teknologi:** `flutter_quill`, `Claude API streaming`, `Riverpod`, `Drift`, `pdf`, `docx via http`, `Hive`
+**Tema UI:** Writing app premium — putih minimalis, AI suggestion sebagai ghost text abu, toolbar melayang
+
+---
+
+### 187
+**App Name:** `Medicalrecord`
+**Deskripsi:** EHR (Electronic Health Record) — pasien, riwayat penyakit, obat-obatan, lab result, SOAP notes, appointment.
+**Teknologi:** `Drift`, `Riverpod`, `go_router (role)`, `pdf`, `flutter_local_notifications`, `form complex`
+**Tema UI:** Hospital system professional — biru dan putih, layout tabel data, SOAP note editor
+
+---
+
+### 188
+**App Name:** `Videoedit`
+**Deskripsi:** Video editor mobile — trim, cut, merge klip, add filter, overlay teks dengan timeline editor touch-friendly.
+**Teknologi:** `ffmpeg_kit_flutter`, `video_player`, `CustomPainter timeline`, `Riverpod`, `file_picker`
+**Tema UI:** CapCut-inspired — hitam, timeline bawah scrollable, preview atas, filter carousel
+
+---
+
+### 189
+**App Name:** `Gamengine`
+**Deskripsi:** 2D mini game dengan Flame engine — platformer sederhana dengan physics, enemy AI, level map dari Tiled, highscore.
+**Teknologi:** `flame`, `flame_tiled`, `flame_audio`, `Riverpod (game state)`, `shared_preferences score`
+**Tema UI:** Pixel art retro — 16-bit style, tiled map berwarna, HUD sederhana skor dan nyawa
+
+---
+
+### 190
+**App Name:** `Arscanner`
+**Deskripsi:** AR product viewer — scan marker, tampilkan model 3D produk di atas kamera (AR), anotasi produk, share screenshot.
+**Teknologi:** `arcore_flutter_plugin` atau `ar_flutter_plugin`, `3D model GLB`, `Riverpod`, `camera`, `share_plus`
+**Tema UI:** AR commerce — UI minimal agar kamera terbuka lebar, badge fitur AR, kontrol gestur hint
+
+---
+
+### 191
+**App Name:** `Livebroadcast`
+**Deskripsi:** Live streaming client — stream kamera ke RTMP server, chat audience real-time, moderasi, recording lokal.
+**Teknologi:** `flutter_live_stream (RTMP)`, `WebSocket chat`, `Riverpod`, `camera plugin`, `path_provider`
+**Tema UI:** Streaming app — merah live badge, chat scroll di samping, kontrol kamera compact
+
+---
+
+### 192
+**App Name:** `Smarthome`
+**Deskripsi:** Smart home control app — dashboard perangkat IoT (lampu, AC, kunci), MQTT protocol, scene automation, schedule.
+**Teknologi:** `mqtt_client`, `Riverpod StreamProvider`, `Drift`, `flutter_local_notifications`, `AnimatedSwitcher`
+**Tema UI:** Home automation — dark mode mewah, icon perangkat bercahaya, card status real-time
+
+---
+
+### 193
+**App Name:** `Teachertools`
+**Deskripsi:** Platform guru lengkap — buat kelas, materi (PDF/video), kuis, nilai otomatis, progres siswa, sertifikat.
+**Teknologi:** `supabase_flutter`, `Riverpod`, `fl_chart`, `pdf`, `video_player`, `go_router (role)`
+**Tema UI:** EdTech platform — biru akademik, dashboard guru vs siswa berbeda, gamification elemen
+
+---
+
+### 194
+**App Name:** `Saasbackoffice`
+**Deskripsi:** SaaS admin back-office — user management, subscription billing mock, usage analytics, support ticket, audit log.
+**Teknologi:** `Drift`, `Riverpod`, `go_router`, `fl_chart multi`, `DataTable2`, `pdf report`, `auth rbac`
+**Tema UI:** Admin dashboard enterprise — sidebar hitam, konten putih, chart interaktif, status badge
+
+---
+
+### 195
+**App Name:** `Cryptodefi`
+**Deskripsi:** DeFi dashboard — connect wallet (WalletConnect mock), lihat token balance, swap quote, staking calculator, gas estimator.
+**Teknologi:** `http (DeFi APIs)`, `Riverpod`, `fl_chart`, `WebSocket`, `Drift`, `encryption`
+**Tema UI:** DeFi app dark — hitam dan ungu neon, angka token besar, gradient card per protokol
+
+---
+
+### 196
+**App Name:** `Insurtech`
+**Deskripsi:** Asuransi digital — onboarding KYC (scan KTP dengan ML Kit OCR), pilih paket, klaim digital dengan foto, tracking status.
+**Teknologi:** `google_mlkit_text_recognition`, `camera`, `supabase_flutter`, `Riverpod`, `go_router`, `pdf`
+**Tema UI:** Fintech insurance — biru terpercaya, progress stepper KYC, card polis elegan
+
+---
+
+### 197
+**App Name:** `Multilingual`
+**Deskripsi:** Translator app penuh — 50+ bahasa, teks/suara/kamera, offline model untuk 5 bahasa populer, history, phrasebook.
+**Teknologi:** `google_mlkit_translation`, `speech_to_text`, `camera OCR`, `Riverpod`, `Hive`, `flutter_tts`
+**Tema UI:** Google Translate-inspired — putih bersih, microphone animasi, kamera overlay translate
+
+---
+
+### 198
+**App Name:** `Agentai`
+**Deskripsi:** AI agent autonomous — berikan goal, agent planning dengan tool use (search web, baca file, tulis file, kirim email).
+**Teknologi:** `Claude API (tool use)`, `Riverpod`, `http`, `file_picker`, `mailer`, `streaming response`, `Drift`
+**Tema UI:** AI agent terminal — dark mode, log thought chain streaming, tool execution visual, goal tracker
+
+---
+
+### 199
+**App Name:** `Socialplatform`
+**Deskripsi:** Full social media platform — post teks/foto/video, follow system, notifikasi, algoritma feed, explore, DM, live.
+**Teknologi:** `supabase_flutter`, `Riverpod`, `go_router`, `video_player`, `firebase_messaging`, `Drift`
+**Tema UI:** Custom social — branding unik bukan klone, gelap elegan, feed smooth infinite scroll
+
+---
+
+### 200
+**App Name:** `Superapp`
+**Deskripsi:** Super app all-in-one — e-commerce, ride-hailing, food delivery, payment, news, dan chat dalam satu platform dengan mini-app architecture.
+**Teknologi:** `supabase_flutter`, `Riverpod`, `Drift`, `go_router`, `flutter_map`, `firebase_messaging`, `WebSocket`, `payment mock`, `module federation konsep`
+**Tema UI:** Gojek/WeChat-inspired — home grid layanan, warna per layanan berbeda, navigasi bottom 5 tab, consistent design system
+
+---
+
+## 📊 Ringkasan Kurikulum
+
+| Level | No. App | Lines of Code | Jumlah App |
+|-------|---------|---------------|-----------|
+| 🟢 Beginner | 001–050 | 200–300 | 50 |
+| 🔵 Upper Beginner | 051–100 | 300–500 | 50 |
+| 🟡 Lower Intermediate | 101–130 | 500–700 | 30 |
+| 🟠 Intermediate | 131–160 | 700–1000 | 30 |
+| 🔴 Upper Intermediate | 161–180 | 1000–2000 | 20 |
+| ⚫ Advanced | 181–200 | 2000–5000 | 20 |
+| **Total** | | | **200 App** |
+
+---
+
+> 💡 **Tips:** Ikuti urutan dari 001 hingga 200. Setiap app dirancang agar memperkenalkan konsep baru sambil memperkuat konsep sebelumnya. Kamu tidak harus menyelesaikan semua — capai level yang sesuai dengan target kariermu.
