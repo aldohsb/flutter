@@ -47,21 +47,21 @@ class LikertSelector extends StatelessWidget {
 
         // Peringatan netral — hanya muncul saat opsi netral dipilih
         if (selectedValue == _neutralValue)
-          Padding(
-            padding: const EdgeInsets.only(top: 2, left: 2),
+          const Padding(
+            padding: EdgeInsets.only(top: 2, left: 2),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
+                Icon(
                   Icons.info_outline_rounded,
                   size: 14,
                   color: AppColors.textMuted,
                 ),
-                const SizedBox(width: 6),
+                SizedBox(width: 6),
                 Expanded(
                   child: Text(
                     AppConstants.neutralWarning,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 12,
                       color: AppColors.textMuted,
                       height: 1.5,

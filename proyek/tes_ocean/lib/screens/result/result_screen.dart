@@ -72,7 +72,7 @@ class ResultScreen extends ConsumerWidget {
             const SizedBox(height: 24),
 
             // ── Rincian per trait ─────────────────────────────────────
-            _SectionHeader(
+            const _SectionHeader(
               icon: Icons.analytics_rounded,
               label: 'Rincian Per Trait',
               color: AppColors.primary,
@@ -82,10 +82,10 @@ class ResultScreen extends ConsumerWidget {
             const SizedBox(height: 28),
 
             // ── Keunggulan & kelemahan ────────────────────────────────
-            _SectionHeader(
+            const _SectionHeader(
               icon: Icons.balance_rounded,
               label: 'Keunggulan & Kelemahan',
-              color: const Color(0xFF059669),
+              color: Color(0xFF059669),
             ),
             const SizedBox(height: 12),
             InsightsSection(
@@ -107,10 +107,10 @@ class ResultScreen extends ConsumerWidget {
             const SizedBox(height: 28),
 
             // ── Panduan karir ─────────────────────────────────────────
-            _SectionHeader(
+            const _SectionHeader(
               icon: Icons.work_rounded,
               label: 'Panduan Karir',
-              color: const Color(0xFF7C3AED),
+              color: Color(0xFF7C3AED),
             ),
             const SizedBox(height: 12),
             InsightsSection(
@@ -124,10 +124,10 @@ class ResultScreen extends ConsumerWidget {
             const SizedBox(height: 28),
 
             // ── Self improvement ──────────────────────────────────────
-            _SectionHeader(
+            const _SectionHeader(
               icon: Icons.self_improvement_rounded,
               label: 'Tips Self Improvement',
-              color: const Color(0xFF0891B2),
+              color: Color(0xFF0891B2),
             ),
             const SizedBox(height: 12),
             InsightsSection(
@@ -141,10 +141,10 @@ class ResultScreen extends ConsumerWidget {
             const SizedBox(height: 28),
 
             // ── Tips belajar ──────────────────────────────────────────
-            _SectionHeader(
+            const _SectionHeader(
               icon: Icons.school_rounded,
               label: 'Tips Belajar Efektif',
-              color: const Color(0xFFDB2777),
+              color: Color(0xFFDB2777),
             ),
             const SizedBox(height: 12),
             InsightsSection(

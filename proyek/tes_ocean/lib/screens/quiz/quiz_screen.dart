@@ -138,7 +138,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       const SizedBox(height: 20),
 
                       // Instruksi utama
-                      _IntroCard(
+                      const _IntroCard(
                         icon: Icons.person_rounded,
                         color: AppColors.primary,
                         title: 'Jawab sebagai diri Anda yang sebenarnya',
@@ -147,9 +147,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       const SizedBox(height: 12),
 
                       // Peringatan netral
-                      _IntroCard(
+                      const _IntroCard(
                         icon: Icons.warning_amber_rounded,
-                        color: const Color(0xFFD97706),
+                        color: Color(0xFFD97706),
                         title: 'Hindari terlalu sering memilih "Netral"',
                         body: 'Pilihan "Netral / Tergantung Situasi" tersedia '
                             'untuk kondisi yang benar-benar tidak dapat Anda '
@@ -163,9 +163,9 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       const SizedBox(height: 12),
 
                       // Skala jawaban
-                      _IntroCard(
+                      const _IntroCard(
                         icon: Icons.tune_rounded,
-                        color: const Color(0xFF059669),
+                        color: Color(0xFF059669),
                         title: '7 tingkat jawaban tersedia',
                         body: 'Skala jawaban dari 1 hingga 7:\n\n'
                             '1 — Sangat Tidak Setuju\n'
@@ -181,7 +181,7 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                       const SizedBox(height: 12),
 
                       // Info waktu
-                      _IntroCard(
+                      const _IntroCard(
                         icon: Icons.timer_outlined,
                         color: AppColors.textSecondary,
                         title: '50 pertanyaan · ±10–15 menit',
@@ -258,18 +258,18 @@ class _QuizScreenState extends ConsumerState<QuizScreen> {
                               color: AppColors.primary.withValues(alpha: 0.2),
                             ),
                           ),
-                          child: Row(
+                          child: const Row(
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.lightbulb_outline_rounded,
                                 size: 16,
                                 color: AppColors.primary,
                               ),
-                              const SizedBox(width: 8),
+                              SizedBox(width: 8),
                               Expanded(
                                 child: Text(
                                   AppConstants.honestInstruction,
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: 12.5,
                                     color: AppColors.primary,
                                     height: 1.45,
