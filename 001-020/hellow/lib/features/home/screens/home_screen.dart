@@ -1,160 +1,96 @@
-// lib/features/home/screens/home_screen.dart
+// lib/features/home/screens/home_screen.dart  [UPDATED — Part 2]
 // ─────────────────────────────────────────────────────────
-// Ini adalah INTI pembelajaran Part 1:
-//   → StatefulWidget: widget yang bisa menyimpan & mengubah state
-//   → setState: cara memberitahu Flutter untuk rebuild UI
-//   → TextEditingController: cara membaca input dari TextField
+// Perubahan dari Part 1:
+//   → Dialog dipindah ke change_name_dialog.dart
+//   → _showChangeNameDialog kini async (menunggu hasil dialog)
+//   → Tambah SnackBar sebagai feedback setelah nama berubah
+//   → Hapus TextEditingController dari sini (sudah di dialog)
+//   → home_screen.dart jadi lebih pendek dan fokus
 // ─────────────────────────────────────────────────────────
 
 import 'package:flutter/material.dart';
 
 import 'package:hellow/core/theme/app_colors.dart';
+import 'package:hellow/features/home/widgets/change_name_dialog.dart';
 import 'package:hellow/features/home/widgets/greeting_text.dart';
 import 'package:hellow/features/home/widgets/name_button.dart';
-
-// ── StatefulWidget terdiri dari DUA class ─────────────────
-// 1. HomeScreen       → deklarasi widget (tidak berubah)
-// 2. _HomeScreenState → state/data yang bisa berubah
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
-  // createState: menghubungkan widget dengan state-nya
-  // Dipanggil sekali saat widget pertama kali dibuat
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Underscore (_) di depan nama: konvensi untuk class private
-  // Private di Dart = hanya bisa diakses dalam file ini
-
-  // ── State variables ────────────────────────────────────
   String _name = 'World';
-  // _name: data yang disimpan oleh widget ini
-  // Nilai awal 'World' → ditampilkan sebagai "Hello, World!"
+  // Tidak ada lagi TextEditingController di sini
+  // Controller sekarang hidup di dalam ChangeNameDialog
 
-  final TextEditingController _controller = TextEditingController();
-  // TextEditingController: objek penghubung antara TextField dan kode
-  // 'final' karena objek controller-nya tidak diganti, hanya isinya
+  // ── Method: tampilkan dialog (sekarang async) ──────────
+  Future<void> _showChangeNameDialog() async {
+    // async: method ini bisa menggunakan await
+    // Future<void>: method ini mengembalikan Future tapi tidak ada nilai
 
-  // ── Lifecycle: dispose ─────────────────────────────────
-  @override
-  void dispose() {
-    _controller.dispose();
-    // WAJIB: bebaskan memori controller saat widget dihapus dari tree
-    // Jika tidak, terjadi memory leak
-    super.dispose();
-    // Selalu panggil super.dispose() di akhir
+    final String? newName = await showChangeNameDialog(
+      // await: tunggu sampai dialog ditutup dan dapat nilai return
+      // Eksekusi baris berikutnya baru berjalan setelah dialog tertutup
+      context: context,
+      currentName: _name,
+    );
+    // newName adalah hasil dari Navigator.pop(newName) di dalam dialog
+    // Jika user cancel → newName = null
+
+    if (newName == null) return;
+    // Guard clause: user menekan Cancel, tidak ada yang perlu dilakukan
+
+    if (!mounted) return;
+    // mounted: cek apakah widget masih terpasang di widget tree
+    // PENTING: setelah await, widget bisa saja sudah di-dispose
+    // Mengakses setState/context pada widget yang sudah di-dispose = crash
+
+    setState(() => _name = newName);
+    // Arrow function dalam setState untuk kode satu baris
+
+    _showSuccessSnackBar(newName);
+    // Tampilkan feedback setelah nama berubah
   }
 
-  // ── Method: tampilkan dialog ganti nama ───────────────
-  void _showChangeNameDialog() {
-    _controller.text = _name;
-    // Pre-fill input dengan nama saat ini agar mudah diedit
-    // controller.text = setter untuk mengisi teks ke TextField
-
-    showDialog<void>(
-      context: context,
-      // context: BuildContext yang dimiliki State, bukan parameter build
-      builder: (BuildContext dialogContext) {
-        // builder menerima context baru khusus untuk dialog
-        return AlertDialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-            // Dialog dengan sudut sangat rounded
-          ),
-          title: const Text('What\'s your name?'),
-          // Judul dialog
-
-          content: TextField(
-            controller: _controller,
-            // Hubungkan controller ke TextField ini
-            autofocus: true,
-            // Keyboard otomatis muncul saat dialog terbuka
-            textCapitalization: TextCapitalization.words,
-            // Otomatis kapitalisasi huruf pertama setiap kata
-            decoration: const InputDecoration(
-              hintText: 'Enter your name...',
-            ),
-            onSubmitted: (_) => _saveName(dialogContext),
-            // Tekan Enter/Done di keyboard = sama dengan klik Confirm
-            // Parameter _ artinya nilai String tidak kita gunakan
-          ),
-
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(dialogContext).pop(),
-              // pop(): tutup dialog tanpa menyimpan
-              child: const Text('Cancel'),
-            ),
-            ElevatedButton(
-              onPressed: () => _saveName(dialogContext),
-              child: const Text('Confirm'),
-            ),
-          ],
-        );
-      },
+  // ── Method: tampilkan SnackBar ─────────────────────────
+  void _showSuccessSnackBar(String name) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      // ScaffoldMessenger: cara yang benar untuk menampilkan SnackBar
+      // Lebih stabil dari Scaffold.of(context).showSnackBar (deprecated)
+      SnackBar(
+        content: Text('Hello, $name! 👋'),
+        behavior: SnackBarBehavior.floating,
+        // floating: SnackBar mengambang di atas konten, tidak menempel di bawah
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        backgroundColor: AppColors.textPrimary,
+        duration: const Duration(seconds: 2),
+        // SnackBar otomatis hilang setelah 2 detik
+      ),
     );
   }
 
-  // ── Method: simpan nama baru ───────────────────────────
-  void _saveName(BuildContext dialogContext) {
-    final String newName = _controller.text.trim();
-    // trim(): hapus spasi di awal dan akhir input
-
-    if (newName.isEmpty) return;
-    // Guard clause: jangan simpan jika input kosong
-
-    setState(() {
-      _name = newName;
-      // setState: memberitahu Flutter bahwa state berubah
-      // Flutter akan memanggil build() lagi → UI terupdate
-      // PENTING: perubahan state HARUS di dalam setState()
-    });
-
-    Navigator.of(dialogContext).pop();
-    // Tutup dialog setelah menyimpan nama
-  }
-
-  // ── Build: UI layout ──────────────────────────────────
   @override
   Widget build(BuildContext context) {
-    // build() dipanggil setiap kali setState() dipanggil
-    // Flutter sangat efisien: hanya widget yang berubah yang dirender ulang
-
     return Scaffold(
       body: SafeArea(
-        // SafeArea: hindari konten tertutup notch/status bar/nav bar
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 24),
-          // Padding konsisten di kiri-kanan dan atas-bawah
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            // Semua anak rata kiri
             children: [
               const Spacer(flex: 2),
-              // Spacer: widget kosong yang mengisi ruang fleksibel
-              // flex: 2 → ambil 2 bagian dari total ruang kosong
-
-              // Dekorasi lingkaran coral di belakang teks
               _buildDecorationCircle(),
-
               const SizedBox(height: 40),
-
               GreetingText(name: _name),
-              // Widget tampilan nama, menerima _name sebagai parameter
-              // Saat setState dipanggil, widget ini dirender ulang dengan nama baru
-
               const SizedBox(height: 48),
-
               NameButton(onPressed: _showChangeNameDialog),
-              // Widget tombol, menerima method _showChangeNameDialog sebagai callback
-
               const Spacer(flex: 3),
-              // Spacer lebih besar di bawah agar konten condong ke atas-tengah
-
               _buildFooter(),
             ],
           ),
@@ -163,28 +99,21 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // ── Helper widget: lingkaran dekoratif ─────────────────
   Widget _buildDecorationCircle() {
     return Stack(
-      // Stack: menumpuk widget di atas satu sama lain
       clipBehavior: Clip.none,
-      // Clip.none: child boleh keluar dari batas Stack
       children: [
         Container(
           width: 80,
           height: 80,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: AppColors.coralLight,
             shape: BoxShape.circle,
-            // Bentuk lingkaran penuh
           ),
         ),
-        // Lingkaran besar
-
         Positioned(
           top: -10,
           right: -10,
-          // Posisi relatif terhadap parent Stack
           child: Container(
             width: 24,
             height: 24,
@@ -194,12 +123,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        // Lingkaran kecil teal sebagai aksen, keluar sedikit dari area
       ],
     );
   }
 
-  // ── Helper widget: footer ─────────────────────────────
   Widget _buildFooter() {
     return Center(
       child: Text(
@@ -208,9 +135,6 @@ class _HomeScreenState extends State<HomeScreen> {
           color: AppColors.textSecondary,
           letterSpacing: 0.3,
         ),
-        // Theme.of(context): akses ThemeData yang sudah kita set di AppTheme
-        // copyWith: salin style yang ada, tapi override beberapa properti
-        // ?. (null-safe operator): jika bodySmall null, ekspresi ini null juga
       ),
     );
   }
