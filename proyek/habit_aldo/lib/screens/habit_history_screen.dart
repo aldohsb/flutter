@@ -260,17 +260,17 @@ class _CalendarGrid extends StatelessWidget {
 
         // ── Legend ──
         const SizedBox(height: 12),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _LegendItem(
                 color: AppTheme.sage500, label: 'Selesai'),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             _LegendItem(
                 color: AppTheme.stone100,
                 borderColor: AppTheme.stone300,
                 label: 'Tidak selesai'),
-            const SizedBox(width: 16),
+            SizedBox(width: 16),
             _LegendItem(
                 color: Colors.transparent,
                 borderColor: AppTheme.sage600,

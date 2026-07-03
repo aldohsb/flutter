@@ -4,13 +4,13 @@
 
 
 UI/UX standart profesional, designer grade.
-Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing artifact agar mudah di copy. pastikan tidak ada missing import di setiap file.
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing code block Markdown agar mudah di copy. pastikan tidak ada missing import di setiap file.
 jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
 mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
 tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 
-code dalam artifact lengkap dengan penjelasan singkat setiap code dalam bentuk komentar, jelaskan setiap baris kecuali code yang pengulangan sudah dibahas sebelumnya, komentar wajib selalu di bawah code yang dijelaskan, jangan di atasnya
+code dalam code block Markdown, dengan komentar seperlunya saja
 
 buat code dalam beberapa 3 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter

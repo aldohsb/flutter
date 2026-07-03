@@ -24,7 +24,7 @@ class DataManagementScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _SectionHeader(title: 'Export'),
+          const _SectionHeader(title: 'Export'),
           const SizedBox(height: 8),
           _ActionCard(
             icon: Icons.upload_file_rounded,
@@ -34,7 +34,7 @@ class DataManagementScreen extends StatelessWidget {
             onTap: () => _exportAll(context),
           ),
           const SizedBox(height: 16),
-          _SectionHeader(title: 'Import'),
+          const _SectionHeader(title: 'Import'),
           const SizedBox(height: 8),
           _ActionCard(
             icon: Icons.download_rounded,
@@ -74,7 +74,7 @@ class DataManagementScreen extends StatelessWidget {
           ),
 
           const SizedBox(height: 24),
-          _SectionHeader(title: 'Info Aplikasi'),
+          const _SectionHeader(title: 'Info Aplikasi'),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.all(16),
@@ -85,7 +85,7 @@ class DataManagementScreen extends StatelessWidget {
             ),
             child: Column(
               children: [
-                _InfoRow(label: 'Versi', value: '1.0.0'),
+                const _InfoRow(label: 'Versi', value: '1.0.0'),
                 const Divider(height: 16),
                 Consumer<HabitProvider>(
                   builder: (_, hp, __) => _InfoRow(

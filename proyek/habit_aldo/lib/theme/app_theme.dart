@@ -55,7 +55,7 @@ class AppTheme {
   static ThemeData get theme {
     final base = ThemeData(
       useMaterial3: true,
-      colorScheme: ColorScheme(
+      colorScheme: const ColorScheme(
         brightness: Brightness.light,
         primary: sage600,
         onPrimary: Colors.white,
@@ -63,16 +63,16 @@ class AppTheme {
         onPrimaryContainer: sage800,
         secondary: accentGold,
         onSecondary: Colors.white,
-        secondaryContainer: const Color(0xFFF5E9C8),
-        onSecondaryContainer: const Color(0xFF4A3800),
+        secondaryContainer: Color(0xFFF5E9C8),
+        onSecondaryContainer: Color(0xFF4A3800),
         tertiary: sage400,
         onTertiary: Colors.white,
         tertiaryContainer: sage100,
         onTertiaryContainer: sage800,
         error: errorRed,
         onError: Colors.white,
-        errorContainer: const Color(0xFFFFDAD6),
-        onErrorContainer: const Color(0xFF410002),
+        errorContainer: Color(0xFFFFDAD6),
+        onErrorContainer: Color(0xFF410002),
         surface: stone100,
         onSurface: stone700,
         surfaceContainerHighest: stone200,

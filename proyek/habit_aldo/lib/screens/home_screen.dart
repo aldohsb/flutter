@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../providers/habit_provider.dart';
-import '../providers/weight_provider.dart';
-import '../providers/earning_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/habit_tile.dart';
 import '../widgets/weight_tracker_card.dart';

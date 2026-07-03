@@ -1,16 +1,17 @@
-// lib/features/home/screens/home_screen.dart  [UPDATED — Part 2]
+// lib/features/home/screens/home_screen.dart  [FINAL — Part 3]
 // ─────────────────────────────────────────────────────────
-// Perubahan dari Part 1:
-//   → Dialog dipindah ke change_name_dialog.dart
-//   → _showChangeNameDialog kini async (menunggu hasil dialog)
-//   → Tambah SnackBar sebagai feedback setelah nama berubah
-//   → Hapus TextEditingController dari sini (sudah di dialog)
-//   → home_screen.dart jadi lebih pendek dan fokus
+// Perubahan dari Part 2:
+//   → Tambah AnimatedEntrance pada setiap elemen UI
+//   → Stagger delay berbeda tiap elemen → masuk berurutan
+//   → AnimatedContainer untuk lingkaran dekoratif
+//   → Struktur build() makin rapi karena logika animasi
+//     sudah dipisah ke widget-widget kecil
 // ─────────────────────────────────────────────────────────
 
 import 'package:flutter/material.dart';
 
 import 'package:hellow/core/theme/app_colors.dart';
+import 'package:hellow/features/home/widgets/animated_entrance.dart';
 import 'package:hellow/features/home/widgets/change_name_dialog.dart';
 import 'package:hellow/features/home/widgets/greeting_text.dart';
 import 'package:hellow/features/home/widgets/name_button.dart';
@@ -24,53 +25,27 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String _name = 'World';
-  // Tidak ada lagi TextEditingController di sini
-  // Controller sekarang hidup di dalam ChangeNameDialog
 
-  // ── Method: tampilkan dialog (sekarang async) ──────────
+  // ── Dialog async (sama seperti Part 2) ────────────────
   Future<void> _showChangeNameDialog() async {
-    // async: method ini bisa menggunakan await
-    // Future<void>: method ini mengembalikan Future tapi tidak ada nilai
-
     final String? newName = await showChangeNameDialog(
-      // await: tunggu sampai dialog ditutup dan dapat nilai return
-      // Eksekusi baris berikutnya baru berjalan setelah dialog tertutup
       context: context,
       currentName: _name,
     );
-    // newName adalah hasil dari Navigator.pop(newName) di dalam dialog
-    // Jika user cancel → newName = null
-
     if (newName == null) return;
-    // Guard clause: user menekan Cancel, tidak ada yang perlu dilakukan
-
     if (!mounted) return;
-    // mounted: cek apakah widget masih terpasang di widget tree
-    // PENTING: setelah await, widget bisa saja sudah di-dispose
-    // Mengakses setState/context pada widget yang sudah di-dispose = crash
-
     setState(() => _name = newName);
-    // Arrow function dalam setState untuk kode satu baris
-
     _showSuccessSnackBar(newName);
-    // Tampilkan feedback setelah nama berubah
   }
 
-  // ── Method: tampilkan SnackBar ─────────────────────────
   void _showSuccessSnackBar(String name) {
     ScaffoldMessenger.of(context).showSnackBar(
-      // ScaffoldMessenger: cara yang benar untuk menampilkan SnackBar
-      // Lebih stabil dari Scaffold.of(context).showSnackBar (deprecated)
       SnackBar(
         content: Text('Hello, $name! 👋'),
         behavior: SnackBarBehavior.floating,
-        // floating: SnackBar mengambang di atas konten, tidak menempel di bawah
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         backgroundColor: AppColors.textPrimary,
         duration: const Duration(seconds: 2),
-        // SnackBar otomatis hilang setelah 2 detik
       ),
     );
   }
@@ -85,13 +60,40 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Spacer(flex: 2),
-              _buildDecorationCircle(),
+
+              // Setiap elemen dibungkus AnimatedEntrance dengan delay bertahap
+              // Hasilnya: elemen muncul satu per satu dari atas ke bawah
+              // Teknik ini disebut "staggered animation"
+
+              AnimatedEntrance(
+                delay: const Duration(milliseconds: 0),
+                // Lingkaran muncul pertama, tanpa delay
+                child: _buildDecorationCircle(),
+              ),
+
               const SizedBox(height: 40),
-              GreetingText(name: _name),
+
+              AnimatedEntrance(
+                delay: const Duration(milliseconds: 150),
+                // Teks "HELLO + nama" muncul 150ms setelah lingkaran
+                child: GreetingText(name: _name),
+              ),
+
               const SizedBox(height: 48),
-              NameButton(onPressed: _showChangeNameDialog),
+
+              AnimatedEntrance(
+                delay: const Duration(milliseconds: 300),
+                // Tombol muncul terakhir, 300ms setelah lingkaran
+                child: NameButton(onPressed: _showChangeNameDialog),
+              ),
+
               const Spacer(flex: 3),
-              _buildFooter(),
+
+              AnimatedEntrance(
+                delay: const Duration(milliseconds: 400),
+                // Footer muncul paling terakhir dengan delay terpanjang
+                child: _buildFooter(),
+              ),
             ],
           ),
         ),
@@ -99,27 +101,61 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // ── Helper: lingkaran dekoratif ────────────────────────
   Widget _buildDecorationCircle() {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          width: 80,
-          height: 80,
-          decoration: const BoxDecoration(
-            color: AppColors.coralLight,
-            shape: BoxShape.circle,
+        // TweenAnimationBuilder: explicit animation tanpa AnimationController
+        // Cocok untuk animasi satu kali yang dipicu oleh perubahan nilai target
+        TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0.0, end: 1.0),
+          // Animasi dari skala 0 ke 1 (muncul dari titik)
+          duration: const Duration(milliseconds: 700),
+          curve: Curves.elasticOut,
+          // elasticOut: efek "pegas" — melewati 1.0 lalu balik ke 1.0
+          // Memberi kesan "pop" yang playful
+
+          builder: (BuildContext context, double value, Widget? child) {
+            // builder dipanggil setiap frame dengan nilai terkini
+            // value: angka antara 0.0 dan 1.0 (dari tween di atas)
+            // child: widget yang tidak berubah (opsional, untuk optimasi)
+            return Transform.scale(
+              scale: value,
+              // Transform.scale: ubah ukuran widget tanpa mempengaruhi layout
+              child: child,
+            );
+          },
+          child: Container(
+            // child di TweenAnimationBuilder: di-cache, tidak direbuild tiap frame
+            width: 80,
+            height: 80,
+            decoration: const BoxDecoration(
+              color: AppColors.coralLight,
+              shape: BoxShape.circle,
+            ),
           ),
         ),
+
         Positioned(
           top: -10,
           right: -10,
-          child: Container(
-            width: 24,
-            height: 24,
-            decoration: const BoxDecoration(
-              color: AppColors.teal,
-              shape: BoxShape.circle,
+          child: TweenAnimationBuilder<double>(
+            tween: Tween<double>(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.elasticOut,
+            // Lingkaran kecil juga pakai efek elastic, sedikit lebih cepat
+            builder: (_, double value, Widget? child) => Transform.scale(
+              scale: value,
+              child: child,
+            ),
+            child: Container(
+              width: 24,
+              height: 24,
+              decoration: const BoxDecoration(
+                color: AppColors.teal,
+                shape: BoxShape.circle,
+              ),
             ),
           ),
         ),
@@ -127,6 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  // ── Helper: footer ─────────────────────────────────────
   Widget _buildFooter() {
     return Center(
       child: Text(
