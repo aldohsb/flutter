@@ -10,6 +10,7 @@ import '../widgets/weight_tracker_card.dart';
 import '../widgets/earning_tracker_card.dart';
 import '../widgets/day_confirm_dialog.dart';
 import 'data_management_screen.dart';
+import 'stats_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -124,6 +125,16 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     ),
                   ),
                   IconButton(
+                    icon: const Icon(Icons.bar_chart_rounded,
+                        color: AppTheme.sage600),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const StatsScreen()),
+                    ),
+                    tooltip: 'Statistik',
+                  ),
+                  IconButton(
                     icon: const Icon(Icons.more_horiz_rounded,
                         color: AppTheme.sage600),
                     onPressed: () => Navigator.push(
@@ -173,17 +184,53 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                           children: [
                             Text(
                               'Habits Hari Ini',
-                              style:
-                                  Theme.of(context).textTheme.titleLarge,
+                              style: Theme.of(context).textTheme.titleLarge,
                             ),
                             const Spacer(),
-                            Text(
-                              '${habits.where((h) => h.isCompletedOn(today)).length} / ${habits.length}',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleMedium
-                                  ?.copyWith(color: AppTheme.sage500),
-                            ),
+                            Builder(builder: (_) {
+                              final done = habits
+                                  .where((h) => h.isCompletedOn(today))
+                                  .length;
+                              final total = habits.length;
+                              final pct = total > 0
+                                  ? done / total * 100
+                                  : 0.0;
+                              final color = total == 0
+                                  ? AppTheme.stone300
+                                  : AppTheme.completionColor(pct);
+                              return Row(
+                                children: [
+                                  Text(
+                                    '$done / $total',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(color: AppTheme.stone500),
+                                  ),
+                                  if (total > 0) ...[
+                                    const SizedBox(width: 6),
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 8, vertical: 3),
+                                      decoration: BoxDecoration(
+                                        color: color.withOpacity(0.12),
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: color.withOpacity(0.4)),
+                                      ),
+                                      child: Text(
+                                        '${pct.toStringAsFixed(0)}%',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w700,
+                                          color: color,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ],
+                              );
+                            }),
                           ],
                         ),
                       ),

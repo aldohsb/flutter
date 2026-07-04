@@ -15,6 +15,7 @@ class AppTheme {
   static const Color stone100 = Color(0xFFF7F6F3);
   static const Color stone200 = Color(0xFFEAE8E2);
   static const Color stone300 = Color(0xFFD4D0C7);
+  static const Color stone400 = Color(0xFFBBB8AF);
   static const Color stone500 = Color(0xFF8B8678);
   static const Color stone700 = Color(0xFF4A4740);
 
