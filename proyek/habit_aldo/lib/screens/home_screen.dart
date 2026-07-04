@@ -4,10 +4,13 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../providers/habit_provider.dart';
+import '../providers/weight_provider.dart';
+import '../providers/earning_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/habit_tile.dart';
 import '../widgets/weight_tracker_card.dart';
 import '../widgets/earning_tracker_card.dart';
+import '../widgets/calorie_tracker_card.dart';
 import '../widgets/day_confirm_dialog.dart';
 import 'data_management_screen.dart';
 import 'stats_screen.dart';
@@ -176,6 +179,15 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                               begin: 0.05,
                               duration: 300.ms,
                               delay: 60.ms),
+
+                      // Calorie tracker
+                      const CalorieTrackerCard()
+                          .animate()
+                          .fadeIn(duration: 300.ms, delay: 120.ms)
+                          .slideY(
+                              begin: 0.05,
+                              duration: 300.ms,
+                              delay: 120.ms),
 
                       // Section header
                       Padding(

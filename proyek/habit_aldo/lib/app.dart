@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'providers/habit_provider.dart';
 import 'providers/weight_provider.dart';
 import 'providers/earning_provider.dart';
+import 'providers/calorie_provider.dart';
 import 'screens/home_screen.dart';
 import 'theme/app_theme.dart';
 
@@ -27,11 +28,13 @@ class _HabitAldoAppState extends State<HabitAldoApp> {
     final hp = context.read<HabitProvider>();
     final wp = context.read<WeightProvider>();
     final ep = context.read<EarningProvider>();
+    final cp = context.read<CalorieProvider>();
 
     await Future.wait([
       hp.init(),
       wp.init(),
       ep.init(),
+      cp.init(),
     ]);
 
     if (mounted) setState(() => _initialized = true);
@@ -79,6 +82,7 @@ class AppProviders extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => HabitProvider()),
         ChangeNotifierProvider(create: (_) => WeightProvider()),
         ChangeNotifierProvider(create: (_) => EarningProvider()),
+        ChangeNotifierProvider(create: (_) => CalorieProvider()),
       ],
       child: const HabitAldoApp(),
     );

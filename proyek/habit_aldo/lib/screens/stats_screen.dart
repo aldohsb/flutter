@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../providers/habit_provider.dart';
 import '../providers/weight_provider.dart';
+import '../providers/calorie_provider.dart';
 import '../models/habit.dart';
 import '../models/weight_entry.dart';
 import '../theme/app_theme.dart';
@@ -24,7 +25,7 @@ class _StatsScreenState extends State<StatsScreen>
   @override
   void initState() {
     super.initState();
-    _tab = TabController(length: 2, vsync: this);
+    _tab = TabController(length: 3, vsync: this);
   }
 
   @override
@@ -48,6 +49,7 @@ class _StatsScreenState extends State<StatsScreen>
           tabs: const [
             Tab(text: 'Berat Badan'),
             Tab(text: 'Habit'),
+            Tab(text: 'Kalori'),
           ],
         ),
       ),
@@ -56,6 +58,7 @@ class _StatsScreenState extends State<StatsScreen>
         children: const [
           _WeightStatsTab(),
           _HabitStatsTab(),
+          _CalorieStatsTab(),
         ],
       ),
     );
@@ -375,10 +378,10 @@ class _WeightLineChart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const _LegendDot(color: AppTheme.sage500, label: 'Berat Aktual'),
+              _LegendDot(color: AppTheme.sage500, label: 'Berat Aktual'),
               const SizedBox(width: 20),
               if (targetSpots.isNotEmpty)
-                const _LegendDash(color: AppTheme.accentGold, label: 'Target'),
+                _LegendDash(color: AppTheme.accentGold, label: 'Target'),
             ],
           ),
         ],
@@ -837,11 +840,11 @@ class _DailyCompletionChart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const _LegendDot(color: AppTheme.successGreen, label: '≥90%'),
+              _LegendDot(color: AppTheme.successGreen, label: '≥90%'),
               const SizedBox(width: 12),
-              const _LegendDot(color: AppTheme.sage500, label: '70–89%'),
+              _LegendDot(color: AppTheme.sage500, label: '70–89%'),
               const SizedBox(width: 12),
-              const _LegendDot(color: AppTheme.warningAmber, label: '50–69%'),
+              _LegendDot(color: AppTheme.warningAmber, label: '50–69%'),
               const SizedBox(width: 12),
               _LegendDot(color: AppTheme.errorRed.withOpacity(0.7), label: '<50%'),
             ],
@@ -1270,4 +1273,459 @@ class _LegendDash extends StatelessWidget {
       ],
     );
   }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// CALORIE STATS TAB
+// ═══════════════════════════════════════════════════════════════
+
+class _CalorieStatsTab extends StatefulWidget {
+  const _CalorieStatsTab();
+
+  @override
+  State<_CalorieStatsTab> createState() => _CalorieStatsTabState();
+}
+
+class _CalorieStatsTabState extends State<_CalorieStatsTab> {
+  int _rangeDays = 30;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CalorieProvider>(
+      builder: (context, cp, _) {
+        final today = DateTime.now();
+        final from = today.subtract(Duration(days: _rangeDays - 1));
+        final dailyData = cp.dailyTotals(from, today);
+        final target = cp.dailyTarget;
+
+        // Stats
+        final daysWithData = dailyData.where((d) => d.total > 0).toList();
+        final avgCal = daysWithData.isEmpty
+            ? 0
+            : daysWithData.fold(0, (s, d) => s + d.total) ~/
+                daysWithData.length;
+        final daysUnder =
+            daysWithData.where((d) => d.total <= target).length;
+        final daysOver =
+            daysWithData.where((d) => d.total > target).length;
+
+        return ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            // ── Summary cards ──
+            Row(
+              children: [
+                _StatMiniCard(
+                  label: 'Hari Ini',
+                  value: '${cp.todayTotal} kkal',
+                  color: cp.todayTotal <= target
+                      ? AppTheme.successGreen
+                      : AppTheme.errorRed,
+                ),
+                const SizedBox(width: 8),
+                _StatMiniCard(
+                  label: 'Rata-rata',
+                  value: '$avgCal kkal',
+                  color: avgCal <= target
+                      ? AppTheme.successGreen
+                      : AppTheme.errorRed,
+                ),
+                const SizedBox(width: 8),
+                _StatMiniCard(
+                  label: 'Di Bawah Target',
+                  value: '$daysUnder hari',
+                  color: AppTheme.successGreen,
+                ),
+                const SizedBox(width: 8),
+                _StatMiniCard(
+                  label: 'Melebihi Target',
+                  value: '$daysOver hari',
+                  color: AppTheme.errorRed,
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+
+            // ── Range selector ──
+            _RangeSelector(
+              selected: _rangeDays,
+              onChanged: (v) => setState(() => _rangeDays = v),
+            ),
+            const SizedBox(height: 12),
+
+            // ── Bar chart ──
+            _CalorieBarChart(
+              dailyData: dailyData,
+              target: target,
+              rangeDays: _rangeDays,
+            ),
+            const SizedBox(height: 14),
+
+            // ── Full log table ──
+            _CalorieFullLog(cp: cp),
+          ],
+        );
+      },
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Calorie bar chart
+// ─────────────────────────────────────────────────────────────
+class _CalorieBarChart extends StatelessWidget {
+  final List<DayCalTotal> dailyData;
+  final int target;
+  final int rangeDays;
+
+  const _CalorieBarChart({
+    required this.dailyData,
+    required this.target,
+    required this.rangeDays,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Thin out for 90-day range
+    final step = rangeDays <= 14 ? 1 : rangeDays <= 30 ? 1 : 3;
+    final display = <DayCalTotal>[];
+    for (int i = 0; i < dailyData.length; i++) {
+      if (i % step == 0) display.add(dailyData[i]);
+    }
+
+    final hasData = display.any((d) => d.total > 0);
+    final maxY = hasData
+        ? (display.map((d) => d.total).reduce((a, b) => a > b ? a : b) *
+                1.2)
+            .ceilToDouble()
+        : (target * 1.5).ceilToDouble();
+    final chartMax = maxY < target * 1.2 ? target * 1.5 : maxY;
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(8, 16, 16, 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, bottom: 14),
+            child: Row(
+              children: [
+                Text('Kalori Harian',
+                    style: Theme.of(context).textTheme.titleMedium),
+                const Spacer(),
+                if (target > 0)
+                  _LegendDash(
+                      color: AppTheme.warningAmber,
+                      label: 'Target $target kkal'),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 200,
+            child: BarChart(
+              BarChartData(
+                alignment: BarChartAlignment.spaceAround,
+                maxY: chartMax.toDouble(),
+                minY: 0,
+                barTouchData: BarTouchData(
+                  touchTooltipData: BarTouchTooltipData(
+                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                      final d = display[groupIndex];
+                      return BarTooltipItem(
+                        '${DateFormat('d MMM').format(d.date)}\n',
+                        const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
+                        children: [
+                          TextSpan(
+                            text: '${d.total} kkal',
+                            style: const TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: false,
+                  getDrawingHorizontalLine: (_) => const FlLine(
+                      color: AppTheme.sage200, strokeWidth: 1),
+                ),
+                borderData: FlBorderData(show: false),
+                titlesData: FlTitlesData(
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 42,
+                      getTitlesWidget: (v, _) => Text(
+                        '${(v / 1000).toStringAsFixed(v >= 1000 ? 1 : 0)}${v >= 1000 ? 'k' : ''}',
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ),
+                  ),
+                  bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 26,
+                      getTitlesWidget: (v, _) {
+                        final idx = v.toInt();
+                        if (idx < 0 || idx >= display.length) {
+                          return const SizedBox.shrink();
+                        }
+                        final labelEvery = display.length <= 10
+                            ? 1
+                            : display.length <= 20
+                                ? 3
+                                : 5;
+                        if (idx % labelEvery != 0) {
+                          return const SizedBox.shrink();
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Text(
+                            DateFormat('d/M').format(display[idx].date),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
+                  topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
+                ),
+                extraLinesData: target > 0
+                    ? ExtraLinesData(horizontalLines: [
+                        HorizontalLine(
+                          y: target.toDouble(),
+                          color: AppTheme.warningAmber,
+                          strokeWidth: 1.5,
+                          dashArray: [5, 4],
+                          label: HorizontalLineLabel(show: false),
+                        ),
+                      ])
+                    : null,
+                barGroups: display.asMap().entries.map((e) {
+                  final d = e.value;
+                  final isOver = target > 0 && d.total > target;
+                  final color = d.total == 0
+                      ? AppTheme.stone100
+                      : isOver
+                          ? AppTheme.errorRed.withOpacity(0.8)
+                          : AppTheme.successGreen.withOpacity(0.8);
+                  return BarChartGroupData(
+                    x: e.key,
+                    barRods: [
+                      BarChartRodData(
+                        toY: d.total.toDouble(),
+                        color: color,
+                        width: rangeDays <= 14
+                            ? 18
+                            : rangeDays <= 30
+                                ? 10
+                                : 6,
+                        borderRadius: BorderRadius.circular(4),
+                        backDrawRodData: BackgroundBarChartRodData(
+                          show: true,
+                          toY: chartMax.toDouble(),
+                          color: AppTheme.stone100,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _LegendDot(
+                  color: AppTheme.successGreen.withOpacity(0.8),
+                  label: 'Di bawah target'),
+              const SizedBox(width: 16),
+              _LegendDot(
+                  color: AppTheme.errorRed.withOpacity(0.8),
+                  label: 'Melebihi target'),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Full calorie log — grouped by date, newest first
+// ─────────────────────────────────────────────────────────────
+class _CalorieFullLog extends StatelessWidget {
+  final CalorieProvider cp;
+  const _CalorieFullLog({required this.cp});
+
+  @override
+  Widget build(BuildContext context) {
+    final dates = cp.datesWithEntries.reversed.toList();
+
+    if (dates.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppTheme.sage200),
+        ),
+        child: Center(
+          child: Column(
+            children: [
+              const Text('🍃', style: TextStyle(fontSize: 32)),
+              const SizedBox(height: 8),
+              Text('Belum ada log kalori.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppTheme.stone500)),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+            child: Text('Log Lengkap',
+                style: Theme.of(context).textTheme.titleMedium),
+          ),
+          const Divider(height: 1),
+          ...dates.map((date) {
+            final entries = cp.entriesForDate(date);
+            final dayTotal = cp.totalForDate(date);
+            final target = cp.dailyTarget;
+            final isOver = target > 0 && dayTotal > target;
+            final dayColor =
+                isOver ? AppTheme.errorRed : AppTheme.successGreen;
+            final isToday = _sameDay(date, DateTime.now());
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Date header
+                Container(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+                  color: AppTheme.sage100.withOpacity(0.6),
+                  child: Row(
+                    children: [
+                      Text(
+                        isToday
+                            ? 'Hari Ini'
+                            : DateFormat('EEEE, d MMM yyyy').format(date),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 9, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: dayColor.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: dayColor.withOpacity(0.35)),
+                        ),
+                        child: Text(
+                          '$dayTotal kkal',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: dayColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                // Entries
+                ...entries.reversed.map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 6, height: 6,
+                          margin: const EdgeInsets.only(right: 10),
+                          decoration: const BoxDecoration(
+                            color: AppTheme.sage400,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            e.foodName,
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w500),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          '${e.calories} kkal',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.stone500,
+                              ),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          DateFormat('HH:mm').format(e.date),
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        const SizedBox(width: 4),
+                        InkWell(
+                          onTap: () {
+                            cp.deleteEntry(e.id);
+                          },
+                          child: const Icon(Icons.close_rounded,
+                              size: 14, color: AppTheme.stone300),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(height: 1),
+              ],
+            );
+          }),
+          const SizedBox(height: 4),
+        ],
+      ),
+    );
+  }
+
+  bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
 }

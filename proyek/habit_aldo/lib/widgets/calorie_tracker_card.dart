@@ -1,0 +1,1011 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
+import '../models/calorie_entry.dart';
+import '../providers/calorie_provider.dart';
+import '../theme/app_theme.dart';
+
+class CalorieTrackerCard extends StatelessWidget {
+  const CalorieTrackerCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<CalorieProvider>(
+      builder: (context, cp, _) {
+        final total = cp.todayTotal;
+        final target = cp.dailyTarget;
+        final pct = cp.todayPercent;
+        final isOver = pct > 100;
+        final pctColor = isOver ? AppTheme.errorRed : AppTheme.successGreen;
+
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: AppTheme.sage200),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // ── Header ──
+                Row(
+                  children: [
+                    const Text('🍽️', style: TextStyle(fontSize: 18)),
+                    const SizedBox(width: 8),
+                    Text('Kalori', style: Theme.of(context).textTheme.titleMedium),
+                    const Spacer(),
+                    _TargetButton(
+                      target: target,
+                      onTap: () => _showTargetDialog(context, cp),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 14),
+
+                // ── Total + Add ──
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Hari ini',
+                              style: Theme.of(context).textTheme.labelSmall),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.baseline,
+                            textBaseline: TextBaseline.alphabetic,
+                            children: [
+                              Text(
+                                '$total',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayLarge
+                                    ?.copyWith(fontSize: 32, color: pctColor),
+                              ),
+                              const SizedBox(width: 4),
+                              Text('/ $target kkal',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(color: AppTheme.stone500)),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () => _showAddSheet(context, cp, DateTime.now()),
+                      icon: const Icon(Icons.add_rounded, size: 18),
+                      label: const Text('Catat'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppTheme.sage600,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12)),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+
+                // ── Progress bar ──
+                if (target > 0) ...[
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: LinearProgressIndicator(
+                      value: (pct / 100).clamp(0.0, 1.5),
+                      minHeight: 8,
+                      backgroundColor: AppTheme.stone200,
+                      valueColor: AlwaysStoppedAnimation(pctColor),
+                    ),
+                  ),
+                  const SizedBox(height: 6),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: pctColor.withOpacity(0.12),
+                          borderRadius: BorderRadius.circular(20),
+                          border:
+                              Border.all(color: pctColor.withOpacity(0.4)),
+                        ),
+                        child: Text(
+                          '${pct.toStringAsFixed(0)}%',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: pctColor,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        isOver
+                            ? '${total - target} kkal melebihi target'
+                            : '${target - total} kkal tersisa',
+                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                              color: pctColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                    ],
+                  ),
+                ],
+
+                // ── Today entries (last 4) ──
+                if (cp.todayEntries.isNotEmpty) ...[
+                  const SizedBox(height: 10),
+                  const Divider(height: 1),
+                  const SizedBox(height: 6),
+                  ...cp.todayEntries.reversed.take(4).map(
+                        (e) => _MiniCalorieRow(
+                          entry: e,
+                          onDelete: () => cp.deleteEntry(e.id),
+                        ),
+                      ),
+                  if (cp.todayEntries.length > 4)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 2),
+                      child: Text(
+                        '+ ${cp.todayEntries.length - 4} item lainnya',
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall
+                            ?.copyWith(color: AppTheme.sage600),
+                      ),
+                    ),
+                ],
+
+                // ── Edit past / view log ──
+                const SizedBox(height: 8),
+                TextButton.icon(
+                  onPressed: () => _showPastDatePicker(context, cp),
+                  icon: const Icon(Icons.edit_calendar_outlined,
+                      size: 14, color: AppTheme.sage600),
+                  label: Text(
+                    'Catat / edit kalori hari lain',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelSmall
+                        ?.copyWith(color: AppTheme.sage600),
+                  ),
+                  style: TextButton.styleFrom(
+                    padding: EdgeInsets.zero,
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showTargetDialog(BuildContext context, CalorieProvider cp) {
+    final ctrl = TextEditingController(text: cp.dailyTarget.toString());
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppTheme.stone100,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Text('Target Kalori Harian',
+            style: Theme.of(ctx).textTheme.titleLarge),
+        content: TextField(
+          controller: ctrl,
+          keyboardType: TextInputType.number,
+          autofocus: true,
+          decoration: const InputDecoration(
+            labelText: 'Target (kkal)',
+            suffixText: 'kkal',
+          ),
+        ),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Batal')),
+          ElevatedButton(
+            onPressed: () {
+              final v = int.tryParse(ctrl.text);
+              if (v != null && v > 0) {
+                cp.setDailyTarget(v);
+                Navigator.pop(ctx);
+              }
+            },
+            child: const Text('Simpan'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showPastDatePicker(
+      BuildContext context, CalorieProvider cp) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    );
+    if (picked != null && context.mounted) {
+      _showAddSheet(context, cp, picked);
+    }
+  }
+
+  void _showAddSheet(
+      BuildContext context, CalorieProvider cp, DateTime date) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (_) => _AddCalorieSheet(cp: cp, date: date),
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Add Calorie Bottom Sheet
+// ═══════════════════════════════════════════════════════════════
+class _AddCalorieSheet extends StatefulWidget {
+  final CalorieProvider cp;
+  final DateTime date;
+  const _AddCalorieSheet({required this.cp, required this.date});
+
+  @override
+  State<_AddCalorieSheet> createState() => _AddCalorieSheetState();
+}
+
+class _AddCalorieSheetState extends State<_AddCalorieSheet>
+    with SingleTickerProviderStateMixin {
+  final _searchCtrl = TextEditingController();
+  String _query = '';
+  // quantity per preset tile — key: preset name
+  final Map<String, int> _qty = {};
+
+  late TabController _tabCtrl;
+
+  List<FoodPreset> get _filtered {
+    if (_query.isEmpty) return kFoodPresets;
+    final q = _query.toLowerCase();
+    return kFoodPresets
+        .where((f) => f.name.toLowerCase().contains(q))
+        .toList();
+  }
+
+  // entries for selected date
+  List<CalorieEntry> get _dateEntries => widget.cp.entriesForDate(widget.date);
+  int get _dateTotal => widget.cp.totalForDate(widget.date);
+
+  @override
+  void initState() {
+    super.initState();
+    _tabCtrl = TabController(length: 2, vsync: this);
+    // Init qty map
+    for (final f in kFoodPresets) {
+      _qty[f.name] = 1;
+    }
+  }
+
+  @override
+  void dispose() {
+    _searchCtrl.dispose();
+    _tabCtrl.dispose();
+    super.dispose();
+  }
+
+  bool get _isToday {
+    final now = DateTime.now();
+    return widget.date.year == now.year &&
+        widget.date.month == now.month &&
+        widget.date.day == now.day;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+    final dateLabel = _isToday
+        ? 'Hari Ini'
+        : DateFormat('EEEE, d MMM yyyy').format(widget.date);
+
+    return Container(
+      margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+      decoration: BoxDecoration(
+        color: AppTheme.stone100,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const SizedBox(height: 10),
+          Container(
+            width: 36, height: 4,
+            decoration: BoxDecoration(
+                color: AppTheme.stone300,
+                borderRadius: BorderRadius.circular(2)),
+          ),
+          const SizedBox(height: 12),
+
+          // Title + date
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Log Kalori',
+                          style: Theme.of(context).textTheme.titleMedium),
+                      Text(dateLabel,
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(color: AppTheme.sage600)),
+                    ],
+                  ),
+                ),
+                // Total badge
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 10, vertical: 5),
+                  decoration: BoxDecoration(
+                    color: AppTheme.sage100,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppTheme.sage300),
+                  ),
+                  child: Text(
+                    '$_dateTotal kkal',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                          color: AppTheme.sage700,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // Tabs
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 16),
+            decoration: BoxDecoration(
+              color: AppTheme.stone200,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: TabBar(
+              controller: _tabCtrl,
+              indicator: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: AppTheme.stone300.withOpacity(0.5),
+                    blurRadius: 4,
+                    offset: const Offset(0, 1),
+                  )
+                ],
+              ),
+              indicatorSize: TabBarIndicatorSize.tab,
+              dividerColor: Colors.transparent,
+              labelColor: AppTheme.sage700,
+              unselectedLabelColor: AppTheme.stone500,
+              labelStyle: const TextStyle(
+                  fontSize: 12, fontWeight: FontWeight.w600),
+              tabs: const [
+                Tab(text: 'Pilih Makanan'),
+                Tab(text: 'Log Hari Ini'),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+
+          // Tab content
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.5,
+            ),
+            child: TabBarView(
+              controller: _tabCtrl,
+              children: [
+                _FoodPickerTab(
+                  query: _query,
+                  searchCtrl: _searchCtrl,
+                  filtered: _filtered,
+                  qty: _qty,
+                  onQueryChanged: (v) => setState(() => _query = v),
+                  onQtyChanged: (name, v) =>
+                      setState(() => _qty[name] = v),
+                  onAdd: (food, qty) {
+                    widget.cp.addEntry(food.name, food.calories * qty,
+                        date: widget.date);
+                    setState(() {});
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                          '${qty}x ${food.name} — ${food.calories * qty} kkal'),
+                      duration: const Duration(seconds: 2),
+                    ));
+                  },
+                  onManual: () {
+                    Navigator.pop(context);
+                    _showManualDialog(context);
+                  },
+                ),
+                _DayLogTab(
+                  entries: _dateEntries,
+                  onDelete: (id) {
+                    widget.cp.deleteEntry(id);
+                    setState(() {});
+                  },
+                ),
+              ],
+            ),
+          ),
+
+          SizedBox(height: bottomPadding + 8),
+        ],
+      ),
+    );
+  }
+
+  void _showManualDialog(BuildContext context) {
+    final nameCtrl = TextEditingController();
+    final calCtrl = TextEditingController();
+    int qty = 1;
+
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setS) => AlertDialog(
+          backgroundColor: AppTheme.stone100,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)),
+          title: Text('Input Manual',
+              style: Theme.of(ctx).textTheme.titleLarge),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameCtrl,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  labelText: 'Nama makanan / minuman',
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: calCtrl,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: 'Kalori per porsi',
+                  suffixText: 'kkal',
+                ),
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Text('Jumlah:',
+                      style: Theme.of(ctx).textTheme.bodyLarge),
+                  const Spacer(),
+                  _QtyControl(
+                    value: qty,
+                    onChanged: (v) => setS(() => qty = v),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Batal')),
+            ElevatedButton(
+              onPressed: () {
+                final name = nameCtrl.text.trim();
+                final cal = int.tryParse(calCtrl.text);
+                if (name.isNotEmpty && cal != null && cal > 0) {
+                  widget.cp.addEntry(name, cal * qty,
+                      date: widget.date);
+                  Navigator.pop(ctx);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content:
+                        Text('${qty}x $name — ${cal * qty} kkal'),
+                    duration: const Duration(seconds: 2),
+                  ));
+                }
+              },
+              child: const Text('Simpan'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Food picker tab
+// ─────────────────────────────────────────────────────────────
+class _FoodPickerTab extends StatelessWidget {
+  final String query;
+  final TextEditingController searchCtrl;
+  final List<FoodPreset> filtered;
+  final Map<String, int> qty;
+  final ValueChanged<String> onQueryChanged;
+  final void Function(String name, int v) onQtyChanged;
+  final void Function(FoodPreset food, int qty) onAdd;
+  final VoidCallback onManual;
+
+  const _FoodPickerTab({
+    required this.query,
+    required this.searchCtrl,
+    required this.filtered,
+    required this.qty,
+    required this.onQueryChanged,
+    required this.onQtyChanged,
+    required this.onAdd,
+    required this.onManual,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        // Search + manual button
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: searchCtrl,
+                  onChanged: onQueryChanged,
+                  decoration: InputDecoration(
+                    hintText: 'Cari makanan...',
+                    prefixIcon: const Icon(Icons.search_rounded,
+                        size: 18, color: AppTheme.stone500),
+                    suffixIcon: query.isNotEmpty
+                        ? IconButton(
+                            icon: const Icon(Icons.clear_rounded,
+                                size: 16, color: AppTheme.stone500),
+                            onPressed: () => onQueryChanged(''),
+                          )
+                        : null,
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 14, vertical: 10),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 8),
+              TextButton(
+                onPressed: onManual,
+                style: TextButton.styleFrom(
+                  backgroundColor: AppTheme.sage100,
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 10),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12)),
+                ),
+                child: Text('Manual',
+                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: AppTheme.sage600,
+                        fontWeight: FontWeight.w600)),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+
+        // List
+        Expanded(
+          child: filtered.isEmpty
+              ? Center(
+                  child: Text('Tidak ditemukan.',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(color: AppTheme.stone500)),
+                )
+              : ListView.separated(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                  itemCount: filtered.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 4),
+                  itemBuilder: (ctx, i) {
+                    final food = filtered[i];
+                    final q = qty[food.name] ?? 1;
+                    return _FoodPresetTile(
+                      food: food,
+                      qty: q,
+                      onQtyChanged: (v) => onQtyChanged(food.name, v),
+                      onAdd: () => onAdd(food, q),
+                    );
+                  },
+                ),
+        ),
+      ],
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Day log tab — shows all entries for selected date + delete
+// ─────────────────────────────────────────────────────────────
+class _DayLogTab extends StatelessWidget {
+  final List<CalorieEntry> entries;
+  final void Function(String id) onDelete;
+
+  const _DayLogTab({required this.entries, required this.onDelete});
+
+  @override
+  Widget build(BuildContext context) {
+    if (entries.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('🍃', style: TextStyle(fontSize: 32)),
+            const SizedBox(height: 8),
+            Text('Belum ada log untuk hari ini.',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppTheme.stone500)),
+          ],
+        ),
+      );
+    }
+
+    return ListView.separated(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+      itemCount: entries.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 4),
+      itemBuilder: (ctx, i) {
+        final e = entries[entries.length - 1 - i]; // newest first
+        return Container(
+          padding:
+              const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppTheme.sage200),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(e.foodName,
+                        style: Theme.of(ctx)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(fontWeight: FontWeight.w500),
+                        overflow: TextOverflow.ellipsis),
+                    Text(
+                      DateFormat('HH:mm').format(e.date),
+                      style: Theme.of(ctx).textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                '${e.calories} kkal',
+                style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: AppTheme.sage600,
+                    ),
+              ),
+              const SizedBox(width: 6),
+              IconButton(
+                icon: const Icon(Icons.delete_outline_rounded,
+                    size: 18, color: AppTheme.stone400),
+                onPressed: () => onDelete(e.id),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Food preset tile with qty control
+// ─────────────────────────────────────────────────────────────
+class _FoodPresetTile extends StatelessWidget {
+  final FoodPreset food;
+  final int qty;
+  final ValueChanged<int> onQtyChanged;
+  final VoidCallback onAdd;
+
+  const _FoodPresetTile({
+    required this.food,
+    required this.qty,
+    required this.onQtyChanged,
+    required this.onAdd,
+  });
+
+  Color _calColor(int cal) {
+    if (cal <= 50) return AppTheme.successGreen;
+    if (cal <= 150) return AppTheme.sage500;
+    if (cal <= 300) return AppTheme.warningAmber;
+    return AppTheme.errorRed;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final unitCal = food.calories;
+    final totalCal = unitCal * qty;
+    final color = _calColor(unitCal);
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppTheme.stone200),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(14, 8, 8, 8),
+        child: Row(
+          children: [
+            // Name + kcal badge
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    food.name,
+                    style:
+                        Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 13,
+                            ),
+                  ),
+                  const SizedBox(height: 2),
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 7, vertical: 2),
+                        decoration: BoxDecoration(
+                          color: color.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: color.withOpacity(0.35)),
+                        ),
+                        child: Text(
+                          '$unitCal kkal',
+                          style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w700,
+                              color: color),
+                        ),
+                      ),
+                      if (qty > 1) ...[
+                        const SizedBox(width: 6),
+                        Text(
+                          '× $qty = $totalCal kkal',
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(
+                                  color: AppTheme.sage600,
+                                  fontWeight: FontWeight.w600),
+                        ),
+                      ],
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 6),
+
+            // Qty control + Add button
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _QtyControl(
+                  value: qty,
+                  onChanged: onQtyChanged,
+                  compact: true,
+                ),
+                const SizedBox(width: 6),
+                GestureDetector(
+                  onTap: onAdd,
+                  child: Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: AppTheme.sage600,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(Icons.add_rounded,
+                        color: Colors.white, size: 18),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Quantity up/down control
+// ─────────────────────────────────────────────────────────────
+class _QtyControl extends StatelessWidget {
+  final int value;
+  final ValueChanged<int> onChanged;
+  final bool compact;
+
+  const _QtyControl({
+    required this.value,
+    required this.onChanged,
+    this.compact = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = compact ? 28.0 : 36.0;
+    final fontSize = compact ? 13.0 : 15.0;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: AppTheme.sage100,
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onTap: value > 1 ? () => onChanged(value - 1) : null,
+            child: SizedBox(
+              width: size,
+              height: size,
+              child: Icon(
+                Icons.remove_rounded,
+                size: compact ? 14 : 18,
+                color: value > 1 ? AppTheme.sage600 : AppTheme.stone300,
+              ),
+            ),
+          ),
+          SizedBox(
+            width: compact ? 26 : 32,
+            child: Center(
+              child: Text(
+                '$value',
+                style: TextStyle(
+                  fontSize: fontSize,
+                  fontWeight: FontWeight.w700,
+                  color: AppTheme.sage700,
+                ),
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () => onChanged(value + 1),
+            child: SizedBox(
+              width: size,
+              height: size,
+              child: Icon(
+                Icons.add_rounded,
+                size: compact ? 14 : 18,
+                color: AppTheme.sage600,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Mini row inside main card
+// ─────────────────────────────────────────────────────────────
+class _MiniCalorieRow extends StatelessWidget {
+  final CalorieEntry entry;
+  final VoidCallback onDelete;
+  const _MiniCalorieRow({required this.entry, required this.onDelete});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: Row(
+        children: [
+          Container(
+            width: 6, height: 6,
+            decoration: const BoxDecoration(
+              color: AppTheme.sage400,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              entry.foodName,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyMedium
+                  ?.copyWith(fontWeight: FontWeight.w500),
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+          const SizedBox(width: 6),
+          Text('${entry.calories} kkal',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppTheme.stone500,
+                    fontWeight: FontWeight.w600,
+                  )),
+          const SizedBox(width: 4),
+          Text(DateFormat('HH:mm').format(entry.date),
+              style: Theme.of(context).textTheme.labelSmall),
+          const SizedBox(width: 4),
+          InkWell(
+            onTap: onDelete,
+            child: const Icon(Icons.close_rounded,
+                size: 14, color: AppTheme.stone300),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Target button chip
+// ─────────────────────────────────────────────────────────────
+class _TargetButton extends StatelessWidget {
+  final int target;
+  final VoidCallback onTap;
+  const _TargetButton({required this.target, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding:
+            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        decoration: BoxDecoration(
+          color: AppTheme.sage100,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppTheme.sage300),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.flag_outlined,
+                size: 13, color: AppTheme.sage600),
+            const SizedBox(width: 4),
+            Text(
+              'Target: $target kkal',
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: AppTheme.sage600,
+                    fontWeight: FontWeight.w600,
+                  ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
