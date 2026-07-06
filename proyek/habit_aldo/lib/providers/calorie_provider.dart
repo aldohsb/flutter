@@ -85,12 +85,13 @@ class CalorieProvider extends ChangeNotifier {
 
   // ── CRUD ─────────────────────────────────────────────────
   Future<void> addEntry(String foodName, int calories,
-      {DateTime? date}) async {
+      {DateTime? date, int quantity = 1}) async {
     final entry = CalorieEntry(
       id: _uuid.v4(),
       foodName: foodName,
       calories: calories,
       date: date ?? DateTime.now(),
+      quantity: quantity,
     );
     await _box.put(entry.id, entry);
     _loadData();
@@ -117,6 +118,7 @@ class CalorieProvider extends ChangeNotifier {
                 'id': e.id,
                 'foodName': e.foodName,
                 'calories': e.calories,
+                'quantity': e.quantity,
                 'date': e.date.toIso8601String(),
               })
           .toList(),
@@ -134,6 +136,7 @@ class CalorieProvider extends ChangeNotifier {
         foodName: map['foodName'] as String,
         calories: map['calories'] as int,
         date: DateTime.parse(map['date'] as String),
+        quantity: map['quantity'] as int? ?? 1,
       );
       await _box.put(entry.id, entry);
     }

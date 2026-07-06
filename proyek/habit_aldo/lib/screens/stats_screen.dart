@@ -1678,6 +1678,25 @@ class _CalorieFullLog extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                         ),
+                        if (e.quantity > 1) ...[
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 6, vertical: 1),
+                            margin: const EdgeInsets.only(right: 5),
+                            decoration: BoxDecoration(
+                              color: AppTheme.sage500.withOpacity(0.12),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Text(
+                              '×${e.quantity}',
+                              style: const TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w800,
+                                color: AppTheme.sage600,
+                              ),
+                            ),
+                          ),
+                        ],
                         Expanded(
                           child: Text(
                             e.foodName,

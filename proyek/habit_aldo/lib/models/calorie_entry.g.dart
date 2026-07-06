@@ -2,10 +2,6 @@
 
 part of 'calorie_entry.dart';
 
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
 class CalorieEntryAdapter extends TypeAdapter<CalorieEntry> {
   @override
   final int typeId = 5;
@@ -21,13 +17,15 @@ class CalorieEntryAdapter extends TypeAdapter<CalorieEntry> {
       foodName: fields[1] as String,
       calories: fields[2] as int,
       date: fields[3] as DateTime,
+      // field 4 might not exist in old data — default to 1
+      quantity: fields[4] as int? ?? 1,
     );
   }
 
   @override
   void write(BinaryWriter writer, CalorieEntry obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,7 +33,9 @@ class CalorieEntryAdapter extends TypeAdapter<CalorieEntry> {
       ..writeByte(2)
       ..write(obj.calories)
       ..writeByte(3)
-      ..write(obj.date);
+      ..write(obj.date)
+      ..writeByte(4)
+      ..write(obj.quantity);
   }
 
   @override

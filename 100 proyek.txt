@@ -1,0 +1,572 @@
+ÔªøBuatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows di bawah ini, 
+
+
+
+
+UI/UX standart profesional, designer grade, pilih yang sesuai jenis app tapi juga unik dan out of the box, 
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing code block Markdown agar mudah di copy. pastikan tidak ada missing import di setiap file.
+jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
+mulai dari inisialisasi proyek
+sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
+tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+
+code dalam code block Markdown, dengan komentar seperlunya saja
+
+buat code dalam beberapa 3 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
+Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
+setiap tahap harus sudah bisa langsung dilihat hasilnya.
+
+mulai dari tahap 1 dulu, sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya dan pengetahuan penting lainnya
+
+
+001-025 => beginner => 200-300 lines code => 1 part
+026-050 => upper beginner => 300-500 lines code  =>  3 part
+051-065 => lower intermediate => 500-700 lines code  =>  5 part
+066-080 => intermediate => 700-1000 lines code  =>  10 part
+081-090 => upper intermediate => 1000-2000 lines code  =>  15 part
+091-100 => advance => 2000-5000 lines code  =>  20 part
+
+beginner
+upper beginner
+lower intermediate
+intermediate
+upper intermediate
+advance
+
+
+# 100 Proyek Aplikasi Flutter untuk Belajar
+
+Daftar ini disusun dari level **Beginner** sampai **Advance**, dengan kategori aplikasi populer yang sering diminta client: E-commerce, Fintech, On-Demand Services, Social Media, Enterprise, Healthcare, EdTech, Game, dan Tools praktis. Teknologi/widget yang dipakai dibuat bervariasi supaya makin banyak yang bisa dipelajari.
+
+Legenda kategori: Ì†ΩÌªí E-commerce ¬∑ Ì†ΩÌ≤≥ Fintech ¬∑ Ì†ΩÌªµ On-Demand ¬∑ Ì†ΩÌ≤¨ Social Media ¬∑ Ì†ºÌø¢ Enterprise ¬∑ Ì†ºÌø• Healthcare ¬∑ Ì†ΩÌ≥ö EdTech ¬∑ Ì†ºÌæÆ Game
+
+---
+
+## Ì†ΩÌø¢ BEGINNER (001‚Äì025) ‚Äî ¬±200-300 lines
+
+**001**
+App Name: CalcNova
+Deskripsi: Kalkulator sederhana dengan operasi dasar tambah, kurang, kali, bagi.
+Teknologi: `setState`, `GestureDetector`, `Container`
+
+**002**
+App Name: ColorSwatch
+Deskripsi: Aplikasi pembuat palet warna dengan slider RGB interaktif.
+Teknologi: `Color`, `Slider`, `setState`
+
+**003**
+App Name: TodoLite
+Deskripsi: Daftar tugas sederhana tanpa penyimpanan permanen, bisa tambah/hapus/centang.
+Teknologi: `ListView`, `setState`, `Checkbox`
+
+**004**
+App Name: UnitFlip
+Deskripsi: Konversi satuan panjang, berat, dan suhu secara instan.
+Teknologi: `DropdownButton`, `TextField`, `setState`
+
+**005** Ì†ºÌø•
+App Name: BMICheck
+Deskripsi: Kalkulator BMI (indeks massa tubuh) berdasarkan tinggi dan berat badan.
+Teknologi: `TextField`, `setState`, `Container`
+
+**006**
+App Name: QuoteDaily
+Deskripsi: Menampilkan kutipan motivasi acak setiap kali tombol ditekan.
+Teknologi: `Random`, `ListView`, `Card`
+
+**007** Ì†ºÌæÆ
+App Name: DiceRollo
+Deskripsi: Aplikasi lempar dadu dengan animasi gambar dadu berubah acak.
+Teknologi: `Random`, `Image.asset`, `GestureDetector`
+
+**008**
+App Name: CountUp
+Deskripsi: Aplikasi counter klasik untuk belajar dasar state Flutter.
+Teknologi: `setState`, `FloatingActionButton`
+
+**009** Ì†ºÌæÆ
+App Name: TapTicTac
+Deskripsi: Game Tic Tac Toe 2 pemain dalam satu layar.
+Teknologi: `GridView`, `setState`, `GestureDetector`
+
+**010**
+App Name: StopWatchy
+Deskripsi: Stopwatch dan timer sederhana dengan tombol start/stop/reset.
+Teknologi: `Timer`, `setState`
+
+**011**
+App Name: NotesPad
+Deskripsi: Catatan sederhana tanpa penyimpanan permanen (hilang saat app ditutup).
+Teknologi: `TextField`, `ListView`, `setState`
+
+**012** Ì†ΩÌ≥ö
+App Name: FlashQuiz
+Deskripsi: Flashcard kuis sederhana dengan swipe kartu pertanyaan-jawaban.
+Teknologi: `PageView`, `setState`, `Card`
+
+**013**
+App Name: WeatherPeek
+Deskripsi: Tampilan cuaca statis dengan ikon dan data dummy per hari.
+Teknologi: `Container`, `Icon`, `ListView`
+
+**014**
+App Name: ContactCardy
+Deskripsi: Daftar kontak statis dengan foto profil dan nomor telepon.
+Teknologi: `ListView.builder`, `CircleAvatar`
+
+**015** Ì†ΩÌ≤¨
+App Name: ChatBubbleUI
+Deskripsi: Mockup UI chat dengan bubble pesan kiri-kanan statis.
+Teknologi: `ListView`, `Align`, `Container`
+
+**016** Ì†ΩÌªí
+App Name: ShopMini
+Deskripsi: Daftar produk sederhana dalam bentuk grid dengan harga.
+Teknologi: `GridView`, `Card`, `Image.asset`
+
+**017** Ì†ΩÌ≤≥
+App Name: WalletView
+Deskripsi: Tampilan saldo dompet digital statis dengan riwayat singkat.
+Teknologi: `Container`, `Text`, `Icon`
+
+**018** Ì†ΩÌªµ
+App Name: RideCardUI
+Deskripsi: Mockup UI pemesanan ojek online dengan pilihan tujuan.
+Teknologi: `Card`, `ListView`, `Icon`
+
+**019** Ì†ºÌø¢
+App Name: TaskBoardMini
+Deskripsi: Papan tugas ala kanban sederhana dengan 3 kolom statis.
+Teknologi: `Row`, `Column`, `Container`
+
+**020** Ì†ºÌø•
+App Name: StepCounter
+Deskripsi: Tampilan penghitung langkah harian sederhana (data dummy).
+Teknologi: `setState`, `Icon`, `Container`
+
+**021**
+App Name: AlarmClockUI
+Deskripsi: Aplikasi alarm dengan pemilih waktu bawaan Flutter.
+Teknologi: `showTimePicker`, `setState`
+
+**022**
+App Name: ImageFlipper
+Deskripsi: Galeri foto dengan swipe antar gambar.
+Teknologi: `PageView`, `Image.asset`
+
+**023**
+App Name: RatingStars
+Deskripsi: Widget rating bintang interaktif untuk ulasan produk.
+Teknologi: `GestureDetector`, `Icon`, `setState`
+
+**024** Ì†ΩÌ≤≥
+App Name: ExpenseNote
+Deskripsi: Catatan pengeluaran harian sederhana dalam bentuk list.
+Teknologi: `TextField`, `ListView`, `setState`
+
+**025**
+App Name: ProfileCardy
+Deskripsi: Halaman profil statis dengan foto, nama, dan bio.
+Teknologi: `Column`, `CircleAvatar`, `Container`
+
+---
+
+## Ì†ΩÌø¢ UPPER BEGINNER (026‚Äì050) ‚Äî ¬±300-500 lines
+
+**026**
+App Name: LoginFlowSimple
+Deskripsi: Alur login dan registrasi dengan validasi form dasar.
+Teknologi: `Form`, `TextFormField`, `Navigator`
+
+**027**
+App Name: TodoPro
+Deskripsi: Todo list dengan penyimpanan lokal agar data tidak hilang.
+Teknologi: `SharedPreferences`, `ListView`, `setState`
+
+**028**
+App Name: NotesKeeper
+Deskripsi: Aplikasi catatan dengan penyimpanan lokal dan hapus catatan.
+Teknologi: `SharedPreferences`, `ListView`, `TextField`
+
+**029** Ì†ΩÌ≥ö
+App Name: QuizMaster
+Deskripsi: Kuis pilihan ganda multi soal dengan skor akhir.
+Teknologi: `PageView`, `setState`, `ListView`
+
+**030** Ì†ºÌæÆ
+App Name: MemoryMatch
+Deskripsi: Game mencocokkan kartu memori dengan animasi flip.
+Teknologi: `GridView`, `AnimatedContainer`, `setState`
+
+**031**
+App Name: HabitTrackerMini
+Deskripsi: Checklist kebiasaan harian dengan hitungan streak sederhana.
+Teknologi: `SharedPreferences`, `ListView`, `Checkbox`
+
+**032**
+App Name: RecipeBook
+Deskripsi: Daftar resep dengan navigasi ke halaman detail resep.
+Teknologi: `Navigator`, `ListView`, `Hero`
+
+**033**
+App Name: MovieListApp
+Deskripsi: Daftar film dengan halaman detail dan transisi Hero animation.
+Teknologi: `Navigator`, `GridView`, `Hero`
+
+**034** Ì†ΩÌ≤≥
+App Name: ExpenseTrackerPlus
+Deskripsi: Pencatat pengeluaran dengan kategori dan penyimpanan lokal.
+Teknologi: `ListView`, `DropdownButton`, `SharedPreferences`
+
+**035** Ì†ΩÌªí
+App Name: ShopCartMini
+Deskripsi: Daftar produk dengan keranjang belanja dan badge jumlah item.
+Teknologi: `setState`, `GridView`, `Badge`
+
+**036** Ì†ΩÌ≤¨
+App Name: ChatUIPlus
+Deskripsi: Layar chat dengan daftar percakapan dan navigasi ke detail chat.
+Teknologi: `Navigator`, `ListView`, `TextField`
+
+**037** Ì†ΩÌªµ
+App Name: FoodOrderUI
+Deskripsi: Alur pemesanan makanan dari menu ke ringkasan pesanan.
+Teknologi: `Navigator`, `GridView`, `ListView`
+
+**038** Ì†ºÌø¢
+App Name: EmployeeListApp
+Deskripsi: Direktori karyawan dengan fitur pencarian nama.
+Teknologi: `TextField`, `ListView.builder`, `Navigator`
+
+**039** Ì†ºÌø•
+App Name: DoctorBookingUI
+Deskripsi: Daftar dokter dengan form booking jadwal konsultasi.
+Teknologi: `Navigator`, `ListView`, `Form`
+
+**040**
+App Name: WaterReminder
+Deskripsi: Pengingat minum air dengan progress harian animasi.
+Teknologi: `AnimatedContainer`, `setState`, `Timer`
+
+**041**
+App Name: CurrencyConvert
+Deskripsi: Konversi mata uang dengan kurs statis yang bisa diedit.
+Teknologi: `TextField`, `DropdownButton`, `setState`
+
+**042**
+App Name: WeatherAppLite
+Deskripsi: Aplikasi cuaca dengan pencarian kota memakai data API mock.
+Teknologi: `http`, `FutureBuilder`, `ListView`
+
+**043**
+App Name: NewsFeedLite
+Deskripsi: Daftar berita dari data JSON mock menggunakan pemanggilan API.
+Teknologi: `FutureBuilder`, `http`, `ListView.builder`
+
+**044**
+App Name: GalleryViewer
+Deskripsi: Galeri foto grid dengan mode lihat penuh layar (fullscreen).
+Teknologi: `GridView`, `Hero`, `PageView`
+
+**045** Ì†ΩÌ≤≥
+App Name: BudgetPlanner
+Deskripsi: Perencana anggaran dengan visualisasi diagram lingkaran.
+Teknologi: `fl_chart`, `ListView`, `setState`
+
+**046**
+App Name: FitnessLogMini
+Deskripsi: Catatan latihan dengan input set dan repetisi olahraga.
+Teknologi: `Form`, `ListView`, `SharedPreferences`
+
+**047**
+App Name: PomodoroTimer
+Deskripsi: Timer fokus kerja dengan siklus kerja-istirahat otomatis.
+Teknologi: `Timer`, `AnimatedContainer`, `setState`
+
+**048** Ì†ΩÌ≥ö
+App Name: FlashCardEdu
+Deskripsi: Flashcard belajar dengan kategori topik yang bisa dipilih.
+Teknologi: `PageView`, `GestureDetector`, `ListView`
+
+**049** Ì†ºÌæÆ
+App Name: SnakeGameLite
+Deskripsi: Game ular klasik dengan kontrol arah sentuh sederhana.
+Teknologi: `CustomPainter`, `Timer`, `GestureDetector`
+
+**050** Ì†ºÌæÆ
+App Name: SimonSays
+Deskripsi: Game mengingat urutan warna/nada yang makin panjang.
+Teknologi: `AnimatedContainer`, `Timer`, `setState`
+
+---
+
+## Ì†ΩÌø° LOWER INTERMEDIATE (051‚Äì065) ‚Äî ¬±500-700 lines
+
+**051** Ì†ΩÌªí
+App Name: ShopEase
+Deskripsi: Aplikasi e-commerce dengan keranjang dan alur checkout memakai state management.
+Teknologi: `Provider`, `GridView`, `ListView`
+
+**052** Ì†ΩÌ≤≥
+App Name: WalletPay
+Deskripsi: Simulasi e-wallet dengan transfer saldo dan riwayat transaksi tersimpan lokal.
+Teknologi: `Provider`, `Hive`, `ListView`
+
+**053** Ì†ΩÌªµ
+App Name: QuickRide
+Deskripsi: Alur pemesanan ojek online dengan tampilan peta placeholder.
+Teknologi: `google_maps_flutter`, `Provider`, `ListView`
+
+**054** Ì†ΩÌ≤¨
+App Name: ChatConnect
+Deskripsi: Aplikasi chat dengan penyimpanan pesan lokal dan update tampilan otomatis.
+Teknologi: `Hive`, `StreamBuilder`, `ListView`
+
+**055** Ì†ºÌø¢
+App Name: InventoryLite
+Deskripsi: Manajemen stok barang sederhana dengan database lokal.
+Teknologi: `sqflite`, `ListView`, `Form`
+
+**056** Ì†ºÌø•
+App Name: HealthMate
+Deskripsi: Cek gejala sederhana dan daftar janji temu dokter.
+Teknologi: `Provider`, `ListView`, `Form`
+
+**057** Ì†ΩÌ≥ö
+App Name: LearnHub
+Deskripsi: Daftar kursus dengan pelacakan progres belajar per materi.
+Teknologi: `Provider`, `ProgressIndicator`, `ListView`
+
+**058** Ì†ºÌæÆÌ†ΩÌ≥ö
+App Name: GameQuizRush
+Deskripsi: Kuis cepat dengan batas waktu dan papan peringkat lokal.
+Teknologi: `Timer`, `sqflite`, `ListView`
+
+**059** Ì†ΩÌ≤≥
+App Name: ExpenseVault
+Deskripsi: Pencatat keuangan dengan database lokal dan grafik pengeluaran.
+Teknologi: `sqflite`, `fl_chart`, `ListView`
+
+**060**
+App Name: RecipeFinder
+Deskripsi: Aplikasi pencarian resep memakai API publik.
+Teknologi: `http`, `FutureBuilder`, `GridView`
+
+**061**
+App Name: MusicPlayerMini
+Deskripsi: Pemutar musik dengan kontrol play/pause/slider durasi.
+Teknologi: `audioplayers`, `Slider`, `setState`
+
+**062**
+App Name: NotesCloudy
+Deskripsi: Aplikasi catatan dengan kategori dan fitur pencarian.
+Teknologi: `Hive`, `TextField`, `ListView`
+
+**063**
+App Name: HabitStreak
+Deskripsi: Pelacak kebiasaan dengan tampilan kalender streak visual.
+Teknologi: `Hive`, `GridView`, `Provider`
+
+**064** Ì†ºÌø¢
+App Name: JobBoardApp
+Deskripsi: Papan lowongan kerja dengan filter dan pencarian kategori.
+Teknologi: `Provider`, `ListView`, `DropdownButton`
+
+**065** Ì†ºÌæÆ
+App Name: MazeRunnerGame
+Deskripsi: Game navigasi labirin dengan kontrol sentuh dan deteksi tabrakan.
+Teknologi: `CustomPainter`, `GestureDetector`, `setState`
+
+---
+
+## Ì†ΩÌø† INTERMEDIATE (066‚Äì080) ‚Äî ¬±700-1000 lines
+
+**066** Ì†ΩÌªí
+App Name: MarketPlace Go
+Deskripsi: Aplikasi marketplace dengan peran penjual dan pembeli terpisah.
+Teknologi: `Riverpod`, `Firebase Auth`, `GridView`
+
+**067** Ì†ΩÌ≤≥
+App Name: BankLite
+Deskripsi: Aplikasi bank digital dengan transfer, PIN keamanan, dan riwayat transaksi.
+Teknologi: `Bloc`, `Hive`, `ListView`
+
+**068** Ì†ΩÌªµ
+App Name: GoRide
+Deskripsi: Aplikasi ride-hailing dengan simulasi pelacakan lokasi live.
+Teknologi: `google_maps_flutter`, `Riverpod`, `StreamBuilder`
+
+**069** Ì†ΩÌ≤¨
+App Name: SocialSphere
+Deskripsi: Feed media sosial dengan fitur like dan komentar realtime.
+Teknologi: `Riverpod`, `Firebase Firestore`, `ListView`
+
+**070** Ì†ºÌø¢
+App Name: CRM Lite
+Deskripsi: Aplikasi manajemen relasi pelanggan untuk tim sales kecil.
+Teknologi: `Bloc`, `sqflite`, `ListView`
+
+**071** Ì†ºÌø•
+App Name: TeleHealth
+Deskripsi: UI video call placeholder untuk konsultasi dan booking janji temu.
+Teknologi: `Riverpod`, `Firebase`, `Form`
+
+**072** Ì†ΩÌ≥ö
+App Name: EduTrack
+Deskripsi: Aplikasi belajar online dengan kuis dan pelacakan progres siswa.
+Teknologi: `Riverpod`, `Firebase Firestore`, `ProgressIndicator`
+
+**073** Ì†ºÌæÆ
+App Name: PlatformerDash
+Deskripsi: Game platformer 2D level menengah dengan lompat dan rintangan.
+Teknologi: `Flame`, `Timer`, `GestureDetector`
+
+**074** Ì†ºÌø¢
+App Name: POS System Mini
+Deskripsi: Aplikasi kasir (point of sale) untuk usaha kecil dengan cetak struk sederhana.
+Teknologi: `sqflite`, `Provider`, `ListView`
+
+**075** Ì†ΩÌ≤≥
+App Name: CryptoTrackr
+Deskripsi: Pelacak harga crypto realtime dengan grafik tren harga.
+Teknologi: `http`, `fl_chart`, `Riverpod`
+
+**076** Ì†ΩÌªµ
+App Name: FoodPandaClone
+Deskripsi: Aplikasi pesan-antar makanan dengan keranjang dan pelacakan pesanan.
+Teknologi: `Riverpod`, `Firebase`, `GridView`
+
+**077** Ì†ΩÌ≤¨
+App Name: GroupChatPro
+Deskripsi: Aplikasi chat grup dengan berbagi media dan foto.
+Teknologi: `Firebase Storage`, `Riverpod`, `ListView`
+
+**078** Ì†ΩÌ≥ö
+App Name: SkillBuilder
+Deskripsi: Aplikasi belajar interaktif dengan latihan soal dan progres skill.
+Teknologi: `Riverpod`, `PageView`, `ProgressIndicator`
+
+**079** Ì†ºÌø•
+App Name: MedTrackerPro
+Deskripsi: Pengingat minum obat dan catatan kesehatan harian.
+Teknologi: `Riverpod`, `flutter_local_notifications`, `ListView`
+
+**080** Ì†ºÌø¢
+App Name: InventoryPro
+Deskripsi: Manajemen gudang dengan pemindaian barcode barang.
+Teknologi: `mobile_scanner`, `sqflite`, `Provider`
+
+---
+
+## Ì†ΩÌ¥µ UPPER INTERMEDIATE (081‚Äì090) ‚Äî ¬±1000-2000 lines
+
+**081** Ì†ΩÌªí
+App Name: ShopVerse
+Deskripsi: Aplikasi e-commerce lengkap: katalog, keranjang, checkout, simulasi payment gateway, dan riwayat pesanan.
+Teknologi: `Riverpod`, `Firebase`, `Stripe (mock)`, `GridView`
+
+**082** Ì†ΩÌ≤≥
+App Name: NeoBank
+Deskripsi: Aplikasi bank digital dengan multi-akun, transfer, bayar tagihan, dan grafik transaksi.
+Teknologi: `Bloc`, `Hive`, `fl_chart`
+
+**083** Ì†ΩÌªµ
+App Name: ZoomRide
+Deskripsi: Aplikasi ride-hailing dengan pelacakan peta live, hitung tarif, dan simulasi pencarian driver.
+Teknologi: `google_maps_flutter`, `Riverpod`, `StreamBuilder`
+
+**084** Ì†ΩÌ≤¨
+App Name: ConnectSphere
+Deskripsi: Aplikasi media sosial dengan feed, stories, chat, dan notifikasi.
+Teknologi: `Firebase Firestore`, `Riverpod`, `ListView`
+
+**085** Ì†ºÌø¢
+App Name: BizSuite
+Deskripsi: Aplikasi enterprise gabungan modul HR, inventory, dan CRM.
+Teknologi: `Bloc`, `sqflite`, `Provider`
+
+**086** Ì†ºÌø•
+App Name: CareConnect
+Deskripsi: Aplikasi telemedicine dengan UI konsultasi video, resep digital, dan janji temu.
+Teknologi: `Riverpod`, `Firebase`, `Form`
+
+**087** Ì†ΩÌ≥ö
+App Name: EduVerse
+Deskripsi: Aplikasi LMS lengkap dengan kursus, kuis, sertifikat, dan dashboard progres.
+Teknologi: `Riverpod`, `Firebase Firestore`, `fl_chart`
+
+**088** Ì†ºÌæÆ
+App Name: DungeonQuest
+Deskripsi: Game RPG ringan dengan sistem pertarungan dan progres karakter level menengah-atas.
+Teknologi: `Flame`, `CustomPainter`, `state machine`
+
+**089** Ì†ºÌø¢
+App Name: SmartInventory
+Deskripsi: Manajemen inventory dan supplier dengan laporan grafik stok.
+Teknologi: `sqflite`, `Bloc`, `fl_chart`
+
+**090** Ì†ΩÌ≤≥
+App Name: InvestWise
+Deskripsi: Simulasi investasi/trading dengan portofolio dan grafik performa.
+Teknologi: `Riverpod`, `fl_chart`, `http`
+
+---
+
+## Ì†ΩÌ¥¥ ADVANCE (091‚Äì100) ‚Äî ¬±2000-5000 lines
+
+**091** Ì†ΩÌªí
+App Name: MegaMart
+Deskripsi: Marketplace multi-vendor skala penuh: keranjang, payment, ulasan produk, pelacakan pesanan, dan panel admin.
+Teknologi: `Riverpod`, `Firebase`, `Stripe`, `Bloc`, `GridView`
+
+**092** Ì†ΩÌ≤≥
+App Name: UnionBank Pro
+Deskripsi: Aplikasi perbankan digital lengkap: multi-mata uang, KYC, biometric login, bayar tagihan, dan modul investasi.
+Teknologi: `Bloc`, `Hive`, `biometric_storage`, `fl_chart`
+
+**093** Ì†ΩÌªµ
+App Name: GoJek Style Super App
+Deskripsi: Super app gabungan ride-hailing dan delivery dengan pelacakan live, wallet, dan chat driver-penumpang.
+Teknologi: `google_maps_flutter`, `Firebase`, `WebSocket`, `Riverpod`
+
+**094** Ì†ΩÌ≤¨
+App Name: SocialNet Pro
+Deskripsi: Platform media sosial penuh: feed, stories, reels, chat, notifikasi, dan placeholder live streaming.
+Teknologi: `Firebase`, `Riverpod`, `WebSocket`, `ListView`
+
+**095** Ì†ºÌø¢
+App Name: Enterprise ERP Suite
+Deskripsi: ERP lengkap dengan modul HR, inventory, CRM, POS, dan dashboard laporan.
+Teknologi: `Bloc`, `sqflite`, `fl_chart`, `Provider`
+
+**096** Ì†ºÌø•
+App Name: MediCare Complete
+Deskripsi: Platform telemedicine lengkap: video call, resep digital, rekam medis, janji temu, dan pemesanan obat.
+Teknologi: `Riverpod`, `Firebase`, `WebRTC`, `fl_chart`
+
+**097** Ì†ΩÌ≥ö
+App Name: EduMaster Platform
+Deskripsi: Platform e-learning lengkap: kursus, kelas live, kuis, sertifikat, dan forum diskusi.
+Teknologi: `Riverpod`, `Firebase`, `WebSocket`, `fl_chart`
+
+**098** Ì†ºÌæÆ
+App Name: RPG Legends
+Deskripsi: Game RPG advance dengan sistem inventory, pertarungan, quest, dan save/load progres.
+Teknologi: `Flame`, `Hive`, `state machine`, `CustomPainter`
+
+**099** Ì†ºÌæÆ
+App Name: Tower Defense Kingdom
+Deskripsi: Game tower defense advance dengan sistem wave musuh, upgrade menara, dan banyak level.
+Teknologi: `Flame`, `CustomPainter`, `Hive (save system)`
+
+**100** Ì†ΩÌª†Ô∏è
+App Name: UtilityBox Pro
+Deskripsi: Aplikasi tools serba guna: file manager, scanner/generator QR, tools PDF, konverter satuan, dan kalkulator dalam satu aplikasi (kategori populer di Play Store).
+Teknologi: `mobile_scanner`, `path_provider`, `share_plus`, `multi-module architecture`
+
+---
+
+### Catatan Belajar
+- Setiap naik tier, tambahkan 1 teknologi baru dari tier sebelumnya agar progres skill terasa (state management ‚Üí local db ‚Üí API ‚Üí animasi ‚Üí arsitektur modular).
+- Untuk kategori wajib (E-commerce, Fintech, On-Demand, Social Media, Enterprise, Healthcare, EdTech), versi sederhananya ada di tier bawah dan versi kompleksnya di tier atas ‚Äî bagus untuk latihan "membangun ulang aplikasi yang sama dengan level lebih tinggi".
+- Game intermediate ada di #073 (PlatformerDash) dan advance di #098-099 (RPG Legends, Tower Defense Kingdom).
