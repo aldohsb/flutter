@@ -1,0 +1,1 @@
+enum ButtonType { number, operatorBtn, function, equalsBtn }
