@@ -2,10 +2,6 @@
 
 part of 'habit.dart';
 
-// **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
 class HabitAdapter extends TypeAdapter<Habit> {
   @override
   final int typeId = 0;
@@ -23,13 +19,16 @@ class HabitAdapter extends TypeAdapter<Habit> {
       completionLog: (fields[3] as Map).cast<String, bool>(),
       startDate: fields[4] as DateTime,
       createdAt: fields[5] as DateTime,
+      // fields 6 & 7 are nullable — old data won't have them
+      scheduledHour: fields[6] as int?,
+      scheduledMinute: fields[7] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Habit obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -41,7 +40,11 @@ class HabitAdapter extends TypeAdapter<Habit> {
       ..writeByte(4)
       ..write(obj.startDate)
       ..writeByte(5)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(6)
+      ..write(obj.scheduledHour)
+      ..writeByte(7)
+      ..write(obj.scheduledMinute);
   }
 
   @override

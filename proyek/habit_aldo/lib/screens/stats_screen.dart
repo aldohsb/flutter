@@ -378,10 +378,10 @@ class _WeightLineChart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _LegendDot(color: AppTheme.sage500, label: 'Berat Aktual'),
+              const _LegendDot(color: AppTheme.sage500, label: 'Berat Aktual'),
               const SizedBox(width: 20),
               if (targetSpots.isNotEmpty)
-                _LegendDash(color: AppTheme.accentGold, label: 'Target'),
+                const _LegendDash(color: AppTheme.accentGold, label: 'Target'),
             ],
           ),
         ],
@@ -840,11 +840,11 @@ class _DailyCompletionChart extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _LegendDot(color: AppTheme.successGreen, label: '≥90%'),
+              const _LegendDot(color: AppTheme.successGreen, label: '≥90%'),
               const SizedBox(width: 12),
-              _LegendDot(color: AppTheme.sage500, label: '70–89%'),
+              const _LegendDot(color: AppTheme.sage500, label: '70–89%'),
               const SizedBox(width: 12),
-              _LegendDot(color: AppTheme.warningAmber, label: '50–69%'),
+              const _LegendDot(color: AppTheme.warningAmber, label: '50–69%'),
               const SizedBox(width: 12),
               _LegendDot(color: AppTheme.errorRed.withOpacity(0.7), label: '<50%'),
             ],

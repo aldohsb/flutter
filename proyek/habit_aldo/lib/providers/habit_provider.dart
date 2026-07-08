@@ -73,6 +73,27 @@ class HabitProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> setSchedule(
+      String id, int hour, int minute) async {
+    final habit = _box.get(id);
+    if (habit == null) return;
+    habit.scheduledHour = hour;
+    habit.scheduledMinute = minute;
+    await habit.save();
+    _loadHabits();
+    notifyListeners();
+  }
+
+  Future<void> clearSchedule(String id) async {
+    final habit = _box.get(id);
+    if (habit == null) return;
+    habit.scheduledHour = null;
+    habit.scheduledMinute = null;
+    await habit.save();
+    _loadHabits();
+    notifyListeners();
+  }
+
   Future<void> deleteHabit(String id) async {
     await _box.delete(id);
     _loadHabits();
@@ -131,6 +152,8 @@ class HabitProvider extends ChangeNotifier {
         'completionLog': h.completionLog,
         'startDate': h.startDate.toIso8601String(),
         'createdAt': h.createdAt.toIso8601String(),
+        'scheduledHour': h.scheduledHour,
+        'scheduledMinute': h.scheduledMinute,
       };
 
   Future<void> importData(Map<String, dynamic> data) async {
@@ -147,6 +170,8 @@ class HabitProvider extends ChangeNotifier {
             log.map((k, v) => MapEntry(k, v as bool)),
         startDate: DateTime.parse(map['startDate'] as String),
         createdAt: DateTime.parse(map['createdAt'] as String),
+        scheduledHour: map['scheduledHour'] as int?,
+        scheduledMinute: map['scheduledMinute'] as int?,
       );
       await _box.put(habit.id, habit);
     }

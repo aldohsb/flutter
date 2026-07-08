@@ -14,7 +14,6 @@ class Habit extends HiveObject {
   int sortOrder;
 
   @HiveField(3)
-  // Key: 'yyyy-MM-dd', Value: true/false
   Map<String, bool> completionLog;
 
   @HiveField(4)
@@ -23,6 +22,14 @@ class Habit extends HiveObject {
   @HiveField(5)
   DateTime createdAt;
 
+  /// Jam rencana pengerjaan (0–23), null = tidak diset
+  @HiveField(6)
+  int? scheduledHour;
+
+  /// Menit rencana pengerjaan (0, 15, 30, 45), null = tidak diset
+  @HiveField(7)
+  int? scheduledMinute;
+
   Habit({
     required this.id,
     required this.name,
@@ -30,9 +37,23 @@ class Habit extends HiveObject {
     Map<String, bool>? completionLog,
     DateTime? startDate,
     DateTime? createdAt,
+    this.scheduledHour,
+    this.scheduledMinute,
   })  : completionLog = completionLog ?? {},
         startDate = startDate ?? DateTime.now(),
         createdAt = createdAt ?? DateTime.now();
+
+  /// Apakah jadwal jam sudah diset
+  bool get hasSchedule =>
+      scheduledHour != null && scheduledMinute != null;
+
+  /// Label jam dalam format HH:mm
+  String get scheduleLabel {
+    if (!hasSchedule) return '';
+    final h = scheduledHour!.toString().padLeft(2, '0');
+    final m = scheduledMinute!.toString().padLeft(2, '0');
+    return '$h:$m';
+  }
 
   // ── Helpers ──────────────────────────────────────────────
 
@@ -50,7 +71,6 @@ class Habit extends HiveObject {
   int get streak {
     int count = 0;
     DateTime day = DateTime.now();
-    // If today not yet completed, start from yesterday
     if (!isCompletedOn(day)) {
       day = day.subtract(const Duration(days: 1));
     }
@@ -83,10 +103,8 @@ class Habit extends HiveObject {
     return (done / total) * 100;
   }
 
-  /// Days where completion is explicitly set to false (for day-change dialog)
   List<DateTime> missedDaysFor(DateTime date) {
     final key = _dateKey(date);
-    // completionLog has that date with false or not present → missed
     if (completionLog[key] == true) return [];
     return [date];
   }

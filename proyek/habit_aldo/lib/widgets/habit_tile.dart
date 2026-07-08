@@ -130,6 +130,41 @@ class HabitTile extends StatelessWidget {
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
+                          // ── Jadwal chip (hanya kalau diset) ──
+                          if (habit.hasSchedule) ...[
+                            const SizedBox(width: 6),
+                            GestureDetector(
+                              onTap: () => _showScheduleDialog(
+                                  context,
+                                  context.read<HabitProvider>()),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 7, vertical: 2),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.sage500.withOpacity(0.12),
+                                  borderRadius: BorderRadius.circular(20),
+                                  border: Border.all(
+                                      color: AppTheme.sage400.withOpacity(0.5)),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    const Icon(Icons.schedule_rounded,
+                                        size: 10, color: AppTheme.sage600),
+                                    const SizedBox(width: 3),
+                                    Text(
+                                      habit.scheduleLabel,
+                                      style: const TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w700,
+                                        color: AppTheme.sage600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ],
                       ),
                     ],
@@ -153,7 +188,6 @@ class HabitTile extends StatelessWidget {
   }
 
   void _showOptionsSheet(BuildContext context) {
-    // Capture provider BEFORE opening bottom sheet supaya context tetap valid
     final provider = context.read<HabitProvider>();
 
     showModalBottomSheet(
@@ -164,6 +198,182 @@ class HabitTile extends StatelessWidget {
         habit: habit,
         provider: provider,
         rootContext: context,
+      ),
+    );
+  }
+
+  void _showScheduleDialog(BuildContext context, HabitProvider provider) {
+    int selectedHour = habit.scheduledHour ?? 8;
+    int selectedMinute = habit.scheduledMinute ?? 0;
+
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setS) => AlertDialog(
+          backgroundColor: AppTheme.stone100,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Jadwal Pengerjaan',
+                  style: Theme.of(ctx).textTheme.titleLarge),
+              Text(habit.name,
+                  style: Theme.of(ctx)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppTheme.stone500),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // ── Jam (0–23) ──
+              Text('Jam',
+                  style: Theme.of(ctx).textTheme.labelSmall?.copyWith(
+                      color: AppTheme.sage600,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.8)),
+              const SizedBox(height: 8),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(24, (h) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 6),
+                      child: GestureDetector(
+                        onTap: () => setS(() => selectedHour = h),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: selectedHour == h
+                                ? AppTheme.sage600
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selectedHour == h
+                                  ? AppTheme.sage600
+                                  : AppTheme.stone200,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              h.toString().padLeft(2, '0'),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: selectedHour == h
+                                    ? Colors.white
+                                    : AppTheme.stone700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // ── Menit (4 opsi) ──
+              Text('Menit',
+                  style: Theme.of(ctx).textTheme.labelSmall?.copyWith(
+                      color: AppTheme.sage600,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.8)),
+              const SizedBox(height: 8),
+              Row(
+                children: [0, 15, 30, 45].map((m) {
+                  final isSelected = selectedMinute == m;
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 6),
+                      child: GestureDetector(
+                        onTap: () => setS(() => selectedMinute = m),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? AppTheme.sage600
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppTheme.sage600
+                                  : AppTheme.stone200,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              ':${m.toString().padLeft(2, '0')}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: isSelected
+                                    ? Colors.white
+                                    : AppTheme.stone700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+
+              const SizedBox(height: 14),
+              // Preview
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppTheme.sage100,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppTheme.sage300),
+                  ),
+                  child: Text(
+                    '${selectedHour.toString().padLeft(2, '0')}:${selectedMinute.toString().padLeft(2, '0')}',
+                    style: Theme.of(ctx).textTheme.displayLarge?.copyWith(
+                          fontSize: 28,
+                          color: AppTheme.sage700,
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            if (habit.hasSchedule)
+              TextButton(
+                onPressed: () {
+                  provider.clearSchedule(habit.id);
+                  Navigator.pop(ctx);
+                },
+                child: Text('Hapus Jadwal',
+                    style: TextStyle(color: AppTheme.errorRed)),
+              ),
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Batal')),
+            ElevatedButton(
+              onPressed: () {
+                provider.setSchedule(
+                    habit.id, selectedHour, selectedMinute);
+                Navigator.pop(ctx);
+              },
+              child: const Text('Simpan'),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -228,6 +438,16 @@ class _HabitOptionsSheet extends StatelessWidget {
             },
           ),
           _OptionItem(
+            icon: Icons.schedule_rounded,
+            label: habit.hasSchedule
+                ? 'Ubah Jadwal (${habit.scheduleLabel})'
+                : 'Atur Jadwal',
+            onTap: () {
+              Navigator.pop(context);
+              _showScheduleFromSheet(rootContext);
+            },
+          ),
+          _OptionItem(
             icon: Icons.edit_rounded,
             label: 'Edit Habit',
             onTap: () {
@@ -246,6 +466,181 @@ class _HabitOptionsSheet extends StatelessWidget {
           ),
           const SizedBox(height: 20),
         ],
+      ),
+    );
+  }
+
+  void _showScheduleFromSheet(BuildContext context) {
+    int selectedHour = habit.scheduledHour ?? 8;
+    int selectedMinute = habit.scheduledMinute ?? 0;
+
+    showDialog(
+      context: context,
+      builder: (ctx) => StatefulBuilder(
+        builder: (ctx, setS) => AlertDialog(
+          backgroundColor: AppTheme.stone100,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Jadwal Pengerjaan',
+                  style: Theme.of(ctx).textTheme.titleLarge),
+              Text(habit.name,
+                  style: Theme.of(ctx)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppTheme.stone500),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis),
+            ],
+          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Jam
+              Text('Jam',
+                  style: Theme.of(ctx).textTheme.labelSmall?.copyWith(
+                      color: AppTheme.sage600,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.8)),
+              const SizedBox(height: 8),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: List.generate(24, (h) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 6),
+                      child: GestureDetector(
+                        onTap: () => setS(() => selectedHour = h),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: selectedHour == h
+                                ? AppTheme.sage600
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                              color: selectedHour == h
+                                  ? AppTheme.sage600
+                                  : AppTheme.stone200,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              h.toString().padLeft(2, '0'),
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: selectedHour == h
+                                    ? Colors.white
+                                    : AppTheme.stone700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              // Menit
+              Text('Menit',
+                  style: Theme.of(ctx).textTheme.labelSmall?.copyWith(
+                      color: AppTheme.sage600,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.8)),
+              const SizedBox(height: 8),
+              Row(
+                children: [0, 15, 30, 45].map((m) {
+                  final isSelected = selectedMinute == m;
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 6),
+                      child: GestureDetector(
+                        onTap: () => setS(() => selectedMinute = m),
+                        child: AnimatedContainer(
+                          duration: const Duration(milliseconds: 150),
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? AppTheme.sage600
+                                : Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                              color: isSelected
+                                  ? AppTheme.sage600
+                                  : AppTheme.stone200,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              ':${m.toString().padLeft(2, '0')}',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
+                                color: isSelected
+                                    ? Colors.white
+                                    : AppTheme.stone700,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+
+              const SizedBox(height: 14),
+              Center(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: AppTheme.sage100,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: AppTheme.sage300),
+                  ),
+                  child: Text(
+                    '${selectedHour.toString().padLeft(2, '0')}:${selectedMinute.toString().padLeft(2, '0')}',
+                    style: Theme.of(ctx).textTheme.displayLarge?.copyWith(
+                          fontSize: 28,
+                          color: AppTheme.sage700,
+                        ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            if (habit.hasSchedule)
+              TextButton(
+                onPressed: () {
+                  provider.clearSchedule(habit.id);
+                  Navigator.pop(ctx);
+                },
+                child: const Text('Hapus Jadwal',
+                    style: TextStyle(color: AppTheme.errorRed)),
+              ),
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('Batal')),
+            ElevatedButton(
+              onPressed: () {
+                provider.setSchedule(
+                    habit.id, selectedHour, selectedMinute);
+                Navigator.pop(ctx);
+              },
+              child: const Text('Simpan'),
+            ),
+          ],
+        ),
       ),
     );
   }
