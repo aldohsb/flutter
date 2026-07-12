@@ -11,6 +11,7 @@ sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file te
 tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 
 code dalam code block Markdown, dengan komentar seperlunya saja
+sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya dan pengetahuan penting lainnya
 
 buat code dalam beberapa 3 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
@@ -18,7 +19,6 @@ setiap tahap harus sudah bisa langsung dilihat hasilnya.
 
 mulai dari tahap 1 dulu, 
 
-sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya dan pengetahuan penting lainnya
 
 
 001-025 => beginner => 200-300 lines code => 1 part

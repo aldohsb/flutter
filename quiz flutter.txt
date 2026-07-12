@@ -1,0 +1,346 @@
+buat quiz belajar flutter 10 soal pilihan ganda, dengan pilihan jawaban yang mengecoh untuk memperdalam pemahaman, pilihan jawaban di sebar secara merata dan random di 4 huruf pilihan jawaban, kunci jawaban jangan selalu yang paling panjang kalimatnya.
+buat quiz menggunakan interface yang sy bisa langsung klik jawabannya, setelah jawaban di klik keluar status benar salah nya dan ada pembahasan 500-200 kata langsung di bawah soal dengan format yang mudah dibaca, terutama penjelasan dengan contoh coding.
+
+materi soal tentang : 
+
+
+
+
+
+# Kurikulum 300 Hari Belajar Flutter (Beginner → Advance)
+
+## TIER 1: BEGINNER
+
+### Dart Fundamentals 
+
+4. Null safety
+
+8. Function dasar
+9. Named parameter & optional parameter
+10. Arrow function
+11. List, Set, Map
+12. Collection if & collection for
+13. Spread operator
+14. Class & Object dasar
+15. Constructor & named constructor
+16. Getter & Setter
+17. Inheritance
+18. Abstract class
+19. Interface & mixin
+20. Enum
+
+### Dart Lanjutan (21–35)
+21. Static member
+22. Final vs const
+23. Late keyword
+24. Cascade notation
+25. Extension method
+26. Generic
+27. Exception handling (try-catch)
+28. Custom exception
+29. Future & async-await
+30. Stream dasar
+31. async* & yield
+32. Isolate dasar
+33. Library & import
+34. Package lokal vs pub.dev
+35. Dart DevTools intro
+
+### Widget Dasar (36–55)
+36. StatelessWidget vs StatefulWidget
+37. MaterialApp & Scaffold
+38. Text & TextStyle
+39. Container & BoxDecoration
+40. Row & Column
+41. Stack & Positioned
+42. Expanded & Flexible
+43. Padding & Margin
+44. Center & Align
+45. SizedBox
+46. Image widget (asset, network)
+47. Icon widget
+48. Button (ElevatedButton, TextButton, OutlinedButton)
+49. IconButton
+50. ListView
+51. GridView
+52. Card
+53. Divider
+54. AppBar
+55. FloatingActionButton
+
+### Layout & Navigasi (56–75)
+56. SingleChildScrollView
+57. Wrap widget
+58. CustomScrollView & Sliver dasar
+59. Navigator.push & pop
+60. Named routes
+61. Passing data antar screen
+62. Return data dari screen
+63. BottomNavigationBar
+64. TabBar & TabBarView
+65. Drawer
+66. Dialog & AlertDialog
+67. BottomSheet
+68. SnackBar
+69. Form & TextFormField
+70. Form validation dasar
+71. Focus & TextEditingController
+72. Checkbox, Radio, Switch
+73. DropdownButton
+74. DatePicker & TimePicker
+75. Mini project: To-Do List app
+
+## TIER 2: INTERMEDIATE (Hari 76–150)
+
+### State Management Dasar (76–95)
+76. Konsep state di Flutter
+77. setState mendalam
+78. InheritedWidget
+79. ValueNotifier & ValueListenableBuilder
+80. Provider dasar
+81. ChangeNotifier
+82. Consumer & Selector
+83. MultiProvider
+84. Riverpod dasar (Provider, StateProvider)
+85. StateNotifierProvider
+86. FutureProvider & StreamProvider (Riverpod)
+87. GetX dasar
+88. GetX controller & binding
+89. Bloc pattern dasar
+90. Cubit
+91. BlocBuilder & BlocListener
+92. BlocProvider
+93. Perbandingan Provider vs Riverpod vs Bloc vs GetX
+94. MVC vs MVVM konsep
+95. Mini project: Counter multi-state-management
+
+### Networking & API (96–115)
+96. HTTP package dasar
+97. GET & POST request
+98. JSON encode/decode
+99. Model class dari JSON (manual)
+100. json_serializable & build_runner
+101. Dio package
+102. Interceptor di Dio
+103. Error handling API
+104. Loading state & shimmer effect
+105. Pagination API
+106. Pull-to-refresh
+107. Caching response sederhana
+108. REST API best practice
+109. GraphQL dasar dengan Flutter
+110. WebSocket dasar
+111. Retry & timeout request
+112. Multipart request (upload file)
+113. Download file & progress indicator
+114. Environment variable (.env)
+115. Mini project: Weather app dengan API
+
+### Local Storage & Database (116–135)
+116. SharedPreferences
+117. Hive dasar
+118. Hive TypeAdapter
+119. Hive box & CRUD
+120. SQLite dengan sqflite
+121. Query SQL dasar di Flutter
+122. Migration database
+123. Drift (Moor) dasar
+124. ObjectBox intro
+125. Secure storage (flutter_secure_storage)
+126. File system (path_provider)
+127. Read/write file lokal
+128. Cache image (cached_network_image)
+129. Offline-first architecture konsep
+130. Sync data lokal ke server
+131. Export/import data (CSV/JSON)
+132. Backup & restore data
+133. Data encryption dasar
+134. Mini project: Notes app dengan Hive
+135. Mini project: Expense tracker dengan SQLite
+
+### Animasi & UI Lanjutan (136–150)
+136. Implicit animation (AnimatedContainer, dll)
+137. AnimationController
+138. Tween & CurvedAnimation
+139. Explicit animation
+140. Hero animation
+141. AnimatedList
+142. AnimatedSwitcher
+143. Custom transition route
+144. Lottie animation
+145. Rive animation
+146. Shimmer loading effect
+147. Parallax effect
+148. Custom Theme (ThemeData)
+149. Dark mode implementation
+150. Responsive design (LayoutBuilder, MediaQuery)
+
+## TIER 3: ADVANCED (Hari 151–225)
+
+### Arsitektur Aplikasi (151–170)
+151. Clean Architecture konsep
+152. Layer: presentation, domain, data
+153. Repository pattern
+154. Use case pattern
+155. Dependency Injection konsep
+156. GetIt untuk DI
+157. Injectable package
+158. Feature-first vs layer-first folder structure
+159. Domain model vs data model
+160. Mapper/Entity converter
+161. Error handling terstruktur (Either/Result type)
+162. Dartz package (functional programming)
+163. Freezed package untuk immutable class
+164. Code generation workflow
+165. SOLID principle di Flutter
+166. Design pattern: Singleton
+167. Design pattern: Factory
+168. Design pattern: Observer
+169. Design pattern: Strategy
+170. Mini project: Refactor app ke Clean Architecture
+
+### Firebase & Backend Integration (171–190)
+171. Setup Firebase project
+172. Firebase Authentication (email/password)
+173. Firebase Authentication (Google, Apple sign-in)
+174. Cloud Firestore dasar
+175. Firestore query & filtering
+176. Firestore real-time listener
+177. Firebase Storage (upload/download)
+178. Firebase Cloud Messaging (push notification)
+179. Firebase Analytics
+180. Firebase Crashlytics
+181. Firebase Remote Config
+182. Firebase Cloud Functions dasar
+183. Firebase Security Rules
+184. Supabase sebagai alternatif backend
+185. Supabase Auth & Database
+186. Integrasi payment gateway (Midtrans/Stripe)
+187. Deep linking
+188. App links & universal links
+189. In-app purchase dasar
+190. Mini project: Chat app real-time dengan Firebase
+
+### Testing & Quality (191–205)
+191. Unit testing dasar
+192. Widget testing
+193. Integration testing
+194. Mocking dengan mockito
+195. Test coverage
+196. Golden test
+197. Test-driven development (TDD) konsep
+198. CI/CD dasar (GitHub Actions)
+199. Fastlane intro
+200. Code review best practice
+201. Linting & analysis_options.yaml
+202. Error monitoring (Sentry)
+203. Performance profiling dengan DevTools
+204. Memory leak detection
+205. App size optimization
+
+### Platform Integration & Native (206–225)
+206. Platform channel dasar (MethodChannel)
+207. Native code Android (Kotlin) integrasi
+208. Native code iOS (Swift) integrasi
+209. Plugin development dasar
+210. Permission handling (camera, lokasi, dll)
+211. Kamera & image picker
+212. Geolocation & maps integration
+213. Google Maps Flutter
+214. Local notification
+215. Background service/task
+216. Bluetooth & IoT integrasi dasar
+217. Biometric authentication
+218. Deep integration dengan widget native (PlatformView)
+219. Flutter untuk Web konfigurasi
+220. Flutter untuk Desktop (Windows/macOS/Linux)
+221. Responsive multi-platform architecture
+222. Adaptive UI per platform
+223. App signing Android
+224. App signing iOS
+225. Mini project: Multi-platform app (mobile+web+desktop)
+
+## TIER 4: EXPERT (Hari 226–300)
+
+### Custom Rendering & Performance (226–245)
+226. CustomPainter dasar
+227. Canvas API mendalam
+228. CustomClipper
+229. RenderObject & RenderBox konsep
+230. Membuat custom RenderObject
+231. Layout protocol Flutter (constraint-based)
+232. Shader & Fragment program dasar
+233. Custom shader effect
+234. GPU vs CPU rendering di Flutter
+235. Widget rebuild optimization
+236. const constructor optimization
+237. RepaintBoundary
+238. ListView.builder optimization lanjutan
+239. Isolate untuk heavy computation
+240. Compute function
+241. FFI (Foreign Function Interface) dasar
+242. Integrasi native library via FFI
+243. Custom scroll physics
+244. Slivers lanjutan (SliverAppBar, SliverPersistentHeader)
+245. Frame rendering pipeline Flutter
+
+### State Management Lanjutan & Reactive (246–260)
+246. Bloc lanjutan: event transformer
+247. Bloc concurrency (debounce, throttle)
+248. Riverpod code generation (riverpod_generator)
+249. Riverpod AsyncNotifier
+250. Riverpod family & autoDispose
+251. Custom state management dari nol
+252. Reactive programming dengan RxDart
+253. Stream transformer lanjutan
+254. Command pattern untuk UI action
+255. Undo-redo mechanism
+256. Multi-module app architecture
+257. Melon/monorepo Flutter (melos)
+258. Modularization dengan package internal
+259. Micro-frontend konsep di Flutter
+260. Plugin architecture untuk fitur dinamis
+
+### Security & Scalability (261–275)
+261. Obfuscation kode Flutter
+262. Root/jailbreak detection
+263. Certificate pinning
+264. Secure API key management
+265. OWASP Mobile Top 10 untuk Flutter
+266. Data encryption lanjutan (AES)
+267. Token refresh & session management
+268. Rate limiting client-side
+269. App hardening
+270. Scalable folder structure untuk tim besar
+271. Design system & component library
+272. Storybook-like widget catalog
+273. Versioning API & backward compatibility
+274. Feature flag implementation
+275. A/B testing implementation
+
+### Publishing, Kontribusi & Karier (276–300)
+276. Persiapan rilis Android (Play Store)
+277. Persiapan rilis iOS (App Store)
+278. App Store Optimization (ASO) dasar
+279. Automated release dengan Fastlane lanjutan
+280. Semantic versioning
+281. Changelog management
+282. Crash-free rate monitoring pasca-rilis
+283. User feedback loop & in-app review
+284. Membaca source code Flutter framework
+285. Kontribusi ke package open source
+286. Membuat & publish package sendiri ke pub.dev
+287. Dokumentasi package (dartdoc)
+288. Maintaining package (issue, PR review)
+289. Flutter untuk game dasar (Flame engine)
+290. Flutter untuk embedded/IoT (Flutter on device)
+291. AI/ML integrasi (TensorFlow Lite di Flutter)
+292. LLM API integration di app Flutter
+293. Advanced accessibility (a11y) implementation
+294. Internationalization (i18n) & localization lanjutan
+295. Studi kasus arsitektur app skala enterprise
+296. Code audit & refactor project besar
+297. Membangun portfolio project capstone
+298. Persiapan technical interview Flutter
+299. Continuous learning roadmap pasca-300 hari
+300. Capstone project: Full-scale app end-to-end (arsitektur+testing+CI/CD+rilis)

@@ -114,8 +114,7 @@ class CalorieTrackerCard extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: pctColor.withOpacity(0.12),
                           borderRadius: BorderRadius.circular(20),
-                          border:
-                              Border.all(color: pctColor.withOpacity(0.4)),
+                          border: Border.all(color: pctColor.withOpacity(0.4)),
                         ),
                         child: Text(
                           '${pct.toStringAsFixed(0)}%',
@@ -164,7 +163,7 @@ class CalorieTrackerCard extends StatelessWidget {
                     ),
                 ],
 
-                // ── Edit past / view log ──
+                // ── Edit past ──
                 const SizedBox(height: 8),
                 TextButton.icon(
                   onPressed: () => _showPastDatePicker(context, cp),
@@ -197,8 +196,7 @@ class CalorieTrackerCard extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         backgroundColor: AppTheme.stone100,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text('Target Kalori Harian',
             style: Theme.of(ctx).textTheme.titleLarge),
         content: TextField(
@@ -242,8 +240,7 @@ class CalorieTrackerCard extends StatelessWidget {
     }
   }
 
-  void _showAddSheet(
-      BuildContext context, CalorieProvider cp, DateTime date) {
+  void _showAddSheet(BuildContext context, CalorieProvider cp, DateTime date) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -269,28 +266,27 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
     with SingleTickerProviderStateMixin {
   final _searchCtrl = TextEditingController();
   String _query = '';
-  // quantity per preset tile — key: preset name
   final Map<String, int> _qty = {};
-
   late TabController _tabCtrl;
 
-  List<FoodPreset> get _filtered {
-    if (_query.isEmpty) return kFoodPresets;
-    final q = _query.toLowerCase();
-    return kFoodPresets
-        .where((f) => f.name.toLowerCase().contains(q))
-        .toList();
-  }
+  List<SearchableFoodItem> get _results =>
+      widget.cp.searchFoods(_query);
 
-  // entries for selected date
-  List<CalorieEntry> get _dateEntries => widget.cp.entriesForDate(widget.date);
+  List<CalorieEntry> get _dateEntries =>
+      widget.cp.entriesForDate(widget.date);
   int get _dateTotal => widget.cp.totalForDate(widget.date);
+
+  bool get _isToday {
+    final now = DateTime.now();
+    return widget.date.year == now.year &&
+        widget.date.month == now.month &&
+        widget.date.day == now.day;
+  }
 
   @override
   void initState() {
     super.initState();
     _tabCtrl = TabController(length: 2, vsync: this);
-    // Init qty map
     for (final f in kFoodPresets) {
       _qty[f.name] = 1;
     }
@@ -303,12 +299,8 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
     super.dispose();
   }
 
-  bool get _isToday {
-    final now = DateTime.now();
-    return widget.date.year == now.year &&
-        widget.date.month == now.month &&
-        widget.date.day == now.day;
-  }
+  int _getQty(String name) => _qty[name] ?? 1;
+  void _setQty(String name, int v) => setState(() => _qty[name] = v);
 
   @override
   Widget build(BuildContext context) {
@@ -335,7 +327,7 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
           ),
           const SizedBox(height: 12),
 
-          // Title + date
+          // Title + total
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Row(
@@ -354,7 +346,6 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                     ],
                   ),
                 ),
-                // Total badge
                 Container(
                   padding: const EdgeInsets.symmetric(
                       horizontal: 10, vertical: 5),
@@ -391,8 +382,7 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                 boxShadow: [
                   BoxShadow(
                     color: AppTheme.stone300.withOpacity(0.5),
-                    blurRadius: 4,
-                    offset: const Offset(0, 1),
+                    blurRadius: 4, offset: const Offset(0, 1),
                   )
                 ],
               ),
@@ -410,7 +400,6 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
           ),
           const SizedBox(height: 10),
 
-          // Tab content
           ConstrainedBox(
             constraints: BoxConstraints(
               maxHeight: MediaQuery.of(context).size.height * 0.5,
@@ -418,18 +407,18 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
             child: TabBarView(
               controller: _tabCtrl,
               children: [
+                // ── Tab 1: Pilih makanan ──
                 _FoodPickerTab(
                   query: _query,
                   searchCtrl: _searchCtrl,
-                  filtered: _filtered,
-                  qty: _qty,
+                  results: _results,
+                  getQty: _getQty,
                   onQueryChanged: (v) => setState(() => _query = v),
-                  onQtyChanged: (name, v) =>
-                      setState(() => _qty[name] = v),
-                  onAdd: (food, qty) {
+                  onQtyChanged: _setQty,
+                  onAdd: (item, qty) {
                     widget.cp.addEntry(
-                      food.name,
-                      food.calories * qty,
+                      item.name,
+                      item.caloriesPerServing * qty,
                       date: widget.date,
                       quantity: qty,
                     );
@@ -439,7 +428,12 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                     Navigator.pop(context);
                     _showManualDialog(context);
                   },
+                  onDeleteCustom: (id) {
+                    widget.cp.deleteCustomFood(id);
+                    setState(() {});
+                  },
                 ),
+                // ── Tab 2: Log ──
                 _DayLogTab(
                   entries: _dateEntries,
                   onDelete: (id) {
@@ -450,7 +444,6 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
               ],
             ),
           ),
-
           SizedBox(height: bottomPadding + 8),
         ],
       ),
@@ -461,6 +454,7 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
     final nameCtrl = TextEditingController();
     final calCtrl = TextEditingController();
     int qty = 1;
+    bool saveToList = true;
 
     showDialog(
       context: context,
@@ -493,15 +487,69 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
               const SizedBox(height: 12),
               Row(
                 children: [
-                  Text('Jumlah:',
-                      style: Theme.of(ctx).textTheme.bodyLarge),
+                  Text('Jumlah:', style: Theme.of(ctx).textTheme.bodyLarge),
                   const Spacer(),
-                  _QtyControl(
-                    value: qty,
-                    onChanged: (v) => setS(() => qty = v),
-                  ),
+                  _QtyControl(value: qty, onChanged: (v) => setS(() => qty = v)),
                 ],
               ),
+              const SizedBox(height: 10),
+              // Toggle: simpan ke daftar
+              InkWell(
+                onTap: () => setS(() => saveToList = !saveToList),
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: saveToList
+                        ? AppTheme.sage200.withOpacity(0.5)
+                        : Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: saveToList
+                          ? AppTheme.sage400
+                          : AppTheme.stone200,
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        saveToList
+                            ? Icons.bookmark_rounded
+                            : Icons.bookmark_outline_rounded,
+                        size: 18,
+                        color: saveToList
+                            ? AppTheme.sage600
+                            : AppTheme.stone400,
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Simpan ke daftar makanan saya',
+                          style: Theme.of(ctx).textTheme.bodyMedium?.copyWith(
+                                color: saveToList
+                                    ? AppTheme.sage700
+                                    : AppTheme.stone500,
+                                fontWeight: saveToList
+                                    ? FontWeight.w600
+                                    : FontWeight.w400,
+                              ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              if (saveToList)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6, left: 4),
+                  child: Text(
+                    'Item akan muncul di daftar pencarian berikutnya',
+                    style: Theme.of(ctx).textTheme.labelSmall?.copyWith(
+                          color: AppTheme.sage600,
+                        ),
+                  ),
+                ),
             ],
           ),
           actions: [
@@ -509,18 +557,22 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                 onPressed: () => Navigator.pop(ctx),
                 child: const Text('Batal')),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 final name = nameCtrl.text.trim();
                 final cal = int.tryParse(calCtrl.text);
                 if (name.isNotEmpty && cal != null && cal > 0) {
-                  widget.cp.addEntry(name, cal * qty,
-                      date: widget.date);
-                  Navigator.pop(ctx);
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content:
-                        Text('${qty}x $name — ${cal * qty} kkal'),
-                    duration: const Duration(seconds: 2),
-                  ));
+                  // Simpan ke custom list kalau toggle aktif
+                  if (saveToList) {
+                    await widget.cp.addCustomFood(name, cal);
+                  }
+                  // Tambah ke log
+                  await widget.cp.addEntry(
+                    name,
+                    cal * qty,
+                    date: widget.date,
+                    quantity: qty,
+                  );
+                  if (ctx.mounted) Navigator.pop(ctx);
                 }
               },
               child: const Text('Simpan'),
@@ -532,35 +584,37 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Food picker tab
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// Food Picker Tab
+// ═══════════════════════════════════════════════════════════════
 class _FoodPickerTab extends StatelessWidget {
   final String query;
   final TextEditingController searchCtrl;
-  final List<FoodPreset> filtered;
-  final Map<String, int> qty;
+  final List<SearchableFoodItem> results;
+  final int Function(String) getQty;
   final ValueChanged<String> onQueryChanged;
-  final void Function(String name, int v) onQtyChanged;
-  final void Function(FoodPreset food, int qty) onAdd;
+  final void Function(String, int) onQtyChanged;
+  final void Function(SearchableFoodItem, int) onAdd;
   final VoidCallback onManual;
+  final void Function(String id) onDeleteCustom;
 
   const _FoodPickerTab({
     required this.query,
     required this.searchCtrl,
-    required this.filtered,
-    required this.qty,
+    required this.results,
+    required this.getQty,
     required this.onQueryChanged,
     required this.onQtyChanged,
     required this.onAdd,
     required this.onManual,
+    required this.onDeleteCustom,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Search + manual button
+        // Search bar + manual
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
@@ -605,9 +659,29 @@ class _FoodPickerTab extends StatelessWidget {
         ),
         const SizedBox(height: 8),
 
+        // Section label kalau ada custom
+        if (results.any((r) => r.isCustom) && query.isEmpty)
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 6),
+            child: Row(
+              children: [
+                const Icon(Icons.bookmark_rounded,
+                    size: 12, color: AppTheme.sage600),
+                const SizedBox(width: 4),
+                Text(
+                  'Makanan Saya · ${results.where((r) => r.isCustom).length} item (di bawah daftar bawaan)',
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: AppTheme.sage600,
+                        fontWeight: FontWeight.w700,
+                      ),
+                ),
+              ],
+            ),
+          ),
+
         // List
         Expanded(
-          child: filtered.isEmpty
+          child: results.isEmpty
               ? Center(
                   child: Text('Tidak ditemukan.',
                       style: Theme.of(context)
@@ -617,16 +691,53 @@ class _FoodPickerTab extends StatelessWidget {
                 )
               : ListView.separated(
                   padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 4),
+                  itemCount: results.length,
+                  separatorBuilder: (_, i) {
+                    // Garis pemisah antara preset dan custom
+                    final curr = results[i];
+                    final next = i + 1 < results.length ? results[i + 1] : null;
+                    if (!curr.isCustom && next != null && next.isCustom) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: Row(
+                          children: [
+                            const Expanded(child: Divider()),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8),
+                              child: Row(
+                                children: [
+                                  const Icon(Icons.bookmark_rounded,
+                                      size: 11, color: AppTheme.sage500),
+                                  const SizedBox(width: 4),
+                                  Text('Makanan Saya',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelSmall
+                                          ?.copyWith(
+                                            color: AppTheme.sage600,
+                                            fontWeight: FontWeight.w700,
+                                          )),
+                                ],
+                              ),
+                            ),
+                            const Expanded(child: Divider()),
+                          ],
+                        ),
+                      );
+                    }
+                    return const SizedBox(height: 4);
+                  },
                   itemBuilder: (ctx, i) {
-                    final food = filtered[i];
-                    final q = qty[food.name] ?? 1;
-                    return _FoodPresetTile(
-                      food: food,
-                      qty: q,
-                      onQtyChanged: (v) => onQtyChanged(food.name, v),
-                      onAdd: () => onAdd(food, q),
+                    final item = results[i];
+                    final qty = getQty(item.name);
+                    return _FoodItemTile(
+                      item: item,
+                      qty: qty,
+                      onQtyChanged: (v) => onQtyChanged(item.name, v),
+                      onAdd: () => onAdd(item, qty),
+                      onDeleteCustom: item.isCustom && item.customId != null
+                          ? () => onDeleteCustom(item.customId!)
+                          : null,
                     );
                   },
                 ),
@@ -636,145 +747,29 @@ class _FoodPickerTab extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Day log tab — shows all entries for selected date + delete
-// ─────────────────────────────────────────────────────────────
-class _DayLogTab extends StatelessWidget {
-  final List<CalorieEntry> entries;
-  final void Function(String id) onDelete;
-
-  const _DayLogTab({required this.entries, required this.onDelete});
-
-  @override
-  Widget build(BuildContext context) {
-    if (entries.isEmpty) {
-      return Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('🍃', style: TextStyle(fontSize: 32)),
-            const SizedBox(height: 8),
-            Text('Belum ada log untuk hari ini.',
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyMedium
-                    ?.copyWith(color: AppTheme.stone500)),
-          ],
-        ),
-      );
-    }
-
-    return ListView.separated(
-      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
-      itemCount: entries.length,
-      separatorBuilder: (_, __) => const SizedBox(height: 4),
-      itemBuilder: (ctx, i) {
-        final e = entries[entries.length - 1 - i]; // newest first
-        final unitCal = e.quantity > 1
-            ? e.calories ~/ e.quantity
-            : e.calories;
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppTheme.sage200),
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Name + qty badge
-                    Row(
-                      children: [
-                        if (e.quantity > 1) ...[
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 7, vertical: 2),
-                            decoration: BoxDecoration(
-                              color: AppTheme.sage500.withOpacity(0.12),
-                              borderRadius: BorderRadius.circular(6),
-                            ),
-                            child: Text(
-                              '×${e.quantity}',
-                              style: const TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.w800,
-                                color: AppTheme.sage600,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 6),
-                        ],
-                        Expanded(
-                          child: Text(
-                            e.foodName,
-                            style: Theme.of(ctx)
-                                .textTheme
-                                .bodyLarge
-                                ?.copyWith(fontWeight: FontWeight.w500),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      e.quantity > 1
-                          ? '$unitCal × ${e.quantity} · ${DateFormat('HH:mm').format(e.date)}'
-                          : DateFormat('HH:mm').format(e.date),
-                      style: Theme.of(ctx).textTheme.labelSmall,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                '${e.calories} kkal',
-                style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      color: AppTheme.sage600,
-                    ),
-              ),
-              const SizedBox(width: 6),
-              IconButton(
-                icon: const Icon(Icons.delete_outline_rounded,
-                    size: 18, color: AppTheme.stone400),
-                onPressed: () => onDelete(e.id),
-                padding: EdgeInsets.zero,
-                constraints: const BoxConstraints(),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-// ─────────────────────────────────────────────────────────────
-// Food preset tile with qty control + flash feedback
-// ─────────────────────────────────────────────────────────────
-class _FoodPresetTile extends StatefulWidget {
-  final FoodPreset food;
+// ═══════════════════════════════════════════════════════════════
+// Food Item Tile (preset + custom)
+// ═══════════════════════════════════════════════════════════════
+class _FoodItemTile extends StatefulWidget {
+  final SearchableFoodItem item;
   final int qty;
   final ValueChanged<int> onQtyChanged;
   final VoidCallback onAdd;
+  final VoidCallback? onDeleteCustom;
 
-  const _FoodPresetTile({
-    required this.food,
+  const _FoodItemTile({
+    required this.item,
     required this.qty,
     required this.onQtyChanged,
     required this.onAdd,
+    this.onDeleteCustom,
   });
 
   @override
-  State<_FoodPresetTile> createState() => _FoodPresetTileState();
+  State<_FoodItemTile> createState() => _FoodItemTileState();
 }
 
-class _FoodPresetTileState extends State<_FoodPresetTile> {
+class _FoodItemTileState extends State<_FoodItemTile> {
   bool _added = false;
 
   Color _calColor(int cal) {
@@ -785,7 +780,7 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
   }
 
   void _handleAdd() {
-    if (_added) return; // debounce: abaikan double-tap
+    if (_added) return;
     widget.onAdd();
     setState(() => _added = true);
     Future.delayed(const Duration(milliseconds: 1200), () {
@@ -795,17 +790,25 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
 
   @override
   Widget build(BuildContext context) {
-    final unitCal = widget.food.calories;
+    final unitCal = widget.item.caloriesPerServing;
     final totalCal = unitCal * widget.qty;
     final color = _calColor(unitCal);
 
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
-        color: _added ? AppTheme.sage200.withOpacity(0.5) : Colors.white,
+        color: _added
+            ? AppTheme.sage200.withOpacity(0.5)
+            : widget.item.isCustom
+                ? AppTheme.sage100.withOpacity(0.6)
+                : Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: _added ? AppTheme.sage400 : AppTheme.stone200,
+          color: _added
+              ? AppTheme.sage400
+              : widget.item.isCustom
+                  ? AppTheme.sage300
+                  : AppTheme.stone200,
           width: _added ? 1.5 : 1,
         ),
       ),
@@ -813,17 +816,31 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
         padding: const EdgeInsets.fromLTRB(14, 11, 10, 11),
         child: Row(
           children: [
-            // Name + kcal badge
+            // Name + badges
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.food.name,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 14,
+                  Row(
+                    children: [
+                      if (widget.item.isCustom) ...[
+                        const Icon(Icons.bookmark_rounded,
+                            size: 12, color: AppTheme.sage500),
+                        const SizedBox(width: 4),
+                      ],
+                      Expanded(
+                        child: Text(
+                          widget.item.name,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge
+                              ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                              ),
                         ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 4),
                   Row(
@@ -862,27 +879,32 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 6),
 
-            // Qty control + Add button
+            // Delete custom (hanya untuk custom food)
+            if (widget.onDeleteCustom != null)
+              IconButton(
+                icon: const Icon(Icons.delete_outline_rounded,
+                    size: 16, color: AppTheme.stone300),
+                onPressed: () => _confirmDeleteCustom(context),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+
+            const SizedBox(width: 4),
+
+            // Qty + Add
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 _QtyControl(
-                  value: widget.qty,
-                  onChanged: widget.onQtyChanged,
-                ),
+                    value: widget.qty, onChanged: widget.onQtyChanged),
                 const SizedBox(width: 8),
-
-                // Add button — flash green ✓ saat berhasil
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
-                  width: 48,
-                  height: 48,
+                  width: 48, height: 48,
                   decoration: BoxDecoration(
-                    color: _added
-                        ? AppTheme.successGreen
-                        : AppTheme.sage600,
+                    color: _added ? AppTheme.successGreen : AppTheme.sage600,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Material(
@@ -897,12 +919,10 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
                           child: _added
                               ? const Icon(Icons.check_rounded,
                                   key: ValueKey('check'),
-                                  color: Colors.white,
-                                  size: 22)
+                                  color: Colors.white, size: 22)
                               : const Icon(Icons.add_rounded,
                                   key: ValueKey('add'),
-                                  color: Colors.white,
-                                  size: 22),
+                                  color: Colors.white, size: 22),
                         ),
                       ),
                     ),
@@ -915,19 +935,153 @@ class _FoodPresetTileState extends State<_FoodPresetTile> {
       ),
     );
   }
+
+  void _confirmDeleteCustom(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppTheme.stone100,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)),
+        title: const Text('Hapus dari daftar?'),
+        content: Text(
+            '"${widget.item.name}" akan dihapus dari daftar makanan kamu.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('Batal')),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: AppTheme.errorRed),
+            onPressed: () {
+              widget.onDeleteCustom?.call();
+              Navigator.pop(ctx);
+            },
+            child: const Text('Hapus'),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Quantity up/down control — thumb-friendly 44px tap targets
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// Day Log Tab
+// ═══════════════════════════════════════════════════════════════
+class _DayLogTab extends StatelessWidget {
+  final List<CalorieEntry> entries;
+  final void Function(String id) onDelete;
+
+  const _DayLogTab({required this.entries, required this.onDelete});
+
+  @override
+  Widget build(BuildContext context) {
+    if (entries.isEmpty) {
+      return Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('🍃', style: TextStyle(fontSize: 32)),
+            const SizedBox(height: 8),
+            Text('Belum ada log untuk hari ini.',
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyMedium
+                    ?.copyWith(color: AppTheme.stone500)),
+          ],
+        ),
+      );
+    }
+
+    return ListView.separated(
+      padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+      itemCount: entries.length,
+      separatorBuilder: (_, __) => const SizedBox(height: 4),
+      itemBuilder: (ctx, i) {
+        final e = entries[entries.length - 1 - i];
+        final unitCal =
+            e.quantity > 1 ? e.calories ~/ e.quantity : e.calories;
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: AppTheme.sage200),
+          ),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        if (e.quantity > 1) ...[
+                          Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 7, vertical: 2),
+                            decoration: BoxDecoration(
+                              color: AppTheme.sage500.withOpacity(0.12),
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            child: Text('×${e.quantity}',
+                                style: const TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w800,
+                                    color: AppTheme.sage600)),
+                          ),
+                          const SizedBox(width: 6),
+                        ],
+                        Expanded(
+                          child: Text(e.foodName,
+                              style: Theme.of(ctx)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(fontWeight: FontWeight.w500),
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      e.quantity > 1
+                          ? '$unitCal × ${e.quantity} · ${DateFormat('HH:mm').format(e.date)}'
+                          : DateFormat('HH:mm').format(e.date),
+                      style: Theme.of(ctx).textTheme.labelSmall,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              Text('${e.calories} kkal',
+                  style: Theme.of(ctx).textTheme.bodyLarge?.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppTheme.sage600,
+                      )),
+              const SizedBox(width: 6),
+              IconButton(
+                icon: const Icon(Icons.delete_outline_rounded,
+                    size: 18, color: AppTheme.stone400),
+                onPressed: () => onDelete(e.id),
+                padding: EdgeInsets.zero,
+                constraints: const BoxConstraints(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════
+// Qty Control
+// ═══════════════════════════════════════════════════════════════
 class _QtyControl extends StatelessWidget {
   final int value;
   final ValueChanged<int> onChanged;
 
-  const _QtyControl({
-    required this.value,
-    required this.onChanged,
-  });
+  const _QtyControl({required this.value, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -940,7 +1094,6 @@ class _QtyControl extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Decrease button
           Material(
             color: Colors.transparent,
             child: InkWell(
@@ -948,30 +1101,24 @@ class _QtyControl extends StatelessWidget {
                   left: Radius.circular(11)),
               onTap: value > 1 ? () => onChanged(value - 1) : null,
               child: SizedBox(
-                width: 44,
-                height: 44,
-                child: Icon(
-                  Icons.remove_rounded,
-                  size: 20,
-                  color: value > 1 ? AppTheme.sage600 : AppTheme.stone300,
-                ),
+                width: 44, height: 44,
+                child: Icon(Icons.remove_rounded, size: 20,
+                    color: value > 1
+                        ? AppTheme.sage600
+                        : AppTheme.stone300),
               ),
             ),
           ),
-          // Count display
-          Container(
+          SizedBox(
             width: 36,
-            alignment: Alignment.center,
-            child: Text(
-              '$value',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: AppTheme.sage700,
-              ),
+            child: Center(
+              child: Text('$value',
+                  style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: AppTheme.sage700)),
             ),
           ),
-          // Increase button
           Material(
             color: Colors.transparent,
             child: InkWell(
@@ -979,13 +1126,9 @@ class _QtyControl extends StatelessWidget {
                   right: Radius.circular(11)),
               onTap: () => onChanged(value + 1),
               child: const SizedBox(
-                width: 44,
-                height: 44,
-                child: Icon(
-                  Icons.add_rounded,
-                  size: 20,
-                  color: AppTheme.sage600,
-                ),
+                width: 44, height: 44,
+                child: Icon(Icons.add_rounded,
+                    size: 20, color: AppTheme.sage600),
               ),
             ),
           ),
@@ -995,9 +1138,9 @@ class _QtyControl extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Mini row inside main card
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// Mini row inside home card
+// ═══════════════════════════════════════════════════════════════
 class _MiniCalorieRow extends StatelessWidget {
   final CalorieEntry entry;
   final VoidCallback onDelete;
@@ -1009,13 +1152,9 @@ class _MiniCalorieRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 3),
       child: Row(
         children: [
-          Container(
-            width: 6, height: 6,
-            decoration: const BoxDecoration(
-              color: AppTheme.sage400,
-              shape: BoxShape.circle,
-            ),
-          ),
+          Container(width: 6, height: 6,
+              decoration: const BoxDecoration(
+                  color: AppTheme.sage400, shape: BoxShape.circle)),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
@@ -1050,9 +1189,7 @@ class _MiniCalorieRow extends StatelessWidget {
   }
 }
 
-// ─────────────────────────────────────────────────────────────
-// Target button chip
-// ─────────────────────────────────────────────────────────────
+// ── Target button ─────────────────────────────────────────────
 class _TargetButton extends StatelessWidget {
   final int target;
   final VoidCallback onTap;
@@ -1064,8 +1201,7 @@ class _TargetButton extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(8),
       child: Container(
-        padding:
-            const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
           color: AppTheme.sage100,
           borderRadius: BorderRadius.circular(8),
@@ -1074,16 +1210,13 @@ class _TargetButton extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.flag_outlined,
-                size: 13, color: AppTheme.sage600),
+            const Icon(Icons.flag_outlined, size: 13, color: AppTheme.sage600),
             const SizedBox(width: 4),
-            Text(
-              'Target: $target kkal',
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: AppTheme.sage600,
-                    fontWeight: FontWeight.w600,
-                  ),
-            ),
+            Text('Target: $target kkal',
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: AppTheme.sage600,
+                      fontWeight: FontWeight.w600,
+                    )),
           ],
         ),
       ),

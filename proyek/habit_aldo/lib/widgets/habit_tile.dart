@@ -99,85 +99,102 @@ class HabitTile extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
 
-                // ── Name + meta ──
+                // ── Name + meta, sejajar dengan chip jadwal & tombol ⋮ ──
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        habit.name,
-                        style:
-                            Theme.of(context).textTheme.titleMedium?.copyWith(
-                                  decoration: isCompleted
-                                      ? TextDecoration.lineThrough
-                                      : null,
-                                  color: isCompleted
-                                      ? AppTheme.stone500
-                                      : AppTheme.stone700,
-                                ),
-                      ),
-                      const SizedBox(height: 4),
-                      Row(
-                        children: [
-                          StreakBadge(streak: streak),
-                          const SizedBox(width: 6),
-                          CompletionBadge(percent: completion),
-                          const SizedBox(width: 6),
-                          Flexible(
-                            child: Text(
-                              'since ${DateFormat('d MMM').format(habit.startDate)}',
-                              style: Theme.of(context).textTheme.labelSmall,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          // ── Jadwal chip (hanya kalau diset) ──
-                          if (habit.hasSchedule) ...[
-                            const SizedBox(width: 6),
-                            GestureDetector(
-                              onTap: () => _showScheduleDialog(
-                                  context,
-                                  context.read<HabitProvider>()),
-                              child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 7, vertical: 2),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.sage500.withOpacity(0.12),
-                                  borderRadius: BorderRadius.circular(20),
-                                  border: Border.all(
-                                      color: AppTheme.sage400.withOpacity(0.5)),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    const Icon(Icons.schedule_rounded,
-                                        size: 10, color: AppTheme.sage600),
-                                    const SizedBox(width: 3),
-                                    Text(
-                                      habit.scheduleLabel,
-                                      style: const TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w700,
-                                        color: AppTheme.sage600,
-                                      ),
+                  child: IntrinsicHeight(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        // ── Name + meta (tanpa chip jadwal) ──
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                habit.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleMedium
+                                    ?.copyWith(
+                                      decoration: isCompleted
+                                          ? TextDecoration.lineThrough
+                                          : null,
+                                      color: isCompleted
+                                          ? AppTheme.stone500
+                                          : AppTheme.stone700,
                                     ),
-                                  ],
-                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Row(
+                                children: [
+                                  StreakBadge(streak: streak),
+                                  const SizedBox(width: 6),
+                                  CompletionBadge(percent: completion),
+                                  const SizedBox(width: 6),
+                                  Flexible(
+                                    child: Text(
+                                      'since ${DateFormat('d MMM').format(habit.startDate)}',
+                                      style:
+                                          Theme.of(context).textTheme.labelSmall,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // ── Kolom kanan: chip jadwal (full height) + tombol ⋮ ──
+                        const SizedBox(width: 8),
+                        if (habit.hasSchedule) ...[
+                          GestureDetector(
+                            onTap: () => _showScheduleDialog(
+                                context, context.read<HabitProvider>()),
+                            child: Container(
+                              width: 56,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: AppTheme.sage500.withOpacity(0.12),
+                                borderRadius: BorderRadius.circular(14),
+                                border: Border.all(
+                                    color: AppTheme.sage400.withOpacity(0.5)),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Icon(Icons.schedule_rounded,
+                                      size: 16, color: AppTheme.sage600),
+                                  const SizedBox(height: 3),
+                                  Text(
+                                    habit.scheduleLabel,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w700,
+                                      color: AppTheme.sage600,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
+                          ),
+                          const SizedBox(width: 6),
                         ],
-                      ),
-                    ],
-                  ),
-                ),
 
-                // ── More button ──
-                IconButton(
-                  icon: const Icon(Icons.more_vert_rounded,
-                      size: 18, color: AppTheme.stone500),
-                  onPressed: () => _showOptionsSheet(context),
-                  padding: EdgeInsets.zero,
-                  constraints: const BoxConstraints(),
+                        // ── More button ──
+                        IconButton(
+                          icon: const Icon(Icons.more_vert_rounded,
+                              size: 18, color: AppTheme.stone500),
+                          onPressed: () => _showOptionsSheet(context),
+                          padding: EdgeInsets.zero,
+                          constraints: const BoxConstraints(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -238,46 +255,52 @@ class HabitTile extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.8)),
               const SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(24, (h) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: GestureDetector(
-                        onTap: () => setS(() => selectedHour = h),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 150),
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            color: selectedHour == h
-                                ? AppTheme.sage600
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: selectedHour == h
-                                  ? AppTheme.sage600
-                                  : AppTheme.stone200,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              h.toString().padLeft(2, '0'),
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: selectedHour == h
-                                    ? Colors.white
-                                    : AppTheme.stone700,
+              Column(
+                children: List.generate(4, (row) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: row < 3 ? 6 : 0),
+                    child: Row(
+                      children: List.generate(6, (col) {
+                        final h = row * 6 + col;
+                        return Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: col < 5 ? 6 : 0),
+                            child: GestureDetector(
+                              onTap: () => setS(() => selectedHour = h),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 150),
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: selectedHour == h
+                                      ? AppTheme.sage600
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: selectedHour == h
+                                        ? AppTheme.sage600
+                                        : AppTheme.stone200,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    h.toString().padLeft(2, '0'),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: selectedHour == h
+                                          ? Colors.white
+                                          : AppTheme.stone700,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
+                        );
+                      }),
+                    ),
+                  );
+                }),
               ),
               const SizedBox(height: 16),
 
@@ -506,46 +529,52 @@ class _HabitOptionsSheet extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.8)),
               const SizedBox(height: 8),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: List.generate(24, (h) {
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 6),
-                      child: GestureDetector(
-                        onTap: () => setS(() => selectedHour = h),
-                        child: AnimatedContainer(
-                          duration: const Duration(milliseconds: 150),
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            color: selectedHour == h
-                                ? AppTheme.sage600
-                                : Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                              color: selectedHour == h
-                                  ? AppTheme.sage600
-                                  : AppTheme.stone200,
-                            ),
-                          ),
-                          child: Center(
-                            child: Text(
-                              h.toString().padLeft(2, '0'),
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w700,
-                                color: selectedHour == h
-                                    ? Colors.white
-                                    : AppTheme.stone700,
+              Column(
+                children: List.generate(4, (row) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: row < 3 ? 6 : 0),
+                    child: Row(
+                      children: List.generate(6, (col) {
+                        final h = row * 6 + col;
+                        return Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(right: col < 5 ? 6 : 0),
+                            child: GestureDetector(
+                              onTap: () => setS(() => selectedHour = h),
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 150),
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: selectedHour == h
+                                      ? AppTheme.sage600
+                                      : Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                    color: selectedHour == h
+                                        ? AppTheme.sage600
+                                        : AppTheme.stone200,
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    h.toString().padLeft(2, '0'),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700,
+                                      color: selectedHour == h
+                                          ? Colors.white
+                                          : AppTheme.stone700,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    );
-                  }),
-                ),
+                        );
+                      }),
+                    ),
+                  );
+                }),
               ),
               const SizedBox(height: 16),
 

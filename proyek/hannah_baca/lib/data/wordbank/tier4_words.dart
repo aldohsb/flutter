@@ -1,0 +1,30 @@
+import '../models/word_entry.dart';
+
+// Tier 4: kata mengandung diftong ai / au / oi
+const List<WordEntry> tier4Words = [
+  WordEntry(word: 'pantai', syllables: ['pan', 'tai'], tier: 4),
+  WordEntry(word: 'santai', syllables: ['san', 'tai'], tier: 4),
+  WordEntry(word: 'ramai', syllables: ['ra', 'mai'], tier: 4),
+  WordEntry(word: 'pandai', syllables: ['pan', 'dai'], tier: 4),
+  WordEntry(word: 'damai', syllables: ['da', 'mai'], tier: 4),
+  WordEntry(word: 'landai', syllables: ['lan', 'dai'], tier: 4),
+  WordEntry(word: 'lantai', syllables: ['lan', 'tai'], tier: 4),
+  WordEntry(word: 'gulai', syllables: ['gu', 'lai'], tier: 4),
+  WordEntry(word: 'pulau', syllables: ['pu', 'lau'], tier: 4),
+  WordEntry(word: 'kalau', syllables: ['ka', 'lau'], tier: 4),
+  WordEntry(word: 'hijau', syllables: ['hi', 'jau'], tier: 4),
+  WordEntry(word: 'kerbau', syllables: ['ker', 'bau'], tier: 4),
+  WordEntry(word: 'harimau', syllables: ['ha', 'ri', 'mau'], tier: 4),
+  WordEntry(word: 'limau', syllables: ['li', 'mau'], tier: 4),
+  WordEntry(word: 'danau', syllables: ['da', 'nau'], tier: 4),
+  WordEntry(word: 'pisau', syllables: ['pi', 'sau'], tier: 4),
+  WordEntry(word: 'kacau', syllables: ['ka', 'cau'], tier: 4),
+  WordEntry(word: 'silau', syllables: ['si', 'lau'], tier: 4),
+  WordEntry(word: 'amboi', syllables: ['am', 'boi'], tier: 4),
+  WordEntry(word: 'sepoi', syllables: ['se', 'poi'], tier: 4),
+  WordEntry(word: 'koboi', syllables: ['ko', 'boi'], tier: 4),
+  WordEntry(word: 'sampai', syllables: ['sam', 'pai'], tier: 4),
+  WordEntry(word: 'pakai', syllables: ['pa', 'kai'], tier: 4),
+  WordEntry(word: 'capai', syllables: ['ca', 'pai'], tier: 4),
+  WordEntry(word: 'rantai', syllables: ['ran', 'tai'], tier: 4),
+];

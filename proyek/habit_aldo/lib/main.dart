@@ -19,6 +19,7 @@ void main() async {
   Hive.registerAdapter(MonthlyEarningGoalAdapter());
   Hive.registerAdapter(CalorieEntryAdapter());
   Hive.registerAdapter(CalorieGoalAdapter());
+  Hive.registerAdapter(CustomFoodAdapter());
 
   runApp(const AppProviders());
 }
