@@ -161,7 +161,7 @@ class _AddEditProjectScreenState extends State<AddEditProjectScreen> {
               spacing: 12,
               runSpacing: 12,
               children: _colorOptions.map((color) {
-                final isSelected = color.value == _selectedColor.value;
+                final isSelected = color.toARGB32() == _selectedColor.toARGB32();
                 return GestureDetector(
                   onTap: () {
                     setState(() {

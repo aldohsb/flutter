@@ -1,0 +1,30 @@
+import '../models/word_entry.dart';
+
+// Kelompok 8: gugus konsonan di awal suku kata (kkv)
+const List<WordEntry> group8KkvWords = [
+  WordEntry(word: 'traktor', syllables: ['trak', 'tor'], tier: 8),
+  WordEntry(word: 'truk', syllables: ['truk'], tier: 8),
+  WordEntry(word: 'kran', syllables: ['kran'], tier: 8),
+  WordEntry(word: 'planet', syllables: ['pla', 'net'], tier: 8),
+  WordEntry(word: 'klinik', syllables: ['kli', 'nik'], tier: 8),
+  WordEntry(word: 'krupuk', syllables: ['kru', 'puk'], tier: 8),
+  WordEntry(word: 'kripik', syllables: ['kri', 'pik'], tier: 8),
+  WordEntry(word: 'stroberi', syllables: ['stro', 'be', 'ri'], tier: 8),
+  WordEntry(word: 'triplek', syllables: ['trip', 'lek'], tier: 8),
+  WordEntry(word: 'proyek', syllables: ['pro', 'yek'], tier: 8),
+  WordEntry(word: 'gratis', syllables: ['gra', 'tis'], tier: 8),
+  WordEntry(word: 'plastik', syllables: ['plas', 'tik'], tier: 8),
+  WordEntry(word: 'brankas', syllables: ['bran', 'kas'], tier: 8),
+  WordEntry(word: 'praktek', syllables: ['prak', 'tek'], tier: 8),
+  WordEntry(word: 'drama', syllables: ['dra', 'ma'], tier: 8),
+  WordEntry(word: 'grafik', syllables: ['gra', 'fik'], tier: 8),
+  WordEntry(word: 'krayon', syllables: ['kra', 'yon'], tier: 8),
+  WordEntry(word: 'trompet', syllables: ['trom', 'pet'], tier: 8),
+  WordEntry(word: 'blender', syllables: ['blen', 'der'], tier: 8),
+  WordEntry(word: 'flanel', syllables: ['fla', 'nel'], tier: 8),
+  WordEntry(word: 'klakson', syllables: ['klak', 'son'], tier: 8),
+  WordEntry(word: 'trotoar', syllables: ['tro', 'to', 'ar'], tier: 8),
+  WordEntry(word: 'krisis', syllables: ['kri', 'sis'], tier: 8),
+  WordEntry(word: 'brokoli', syllables: ['bro', 'ko', 'li'], tier: 8),
+  WordEntry(word: 'gladi', syllables: ['gla', 'di'], tier: 8),
+];

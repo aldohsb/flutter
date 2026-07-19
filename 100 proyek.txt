@@ -1,10 +1,694 @@
-﻿Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows di bawah ini, 
-
-
-
-
+﻿Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows 
 UI/UX standart profesional, designer grade, pilih yang sesuai jenis app tapi juga unik dan out of the box, 
-Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing code block Markdown agar mudah di copy. pastikan tidak ada missing import di setiap file.
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing code block Markdown agar mudah di copy. urutan presentasi code block markdown file nya sesuai urutan kerja developer profesional, pastikan tidak ada missing import di setiap file.
+jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
+mulai dari inisialisasi proyek
+sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
+tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+
+code dalam code block Markdown, dengan komentar pada semua baris code sebagai narasi video guru sedang melakukan Code walkthrough 
+sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya yang unik di app tersebut, sertakan juga  3-7 keyword inti, terms dan teknologi di app ini.
+
+
+Buatkan panduan  dan file lengkap proyek Flutter berikut ini :
+
+
+
+#############
+buatkan panduan flutter yang selesai dibaca dan dipahami selama 20 menit
+berikan section berikutnya:
+- Teori Lengkap dan Mendalam
+- Contoh Kode Flutter (beserta komentar penjelasan baris per baris di dalam code)
+- Tanya Jawab Pendalaman Materi
+- Tips Praktis
+- Kesalahan Umum Pemula
+- Ringkasan Materi
+
+materi berikut :
+
+
+##############
+Buatkan quiz Flutter/Dart interaktif format HTML, materi:
+
+
+Ketentuan:
+15 soal pilihan ganda (A-D), pembahasan 50-300 kata per soal disertai contoh kode
+sesuaikan pembagian banyak soal per materi yang dibahas sesuai padatnya materi tersebut
+Kunci jawaban tersebar merata di A/B/C/D, jangan selalu di posisi/pola yang sama
+Panjang karakter kunci jawaban benar dibuat menyebar merata di semua soal, kadang paling panjang di antara opsi A-D, kadang paling pendek, kadang tidak paling panjang juga tidak paling pendek di antara opsi A-D.
+Opsi salah dibuat mirip/masuk akal (near-miss), bukan yang jelas-jelas salah
+Bisa langsung diklik untuk jawab, langsung tampil status benar/salah + pembahasan di bawah soal, format pembahasan harus mudah di baca
+Bahasa Indonesia, tema visual hijau sage, ada progress bar & skor
+
+#################
+
+
+
+
+
+
+
+---
+
+## 🟢 BAGIAN 1 — BEGINNER (No. 1–20)
+
+**1. Tapzo** *(Counter App)*
+- Deskripsi singkat: Aplikasi counter klasik untuk mengenal struktur dasar project Flutter.
+- Perkiraan LOC total: ~80 (1 part)
+- Teknologi : —
+- ## `setState`, Material widgets dasar, Hot reload
+
+**2. Listivo** *(Todo List App)*
+- Deskripsi singkat: Daftar tugas sederhana dengan tambah/hapus/centang item.
+- Perkiraan LOC total: ~150 (1 part)
+- Teknologi : setState, Material widgets
+- ## `ListView`, `TextEditingController`, `Dismissible`
+
+**3. Konverto** *(Unit Converter App)*
+- Deskripsi singkat: Konversi satuan panjang, berat, dan suhu.
+- Perkiraan LOC total: ~200 (1 part)
+- Teknologi : setState, ListView
+- ## `DropdownButton`, Form validation, `TextFormField`
+
+**4. Bimiku** *(BMI Calculator App)*
+- Deskripsi singkat: Hitung indeks massa tubuh dengan input slider interaktif.
+- Perkiraan LOC total: ~250 (1 part)
+- Teknologi : Form validation, TextFormField
+- ## `Slider`, custom number formatting, `AlertDialog`
+
+**5. Quipster** *(Quote Generator App)*
+- Deskripsi singkat: Menampilkan kutipan acak dengan transisi animasi halus.
+- Perkiraan LOC total: ~300 (1 part)
+- Teknologi : AlertDialog, Card widgets
+- ## package `random`, `Card` widget lanjutan, `AnimatedSwitcher` (animasi implisit)
+
+**6. Cuacayo** *(Weather Now App)*
+- Deskripsi singkat: Menampilkan cuaca terkini berdasarkan kota dari API publik.
+- Perkiraan LOC total: ~350 (2 part)
+- Teknologi : AnimatedSwitcher
+- ## package `http`, JSON parsing (`fromJson`), `FutureBuilder`
+
+**7. Kurstara** *(Currency Exchange App)*
+- Deskripsi singkat: Konversi mata uang real-time menggunakan REST API.
+- Perkiraan LOC total: ~400 (2 part)
+- Teknologi : http, JSON parsing
+- ## REST API dengan query params, `async/await` lanjutan, package `dio` (perkenalan)
+
+**8. Notaria** *(Notes Keeper App)*
+- Deskripsi singkat: Catatan pribadi yang tersimpan secara lokal di device.
+- Perkiraan LOC total: ~450 (2 part)
+- Teknologi : dio, FutureBuilder
+- ## `shared_preferences`, CRUD lokal, `ListView.builder`
+
+**9. Resepia** *(Recipe Box App)*
+- Deskripsi singkat: Menyimpan resep masakan pribadi dengan database lokal.
+- Perkiraan LOC total: ~500 (2 part)
+- Teknologi : shared_preferences, CRUD lokal
+- ## `sqflite`, query SQL dasar, Navigator 1.0 named routes
+
+**10. Flashly** *(Flash Card App)*
+- Deskripsi singkat: Kartu belajar dengan animasi balik kartu dan swipe antar kartu.
+- Perkiraan LOC total: ~550 (2 part)
+- Teknologi : sqflite, Navigator named routes
+- ## `PageView`, `Hero` animation, `AnimationController` (animasi eksplisit)
+
+**11. Habitude** *(Habit Tracker App)*
+- Deskripsi singkat: Melacak kebiasaan harian dengan grafik progres mingguan.
+- Perkiraan LOC total: ~600 (2 part)
+- Teknologi : AnimationController, sqflite
+- ## `Provider`, `ChangeNotifier`, package `fl_chart` (perkenalan)
+
+**12. Dompetin** *(Expense Tracker App)*
+- Deskripsi singkat: Pencatatan pengeluaran harian dengan visualisasi pie chart.
+- Perkiraan LOC total: ~650 (2 part)
+- Teknologi : Provider, fl_chart, sqflite
+- ## state management multi-provider, pie chart interaktif, filter by date range
+
+**13. Galerio** *(Local Gallery App)*
+- Deskripsi singkat: Galeri foto lokal dengan pengambilan gambar dari kamera/galeri.
+- Perkiraan LOC total: ~700 (3 part)
+- Teknologi : ListView.builder, Provider
+- ## `image_picker`, `permission_handler`, `GridView`
+
+**14. Pomofocus Lite** *(Pomodoro Timer App)*
+- Deskripsi singkat: Timer produktivitas dengan siklus fokus dan istirahat.
+- Perkiraan LOC total: ~750 (3 part)
+- Teknologi : Provider, ChangeNotifier
+- ## `Timer`/`Stream` periodik, `Riverpod` (perkenalan), local notifications
+
+**15. Nadaria** *(Music Player Lite App)*
+- Deskripsi singkat: Pemutar musik lokal sederhana dengan progress bar custom.
+- Perkiraan LOC total: ~800 (3 part)
+- Teknologi : Riverpod, Timer/Stream
+- ## `audioplayers`, `Sliver` widgets, `CustomPainter` dasar
+
+**16. Beritaku** *(News Reader App)*
+- Deskripsi singkat: Membaca berita terkini dengan infinite scroll dan cache gambar.
+- Perkiraan LOC total: ~850 (3 part)
+- Teknologi : Riverpod, Sliver, http
+- ## pagination manual, `cached_network_image`, Riverpod `FutureProvider`
+
+**17. Chatterbox UI** *(Chat UI Mock App)*
+- Deskripsi singkat: Tampilan chat mockup dengan bubble pesan dan status ketik.
+- Perkiraan LOC total: ~900 (3 part)
+- Teknologi : ListView.builder, Sliver
+- ## `flutter_bloc` (Bloc/Cubit), `Stream` mock realtime, `ListView.builder` reversed
+
+**18. Gerbangin** *(Login Flow App)*
+- Deskripsi singkat: Alur login/register lengkap dengan validasi form kompleks.
+- Perkiraan LOC total: ~950 (3 part)
+- Teknologi : Form validation, TextFormField
+- ## `go_router` (perkenalan navigasi deklaratif), `InputFormatter`, validasi async
+
+**19. Bahasaku** *(Multi Language App)*
+- Deskripsi singkat: Aplikasi contoh dengan dukungan banyak bahasa.
+- Perkiraan LOC total: ~1000 (3 part)
+- Teknologi : Provider, go_router
+- ## `easy_localization`, `intl`, penggantian locale dinamis
+
+**20. Temaku** *(Theme Switcher App)*
+- Deskripsi singkat: Contoh aplikasi dengan dark mode dan tema kustom yang bisa diganti.
+- Perkiraan LOC total: ~1050 (3 part)
+- Teknologi : Provider, shared_preferences
+- ## `ThemeData` kustom lanjutan, `ThemeExtension`, persistensi tema di storage
+
+---
+
+## 🔵 BAGIAN 2 — INTERMEDIATE (No. 21–45)
+
+**21. Authenta** *(Firebase Auth Starter App)*
+- Deskripsi singkat: Login/register menggunakan Firebase Authentication.
+- Perkiraan LOC total: ~1200 (3 part)
+- Teknologi : go_router, Form validation
+- ## `firebase_core`, `firebase_auth`, `StreamBuilder` untuk auth state
+
+**22. Awanota** *(Cloud Notes App)*
+- Deskripsi singkat: Catatan yang tersinkron real-time ke cloud.
+- Perkiraan LOC total: ~1300 (3 part)
+- Teknologi : firebase_auth, StreamBuilder
+- ## `Cloud Firestore`, sinkronisasi realtime, offline persistence Firestore
+
+**23. Fotokloud** *(Photo Cloud App)*
+- Deskripsi singkat: Upload dan kelola foto ke penyimpanan cloud dengan progress bar.
+- Perkiraan LOC total: ~1400 (4 part)
+- Teknologi : Firestore, firebase_auth
+- ## `Firebase Storage`, upload progress stream, kompresi gambar
+
+**24. Dorongin** *(Push Notify App)*
+- Deskripsi singkat: Kirim & terima notifikasi push antar device.
+- Perkiraan LOC total: ~1500 (4 part)
+- Teknologi : Firebase Storage, firebase_core
+- ## `Firebase Cloud Messaging (FCM)`, background message handler, notification channel
+
+**25. Bukuvora** *(GraphQL Book App)*
+- Deskripsi singkat: Katalog buku menggunakan API GraphQL.
+- Perkiraan LOC total: ~1600 (4 part)
+- Teknologi : http, dio
+- ## `graphql_flutter`, query & mutation GraphQL, caching client GraphQL
+
+**26. Sosialin** *(Social Feed App)*
+- Deskripsi singkat: Feed sosial dengan like, komentar, dan infinite scroll.
+- Perkiraan LOC total: ~1700 (4 part)
+- Teknologi : flutter_bloc, pagination
+- ## infinite scroll dengan Bloc, optimistic UI update, `Cubit` kompleks multi-state
+
+**27. Belanjolo** *(Ecommerce Lite App)*
+- Deskripsi singkat: Toko online sederhana dengan keranjang dan checkout.
+- Perkiraan LOC total: ~1800 (4 part)
+- Teknologi : Firestore, Provider
+- ## `GetX` (state, routing, DI sekaligus), reactive `.obs`, `GetX` binding
+
+**28. Bayarin** *(Payment Demo App)*
+- Deskripsi singkat: Simulasi pembayaran dalam aplikasi dengan Stripe.
+- Perkiraan LOC total: ~1900 (4 part)
+- Teknologi : GetX, Firestore
+- ## `Stripe SDK`, `in_app_purchase`, `flutter_secure_storage`
+
+**29. Petamu** *(Map Explorer App)*
+- Deskripsi singkat: Eksplorasi peta interaktif dengan marker kustom.
+- Perkiraan LOC total: ~2000 (5 part)
+- Teknologi : permission_handler
+- ## `google_maps_flutter`, `geolocator`, custom marker & info window
+
+**30. Ojekin** *(Ride Booking UI App)*
+- Deskripsi singkat: Mockup UI pemesanan ojek online dengan rute peta.
+- Perkiraan LOC total: ~2100 (5 part)
+- Teknologi : google_maps_flutter, geolocator
+- ## polyline routes, real-time location stream, `geocoding` (reverse geocode)
+
+**31. Bluetotech** *(Bluetooth Device App)*
+- Deskripsi singkat: Scan dan koneksi ke perangkat Bluetooth Low Energy.
+- Perkiraan LOC total: ~2200 (5 part)
+- Teknologi : permission_handler
+- ## `flutter_blue_plus` (BLE), BLE scanning & pairing, runtime permission Bluetooth
+
+**32. IoTPanel** *(IoT Dashboard App)*
+- Deskripsi singkat: Dashboard kontrol perangkat IoT rumah secara real-time.
+- Perkiraan LOC total: ~2300 (5 part)
+- Teknologi : flutter_blue_plus, fl_chart
+- ## protokol `MQTT`, `WebSocket` client, real-time chart streaming
+
+**33. Suarano** *(Voice Memo App)*
+- Deskripsi singkat: Rekam dan putar memo suara dengan visualisasi gelombang.
+- Perkiraan LOC total: ~2400 (5 part)
+- Teknologi : audioplayers, CustomPainter
+- ## package `record`, waveform custom painter, operasi file system (`dart:io`)
+
+**34. Videostream Pro** *(Video Player Pro App)*
+- Deskripsi singkat: Pemutar video lengkap dengan kontrol kustom dan fullscreen.
+- Perkiraan LOC total: ~2500 (5 part)
+- Teknologi : CustomPainter, dart:io
+- ## `video_player`, `chewie`, orientation lock & lifecycle handling
+
+**35. Wajahku** *(AR Camera Filter App)*
+- Deskripsi singkat: Filter wajah real-time menggunakan kamera dan deteksi wajah.
+- Perkiraan LOC total: ~2600 (6 part)
+- Teknologi : image_picker, permission_handler
+- ## `camera` package, `ML Kit Face Detection`, overlay gambar real-time
+
+**36. Pindaiin** *(Barcode Scanner App)*
+- Deskripsi singkat: Pemindai barcode/QR untuk cek harga produk.
+- Perkiraan LOC total: ~2700 (6 part)
+- Teknologi : camera, ML Kit
+- ## `mobile_scanner`, `ML Kit Barcode Scanning`, haptic feedback (`vibration`)
+
+**37. Teksinesia** *(OCR Scanner App)*
+- Deskripsi singkat: Ekstraksi teks dari foto dokumen menggunakan OCR.
+- Perkiraan LOC total: ~2800 (6 part)
+- Teknologi : camera, ML Kit
+- ## `ML Kit Text Recognition`, image cropping (`image_cropper`), export hasil ke teks
+
+**38. Fakturin** *(PDF Invoice App)*
+- Deskripsi singkat: Membuat dan mencetak invoice dalam format PDF.
+- Perkiraan LOC total: ~2900 (6 part)
+- Teknologi : dart:io
+- ## package `pdf`, package `printing`, `share_plus`
+
+**39. Singkronin** *(Offline First Sync App)*
+- Deskripsi singkat: Aplikasi catatan yang tetap berfungsi offline dan sinkron saat online.
+- Perkiraan LOC total: ~3000 (6 part)
+- Teknologi : Firestore offline persistence, sqflite
+- ## `Hive` database, resolusi konflik data, `connectivity_plus`
+
+**40. Isarnote** *(Isar Notes App)*
+- Deskripsi singkat: Aplikasi catatan performa tinggi dengan database Isar.
+- Perkiraan LOC total: ~3100 (6 part)
+- Teknologi : Hive, sqflite
+- ## `Isar Database`, indexing query, `Watcher`/reactive query
+
+**41. Driftara** *(Drift Relational App)*
+- Deskripsi singkat: Manajemen data relasional kompleks dengan Drift (SQL codegen).
+- Perkiraan LOC total: ~3200 (7 part)
+- Teknologi : sqflite, Isar
+- ## `Drift` (SQL type-safe codegen), migrasi database, pola `DAO`
+
+**42. Boxtara** *(ObjectBox Task App)*
+- Deskripsi singkat: Manajemen tugas dengan relasi data menggunakan ObjectBox.
+- Perkiraan LOC total: ~3300 (7 part)
+- Teknologi : Drift, Isar
+- ## `ObjectBox`, relasi to-many/to-one, query vector sederhana
+
+**43. Ngobrolin** *(WebSocket Chat App)*
+- Deskripsi singkat: Chat real-time menggunakan koneksi WebSocket langsung.
+- Perkiraan LOC total: ~3400 (7 part)
+- Teknologi : flutter_bloc, MQTT/WebSocket dasar
+- ## raw `WebSocket` (dart:io), indikator "sedang mengetik", reconnect strategy
+
+**44. Lelangin** *(Realtime Auction App)*
+- Deskripsi singkat: Aplikasi lelang online dengan bid real-time dan countdown.
+- Perkiraan LOC total: ~3500 (7 part)
+- Teknologi : WebSocket, Riverpod
+- ## `StateNotifier` kompleks, countdown timer presisi, animasi harga naik
+
+**45. Formulasi** *(Multi Step Form Wizard App)*
+- Deskripsi singkat: Formulir multi-langkah dengan validasi dan simpan progres.
+- Perkiraan LOC total: ~3600 (7 part)
+- Teknologi : Form validation, go_router
+- ## nested routes `go_router`, state restoration, `Stepper` widget
+
+---
+
+## 🟠 BAGIAN 3 — ADVANCED (No. 46–70)
+
+**46. Arsitekta** *(Clean Arch Shop App)*
+- Deskripsi singkat: Toko online dibangun dengan prinsip Clean Architecture penuh.
+- Perkiraan LOC total: ~4000 (8 part)
+- Teknologi : GetX, flutter_bloc
+- ## Clean Architecture (layer data/domain/presentation), Use Case pattern, `get_it` (dependency injection)
+
+**47. Bankura** *(DDD Banking App)*
+- Deskripsi singkat: Simulasi aplikasi perbankan dengan Domain-Driven Design.
+- Perkiraan LOC total: ~4200 (8 part)
+- Teknologi : Clean Architecture, get_it
+- ## Domain-Driven Design (DDD), `freezed` (immutable model & union type), Value Object pattern
+
+**48. Modulara** *(Modular Monorepo App)*
+- Deskripsi singkat: Aplikasi besar dipecah menjadi banyak package dalam satu monorepo.
+- Perkiraan LOC total: ~4400 (8 part)
+- Teknologi : Clean Architecture, get_it
+- ## `melos` (monorepo tooling), multi-package workspace, federated plugin pattern
+
+**49. Kanalin** *(Custom Plugin Camera App)*
+- Deskripsi singkat: Membuat plugin kamera kustom dengan kode native.
+- Perkiraan LOC total: ~4600 (8 part)
+- Teknologi : camera, melos
+- ## `MethodChannel` (platform channel), kode native Kotlin (Android), kode native Swift (iOS)
+
+**50. Prosesor Native** *(FFI Image Processor App)*
+- Deskripsi singkat: Pemrosesan gambar berat menggunakan library C via FFI.
+- Perkiraan LOC total: ~4800 (9 part)
+- Teknologi : MethodChannel
+- ## `dart:ffi`, binding library native C, `Isolate` untuk komputasi berat
+
+**51. Isolatin** *(Isolate Pool Renderer App)*
+- Deskripsi singkat: Rendering gambar batch menggunakan kumpulan isolate paralel.
+- Perkiraan LOC total: ~5000 (9 part)
+- Teknologi : dart:ffi, Isolate
+- ## `Isolate.spawn` manual, `compute()`, isolate pool/worker pattern
+
+**52. Renderkraft** *(Custom Render Object App)*
+- Deskripsi singkat: Membuat widget custom di level render tree, bukan sekadar widget biasa.
+- Perkiraan LOC total: ~5200 (9 part)
+- Teknologi : CustomPainter
+- ## `RenderObject` kustom, layout protocol manual, `RenderBox`/`MultiChildRenderObjectWidget`
+
+**53. Shaderis** *(Shader Art App)*
+- Deskripsi singkat: Efek visual artistik menggunakan fragment shader.
+- Perkiraan LOC total: ~5400 (9 part)
+- Teknologi : CustomPainter, RenderObject
+- ## Fragment Shader (`FragmentProgram`), bahasa `GLSL`, integrasi shader ke `CustomPainter`
+
+**54. Rivelio** *(Rive Interactive App)*
+- Deskripsi singkat: Karakter animasi interaktif yang merespons gestur pengguna.
+- Perkiraan LOC total: ~5600 (10 part)
+- Teknologi : AnimationController, Hero
+- ## `Rive` animation runtime, Rive State Machine, animasi berbasis gesture-driven
+
+**55. Lottiara** *(Lottie Story App)*
+- Deskripsi singkat: Cerita interaktif berbasis rangkaian animasi Lottie.
+- Perkiraan LOC total: ~5800 (10 part)
+- Teknologi : Rive, AnimationController
+- ## `Lottie`, sequencing animasi bertahap, manajemen asset bundling besar
+
+**56. Brixmash** *(Flame Game Breakout App)*
+- Deskripsi singkat: Game breakout klasik dibuat dengan game engine Flame.
+- Perkiraan LOC total: ~6000 (10 part)
+- Teknologi : CustomPainter, AnimationController
+- ## `Flame` game engine, game loop (`update`/`render`), collision detection
+
+**57. Platformo** *(Flame Platformer App)*
+- Deskripsi singkat: Game platformer 2D dengan peta level dari Tiled.
+- Perkiraan LOC total: ~6200 (10 part)
+- Teknologi : Flame, game loop
+- ## `Tiled` map integration, sprite sheet & animation component, `flame_tiled`
+
+**58. Furnisia** *(AR Furniture App)*
+- Deskripsi singkat: Menempatkan model furnitur 3D di ruangan nyata via AR.
+- Perkiraan LOC total: ~6400 (10 part)
+- Teknologi : camera package
+- ## `ARCore`/`ARKit` (via `ar_flutter_plugin`), loading model 3D (`.glb`/`.gltf`), plane detection
+
+**59. Panoramio** *(VR Gallery Viewer App)*
+- Deskripsi singkat: Galeri foto 360° yang dinavigasi dengan gerakan device.
+- Perkiraan LOC total: ~6600 (11 part)
+- Teknologi : AR plugin
+- ## viewer 360° panorama, sensor `gyroscope`/`sensors_plus`, rendering sphere/skybox
+
+**60. Grosanet** *(gRPC Microservice Client App)*
+- Deskripsi singkat: Klien Flutter yang berkomunikasi ke backend microservice via gRPC.
+- Perkiraan LOC total: ~6800 (11 part)
+- Teknologi : graphql_flutter, http
+- ## `gRPC` client Dart, `Protocol Buffers (protobuf)`, bidirectional streaming RPC
+
+**61. Wajahkonek** *(WebRTC Video Call App)*
+- Deskripsi singkat: Panggilan video peer-to-peer real-time.
+- Perkiraan LOC total: ~7000 (11 part)
+- Teknologi : WebSocket, camera
+- ## `WebRTC` (flutter_webrtc), signaling server, `MediaStream`/ICE candidate
+
+**62. Siarano** *(Live Streaming App)*
+- Deskripsi singkat: Live streaming video dengan chat penonton real-time.
+- Perkiraan LOC total: ~7200 (11 part)
+- Teknologi : WebRTC, WebSocket
+- ## `Agora SDK`, protokol `RTMP`, overlay live chat real-time
+
+**63. Kenaliku** *(TFLite Image Classifier App)*
+- Deskripsi singkat: Klasifikasi objek dari kamera secara on-device.
+- Perkiraan LOC total: ~7400 (11 part)
+- Teknologi : ML Kit, camera
+- ## `TensorFlow Lite`, inferensi on-device, kuantisasi model
+
+**64. Otakuku** *(On-Device LLM Chat App)*
+- Deskripsi singkat: Chatbot AI yang berjalan sepenuhnya di device tanpa internet.
+- Perkiraan LOC total: ~7600 (12 part)
+- Teknologi : dart:ffi, TensorFlow Lite
+- ## LLM on-device (binding `llama.cpp` via FFI), token streaming, prompt template engineering
+
+**65. Ujiverse** *(Golden Test Suite App)*
+- Deskripsi singkat: Contoh aplikasi lengkap dengan test suite otomatis penuh.
+- Perkiraan LOC total: ~7800 (12 part)
+- Teknologi : —
+- ## `Golden Test`, `Widget Test` lanjutan, `integration_test` framework
+
+**66. Alurpipa** *(CI/CD Pipeline Demo App)*
+- Deskripsi singkat: Contoh setup CI/CD lengkap untuk build & deploy otomatis.
+- Perkiraan LOC total: ~8000 (12 part)
+- Teknologi : golden test, integration_test
+- ## konfigurasi `fastlane`, `GitHub Actions` workflow, code coverage tooling
+
+**67. Adaptivo** *(Adaptive Multi Platform App)*
+- Deskripsi singkat: Satu codebase yang tampil natural di mobile, tablet, dan desktop.
+- Perkiraan LOC total: ~8500 (13 part)
+- Teknologi : ThemeData, LayoutBuilder (implisit sebelumnya)
+- ## `LayoutBuilder`/`MediaQuery` responsif lanjutan, adaptive widget Cupertino+Material, breakpoint system
+
+**68. Berkasin** *(Desktop File Manager App)*
+- Deskripsi singkat: File manager native untuk Windows/macOS/Linux.
+- Perkiraan LOC total: ~9000 (13 part)
+- Teknologi : dart:io, adaptive layout
+- ## Flutter Desktop (Windows/macOS/Linux), `dart:io` file system API lanjutan, `bitsdojo_window` (window management)
+
+**69. Webkarya** *(Flutter Web PWA App)*
+- Deskripsi singkat: Aplikasi web progresif (PWA) yang bisa di-install dari browser.
+- Perkiraan LOC total: ~9500 (13 part)
+- Teknologi : adaptive layout
+- ## Flutter Web target, `PWA manifest` & service worker, `url_strategy` (routing tanpa hash)
+
+**70. Kioskaraya** *(Embedded Kiosk App)*
+- Deskripsi singkat: Aplikasi kios digital untuk perangkat embedded/self-service.
+- Perkiraan LOC total: ~10000 (14 part)
+- Teknologi : Flutter Desktop
+- ## Flutter Embedded/custom device target, fullscreen kiosk mode, penanganan tombol hardware kustom
+
+---
+
+## 🔴 BAGIAN 4 — EXPERT (No. 71–90)
+
+**71. Perusahakita** *(Enterprise CRM Suite App)*
+- Deskripsi singkat: Sistem CRM perusahaan berskala besar dengan banyak modul.
+- Perkiraan LOC total: ~10500 (14 part)
+- Teknologi : Clean Architecture, melos, flutter_bloc
+- ## arsitektur multi-modul skala enterprise, feature flags, integrasi analytics enterprise
+
+**72. Sehatvault** *(Health Records Platform App)*
+- Deskripsi singkat: Platform rekam medis digital dengan keamanan data tinggi.
+- Perkiraan LOC total: ~11000 (14 part)
+- Teknologi : flutter_secure_storage
+- ## enkripsi data tingkat lanjut (AES/RSA), `local_auth` (biometric auth), secure enclave/keystore storage
+
+**73. Bursago** *(Fintech Trading App)*
+- Deskripsi singkat: Aplikasi trading saham dengan data pasar real-time.
+- Perkiraan LOC total: ~11500 (15 part)
+- Teknologi : WebSocket, CustomPainter, fl_chart
+- ## candlestick chart custom painter, background isolate untuk kalkulasi indikator, orderbook real-time rendering
+
+**74. Armadaku** *(Logistics Fleet Tracker App)*
+- Deskripsi singkat: Pelacakan armada kendaraan logistik secara real-time.
+- Perkiraan LOC total: ~12000 (15 part)
+- Teknologi : geolocator, google_maps_flutter
+- ## background location service, geofencing, offline map tiles caching
+
+**75. Dokterjarak** *(Telemedicine App)*
+- Deskripsi singkat: Konsultasi dokter jarak jauh dengan resep digital.
+- Perkiraan LOC total: ~12500 (15 part)
+- Teknologi : WebRTC, pdf package
+- ## model data mirip standar `FHIR`, e-prescription PDF generation, antrian video call terjadwal
+
+**76. Sewatenant** *(Multi Tenant SaaS App)*
+- Deskripsi singkat: Aplikasi SaaS yang bisa dikustomisasi per klien (tenant).
+- Perkiraan LOC total: ~13000 (16 part)
+- Teknologi : ThemeData, remote config (implisit)
+- ## dynamic theming per-tenant, `Firebase Remote Config`, feature toggle per tenant
+
+**77. Gudangkita** *(Offline First ERP App)*
+- Deskripsi singkat: Sistem ERP gudang yang tetap berjalan tanpa koneksi internet.
+- Perkiraan LOC total: ~13500 (16 part)
+- Teknologi : Drift, Hive, connectivity_plus
+- ## algoritma `CRDT` (Conflict-free Replicated Data Type), migrasi database bertingkat, UI resolusi konflik data
+
+**78. Kreasiverse** *(AI Content Studio App)*
+- Deskripsi singkat: Studio pembuatan konten dengan bantuan AI generatif.
+- Perkiraan LOC total: ~14000 (16 part)
+- Teknologi : LLM on-device, http streaming
+- ## LLM API streaming (mirip OpenAI), image generation API, prompt chaining/orchestration
+
+**79. Navidalam** *(AR Indoor Navigation App)*
+- Deskripsi singkat: Navigasi dalam gedung menggunakan AR dan beacon BLE.
+- Perkiraan LOC total: ~14500 (17 part)
+- Teknologi : AR plugin, flutter_blue_plus
+- ## indoor positioning dengan BLE beacon, overlay AR wayfinding, algoritma pathfinding (A*)
+
+**80. Papanverse** *(Realtime Collab Whiteboard App)*
+- Deskripsi singkat: Papan tulis digital kolaboratif multi-pengguna real-time.
+- Perkiraan LOC total: ~15000 (17 part)
+- Teknologi : CRDT, WebSocket
+- ## sinkronisasi canvas berbasis CRDT, presence protocol (siapa online), `GestureRecognizer` kustom
+
+**81. Editovid** *(Video Editing Studio App)*
+- Deskripsi singkat: Editor video mobile dengan timeline multi-track.
+- Perkiraan LOC total: ~15500 (17 part)
+- Teknologi : video_player, CustomPainter
+- ## `ffmpeg_kit`, pipeline encoding video, timeline editor custom painter
+
+**82. Studiovara** *(Music Production DAW App)*
+- Deskripsi singkat: Digital Audio Workstation ringan untuk produksi musik.
+- Perkiraan LOC total: ~16000 (17 part)
+- Teknologi : dart:ffi, record
+- ## audio synthesis engine native via FFI, dukungan `MIDI`, UI mixer multi-track
+
+**83. Rumahpintarin** *(IoT Home Automation Hub App)*
+- Deskripsi singkat: Hub kontrol pusat untuk seluruh perangkat smart home.
+- Perkiraan LOC total: ~16500 (18 part)
+- Teknologi : MQTT, BLE
+- ## konsep bridge protokol Matter/Zigbee, alur provisioning perangkat baru, automation rule engine
+
+**84. Dompetblok** *(Blockchain Wallet App)*
+- Deskripsi singkat: Dompet kripto dengan manajemen kunci privat yang aman.
+- Perkiraan LOC total: ~17000 (18 part)
+- Teknologi : local_auth, secure storage
+- ## manajemen kunci kriptografi, `web3dart`, biometric signing transaksi
+
+**85. Gerbangkorpo** *(Enterprise Auth Gateway App)*
+- Deskripsi singkat: Gerbang autentikasi terpusat untuk banyak aplikasi internal perusahaan.
+- Perkiraan LOC total: ~17500 (18 part)
+- Teknologi : firebase_auth, secure storage
+- ## `OAuth2`/`OpenID Connect`, Single Sign-On (SSO), rotasi JWT refresh token
+
+**86. Streamnesia** *(Multi Region CDN Media App)*
+- Deskripsi singkat: Platform streaming media dengan distribusi CDN multi-wilayah.
+- Perkiraan LOC total: ~18000 (19 part)
+- Teknologi : video_player, Agora SDK
+- ## strategi caching CDN-aware, adaptive bitrate streaming (`HLS`/`DASH`), regional failover routing
+
+**87. Inklusibank** *(Accessibility First Banking App)*
+- Deskripsi singkat: Aplikasi perbankan dengan aksesibilitas penuh untuk difabel.
+- Perkiraan LOC total: ~18500 (19 part)
+- Teknologi : ThemeData, adaptive layout
+- ## `Semantics` widget lanjutan, pengujian TalkBack/VoiceOver, tema high-contrast & screen reader flow
+
+**88. Petualanova** *(Gaming Engine RPG App)*
+- Deskripsi singkat: Game RPG dengan sistem save dan dunia yang dihasilkan prosedural.
+- Perkiraan LOC total: ~19000 (19 part)
+- Teknologi : Flame, Tiled
+- ## arsitektur ECS (Entity-Component-System) lanjutan pada Flame, serialisasi save-state, procedural generation
+
+**89. Antreanaga** *(Distributed Task Queue App)*
+- Deskripsi singkat: Sistem antrian tugas terdistribusi yang berjalan di background.
+- Perkiraan LOC total: ~19500 (19 part)
+- Teknologi : Isolate pool, compute()
+- ## `background_fetch`, worker pool terdistribusi, arsitektur job scheduling
+
+**90. Jelajahluring** *(Full Offline Maps Navigator App)*
+- Deskripsi singkat: Navigasi peta lengkap yang berfungsi sepenuhnya tanpa internet.
+- Perkiraan LOC total: ~20000 (20 part)
+- Teknologi : geolocator, offline map tiles
+- ## rendering vector tile kustom, routing engine offline (mirip OSRM), integrasi custom map engine
+
+---
+
+## ⚫ BAGIAN 5 — ADVANCE EXPERT (No. 91–100)
+
+**91. Superapptra** *(Super App Platform App)*
+- Deskripsi singkat: Platform "super app" dengan banyak mini-app di dalamnya (mirip Gojek/WeChat).
+- Perkiraan LOC total: ~22000 (22 part)
+- Teknologi : melos, modular architecture, feature flags
+- ## pola micro-frontend/module federation di Flutter, arsitektur marketplace plugin, dynamic feature delivery
+
+**92. Enginekarya** *(Custom Flutter Engine Fork App)*
+- Deskripsi singkat: Proyek eksperimen dengan Flutter engine yang dimodifikasi.
+- Perkiraan LOC total: ~24000 (24 part)
+- Teknologi : RenderObject, shader
+- ## embedding & kustomisasi Flutter Engine, custom build Skia/Impeller, native rendering pipeline
+
+**93. Globalstream Max** *(Global Streaming Platform App)*
+- Deskripsi singkat: Platform streaming skala global setara Netflix dengan proteksi konten.
+- Perkiraan LOC total: ~26000 (26 part)
+- Teknologi : HLS/DASH, CDN caching
+- ## DRM (`Widevine`/`FairPlay`), failover multi-CDN, download offline dengan proteksi DRM
+
+**94. Agentopia** *(AI Agent Orchestrator App)*
+- Deskripsi singkat: Aplikasi yang mengorkestrasi banyak agen AI untuk menyelesaikan tugas kompleks.
+- Perkiraan LOC total: ~28000 (28 part)
+- Teknologi : LLM API streaming, prompt chaining
+- ## orkestrasi multi-agent LLM, framework tool-calling, vector database embedding on-device
+
+**95. Multiraga** *(Real Time Multiplayer Game App)*
+- Deskripsi singkat: Game multiplayer kompetitif dengan sinkronisasi server otoritatif.
+- Perkiraan LOC total: ~30000 (30 part)
+- Teknologi : Flame, WebSocket, ECS
+- ## netcode server-authoritative, client-side prediction & lag compensation, protokol biner kustom
+
+**96. Armadalink** *(Autonomous Device Fleet App)*
+- Deskripsi singkat: Manajemen armada perangkat IoT/robot secara otonom dan remote.
+- Perkiraan LOC total: ~33000 (33 part)
+- Teknologi : MQTT, background_fetch, Matter/Zigbee
+- ## sistem OTA update perangkat, remote device management console, deployment model ML di edge device
+
+**97. Desainkit Pro** *(Cross Platform Design System Kit App)*
+- Deskripsi singkat: Membangun design system lengkap sebagai package siap pakai lintas tim.
+- Perkiraan LOC total: ~36000 (36 part)
+- Teknologi : melos, ThemeExtension
+- ## arsitektur design token, package design system reusable skala besar, katalog widget mirip Storybook
+
+**98. Kuantumvisi** *(Quantum Computing Visualizer App)*
+- Deskripsi singkat: Visualisasi konsep komputasi kuantum dengan grafis kompleks.
+- Perkiraan LOC total: ~39000 (39 part)
+- Teknologi : fragment shader, GLSL
+- ## visualisasi shader kompleks multi-pass, integrasi `WebAssembly` (Flutter Web + Wasm), GPU compute shader
+
+**99. Monorepokita** *(Enterprise Monorepo Platform App)*
+- Deskripsi singkat: Platform skala perusahaan dengan puluhan package dalam satu monorepo.
+- Perkiraan LOC total: ~42000 (42 part)
+- Teknologi : melos, modular architecture
+- ## monorepo 20+ package terintegrasi, custom build system/tooling, plugin SDK untuk pihak ketiga
+
+**100. Frameworkarsa** *(Flutter Framework Contribution App)*
+- Deskripsi singkat: Proyek referensi setara kontribusi ke internal Flutter framework/engine itu sendiri.
+- Perkiraan LOC total: ~50000+ (50 part)
+- Teknologi : custom RenderObject, custom Engine, Isolate
+- ## kontribusi ke level engine/framework Flutter, layer custom widget framework, benchmark & test harness skala framework
+
+---
+
+## Ringkasan Progresi
+
+| Bagian | No. | Tingkat | Range LOC | Fokus Utama |
+|---|---|---|---|---|
+| 1 | 1–20 | 🟢 Beginner | 80 – 1.050 | UI dasar, state lokal, storage sederhana |
+| 2 | 21–45 | 🔵 Intermediate | 1.200 – 3.600 | Firebase, networking lanjutan, state management, database lokal |
+| 3 | 46–70 | 🟠 Advanced | 4.000 – 10.000 | Arsitektur, platform channel/FFI, game engine, AR/VR, ML on-device |
+| 4 | 71–90 | 🔴 Expert | 10.500 – 20.000 | Sistem enterprise, keamanan tinggi, real-time kompleks, offline-first skala besar |
+| 5 | 91–100 | ⚫ Advance Expert | 22.000 – 50.000+ | Kustomisasi engine, DRM, multi-agent AI, netcode multiplayer, monorepo skala industri |
+
+**Catatan:** perkiraan LOC bersifat estimasi kasar untuk keperluan perencanaan sesi belajar, bukan angka pasti. Jumlah part disarankan berdasarkan asumsi 1 sesi belajar produktif menangani sekitar 150–1.500 baris kode tergantung kompleksitas tier.
+
+
+
+
+Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows 
+level upper beginner => 300-500 lines code saja
+UI/UX standart profesional, designer grade, pilih yang sesuai jenis app tapi juga unik dan out of the box, 
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di masing-masing code block Markdown agar mudah di copy. urutan presentasi code block markdown file nya sesuai urutan kerja developer profesional, pastikan tidak ada missing import di setiap file.
 jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
 mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
@@ -16,559 +700,22 @@ sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika alg
 buat code dalam beberapa 3 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
 Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
 setiap tahap harus sudah bisa langsung dilihat hasilnya.
-
 mulai dari tahap 1 dulu, 
+Buatkan panduan  dan file lengkap proyek Flutter berikut ini :
 
 
 
-001-025 => beginner => 200-300 lines code => 1 part
-026-050 => upper beginner => 300-500 lines code  =>  3 part
-051-065 => lower intermediate => 500-700 lines code  =>  5 part
-066-080 => intermediate => 700-1000 lines code  =>  10 part
-081-090 => upper intermediate => 1000-2000 lines code  =>  15 part
-091-100 => advance => 2000-5000 lines code  =>  20 part
 
-beginner
-upper beginner
-lower intermediate
-intermediate
-upper intermediate
-advance
+Buatkan panduan  dan file lengkap proyek Flutter untuk web, android dan windows di bawah ini, 
+UI/UX standart profesional, designer grade, pilih yang sesuai jenis app tapi juga unik dan out of the box, 
+Terapkan modular programming dengan panjang lines setiap file seminimal mungkin, dan setiap file di tulis di artifact agar mudah di download
+jangan gunakan syntax code yang sudah deprecated di 2026, versi library yang paling up to date
+mulai dari inisialisasi proyek
+tidak usah pakai demo tampilan, tidak usah pakai README.MD,
+Buat semua file dalam satu folder "lib" saja jangan masuk ke dalam struktur folder lain, untuk strukturnya masukkan dalam nama file aja sekedar untuk belajar,
 
+sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya dan pengetahuan penting lainnya
 
-# 100 Proyek Aplikasi Flutter untuk Belajar
+Proyek Flutter untuk web, android dan windows di bawah ini:
 
-Daftar ini disusun dari level **Beginner** sampai **Advance**, dengan kategori aplikasi populer yang sering diminta client: E-commerce, Fintech, On-Demand Services, Social Media, Enterprise, Healthcare, EdTech, Game, dan Tools praktis. Teknologi/widget yang dipakai dibuat bervariasi supaya makin banyak yang bisa dipelajari.
 
-Legenda kategori: ������ E-commerce · ������ Fintech · ������ On-Demand · ������ Social Media · ������ Enterprise · ������ Healthcare · ������ EdTech · ������ Game
-
----
-
-## ������ BEGINNER (001–025) — ±200-300 lines
-
-**001**
-App Name: CalcNova
-Deskripsi: Kalkulator sederhana dengan operasi dasar tambah, kurang, kali, bagi.
-Teknologi: `setState`, `GestureDetector`, `Container`
-
-**002**
-App Name: ColorSwatch
-Deskripsi: Aplikasi pembuat palet warna dengan slider RGB interaktif.
-Teknologi: `Color`, `Slider`, `setState`
-
-**003**
-App Name: TodoLite
-Deskripsi: Daftar tugas sederhana tanpa penyimpanan permanen, bisa tambah/hapus/centang.
-Teknologi: `ListView`, `setState`, `Checkbox`
-
-**004**
-App Name: UnitFlip
-Deskripsi: Konversi satuan panjang, berat, dan suhu secara instan.
-Teknologi: `DropdownButton`, `TextField`, `setState`
-
-**005** ������
-App Name: BMICheck
-Deskripsi: Kalkulator BMI (indeks massa tubuh) berdasarkan tinggi dan berat badan.
-Teknologi: `TextField`, `setState`, `Container`
-
-**006**
-App Name: QuoteDaily
-Deskripsi: Menampilkan kutipan motivasi acak setiap kali tombol ditekan.
-Teknologi: `Random`, `ListView`, `Card`
-
-**007** ������
-App Name: DiceRollo
-Deskripsi: Aplikasi lempar dadu dengan animasi gambar dadu berubah acak.
-Teknologi: `Random`, `Image.asset`, `GestureDetector`
-
-**008**
-App Name: CountUp
-Deskripsi: Aplikasi counter klasik untuk belajar dasar state Flutter.
-Teknologi: `setState`, `FloatingActionButton`
-
-**009** ������
-App Name: TapTicTac
-Deskripsi: Game Tic Tac Toe 2 pemain dalam satu layar.
-Teknologi: `GridView`, `setState`, `GestureDetector`
-
-**010**
-App Name: StopWatchy
-Deskripsi: Stopwatch dan timer sederhana dengan tombol start/stop/reset.
-Teknologi: `Timer`, `setState`
-
-**011**
-App Name: NotesPad
-Deskripsi: Catatan sederhana tanpa penyimpanan permanen (hilang saat app ditutup).
-Teknologi: `TextField`, `ListView`, `setState`
-
-**012** ������
-App Name: FlashQuiz
-Deskripsi: Flashcard kuis sederhana dengan swipe kartu pertanyaan-jawaban.
-Teknologi: `PageView`, `setState`, `Card`
-
-**013**
-App Name: WeatherPeek
-Deskripsi: Tampilan cuaca statis dengan ikon dan data dummy per hari.
-Teknologi: `Container`, `Icon`, `ListView`
-
-**014**
-App Name: ContactCardy
-Deskripsi: Daftar kontak statis dengan foto profil dan nomor telepon.
-Teknologi: `ListView.builder`, `CircleAvatar`
-
-**015** ������
-App Name: ChatBubbleUI
-Deskripsi: Mockup UI chat dengan bubble pesan kiri-kanan statis.
-Teknologi: `ListView`, `Align`, `Container`
-
-**016** ������
-App Name: ShopMini
-Deskripsi: Daftar produk sederhana dalam bentuk grid dengan harga.
-Teknologi: `GridView`, `Card`, `Image.asset`
-
-**017** ������
-App Name: WalletView
-Deskripsi: Tampilan saldo dompet digital statis dengan riwayat singkat.
-Teknologi: `Container`, `Text`, `Icon`
-
-**018** ������
-App Name: RideCardUI
-Deskripsi: Mockup UI pemesanan ojek online dengan pilihan tujuan.
-Teknologi: `Card`, `ListView`, `Icon`
-
-**019** ������
-App Name: TaskBoardMini
-Deskripsi: Papan tugas ala kanban sederhana dengan 3 kolom statis.
-Teknologi: `Row`, `Column`, `Container`
-
-**020** ������
-App Name: StepCounter
-Deskripsi: Tampilan penghitung langkah harian sederhana (data dummy).
-Teknologi: `setState`, `Icon`, `Container`
-
-**021**
-App Name: AlarmClockUI
-Deskripsi: Aplikasi alarm dengan pemilih waktu bawaan Flutter.
-Teknologi: `showTimePicker`, `setState`
-
-**022**
-App Name: ImageFlipper
-Deskripsi: Galeri foto dengan swipe antar gambar.
-Teknologi: `PageView`, `Image.asset`
-
-**023**
-App Name: RatingStars
-Deskripsi: Widget rating bintang interaktif untuk ulasan produk.
-Teknologi: `GestureDetector`, `Icon`, `setState`
-
-**024** ������
-App Name: ExpenseNote
-Deskripsi: Catatan pengeluaran harian sederhana dalam bentuk list.
-Teknologi: `TextField`, `ListView`, `setState`
-
-**025**
-App Name: ProfileCardy
-Deskripsi: Halaman profil statis dengan foto, nama, dan bio.
-Teknologi: `Column`, `CircleAvatar`, `Container`
-
----
-
-## ������ UPPER BEGINNER (026–050) — ±300-500 lines
-
-**026**
-App Name: LoginFlowSimple
-Deskripsi: Alur login dan registrasi dengan validasi form dasar.
-Teknologi: `Form`, `TextFormField`, `Navigator`
-
-**027**
-App Name: TodoPro
-Deskripsi: Todo list dengan penyimpanan lokal agar data tidak hilang.
-Teknologi: `SharedPreferences`, `ListView`, `setState`
-
-**028**
-App Name: NotesKeeper
-Deskripsi: Aplikasi catatan dengan penyimpanan lokal dan hapus catatan.
-Teknologi: `SharedPreferences`, `ListView`, `TextField`
-
-**029** ������
-App Name: QuizMaster
-Deskripsi: Kuis pilihan ganda multi soal dengan skor akhir.
-Teknologi: `PageView`, `setState`, `ListView`
-
-**030** ������
-App Name: MemoryMatch
-Deskripsi: Game mencocokkan kartu memori dengan animasi flip.
-Teknologi: `GridView`, `AnimatedContainer`, `setState`
-
-**031**
-App Name: HabitTrackerMini
-Deskripsi: Checklist kebiasaan harian dengan hitungan streak sederhana.
-Teknologi: `SharedPreferences`, `ListView`, `Checkbox`
-
-**032**
-App Name: RecipeBook
-Deskripsi: Daftar resep dengan navigasi ke halaman detail resep.
-Teknologi: `Navigator`, `ListView`, `Hero`
-
-**033**
-App Name: MovieListApp
-Deskripsi: Daftar film dengan halaman detail dan transisi Hero animation.
-Teknologi: `Navigator`, `GridView`, `Hero`
-
-**034** ������
-App Name: ExpenseTrackerPlus
-Deskripsi: Pencatat pengeluaran dengan kategori dan penyimpanan lokal.
-Teknologi: `ListView`, `DropdownButton`, `SharedPreferences`
-
-**035** ������
-App Name: ShopCartMini
-Deskripsi: Daftar produk dengan keranjang belanja dan badge jumlah item.
-Teknologi: `setState`, `GridView`, `Badge`
-
-**036** ������
-App Name: ChatUIPlus
-Deskripsi: Layar chat dengan daftar percakapan dan navigasi ke detail chat.
-Teknologi: `Navigator`, `ListView`, `TextField`
-
-**037** ������
-App Name: FoodOrderUI
-Deskripsi: Alur pemesanan makanan dari menu ke ringkasan pesanan.
-Teknologi: `Navigator`, `GridView`, `ListView`
-
-**038** ������
-App Name: EmployeeListApp
-Deskripsi: Direktori karyawan dengan fitur pencarian nama.
-Teknologi: `TextField`, `ListView.builder`, `Navigator`
-
-**039** ������
-App Name: DoctorBookingUI
-Deskripsi: Daftar dokter dengan form booking jadwal konsultasi.
-Teknologi: `Navigator`, `ListView`, `Form`
-
-**040**
-App Name: WaterReminder
-Deskripsi: Pengingat minum air dengan progress harian animasi.
-Teknologi: `AnimatedContainer`, `setState`, `Timer`
-
-**041**
-App Name: CurrencyConvert
-Deskripsi: Konversi mata uang dengan kurs statis yang bisa diedit.
-Teknologi: `TextField`, `DropdownButton`, `setState`
-
-**042**
-App Name: WeatherAppLite
-Deskripsi: Aplikasi cuaca dengan pencarian kota memakai data API mock.
-Teknologi: `http`, `FutureBuilder`, `ListView`
-
-**043**
-App Name: NewsFeedLite
-Deskripsi: Daftar berita dari data JSON mock menggunakan pemanggilan API.
-Teknologi: `FutureBuilder`, `http`, `ListView.builder`
-
-**044**
-App Name: GalleryViewer
-Deskripsi: Galeri foto grid dengan mode lihat penuh layar (fullscreen).
-Teknologi: `GridView`, `Hero`, `PageView`
-
-**045** ������
-App Name: BudgetPlanner
-Deskripsi: Perencana anggaran dengan visualisasi diagram lingkaran.
-Teknologi: `fl_chart`, `ListView`, `setState`
-
-**046**
-App Name: FitnessLogMini
-Deskripsi: Catatan latihan dengan input set dan repetisi olahraga.
-Teknologi: `Form`, `ListView`, `SharedPreferences`
-
-**047**
-App Name: PomodoroTimer
-Deskripsi: Timer fokus kerja dengan siklus kerja-istirahat otomatis.
-Teknologi: `Timer`, `AnimatedContainer`, `setState`
-
-**048** ������
-App Name: FlashCardEdu
-Deskripsi: Flashcard belajar dengan kategori topik yang bisa dipilih.
-Teknologi: `PageView`, `GestureDetector`, `ListView`
-
-**049** ������
-App Name: SnakeGameLite
-Deskripsi: Game ular klasik dengan kontrol arah sentuh sederhana.
-Teknologi: `CustomPainter`, `Timer`, `GestureDetector`
-
-**050** ������
-App Name: SimonSays
-Deskripsi: Game mengingat urutan warna/nada yang makin panjang.
-Teknologi: `AnimatedContainer`, `Timer`, `setState`
-
----
-
-## ������ LOWER INTERMEDIATE (051–065) — ±500-700 lines
-
-**051** ������
-App Name: ShopEase
-Deskripsi: Aplikasi e-commerce dengan keranjang dan alur checkout memakai state management.
-Teknologi: `Provider`, `GridView`, `ListView`
-
-**052** ������
-App Name: WalletPay
-Deskripsi: Simulasi e-wallet dengan transfer saldo dan riwayat transaksi tersimpan lokal.
-Teknologi: `Provider`, `Hive`, `ListView`
-
-**053** ������
-App Name: QuickRide
-Deskripsi: Alur pemesanan ojek online dengan tampilan peta placeholder.
-Teknologi: `google_maps_flutter`, `Provider`, `ListView`
-
-**054** ������
-App Name: ChatConnect
-Deskripsi: Aplikasi chat dengan penyimpanan pesan lokal dan update tampilan otomatis.
-Teknologi: `Hive`, `StreamBuilder`, `ListView`
-
-**055** ������
-App Name: InventoryLite
-Deskripsi: Manajemen stok barang sederhana dengan database lokal.
-Teknologi: `sqflite`, `ListView`, `Form`
-
-**056** ������
-App Name: HealthMate
-Deskripsi: Cek gejala sederhana dan daftar janji temu dokter.
-Teknologi: `Provider`, `ListView`, `Form`
-
-**057** ������
-App Name: LearnHub
-Deskripsi: Daftar kursus dengan pelacakan progres belajar per materi.
-Teknologi: `Provider`, `ProgressIndicator`, `ListView`
-
-**058** ������������
-App Name: GameQuizRush
-Deskripsi: Kuis cepat dengan batas waktu dan papan peringkat lokal.
-Teknologi: `Timer`, `sqflite`, `ListView`
-
-**059** ������
-App Name: ExpenseVault
-Deskripsi: Pencatat keuangan dengan database lokal dan grafik pengeluaran.
-Teknologi: `sqflite`, `fl_chart`, `ListView`
-
-**060**
-App Name: RecipeFinder
-Deskripsi: Aplikasi pencarian resep memakai API publik.
-Teknologi: `http`, `FutureBuilder`, `GridView`
-
-**061**
-App Name: MusicPlayerMini
-Deskripsi: Pemutar musik dengan kontrol play/pause/slider durasi.
-Teknologi: `audioplayers`, `Slider`, `setState`
-
-**062**
-App Name: NotesCloudy
-Deskripsi: Aplikasi catatan dengan kategori dan fitur pencarian.
-Teknologi: `Hive`, `TextField`, `ListView`
-
-**063**
-App Name: HabitStreak
-Deskripsi: Pelacak kebiasaan dengan tampilan kalender streak visual.
-Teknologi: `Hive`, `GridView`, `Provider`
-
-**064** ������
-App Name: JobBoardApp
-Deskripsi: Papan lowongan kerja dengan filter dan pencarian kategori.
-Teknologi: `Provider`, `ListView`, `DropdownButton`
-
-**065** ������
-App Name: MazeRunnerGame
-Deskripsi: Game navigasi labirin dengan kontrol sentuh dan deteksi tabrakan.
-Teknologi: `CustomPainter`, `GestureDetector`, `setState`
-
----
-
-## ������ INTERMEDIATE (066–080) — ±700-1000 lines
-
-**066** ������
-App Name: MarketPlace Go
-Deskripsi: Aplikasi marketplace dengan peran penjual dan pembeli terpisah.
-Teknologi: `Riverpod`, `Firebase Auth`, `GridView`
-
-**067** ������
-App Name: BankLite
-Deskripsi: Aplikasi bank digital dengan transfer, PIN keamanan, dan riwayat transaksi.
-Teknologi: `Bloc`, `Hive`, `ListView`
-
-**068** ������
-App Name: GoRide
-Deskripsi: Aplikasi ride-hailing dengan simulasi pelacakan lokasi live.
-Teknologi: `google_maps_flutter`, `Riverpod`, `StreamBuilder`
-
-**069** ������
-App Name: SocialSphere
-Deskripsi: Feed media sosial dengan fitur like dan komentar realtime.
-Teknologi: `Riverpod`, `Firebase Firestore`, `ListView`
-
-**070** ������
-App Name: CRM Lite
-Deskripsi: Aplikasi manajemen relasi pelanggan untuk tim sales kecil.
-Teknologi: `Bloc`, `sqflite`, `ListView`
-
-**071** ������
-App Name: TeleHealth
-Deskripsi: UI video call placeholder untuk konsultasi dan booking janji temu.
-Teknologi: `Riverpod`, `Firebase`, `Form`
-
-**072** ������
-App Name: EduTrack
-Deskripsi: Aplikasi belajar online dengan kuis dan pelacakan progres siswa.
-Teknologi: `Riverpod`, `Firebase Firestore`, `ProgressIndicator`
-
-**073** ������
-App Name: PlatformerDash
-Deskripsi: Game platformer 2D level menengah dengan lompat dan rintangan.
-Teknologi: `Flame`, `Timer`, `GestureDetector`
-
-**074** ������
-App Name: POS System Mini
-Deskripsi: Aplikasi kasir (point of sale) untuk usaha kecil dengan cetak struk sederhana.
-Teknologi: `sqflite`, `Provider`, `ListView`
-
-**075** ������
-App Name: CryptoTrackr
-Deskripsi: Pelacak harga crypto realtime dengan grafik tren harga.
-Teknologi: `http`, `fl_chart`, `Riverpod`
-
-**076** ������
-App Name: FoodPandaClone
-Deskripsi: Aplikasi pesan-antar makanan dengan keranjang dan pelacakan pesanan.
-Teknologi: `Riverpod`, `Firebase`, `GridView`
-
-**077** ������
-App Name: GroupChatPro
-Deskripsi: Aplikasi chat grup dengan berbagi media dan foto.
-Teknologi: `Firebase Storage`, `Riverpod`, `ListView`
-
-**078** ������
-App Name: SkillBuilder
-Deskripsi: Aplikasi belajar interaktif dengan latihan soal dan progres skill.
-Teknologi: `Riverpod`, `PageView`, `ProgressIndicator`
-
-**079** ������
-App Name: MedTrackerPro
-Deskripsi: Pengingat minum obat dan catatan kesehatan harian.
-Teknologi: `Riverpod`, `flutter_local_notifications`, `ListView`
-
-**080** ������
-App Name: InventoryPro
-Deskripsi: Manajemen gudang dengan pemindaian barcode barang.
-Teknologi: `mobile_scanner`, `sqflite`, `Provider`
-
----
-
-## ������ UPPER INTERMEDIATE (081–090) — ±1000-2000 lines
-
-**081** ������
-App Name: ShopVerse
-Deskripsi: Aplikasi e-commerce lengkap: katalog, keranjang, checkout, simulasi payment gateway, dan riwayat pesanan.
-Teknologi: `Riverpod`, `Firebase`, `Stripe (mock)`, `GridView`
-
-**082** ������
-App Name: NeoBank
-Deskripsi: Aplikasi bank digital dengan multi-akun, transfer, bayar tagihan, dan grafik transaksi.
-Teknologi: `Bloc`, `Hive`, `fl_chart`
-
-**083** ������
-App Name: ZoomRide
-Deskripsi: Aplikasi ride-hailing dengan pelacakan peta live, hitung tarif, dan simulasi pencarian driver.
-Teknologi: `google_maps_flutter`, `Riverpod`, `StreamBuilder`
-
-**084** ������
-App Name: ConnectSphere
-Deskripsi: Aplikasi media sosial dengan feed, stories, chat, dan notifikasi.
-Teknologi: `Firebase Firestore`, `Riverpod`, `ListView`
-
-**085** ������
-App Name: BizSuite
-Deskripsi: Aplikasi enterprise gabungan modul HR, inventory, dan CRM.
-Teknologi: `Bloc`, `sqflite`, `Provider`
-
-**086** ������
-App Name: CareConnect
-Deskripsi: Aplikasi telemedicine dengan UI konsultasi video, resep digital, dan janji temu.
-Teknologi: `Riverpod`, `Firebase`, `Form`
-
-**087** ������
-App Name: EduVerse
-Deskripsi: Aplikasi LMS lengkap dengan kursus, kuis, sertifikat, dan dashboard progres.
-Teknologi: `Riverpod`, `Firebase Firestore`, `fl_chart`
-
-**088** ������
-App Name: DungeonQuest
-Deskripsi: Game RPG ringan dengan sistem pertarungan dan progres karakter level menengah-atas.
-Teknologi: `Flame`, `CustomPainter`, `state machine`
-
-**089** ������
-App Name: SmartInventory
-Deskripsi: Manajemen inventory dan supplier dengan laporan grafik stok.
-Teknologi: `sqflite`, `Bloc`, `fl_chart`
-
-**090** ������
-App Name: InvestWise
-Deskripsi: Simulasi investasi/trading dengan portofolio dan grafik performa.
-Teknologi: `Riverpod`, `fl_chart`, `http`
-
----
-
-## ������ ADVANCE (091–100) — ±2000-5000 lines
-
-**091** ������
-App Name: MegaMart
-Deskripsi: Marketplace multi-vendor skala penuh: keranjang, payment, ulasan produk, pelacakan pesanan, dan panel admin.
-Teknologi: `Riverpod`, `Firebase`, `Stripe`, `Bloc`, `GridView`
-
-**092** ������
-App Name: UnionBank Pro
-Deskripsi: Aplikasi perbankan digital lengkap: multi-mata uang, KYC, biometric login, bayar tagihan, dan modul investasi.
-Teknologi: `Bloc`, `Hive`, `biometric_storage`, `fl_chart`
-
-**093** ������
-App Name: GoJek Style Super App
-Deskripsi: Super app gabungan ride-hailing dan delivery dengan pelacakan live, wallet, dan chat driver-penumpang.
-Teknologi: `google_maps_flutter`, `Firebase`, `WebSocket`, `Riverpod`
-
-**094** ������
-App Name: SocialNet Pro
-Deskripsi: Platform media sosial penuh: feed, stories, reels, chat, notifikasi, dan placeholder live streaming.
-Teknologi: `Firebase`, `Riverpod`, `WebSocket`, `ListView`
-
-**095** ������
-App Name: Enterprise ERP Suite
-Deskripsi: ERP lengkap dengan modul HR, inventory, CRM, POS, dan dashboard laporan.
-Teknologi: `Bloc`, `sqflite`, `fl_chart`, `Provider`
-
-**096** ������
-App Name: MediCare Complete
-Deskripsi: Platform telemedicine lengkap: video call, resep digital, rekam medis, janji temu, dan pemesanan obat.
-Teknologi: `Riverpod`, `Firebase`, `WebRTC`, `fl_chart`
-
-**097** ������
-App Name: EduMaster Platform
-Deskripsi: Platform e-learning lengkap: kursus, kelas live, kuis, sertifikat, dan forum diskusi.
-Teknologi: `Riverpod`, `Firebase`, `WebSocket`, `fl_chart`
-
-**098** ������
-App Name: RPG Legends
-Deskripsi: Game RPG advance dengan sistem inventory, pertarungan, quest, dan save/load progres.
-Teknologi: `Flame`, `Hive`, `state machine`, `CustomPainter`
-
-**099** ������
-App Name: Tower Defense Kingdom
-Deskripsi: Game tower defense advance dengan sistem wave musuh, upgrade menara, dan banyak level.
-Teknologi: `Flame`, `CustomPainter`, `Hive (save system)`
-
-**100** ������️
-App Name: UtilityBox Pro
-Deskripsi: Aplikasi tools serba guna: file manager, scanner/generator QR, tools PDF, konverter satuan, dan kalkulator dalam satu aplikasi (kategori populer di Play Store).
-Teknologi: `mobile_scanner`, `path_provider`, `share_plus`, `multi-module architecture`
-
----
-
-### Catatan Belajar
-- Setiap naik tier, tambahkan 1 teknologi baru dari tier sebelumnya agar progres skill terasa (state management → local db → API → animasi → arsitektur modular).
-- Untuk kategori wajib (E-commerce, Fintech, On-Demand, Social Media, Enterprise, Healthcare, EdTech), versi sederhananya ada di tier bawah dan versi kompleksnya di tier atas — bagus untuk latihan "membangun ulang aplikasi yang sama dengan level lebih tinggi".
-- Game intermediate ada di #073 (PlatformerDash) dan advance di #098-099 (RPG Legends, Tower Defense Kingdom).

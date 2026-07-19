@@ -112,9 +112,9 @@ class CalorieTrackerCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: pctColor.withOpacity(0.12),
+                          color: pctColor.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(20),
-                          border: Border.all(color: pctColor.withOpacity(0.4)),
+                          border: Border.all(color: pctColor.withValues(alpha: 0.4)),
                         ),
                         child: Text(
                           '${pct.toStringAsFixed(0)}%',
@@ -381,7 +381,7 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: AppTheme.stone300.withOpacity(0.5),
+                    color: AppTheme.stone300.withValues(alpha: 0.5),
                     blurRadius: 4, offset: const Offset(0, 1),
                   )
                 ],
@@ -502,7 +502,7 @@ class _AddCalorieSheetState extends State<_AddCalorieSheet>
                       horizontal: 12, vertical: 10),
                   decoration: BoxDecoration(
                     color: saveToList
-                        ? AppTheme.sage200.withOpacity(0.5)
+                        ? AppTheme.sage200.withValues(alpha: 0.5)
                         : Colors.white,
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(
@@ -798,9 +798,9 @@ class _FoodItemTileState extends State<_FoodItemTile> {
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         color: _added
-            ? AppTheme.sage200.withOpacity(0.5)
+            ? AppTheme.sage200.withValues(alpha: 0.5)
             : widget.item.isCustom
-                ? AppTheme.sage100.withOpacity(0.6)
+                ? AppTheme.sage100.withValues(alpha: 0.6)
                 : Colors.white,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
@@ -849,10 +849,10 @@ class _FoodItemTileState extends State<_FoodItemTile> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 3),
                         decoration: BoxDecoration(
-                          color: color.withOpacity(0.1),
+                          color: color.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                           border:
-                              Border.all(color: color.withOpacity(0.35)),
+                              Border.all(color: color.withValues(alpha: 0.35)),
                         ),
                         child: Text(
                           '$unitCal kkal',
@@ -1021,7 +1021,7 @@ class _DayLogTab extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 7, vertical: 2),
                             decoration: BoxDecoration(
-                              color: AppTheme.sage500.withOpacity(0.12),
+                              color: AppTheme.sage500.withValues(alpha: 0.12),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text('×${e.quantity}',

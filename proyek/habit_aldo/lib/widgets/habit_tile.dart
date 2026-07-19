@@ -34,7 +34,7 @@ class HabitTile extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
         decoration: BoxDecoration(
-          color: isCompleted ? AppTheme.sage200.withOpacity(0.4) : Colors.white,
+          color: isCompleted ? AppTheme.sage200.withValues(alpha: 0.4) : Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: isCompleted ? AppTheme.sage300 : AppTheme.stone200,
@@ -44,7 +44,7 @@ class HabitTile extends StatelessWidget {
               ? null
               : [
                   BoxShadow(
-                    color: AppTheme.stone200.withOpacity(0.5),
+                    color: AppTheme.stone200.withValues(alpha: 0.5),
                     blurRadius: 4,
                     offset: const Offset(0, 1),
                   ),
@@ -157,10 +157,10 @@ class HabitTile extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 6, vertical: 6),
                               decoration: BoxDecoration(
-                                color: AppTheme.sage500.withOpacity(0.12),
+                                color: AppTheme.sage500.withValues(alpha: 0.12),
                                 borderRadius: BorderRadius.circular(14),
                                 border: Border.all(
-                                    color: AppTheme.sage400.withOpacity(0.5)),
+                                    color: AppTheme.sage400.withValues(alpha: 0.5)),
                               ),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -381,7 +381,7 @@ class HabitTile extends StatelessWidget {
                   provider.clearSchedule(habit.id);
                   Navigator.pop(ctx);
                 },
-                child: Text('Hapus Jadwal',
+                child: const Text('Hapus Jadwal',
                     style: TextStyle(color: AppTheme.errorRed)),
               ),
             TextButton(

@@ -3,7 +3,6 @@ import '../theme/app_theme.dart';
 import '../models/user_model.dart';
 import '../models/word_model.dart';
 import '../data/database_helper.dart';
-import '../services/storage_service.dart';
 
 class ReviewScreen extends StatefulWidget {
   final UserModel user;
@@ -14,9 +13,22 @@ class ReviewScreen extends StatefulWidget {
   State<ReviewScreen> createState() => _ReviewScreenState();
 }
 
+class _RankRange {
+  final int start;
+  final int end;
+
+  const _RankRange(this.start, this.end);
+
+  String get label => '$start-$end';
+
+  bool contains(int rank) => rank >= start && rank <= end;
+}
+
 class _ReviewScreenState extends State<ReviewScreen> {
   List<WordModel> _words = [];
   List<WordModel> _filteredWords = [];
+  List<_RankRange> _rankRanges = [];
+  _RankRange? _selectedRange;
   bool _isLoading = true;
   bool _showArabic = true;
   final TextEditingController _searchController = TextEditingController();
@@ -28,33 +40,69 @@ class _ReviewScreenState extends State<ReviewScreen> {
   }
 
   Future<void> _loadWords() async {
-    final currentLevel = await StorageService.instance.getHighestUnlockedLevel(widget.user.id);
-    final words = DatabaseHelper.instance.getCompletedWords(currentLevel);
-    
+    final words = DatabaseHelper.instance.getAllWords();
+
     setState(() {
       _words = words;
       _filteredWords = words;
+      _rankRanges = _generateRankRanges(words);
       _isLoading = false;
     });
   }
 
-  void _filterWords(String query) {
-    if (query.isEmpty) {
-      setState(() {
-        _filteredWords = _words;
-      });
-      return;
+  // Split the word list into fixed-size rank buckets (e.g. 100-299, 300-499, ...)
+  // so the ranges always reflect whatever data is actually loaded.
+  List<_RankRange> _generateRankRanges(List<WordModel> words) {
+    if (words.isEmpty) return [];
+
+    const step = 200;
+    final ranks = words.map((w) => w.rank).toList();
+    final minRank = ranks.reduce((a, b) => a < b ? a : b);
+    final maxRank = ranks.reduce((a, b) => a > b ? a : b);
+
+    final ranges = <_RankRange>[];
+    var start = minRank;
+    while (start <= maxRank) {
+      ranges.add(_RankRange(start, start + step - 1));
+      start += step;
+    }
+    return ranges;
+  }
+
+  void _selectRange(_RankRange? range) {
+    setState(() {
+      _selectedRange = _selectedRange == range ? null : range;
+    });
+    _applyFilters();
+  }
+
+  // Strip Arabic diacritics (harakat/tashkeel) so search works regardless of
+  // whether the user types them or not.
+  String _stripDiacritics(String input) {
+    return input.replaceAll(RegExp(r'[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]'), '');
+  }
+
+  void _applyFilters() {
+    Iterable<WordModel> result = _words;
+
+    if (_selectedRange != null) {
+      result = result.where((word) => _selectedRange!.contains(word.rank));
     }
 
-    final filtered = _words.where((word) {
-      final lowerQuery = query.toLowerCase();
-      return word.arabic.contains(query) ||
-          word.transliteration.toLowerCase().contains(lowerQuery) ||
-          word.indonesian.toLowerCase().contains(lowerQuery);
-    }).toList();
+    final trimmedQuery = _searchController.text.trim();
+    if (trimmedQuery.isNotEmpty) {
+      final lowerQuery = trimmedQuery.toLowerCase();
+      final strippedQuery = _stripDiacritics(trimmedQuery);
+
+      result = result.where((word) {
+        return _stripDiacritics(word.arabic).contains(strippedQuery) ||
+            word.transliteration.toLowerCase().contains(lowerQuery) ||
+            word.indonesian.toLowerCase().contains(lowerQuery);
+      });
+    }
 
     setState(() {
-      _filteredWords = filtered;
+      _filteredWords = result.toList();
     });
   }
 
@@ -98,14 +146,57 @@ class _ReviewScreenState extends State<ReviewScreen> {
                           icon: const Icon(Icons.clear),
                           onPressed: () {
                             _searchController.clear();
-                            _filterWords('');
+                            _applyFilters();
                           },
                         )
                       : null,
                 ),
-                onChanged: _filterWords,
+                onChanged: (_) => _applyFilters(),
               ),
             ),
+
+            // Rank Range Filter Chips
+            if (_rankRanges.isNotEmpty)
+              SizedBox(
+                height: 40,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ChoiceChip(
+                        label: const Text('Semua'),
+                        selected: _selectedRange == null,
+                        onSelected: (_) => _selectRange(null),
+                        selectedColor: AppTheme.primaryGreen,
+                        labelStyle: TextStyle(
+                          color: _selectedRange == null ? AppTheme.textWhite : AppTheme.textDark,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                    ..._rankRanges.map((range) {
+                      final isSelected = _selectedRange == range;
+                      return Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: ChoiceChip(
+                          label: Text(range.label),
+                          selected: isSelected,
+                          onSelected: (_) => _selectRange(range),
+                          selectedColor: AppTheme.primaryGreen,
+                          labelStyle: TextStyle(
+                            color: isSelected ? AppTheme.textWhite : AppTheme.textDark,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      );
+                    }),
+                  ],
+                ),
+              ),
+
+            const SizedBox(height: 8),
 
             // Stats
             Container(
@@ -150,7 +241,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                _searchController.text.isEmpty
+                                _searchController.text.isEmpty && _selectedRange == null
                                     ? 'Belum ada kata yang dipelajari'
                                     : 'Tidak ada hasil',
                                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(

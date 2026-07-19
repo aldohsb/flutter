@@ -1,0 +1,30 @@
+import '../models/word_entry.dart';
+
+// Kelompok 7: diftong ai / au / oi (kvv / vvk)
+const List<WordEntry> group7DiftongWords = [
+  WordEntry(word: 'pantai', syllables: ['pan', 'tai'], tier: 7),
+  WordEntry(word: 'santai', syllables: ['san', 'tai'], tier: 7),
+  WordEntry(word: 'ramai', syllables: ['ra', 'mai'], tier: 7),
+  WordEntry(word: 'pandai', syllables: ['pan', 'dai'], tier: 7),
+  WordEntry(word: 'damai', syllables: ['da', 'mai'], tier: 7),
+  WordEntry(word: 'landai', syllables: ['lan', 'dai'], tier: 7),
+  WordEntry(word: 'lantai', syllables: ['lan', 'tai'], tier: 7),
+  WordEntry(word: 'gulai', syllables: ['gu', 'lai'], tier: 7),
+  WordEntry(word: 'pulau', syllables: ['pu', 'lau'], tier: 7),
+  WordEntry(word: 'kalau', syllables: ['ka', 'lau'], tier: 7),
+  WordEntry(word: 'hijau', syllables: ['hi', 'jau'], tier: 7),
+  WordEntry(word: 'kerbau', syllables: ['ker', 'bau'], tier: 7),
+  WordEntry(word: 'harimau', syllables: ['ha', 'ri', 'mau'], tier: 7),
+  WordEntry(word: 'limau', syllables: ['li', 'mau'], tier: 7),
+  WordEntry(word: 'danau', syllables: ['da', 'nau'], tier: 7),
+  WordEntry(word: 'pisau', syllables: ['pi', 'sau'], tier: 7),
+  WordEntry(word: 'kacau', syllables: ['ka', 'cau'], tier: 7),
+  WordEntry(word: 'silau', syllables: ['si', 'lau'], tier: 7),
+  WordEntry(word: 'amboi', syllables: ['am', 'boi'], tier: 7),
+  WordEntry(word: 'sepoi', syllables: ['se', 'poi'], tier: 7),
+  WordEntry(word: 'koboi', syllables: ['ko', 'boi'], tier: 7),
+  WordEntry(word: 'sampai', syllables: ['sam', 'pai'], tier: 7),
+  WordEntry(word: 'pakai', syllables: ['pa', 'kai'], tier: 7),
+  WordEntry(word: 'capai', syllables: ['ca', 'pai'], tier: 7),
+  WordEntry(word: 'rantai', syllables: ['ran', 'tai'], tier: 7),
+];

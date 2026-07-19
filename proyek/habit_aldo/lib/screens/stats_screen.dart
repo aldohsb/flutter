@@ -352,8 +352,8 @@ class _WeightLineChart extends StatelessWidget {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          AppTheme.sage400.withOpacity(0.3),
-                          AppTheme.sage400.withOpacity(0.0),
+                          AppTheme.sage400.withValues(alpha: 0.3),
+                          AppTheme.sage400.withValues(alpha: 0.0),
                         ],
                       ),
                     ),
@@ -813,7 +813,7 @@ class _DailyCompletionChart extends StatelessWidget {
                           : d.pct >= 50
                               ? AppTheme.warningAmber
                               : d.pct > 0
-                                  ? AppTheme.errorRed.withOpacity(0.7)
+                                  ? AppTheme.errorRed.withValues(alpha: 0.7)
                                   : AppTheme.stone200;
                   return BarChartGroupData(
                     x: e.key,
@@ -846,7 +846,7 @@ class _DailyCompletionChart extends StatelessWidget {
               const SizedBox(width: 12),
               const _LegendDot(color: AppTheme.warningAmber, label: '50–69%'),
               const SizedBox(width: 12),
-              _LegendDot(color: AppTheme.errorRed.withOpacity(0.7), label: '<50%'),
+              _LegendDot(color: AppTheme.errorRed.withValues(alpha: 0.7), label: '<50%'),
             ],
           ),
         ],
@@ -956,7 +956,7 @@ class _HabitLeaderboardRow extends StatelessWidget {
                 height: 26,
                 decoration: BoxDecoration(
                   color: rank == 1
-                      ? AppTheme.accentGold.withOpacity(0.15)
+                      ? AppTheme.accentGold.withValues(alpha: 0.15)
                       : rank == 2
                           ? AppTheme.stone200
                           : AppTheme.sage100,
@@ -1114,7 +1114,7 @@ class _RangeSelector extends StatelessWidget {
                   boxShadow: isSelected
                       ? [
                           BoxShadow(
-                            color: AppTheme.stone300.withOpacity(0.5),
+                            color: AppTheme.stone300.withValues(alpha: 0.5),
                             blurRadius: 4,
                             offset: const Offset(0, 1),
                           )
@@ -1520,8 +1520,8 @@ class _CalorieBarChart extends StatelessWidget {
                   final color = d.total == 0
                       ? AppTheme.stone100
                       : isOver
-                          ? AppTheme.errorRed.withOpacity(0.8)
-                          : AppTheme.successGreen.withOpacity(0.8);
+                          ? AppTheme.errorRed.withValues(alpha: 0.8)
+                          : AppTheme.successGreen.withValues(alpha: 0.8);
                   return BarChartGroupData(
                     x: e.key,
                     barRods: [
@@ -1551,11 +1551,11 @@ class _CalorieBarChart extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               _LegendDot(
-                  color: AppTheme.successGreen.withOpacity(0.8),
+                  color: AppTheme.successGreen.withValues(alpha: 0.8),
                   label: 'Di bawah target'),
               const SizedBox(width: 16),
               _LegendDot(
-                  color: AppTheme.errorRed.withOpacity(0.8),
+                  color: AppTheme.errorRed.withValues(alpha: 0.8),
                   label: 'Melebihi target'),
             ],
           ),
@@ -1630,7 +1630,7 @@ class _CalorieFullLog extends StatelessWidget {
                 // Date header
                 Container(
                   padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
-                  color: AppTheme.sage100.withOpacity(0.6),
+                  color: AppTheme.sage100.withValues(alpha: 0.6),
                   child: Row(
                     children: [
                       Text(
@@ -1647,10 +1647,10 @@ class _CalorieFullLog extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 9, vertical: 3),
                         decoration: BoxDecoration(
-                          color: dayColor.withOpacity(0.1),
+                          color: dayColor.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                              color: dayColor.withOpacity(0.35)),
+                              color: dayColor.withValues(alpha: 0.35)),
                         ),
                         child: Text(
                           '$dayTotal kkal',
@@ -1684,7 +1684,7 @@ class _CalorieFullLog extends StatelessWidget {
                                 horizontal: 6, vertical: 1),
                             margin: const EdgeInsets.only(right: 5),
                             decoration: BoxDecoration(
-                              color: AppTheme.sage500.withOpacity(0.12),
+                              color: AppTheme.sage500.withValues(alpha: 0.12),
                               borderRadius: BorderRadius.circular(5),
                             ),
                             child: Text(

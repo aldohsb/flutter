@@ -324,9 +324,9 @@ class _TimerScreenState extends State<TimerScreen> {
             borderRadius: BorderRadius.circular(14),
             child: Container(
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.88),
+                color: Colors.black.withValues(alpha: 0.88),
                 borderRadius: BorderRadius.circular(14),
-                border: Border.all(color: Colors.white.withOpacity(0.08)),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.08)),
               ),
               child: Column(
                 children: [
@@ -388,9 +388,9 @@ class _TimerScreenState extends State<TimerScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               margin: const EdgeInsets.only(right: 6),
               decoration: BoxDecoration(
-                color: Colors.tealAccent.withOpacity(0.15),
+                color: Colors.tealAccent.withValues(alpha: 0.15),
                 borderRadius: BorderRadius.circular(5),
-                border: Border.all(color: Colors.tealAccent.withOpacity(0.3)),
+                border: Border.all(color: Colors.tealAccent.withValues(alpha: 0.3)),
               ),
               child: Text(
                 _tracks[_activeTrackIndex!].name,
@@ -477,7 +477,7 @@ class _TimerScreenState extends State<TimerScreen> {
   Widget _buildPanel() {
     return Container(
       decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Colors.white.withOpacity(0.07))),
+        border: Border(top: BorderSide(color: Colors.white.withValues(alpha: 0.07))),
       ),
       child: Column(
         children: [
@@ -499,10 +499,10 @@ class _TimerScreenState extends State<TimerScreen> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: Colors.tealAccent.withOpacity(0.12),
+                      color: Colors.tealAccent.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(
-                          color: Colors.tealAccent.withOpacity(0.3)),
+                          color: Colors.tealAccent.withValues(alpha: 0.3)),
                     ),
                     child: const Row(
                       mainAxisSize: MainAxisSize.min,
@@ -555,15 +555,15 @@ class _TimerScreenState extends State<TimerScreen> {
         padding: const EdgeInsets.all(11),
         decoration: BoxDecoration(
           color: isSelected
-              ? Colors.tealAccent.withOpacity(0.07)
-              : Colors.white.withOpacity(0.04),
+              ? Colors.tealAccent.withValues(alpha: 0.07)
+              : Colors.white.withValues(alpha: 0.04),
           borderRadius: BorderRadius.circular(10),
           border: Border.all(
             color: isTracking
-                ? Colors.tealAccent.withOpacity(0.5)
+                ? Colors.tealAccent.withValues(alpha: 0.5)
                 : isSelected
-                    ? Colors.tealAccent.withOpacity(0.2)
-                    : Colors.white.withOpacity(0.06),
+                    ? Colors.tealAccent.withValues(alpha: 0.2)
+                    : Colors.white.withValues(alpha: 0.06),
           ),
         ),
         child: Column(
@@ -580,7 +580,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     shape: BoxShape.circle,
                     color: isTracking
                         ? Colors.tealAccent
-                        : Colors.white.withOpacity(0.15),
+                        : Colors.white.withValues(alpha: 0.15),
                   ),
                 ),
 
@@ -624,8 +624,8 @@ class _TimerScreenState extends State<TimerScreen> {
                     padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
                       color: isTracking
-                          ? Colors.amberAccent.withOpacity(0.15)
-                          : Colors.tealAccent.withOpacity(0.12),
+                          ? Colors.amberAccent.withValues(alpha: 0.15)
+                          : Colors.tealAccent.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Icon(
@@ -746,7 +746,7 @@ class _TimerScreenState extends State<TimerScreen> {
         margin: const EdgeInsets.symmetric(horizontal: 2),
         padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.12),
+          color: color.withValues(alpha: 0.12),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Icon(icon, color: color, size: size),
@@ -831,7 +831,7 @@ class _TrackDialogState extends State<_TrackDialog> {
                 hintText: 'Contoh: Belajar Flutter',
                 hintStyle: const TextStyle(color: Colors.white24),
                 filled: true,
-                fillColor: Colors.white.withOpacity(0.06),
+                fillColor: Colors.white.withValues(alpha: 0.06),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                   borderSide: BorderSide.none,
@@ -862,7 +862,7 @@ class _TrackDialogState extends State<_TrackDialog> {
                       suffixStyle:
                           const TextStyle(color: Colors.white38, fontSize: 12),
                       filled: true,
-                      fillColor: Colors.white.withOpacity(0.06),
+                      fillColor: Colors.white.withValues(alpha: 0.06),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide.none,
@@ -886,7 +886,7 @@ class _TrackDialogState extends State<_TrackDialog> {
                       suffixStyle:
                           const TextStyle(color: Colors.white38, fontSize: 12),
                       filled: true,
-                      fillColor: Colors.white.withOpacity(0.06),
+                      fillColor: Colors.white.withValues(alpha: 0.06),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                         borderSide: BorderSide.none,

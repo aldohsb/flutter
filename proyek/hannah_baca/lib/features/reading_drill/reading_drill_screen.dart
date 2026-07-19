@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import '../../core/constants/color_mode.dart';
 import '../../core/theme/app_colors.dart';
 import '../../services/tts_service.dart';
 import '../../state/level_provider.dart';
 import '../../state/page_progress_provider.dart';
+import '../../state/settings_provider.dart';
 import 'drill_progress_bar.dart';
 import 'syllable_word.dart';
 
@@ -20,88 +22,116 @@ class ReadingDrillScreen extends ConsumerStatefulWidget {
 
 class _ReadingDrillScreenState extends ConsumerState<ReadingDrillScreen> {
   final _tts = TtsService();
+  late final PageController _controller;
   late int _pageIndex;
 
   @override
   void initState() {
     super.initState();
     _pageIndex = ref.read(pageProgressProvider.notifier).pageFor(widget.level);
+    _controller = PageController(initialPage: _pageIndex);
   }
 
-  void _goTo(int index, int totalPages) {
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onPageChanged(int index) {
     setState(() => _pageIndex = index);
     ref.read(pageProgressProvider.notifier).setPage(widget.level, index);
   }
 
-  void _next(int totalPages) {
+  void _goPrev() {
+    _controller.previousPage(
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.easeOut,
+    );
+  }
+
+  void _goNextOrFinish(int totalPages) {
     if (_pageIndex < totalPages - 1) {
-      _goTo(_pageIndex + 1, totalPages);
+      _controller.nextPage(
+        duration: const Duration(milliseconds: 250),
+        curve: Curves.easeOut,
+      );
     } else {
       ref.read(pageProgressProvider.notifier).clearLevel(widget.level);
       context.pushReplacement('/result/${widget.level}');
     }
   }
 
-  void _prev() {
-    if (_pageIndex > 0) _goTo(_pageIndex - 1, 0);
-  }
-
   @override
   Widget build(BuildContext context) {
     final pages = ref.watch(levelPagesProvider(widget.level));
-    final safeIndex = _pageIndex.clamp(0, pages.length - 1);
-    final page = pages[safeIndex];
+    final colorMode = ref.watch(colorModeProvider);
+    final isLast = _pageIndex == pages.length - 1;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Level ${widget.level}')),
+      appBar: AppBar(
+        title: Text('Level ${widget.level}'),
+        actions: [
+          IconButton(
+            tooltip: 'Ganti warna suku kata',
+            onPressed: () => ref.read(colorModeProvider.notifier).toggle(),
+            icon: Icon(
+              colorMode == SyllableColorMode.multi
+                  ? Icons.palette_rounded
+                  : Icons.format_color_text_rounded,
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              DrillProgressBar(currentPage: safeIndex, totalPages: pages.length),
-              const SizedBox(height: 24),
+              DrillProgressBar(currentPage: _pageIndex, totalPages: pages.length),
+              const SizedBox(height: 16),
               Expanded(
-                child: Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        for (final entry in page.words)
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 14),
-                            child: GestureDetector(
-                              onTap: () => _tts.speak(entry.word),
-                              child: SyllableWord(entry: entry),
-                            ),
-                          ),
-                      ],
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: _pageIndex == 0 ? null : _goPrev,
+                      icon: const Icon(Icons.chevron_left_rounded, size: 40),
+                      color: AppColors.primary,
                     ),
-                  ),
+                    Expanded(
+                      child: PageView.builder(
+                        controller: _controller,
+                        onPageChanged: _onPageChanged,
+                        itemCount: pages.length,
+                        itemBuilder: (context, index) {
+                          final word = pages[index].words.first;
+                          return Center(
+                            child: GestureDetector(
+                              onTap: () => _tts.speak(word.word),
+                              child: SyllableWord(entry: word),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () => _goNextOrFinish(pages.length),
+                      icon: Icon(
+                        isLast
+                            ? Icons.check_circle_rounded
+                            : Icons.chevron_right_rounded,
+                        size: 40,
+                      ),
+                      color: AppColors.secondary,
+                    ),
+                  ],
                 ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    onPressed: safeIndex == 0 ? null : _prev,
-                    icon: const Icon(Icons.arrow_back_ios_rounded),
-                    color: AppColors.primary,
-                  ),
-                  ElevatedButton(
-                    onPressed: () => _next(pages.length),
-                    child: Text(
-                        safeIndex == pages.length - 1 ? 'Selesai' : 'Lanjut'),
-                  ),
-                  IconButton(
-                    onPressed: () => _tts.speak(
-                      page.words.map((w) => w.word).join(', '),
-                    ),
-                    icon: const Icon(Icons.volume_up_rounded),
-                    color: AppColors.secondary,
-                  ),
-                ],
+              const SizedBox(height: 12),
+              ElevatedButton.icon(
+                onPressed: () => _tts.speak(pages[_pageIndex].words.first.word),
+                icon: const Icon(Icons.volume_up_rounded),
+                label: const Text('Dengar'),
               ),
             ],
           ),

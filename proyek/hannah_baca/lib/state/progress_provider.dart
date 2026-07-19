@@ -18,11 +18,6 @@ class ProgressNotifier extends Notifier<Set<int>> {
     state = {...state, level};
     await _storage.saveCompletedLevels(state);
   }
-
-  bool isUnlocked(int level) {
-    if (level == 1) return true;
-    return state.contains(level - 1);
-  }
 }
 
 final progressProvider = NotifierProvider<ProgressNotifier, Set<int>>(

@@ -128,12 +128,15 @@ class _QuizScreenState extends State<QuizScreen> with SingleTickerProviderStateM
     });
 
     final isCorrect = index == _questions[_currentQuestionIndex].correctIndex;
+    final answeredWordId = _questions[_currentQuestionIndex].correctWord.id;
 
     if (isCorrect) {
       _correctAnswers++;
       await AudioService.instance.playCorrectSound();
+      await StorageService.instance.removeWrongWord(widget.user.id, answeredWordId);
     } else {
       await AudioService.instance.playWrongSound();
+      await StorageService.instance.addWrongWord(widget.user.id, answeredWordId);
     }
 
     // Wait before moving to next question
@@ -176,6 +179,8 @@ class _QuizScreenState extends State<QuizScreen> with SingleTickerProviderStateM
 
     if (!mounted) return;
 
+    final hasNextLevel = widget.levelNumber < 350;
+
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -185,6 +190,7 @@ class _QuizScreenState extends State<QuizScreen> with SingleTickerProviderStateM
         stars: stars,
         isPassed: isPassed,
         levelNumber: widget.levelNumber,
+        hasNextLevel: hasNextLevel,
         onRetry: () {
           Navigator.pop(context);
           setState(() {
@@ -195,9 +201,21 @@ class _QuizScreenState extends State<QuizScreen> with SingleTickerProviderStateM
           });
           _initializeQuiz();
         },
-        onNext: () {
-          Navigator.pop(context);
-          Navigator.pop(context);
+        onNextLevel: () {
+          Navigator.pop(context); // close dialog
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (_) => QuizScreen(
+                user: widget.user,
+                levelNumber: widget.levelNumber + 1,
+              ),
+            ),
+          );
+        },
+        onBackToLevels: () {
+          Navigator.pop(context); // close dialog
+          Navigator.pop(context); // close quiz screen, back to level selection
         },
       ),
     );
@@ -442,8 +460,10 @@ class _ResultDialog extends StatelessWidget {
   final int stars;
   final bool isPassed;
   final int levelNumber;
+  final bool hasNextLevel;
   final VoidCallback onRetry;
-  final VoidCallback onNext;
+  final VoidCallback onNextLevel;
+  final VoidCallback onBackToLevels;
 
   const _ResultDialog({
     required this.correctAnswers,
@@ -451,8 +471,10 @@ class _ResultDialog extends StatelessWidget {
     required this.stars,
     required this.isPassed,
     required this.levelNumber,
+    required this.hasNextLevel,
     required this.onRetry,
-    required this.onNext,
+    required this.onNextLevel,
+    required this.onBackToLevels,
   });
 
   @override
@@ -554,23 +576,57 @@ class _ResultDialog extends StatelessWidget {
 
             // Buttons
             if (isPassed) ...[
-              ElevatedButton(
-                onPressed: onNext,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppTheme.textWhite,
-                  foregroundColor: AppTheme.primaryGreen,
-                  minimumSize: const Size(double.infinity, 50),
+              if (hasNextLevel) ...[
+                ElevatedButton(
+                  onPressed: onNextLevel,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.textWhite,
+                    foregroundColor: AppTheme.primaryGreen,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Lanjut ke Level ${levelNumber + 1}'),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.arrow_forward, size: 20),
+                    ],
+                  ),
                 ),
-                child: const Text('Lanjut'),
-              ),
-              const SizedBox(height: 12),
-              TextButton(
-                onPressed: onRetry,
-                style: TextButton.styleFrom(
-                  foregroundColor: AppTheme.textWhite,
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: onRetry,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppTheme.textWhite,
+                  ),
+                  child: const Text('Ulangi Level'),
                 ),
-                child: const Text('Ulangi Level'),
-              ),
+                TextButton(
+                  onPressed: onBackToLevels,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppTheme.textWhite.withValues(alpha: 0.8),
+                  ),
+                  child: const Text('Kembali ke Daftar Level'),
+                ),
+              ] else ...[
+                ElevatedButton(
+                  onPressed: onBackToLevels,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppTheme.textWhite,
+                    foregroundColor: AppTheme.primaryGreen,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: const Text('Kembali ke Daftar Level'),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: onRetry,
+                  style: TextButton.styleFrom(
+                    foregroundColor: AppTheme.textWhite,
+                  ),
+                  child: const Text('Ulangi Level'),
+                ),
+              ],
             ] else ...[
               ElevatedButton(
                 onPressed: onRetry,
@@ -581,7 +637,7 @@ class _ResultDialog extends StatelessWidget {
               ),
               const SizedBox(height: 12),
               TextButton(
-                onPressed: onNext,
+                onPressed: onBackToLevels,
                 child: const Text('Kembali'),
               ),
             ],

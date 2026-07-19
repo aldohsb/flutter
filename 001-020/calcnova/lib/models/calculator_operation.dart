@@ -1,1 +1,0 @@
-enum CalculatorOperation { none, add, subtract, multiply, divide }

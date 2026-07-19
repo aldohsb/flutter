@@ -43,13 +43,13 @@ class HomeScreen extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: [
-                      AppConstants.primaryColor.withOpacity(0.1),
-                      AppConstants.accentColor.withOpacity(0.1),
+                      AppConstants.primaryColor.withValues(alpha: 0.1),
+                      AppConstants.accentColor.withValues(alpha: 0.1),
                     ],
                   ),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: AppConstants.primaryColor.withOpacity(0.2),
+                    color: AppConstants.primaryColor.withValues(alpha: 0.2),
                     width: 1,
                   ),
                 ),

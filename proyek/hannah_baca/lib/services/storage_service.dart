@@ -1,8 +1,10 @@
 import 'package:shared_preferences/shared_preferences.dart';
+import '../core/constants/color_mode.dart';
 
 class StorageService {
   static const _completedKey = 'completed_levels';
   static const _pageProgressKey = 'page_progress';
+  static const _colorModeKey = 'color_mode';
 
   Future<Set<int>> loadCompletedLevels() async {
     final prefs = await SharedPreferences.getInstance();
@@ -33,5 +35,19 @@ class StorageService {
     final prefs = await SharedPreferences.getInstance();
     final list = progress.entries.map((e) => '${e.key}:${e.value}').toList();
     await prefs.setStringList(_pageProgressKey, list);
+  }
+
+  Future<SyllableColorMode> loadColorMode() async {
+    final prefs = await SharedPreferences.getInstance();
+    final value = prefs.getString(_colorModeKey);
+    return value == 'single' ? SyllableColorMode.single : SyllableColorMode.multi;
+  }
+
+  Future<void> saveColorMode(SyllableColorMode mode) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(
+      _colorModeKey,
+      mode == SyllableColorMode.single ? 'single' : 'multi',
+    );
   }
 }

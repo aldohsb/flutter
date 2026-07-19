@@ -5,6 +5,7 @@ import '../services/storage_service.dart';
 import '../services/audio_service.dart';
 import 'level_selection_screen.dart';
 import 'review_screen.dart';
+import 'mistake_words_screen.dart';
 import 'user_selection_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -280,6 +281,37 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                                     Icon(Icons.replay),
                                     SizedBox(width: 8),
                                     Text('Review Kata'),
+                                  ],
+                                ),
+                              ),
+
+                              const SizedBox(height: 16),
+
+                              // Mistake Words Button
+                              OutlinedButton(
+                                onPressed: () async {
+                                  await AudioService.instance.playClickSound();
+                                  if (!context.mounted) return;
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => MistakeWordsScreen(user: widget.user),
+                                    ),
+                                  );
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  minimumSize: const Size(double.infinity, 56),
+                                  foregroundColor: AppTheme.wrongRed,
+                                  side: const BorderSide(
+                                    color: AppTheme.wrongRed,
+                                    width: 2,
+                                  ),
+                                ),
+                                child: const Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.error_outline),
+                                    SizedBox(width: 8),
+                                    Text('Kata Perlu Diulang'),
                                   ],
                                 ),
                               ),

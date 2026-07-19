@@ -1,0 +1,1 @@
+enum SyllableColorMode { multi, single }

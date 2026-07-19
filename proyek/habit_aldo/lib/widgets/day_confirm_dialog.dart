@@ -102,7 +102,7 @@ class _HabitConfirmRow extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         color: value
-            ? AppTheme.sage200.withOpacity(0.5)
+            ? AppTheme.sage200.withValues(alpha: 0.5)
             : Colors.white,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(

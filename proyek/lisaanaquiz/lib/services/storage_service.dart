@@ -57,6 +57,7 @@ class StorageService {
   Future<void> deleteUser(String userId) async {
     await _prefs?.remove('user_$userId');
     await _prefs?.remove('progress_list_$userId');
+    await _prefs?.remove('wrong_words_$userId');
     
     final currentUserId = _prefs?.getString('current_user_id');
     if (currentUserId == userId) {
@@ -124,6 +125,34 @@ class StorageService {
 
   Future<bool> isSoundEnabled() async {
     return _prefs?.getBool('sound_enabled') ?? true;
+  }
+
+  // Wrong Answer Words (kata yang pernah salah dijawab di kuis)
+  Future<void> addWrongWord(String userId, int wordId) async {
+    final ids = await getWrongWordIds(userId);
+    if (!ids.contains(wordId)) {
+      ids.add(wordId);
+      await _prefs?.setString('wrong_words_$userId', jsonEncode(ids));
+    }
+  }
+
+  Future<void> removeWrongWord(String userId, int wordId) async {
+    final ids = await getWrongWordIds(userId);
+    if (ids.remove(wordId)) {
+      await _prefs?.setString('wrong_words_$userId', jsonEncode(ids));
+    }
+  }
+
+  Future<List<int>> getWrongWordIds(String userId) async {
+    final jsonStr = _prefs?.getString('wrong_words_$userId');
+    if (jsonStr == null) return [];
+
+    final List<dynamic> jsonList = jsonDecode(jsonStr);
+    return jsonList.map((e) => e as int).toList();
+  }
+
+  Future<void> clearWrongWords(String userId) async {
+    await _prefs?.remove('wrong_words_$userId');
   }
 
   // Clear all data

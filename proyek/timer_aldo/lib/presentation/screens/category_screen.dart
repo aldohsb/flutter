@@ -32,14 +32,14 @@ class CategoryScreen extends StatelessWidget {
               return Card(
                 margin: const EdgeInsets.only(bottom: 12),
                 color: isSelected
-                    ? category.color.withOpacity(0.1)
+                    ? category.color.withValues(alpha: 0.1)
                     : null,
                 child: ListTile(
                   leading: Container(
                     width: 40,
                     height: 40,
                     decoration: BoxDecoration(
-                      color: category.color.withOpacity(0.2),
+                      color: category.color.withValues(alpha: 0.2),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(

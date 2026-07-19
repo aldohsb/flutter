@@ -198,7 +198,7 @@ class AppTheme {
     end: Alignment.bottomRight,
     colors: [
       Colors.white,
-      paleGreen.withOpacity(0.3),
+      paleGreen.withValues(alpha: 0.3),
     ],
   );
 
@@ -214,7 +214,7 @@ class AppTheme {
   // Box Shadows
   static List<BoxShadow> get cardShadow => [
     BoxShadow(
-      color: primaryGreen.withOpacity(0.2),
+      color: primaryGreen.withValues(alpha: 0.2),
       blurRadius: 12,
       offset: const Offset(0, 4),
     ),
@@ -222,7 +222,7 @@ class AppTheme {
 
   static List<BoxShadow> get elevatedShadow => [
     BoxShadow(
-      color: Colors.black.withOpacity(0.15),
+      color: Colors.black.withValues(alpha: 0.15),
       blurRadius: 20,
       offset: const Offset(0, 8),
     ),
@@ -244,12 +244,12 @@ class AppTheme {
     color: Colors.white,
     borderRadius: BorderRadius.circular(20),
     border: Border.all(
-      color: accentGold.withOpacity(0.3),
+      color: accentGold.withValues(alpha: 0.3),
       width: 2,
     ),
     boxShadow: [
       BoxShadow(
-        color: primaryGreen.withOpacity(0.1),
+        color: primaryGreen.withValues(alpha: 0.1),
         blurRadius: 15,
         offset: const Offset(0, 5),
       ),

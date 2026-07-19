@@ -58,11 +58,11 @@ class TimerDisplay extends StatelessWidget {
             width: 12,
             height: 12,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.8),
+              color: color.withValues(alpha: 0.8),
               shape: BoxShape.circle,
               boxShadow: [
                 BoxShadow(
-                  color: color.withOpacity(0.4),
+                  color: color.withValues(alpha: 0.4),
                   blurRadius: 8,
                   spreadRadius: 2,
                 ),

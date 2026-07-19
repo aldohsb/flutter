@@ -242,7 +242,7 @@ class _UserCard extends StatelessWidget {
             color: Colors.white,
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: AppTheme.lightGreen.withOpacity(0.3),
+              color: AppTheme.lightGreen.withValues(alpha: 0.3),
               width: 1.5,
             ),
             boxShadow: AppTheme.cardShadow,

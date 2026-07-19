@@ -62,7 +62,7 @@ class _CompactCard extends StatelessWidget {
     return Card(
       margin: EdgeInsets.zero,
       elevation: 2,
-      shadowColor: Colors.black.withOpacity(0.08),
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -82,7 +82,7 @@ class _CompactCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(3),
                   boxShadow: [
                     BoxShadow(
-                      color: Color(project.colorValue).withOpacity(0.3),
+                      color: Color(project.colorValue).withValues(alpha: 0.3),
                       blurRadius: 4,
                       offset: const Offset(0, 1),
                     ),
@@ -218,7 +218,7 @@ class _FullCard extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 3,
-      shadowColor: Colors.black.withOpacity(0.08),
+      shadowColor: Colors.black.withValues(alpha: 0.08),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),
       ),
@@ -240,7 +240,7 @@ class _FullCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(3),
                       boxShadow: [
                         BoxShadow(
-                          color: Color(project.colorValue).withOpacity(0.3),
+                          color: Color(project.colorValue).withValues(alpha: 0.3),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),

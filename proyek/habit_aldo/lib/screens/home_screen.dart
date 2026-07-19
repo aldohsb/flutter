@@ -223,10 +223,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                                       padding: const EdgeInsets.symmetric(
                                           horizontal: 8, vertical: 3),
                                       decoration: BoxDecoration(
-                                        color: color.withOpacity(0.12),
+                                        color: color.withValues(alpha: 0.12),
                                         borderRadius: BorderRadius.circular(20),
                                         border: Border.all(
-                                            color: color.withOpacity(0.4)),
+                                            color: color.withValues(alpha: 0.4)),
                                       ),
                                       child: Text(
                                         '${pct.toStringAsFixed(0)}%',

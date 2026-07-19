@@ -106,7 +106,7 @@ class _CategoryCard extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          '$completed/${kLevelsPerCategory} level',
+                          '$completed/$kLevelsPerCategory level',
                           style: const TextStyle(fontSize: 11.5, color: AppColors.inkFaint, fontWeight: FontWeight.w600),
                         ),
                         const Spacer(),

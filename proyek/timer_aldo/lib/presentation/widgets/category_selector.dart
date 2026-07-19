@@ -52,10 +52,10 @@ class CategorySelector extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: isSelected
-                ? category.color.withOpacity(0.2)
+                ? category.color.withValues(alpha: 0.2)
                 : Colors.transparent,
             border: Border.all(
-              color: isSelected ? category.color : Colors.grey.withOpacity(0.3),
+              color: isSelected ? category.color : Colors.grey.withValues(alpha: 0.3),
               width: isSelected ? 2 : 1,
             ),
             borderRadius: BorderRadius.circular(24),

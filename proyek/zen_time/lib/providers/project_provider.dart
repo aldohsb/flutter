@@ -44,7 +44,7 @@ class ProjectProvider extends ChangeNotifier {
       id: const Uuid().v4(),
       name: name,
       description: description,
-      colorValue: color.value,
+      colorValue: color.toARGB32(),
       dailyTargetHours: dailyTargetHours,
       weeklyTargetHours: weeklyTargetHours,
       createdAt: DateTime.now(),
@@ -71,7 +71,7 @@ class ProjectProvider extends ChangeNotifier {
       final updatedProject = project.copyWith(
         name: name,
         description: description,
-        colorValue: color.value,
+        colorValue: color.toARGB32(),
         dailyTargetHours: dailyTargetHours,
         weeklyTargetHours: weeklyTargetHours,
         weekStartDay: weekStartDay,

@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                Text(
+                const Text(
                   'Belajar Hiragana, Katakana, dan Kanji\ndengan tenang, selangkah demi selangkah.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14, color: AppColors.inkSoft, height: 1.5),

@@ -34,7 +34,7 @@ class LevelSelectScreen extends StatelessWidget {
               children: [
                 SectionHeader(
                   title: 'Pilih Level',
-                  subtitle: '$completed/${kLevelsPerCategory} level selesai • $stars bintang',
+                  subtitle: '$completed/$kLevelsPerCategory level selesai • $stars bintang',
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 Expanded(

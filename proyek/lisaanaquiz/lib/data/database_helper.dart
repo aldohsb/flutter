@@ -26,6 +26,12 @@ class DatabaseHelper {
     return allWords.where((word) => word.rank < (100 + (currentLevel ~/ 20) * 100)).toList();
   }
 
+  // Get words by list of IDs
+  List<WordModel> getWordsByIds(List<int> ids) {
+    final allWords = getAllWords();
+    return allWords.where((word) => ids.contains(word.id)).toList();
+  }
+
   // Search words
   List<WordModel> searchWords(String query) {
     final allWords = getAllWords();

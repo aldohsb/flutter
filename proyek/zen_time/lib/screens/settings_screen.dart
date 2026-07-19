@@ -69,7 +69,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: AppConstants.primaryColor.withOpacity(0.15),
+                          color: AppConstants.primaryColor.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
@@ -108,7 +108,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Container(
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: AppConstants.primaryColor.withOpacity(0.1),
+                      color: AppConstants.primaryColor.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -172,7 +172,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Container(
                         padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
-                          color: AppConstants.accentColor.withOpacity(0.15),
+                          color: AppConstants.accentColor.withValues(alpha: 0.15),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: const Icon(
@@ -249,7 +249,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           
           // Info Card
           Card(
-            color: AppConstants.primaryColor.withOpacity(0.1),
+            color: AppConstants.primaryColor.withValues(alpha: 0.1),
             child: const Padding(
               padding: EdgeInsets.all(16),
               child: Row(

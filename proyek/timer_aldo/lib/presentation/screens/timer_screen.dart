@@ -122,7 +122,7 @@ class _TimerScreenState extends State<TimerScreen> with WindowListener {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.95),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor.withValues(alpha: 0.95),
       body: Consumer3<TimerProvider, CategoryProvider, SettingsProvider>(
         builder: (context, timerProvider, categoryProvider, settingsProvider, _) {
           final selectedCategory = categoryProvider.selectedCategory;
@@ -163,7 +163,7 @@ class _TimerScreenState extends State<TimerScreen> with WindowListener {
                           vertical: 6,
                         ),
                         decoration: BoxDecoration(
-                          color: selectedCategory.color.withOpacity(0.2),
+                          color: selectedCategory.color.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(

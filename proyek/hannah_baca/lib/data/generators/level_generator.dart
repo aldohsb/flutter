@@ -8,26 +8,30 @@ import '../wordbank/word_bank.dart';
 class LevelGenerator {
   LevelGenerator._();
 
-  // Deterministic (seeded) agar konten level konsisten tiap dibuka
+  // 50% dari kelompok saat ini, 50% dari gabungan kelompok sebelumnya,
+  // lalu diacak (seeded per level agar konsisten tiap dibuka)
   static List<PageData> generatePages(int level) {
     final config = LevelConfig.fromLevel(level);
-    final pool = _combinedPool(config.activeTiers);
+    final group = WordBank.groupAt(config.groupIndex);
+    final previousPool = WordBank.previousPool(config.groupIndex);
     final random = Random(level * 7919);
-    final pages = <PageData>[];
 
-    for (var i = 0; i < AppConstants.pagesPerLevel; i++) {
-      final words = _pickWords(pool, config.wordsPerPage, random);
-      pages.add(PageData(pageIndex: i, words: words));
-    }
-    return pages;
-  }
+    const totalPages = AppConstants.pagesPerLevel;
+    final half = totalPages ~/ 2;
 
-  static List<WordEntry> _combinedPool(List<int> tiers) {
-    final pool = <WordEntry>[];
-    for (final tier in tiers) {
-      pool.addAll(WordBank.byTier(tier));
+    final slots = <WordEntry>[];
+    if (previousPool.isEmpty) {
+      slots.addAll(_pickWords(group.words, totalPages, random));
+    } else {
+      slots.addAll(_pickWords(group.words, half, random));
+      slots.addAll(_pickWords(previousPool, totalPages - half, random));
     }
-    return pool;
+    slots.shuffle(random);
+
+    return [
+      for (var i = 0; i < slots.length; i++)
+        PageData(pageIndex: i, words: [slots[i]]),
+    ];
   }
 
   static List<WordEntry> _pickWords(
