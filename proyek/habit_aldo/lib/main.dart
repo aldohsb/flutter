@@ -5,6 +5,7 @@ import 'models/habit.dart';
 import 'models/weight_entry.dart';
 import 'models/earning_entry.dart';
 import 'models/calorie_entry.dart';
+import 'models/expense_entry.dart';
 import 'app.dart';
 
 void main() async {
@@ -20,6 +21,8 @@ void main() async {
   Hive.registerAdapter(CalorieEntryAdapter());
   Hive.registerAdapter(CalorieGoalAdapter());
   Hive.registerAdapter(CustomFoodAdapter());
+  Hive.registerAdapter(ExpenseEntryAdapter());
+  Hive.registerAdapter(CustomExpenseItemAdapter());
 
   runApp(const AppProviders());
 }

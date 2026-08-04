@@ -6,6 +6,7 @@ import 'app_constants.dart';
 import 'app_theme.dart';
 import 'category_screen.dart';
 import 'gradient_scaffold_background.dart';
+import 'mistake_review_screen.dart';
 import 'progress_service.dart';
 import 'quiz_category.dart';
 
@@ -53,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                const Text(
+                Text(
                   'Belajar Hiragana, Katakana, dan Kanji\ndengan tenang, selangkah demi selangkah.',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 14, color: AppColors.inkSoft, height: 1.5),
@@ -86,6 +87,18 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                     child: const Text('Mulai Belajar'),
+                  ),
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const MistakeReviewScreen()),
+                      );
+                    },
+                    child: const Text('Aksara Perlu Diulang'),
                   ),
                 ),
                 const Spacer(flex: 4),

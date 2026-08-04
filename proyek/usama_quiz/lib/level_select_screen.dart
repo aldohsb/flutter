@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'app_colors.dart';
 import 'app_constants.dart';
+import 'character_list_screen.dart';
 import 'gradient_scaffold_background.dart';
 import 'level_tile.dart';
 import 'progress_service.dart';
@@ -24,7 +25,20 @@ class LevelSelectScreen extends StatelessWidget {
     final stars = progressService.totalStars(category);
 
     return Scaffold(
-      appBar: AppBar(title: Text(category.displayName)),
+      appBar: AppBar(
+        title: Text(category.displayName),
+        actions: [
+          IconButton(
+            tooltip: 'Daftar Aksara',
+            icon: const Icon(Icons.menu_book_rounded),
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => CharacterListScreen(category: category)),
+              );
+            },
+          ),
+        ],
+      ),
       body: GradientScaffoldBackground(
         child: SafeArea(
           child: Padding(
@@ -34,7 +48,7 @@ class LevelSelectScreen extends StatelessWidget {
               children: [
                 SectionHeader(
                   title: 'Pilih Level',
-                  subtitle: '$completed/$kLevelsPerCategory level selesai • $stars bintang',
+                  subtitle: '$completed/${kLevelsPerCategory} level selesai • $stars bintang',
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 Expanded(

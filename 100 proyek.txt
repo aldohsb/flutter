@@ -6,16 +6,20 @@ mulai dari inisialisasi proyek
 sertakan code bash touch mkdir untuk membuat struktur file lengkap semua file termasuk di root.
 tidak usah pakai demo tampilan, tidak usah pakai README.MD,
 
-code dalam code block Markdown, dengan komentar pada semua baris code sebagai narasi video guru sedang melakukan Code walkthrough 
-sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya yang unik di app tersebut, sertakan juga  3-7 keyword inti, terms dan teknologi di app ini.
+buat code dalam beberapa 10 part dengan tahapan seperti professional atau real developer akan mengembangkan app ini, jelaskan alurnya,  apa dulu yang dibuat kemudian selanjutnya bagian mana hingga akhir finalisasinya
+Intinya proyek ini tujuan utamanya buat belajar, jadi optimalkan untuk pemahaman maksimal belajar flutter
+setiap tahap harus sudah bisa langsung dilihat hasilnya.
+mulai dari tahap 1 dulu, 
 
+code dalam code block Markdown, dengan komentar pada semua baris code sebagai narasi video guru sedang melakukan Code walkthrough 
+sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika algoritmanya yang unik di app tersebut pada part tersebut.
 
 Buatkan panduan  dan file lengkap proyek Flutter berikut ini :
-
+nama app :
 
 
 #############
-buatkan panduan flutter yang selesai dibaca dan dipahami selama 20 menit
+buatkan panduan flutter yang selesai dibaca dan dipahami selama 20 menit, materi di artefact, dokumen markdown
 berikan section berikutnya:
 - Teori Lengkap dan Mendalam
 - Contoh Kode Flutter (beserta komentar penjelasan baris per baris di dalam code)
@@ -52,29 +56,7 @@ Bahasa Indonesia, tema visual hijau sage, ada progress bar & skor
 
 ## 🟢 BAGIAN 1 — BEGINNER (No. 1–20)
 
-**1. Tapzo** *(Counter App)*
-- Deskripsi singkat: Aplikasi counter klasik untuk mengenal struktur dasar project Flutter.
-- Perkiraan LOC total: ~80 (1 part)
-- Teknologi : —
-- ## `setState`, Material widgets dasar, Hot reload
 
-**2. Listivo** *(Todo List App)*
-- Deskripsi singkat: Daftar tugas sederhana dengan tambah/hapus/centang item.
-- Perkiraan LOC total: ~150 (1 part)
-- Teknologi : setState, Material widgets
-- ## `ListView`, `TextEditingController`, `Dismissible`
-
-**3. Konverto** *(Unit Converter App)*
-- Deskripsi singkat: Konversi satuan panjang, berat, dan suhu.
-- Perkiraan LOC total: ~200 (1 part)
-- Teknologi : setState, ListView
-- ## `DropdownButton`, Form validation, `TextFormField`
-
-**4. Bimiku** *(BMI Calculator App)*
-- Deskripsi singkat: Hitung indeks massa tubuh dengan input slider interaktif.
-- Perkiraan LOC total: ~250 (1 part)
-- Teknologi : Form validation, TextFormField
-- ## `Slider`, custom number formatting, `AlertDialog`
 
 **5. Quipster** *(Quote Generator App)*
 - Deskripsi singkat: Menampilkan kutipan acak dengan transisi animasi halus.
@@ -719,3 +701,31 @@ sertakan juga 1 dokumen khusus di artifact, penjelasan code, jelaskan logika alg
 Proyek Flutter untuk web, android dan windows di bawah ini:
 
 
+
+
+
+
+
+**1. Tapzo** *(Counter App)*
+- Deskripsi singkat: Aplikasi counter klasik untuk mengenal struktur dasar project Flutter.
+- Perkiraan LOC total: ~80 (1 part)
+- Teknologi : —
+- ## `setState`, Material widgets dasar, Hot reload
+
+**2. Listivo** *(Todo List App)*
+- Deskripsi singkat: Daftar tugas sederhana dengan tambah/hapus/centang item.
+- Perkiraan LOC total: ~150 (1 part)
+- Teknologi : setState, Material widgets
+- ## `ListView`, `TextEditingController`, `Dismissible`
+
+**3. Konverto** *(Unit Converter App)*
+- Deskripsi singkat: Konversi satuan panjang, berat, dan suhu.
+- Perkiraan LOC total: ~200 (1 part)
+- Teknologi : setState, ListView
+- ## `DropdownButton`, Form validation, `TextFormField`
+
+**4. Bimiku** *(BMI Calculator App)*
+- Deskripsi singkat: Hitung indeks massa tubuh dengan input slider interaktif.
+- Perkiraan LOC total: ~250 (1 part)
+- Teknologi : Form validation, TextFormField
+- ## `Slider`, custom number formatting, `AlertDialog`

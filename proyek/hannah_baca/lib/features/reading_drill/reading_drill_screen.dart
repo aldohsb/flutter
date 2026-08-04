@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../core/constants/color_mode.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/theme/app_text_styles.dart';
 import '../../services/tts_service.dart';
+import '../../state/font_scale_provider.dart';
 import '../../state/level_provider.dart';
 import '../../state/page_progress_provider.dart';
 import '../../state/settings_provider.dart';
@@ -66,6 +68,7 @@ class _ReadingDrillScreenState extends ConsumerState<ReadingDrillScreen> {
   Widget build(BuildContext context) {
     final pages = ref.watch(levelPagesProvider(widget.level));
     final colorMode = ref.watch(colorModeProvider);
+    final fontScale = ref.watch(fontScaleProvider);
     final isLast = _pageIndex == pages.length - 1;
 
     return Scaffold(
@@ -89,7 +92,25 @@ class _ReadingDrillScreenState extends ConsumerState<ReadingDrillScreen> {
           child: Column(
             children: [
               DrillProgressBar(currentPage: _pageIndex, totalPages: pages.length),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    tooltip: 'Perkecil huruf',
+                    onPressed: () => ref.read(fontScaleProvider.notifier).decrease(),
+                    icon: const Icon(Icons.zoom_out_rounded),
+                    color: AppColors.textDark,
+                  ),
+                  Text('${(fontScale * 100).round()}%', style: AppTextStyles.body),
+                  IconButton(
+                    tooltip: 'Perbesar huruf',
+                    onPressed: () => ref.read(fontScaleProvider.notifier).increase(),
+                    icon: const Icon(Icons.zoom_in_rounded),
+                    color: AppColors.textDark,
+                  ),
+                ],
+              ),
               Expanded(
                 child: Row(
                   children: [

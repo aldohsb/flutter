@@ -85,6 +85,7 @@ class QuizGeneratorService {
 
       questions.add(
         QuizQuestion(
+          target: target,
           promptText: promptText,
           direction: direction,
           options: options,

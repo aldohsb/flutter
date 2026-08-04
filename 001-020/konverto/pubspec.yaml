@@ -1,0 +1,31 @@
+# Nama unik package/aplikasi, dipakai sebagai prefix import antar file
+name: konverto
+# Deskripsi singkat aplikasi, muncul di pub.dev jika dipublikasikan
+description: "Konverto - aplikasi konversi satuan panjang, berat, dan suhu."
+# Cegah proyek ini ter-publish tidak sengaja ke pub.dev
+publish_to: 'none'
+# Versi aplikasi format major.minor.patch+buildNumber
+version: 1.0.0+1
+
+# Batas versi Dart SDK minimum yang kompatibel dengan fitur terbaru 2026
+environment:
+  sdk: '^3.9.0'
+
+# Daftar dependency utama yang dipakai aplikasi saat runtime
+dependencies:
+  flutter:
+    sdk: flutter
+  # Paket ikon bawaan Cupertino, dipakai untuk konsistensi lintas platform
+  cupertino_icons: ^1.0.8
+
+# Daftar dependency yang hanya dipakai saat development/testing
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # Kumpulan aturan lint resmi Flutter agar kode tetap rapi & modern
+  flutter_lints: ^5.0.0
+
+# Konfigurasi tambahan khusus Flutter
+flutter:
+  # Aktifkan penggunaan font & ikon Material Design bawaan
+  uses-material-design: true

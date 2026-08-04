@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(Icons.auto_stories_rounded,
-                    size: 100, color: AppColors.primary),
+                    size: 90, color: AppColors.primary),
                 const SizedBox(height: 16),
                 Text(AppConstants.appName, style: AppTextStyles.title),
                 const SizedBox(height: 8),
@@ -30,7 +30,20 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 40),
                 ElevatedButton(
                   onPressed: () => context.push('/levels'),
-                  child: const Text('Mulai Belajar'),
+                  child: const Text('Belajar Membaca'),
+                ),
+                const SizedBox(height: 16),
+                OutlinedButton(
+                  onPressed: () => context.push('/hijaiyah-levels'),
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    side: const BorderSide(color: AppColors.primary, width: 2),
+                    textStyle: AppTextStyles.heading,
+                  ),
+                  child: const Text('Belajar Huruf Hijaiyah'),
                 ),
               ],
             ),

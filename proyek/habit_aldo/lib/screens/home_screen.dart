@@ -4,11 +4,13 @@ import 'package:intl/intl.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../providers/habit_provider.dart';
+import '../providers/settings_provider.dart';
 import '../theme/app_theme.dart';
 import '../widgets/habit_tile.dart';
 import '../widgets/weight_tracker_card.dart';
 import '../widgets/earning_tracker_card.dart';
 import '../widgets/calorie_tracker_card.dart';
+import '../widgets/expense_tracker_card.dart';
 import '../widgets/day_confirm_dialog.dart';
 import 'data_management_screen.dart';
 import 'stats_screen.dart';
@@ -126,6 +128,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     ),
                   ),
                   IconButton(
+                    icon: const Icon(Icons.tune_rounded,
+                        color: AppTheme.sage600),
+                    onPressed: () => _showSectionVisibilitySheet(context),
+                    tooltip: 'Atur Section',
+                  ),
+                  IconButton(
                     icon: const Icon(Icons.bar_chart_rounded,
                         color: AppTheme.sage600),
                     onPressed: () => Navigator.push(
@@ -152,9 +160,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
           // ── Scrollable content ──
           Expanded(
-            child: Consumer<HabitProvider>(
-              builder: (context, hp, _) {
+            child: Consumer2<HabitProvider, SettingsProvider>(
+              builder: (context, hp, settings, _) {
                 final habits = hp.habits;
+                final showHabits = settings.isVisible('habits');
 
                 return ReorderableListView(
                   // Header widgets (non-reorderable)
@@ -164,106 +173,161 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       const SizedBox(height: 8),
 
                       // Weight tracker
-                      const WeightTrackerCard()
-                          .animate()
-                          .fadeIn(duration: 300.ms)
-                          .slideY(begin: 0.05, duration: 300.ms),
+                      if (settings.isVisible('weight'))
+                        const WeightTrackerCard()
+                            .animate()
+                            .fadeIn(duration: 300.ms)
+                            .slideY(begin: 0.05, duration: 300.ms),
 
                       // Earning tracker
-                      const EarningTrackerCard()
-                          .animate()
-                          .fadeIn(duration: 300.ms, delay: 60.ms)
-                          .slideY(
-                              begin: 0.05,
-                              duration: 300.ms,
-                              delay: 60.ms),
+                      if (settings.isVisible('earning'))
+                        const EarningTrackerCard()
+                            .animate()
+                            .fadeIn(duration: 300.ms, delay: 60.ms)
+                            .slideY(
+                                begin: 0.05,
+                                duration: 300.ms,
+                                delay: 60.ms),
 
                       // Calorie tracker
-                      const CalorieTrackerCard()
-                          .animate()
-                          .fadeIn(duration: 300.ms, delay: 120.ms)
-                          .slideY(
-                              begin: 0.05,
-                              duration: 300.ms,
-                              delay: 120.ms),
+                      if (settings.isVisible('calorie'))
+                        const CalorieTrackerCard()
+                            .animate()
+                            .fadeIn(duration: 300.ms, delay: 120.ms)
+                            .slideY(
+                                begin: 0.05,
+                                duration: 300.ms,
+                                delay: 120.ms),
 
-                      // Section header
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 16, 16, 8),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Habits Hari Ini',
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                            const Spacer(),
-                            Builder(builder: (_) {
-                              final done = habits
-                                  .where((h) => h.isCompletedOn(today))
-                                  .length;
-                              final total = habits.length;
-                              final pct = total > 0
-                                  ? done / total * 100
-                                  : 0.0;
-                              final color = total == 0
-                                  ? AppTheme.stone300
-                                  : AppTheme.completionColor(pct);
-                              return Row(
-                                children: [
-                                  Text(
-                                    '$done / $total',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium
-                                        ?.copyWith(color: AppTheme.stone500),
-                                  ),
-                                  if (total > 0) ...[
-                                    const SizedBox(width: 6),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 8, vertical: 3),
-                                      decoration: BoxDecoration(
-                                        color: color.withValues(alpha: 0.12),
-                                        borderRadius: BorderRadius.circular(20),
-                                        border: Border.all(
-                                            color: color.withValues(alpha: 0.4)),
-                                      ),
-                                      child: Text(
-                                        '${pct.toStringAsFixed(0)}%',
-                                        style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w700,
-                                          color: color,
+                      // Expense tracker
+                      if (settings.isVisible('expense'))
+                        const ExpenseTrackerCard()
+                            .animate()
+                            .fadeIn(duration: 300.ms, delay: 160.ms)
+                            .slideY(
+                                begin: 0.05,
+                                duration: 300.ms,
+                                delay: 160.ms),
+
+                      // Habits Hari Ini section
+                      if (showHabits) ...[
+                        // Section header
+                        Padding(
+                          padding:
+                              const EdgeInsets.fromLTRB(20, 16, 16, 8),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Habits Hari Ini',
+                                style:
+                                    Theme.of(context).textTheme.titleLarge,
+                              ),
+                              const Spacer(),
+                              Builder(builder: (_) {
+                                final done = habits
+                                    .where((h) => h.isCompletedOn(today))
+                                    .length;
+                                final total = habits.length;
+                                final pct = total > 0
+                                    ? done / total * 100
+                                    : 0.0;
+                                final color = total == 0
+                                    ? AppTheme.stone300
+                                    : AppTheme.completionColor(pct);
+                                return Row(
+                                  children: [
+                                    Text(
+                                      '$done / $total',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium
+                                          ?.copyWith(
+                                              color: AppTheme.stone500),
+                                    ),
+                                    if (total > 0) ...[
+                                      const SizedBox(width: 6),
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8, vertical: 3),
+                                        decoration: BoxDecoration(
+                                          color:
+                                              color.withValues(alpha: 0.12),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          border: Border.all(
+                                              color: color.withValues(
+                                                  alpha: 0.4)),
+                                        ),
+                                        child: Text(
+                                          '${pct.toStringAsFixed(0)}%',
+                                          style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w700,
+                                            color: color,
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ],
-                                ],
-                              );
-                            }),
-                          ],
+                                );
+                              }),
+                            ],
+                          ),
                         ),
-                      ),
 
-                      // Empty state
-                      if (habits.isEmpty)
+                        // Empty state
+                        if (habits.isEmpty)
+                          Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  const Text('🌱',
+                                      style: TextStyle(fontSize: 40)),
+                                  const SizedBox(height: 12),
+                                  Text(
+                                    'Belum ada habit.',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium,
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    'Tambah habit pertama kamu di bawah.',
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+
+                      // Semua section disembunyikan
+                      if (!settings.isVisible('weight') &&
+                          !settings.isVisible('earning') &&
+                          !settings.isVisible('calorie') &&
+                          !settings.isVisible('expense') &&
+                          !showHabits)
                         Padding(
                           padding: const EdgeInsets.all(32),
                           child: Center(
                             child: Column(
                               children: [
-                                const Text('🌱',
+                                const Text('👀',
                                     style: TextStyle(fontSize: 40)),
                                 const SizedBox(height: 12),
                                 Text(
-                                  'Belum ada habit.',
+                                  'Semua section disembunyikan',
                                   style: Theme.of(context)
                                       .textTheme
                                       .titleMedium,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Tambah habit pertama kamu di bawah.',
+                                  'Tap ikon pengatur di atas untuk memunculkannya kembali.',
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium,
@@ -301,17 +365,19 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   },
 
                   // Habit items
-                  children: habits
-                      .asMap()
-                      .entries
-                      .map(
-                        (e) => HabitTile(
-                          key: ValueKey(e.value.id),
-                          habit: e.value,
-                          index: e.key,
-                        ),
-                      )
-                      .toList(),
+                  children: showHabits
+                      ? habits
+                          .asMap()
+                          .entries
+                          .map(
+                            (e) => HabitTile(
+                              key: ValueKey(e.value.id),
+                              habit: e.value,
+                              index: e.key,
+                            ),
+                          )
+                          .toList()
+                      : const [],
                 );
               },
             ),
@@ -326,6 +392,70 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         label: const Text('Habit Baru'),
         backgroundColor: AppTheme.sage600,
         foregroundColor: Colors.white,
+      ),
+    );
+  }
+
+  void _showSectionVisibilitySheet(BuildContext context) {
+    const icons = {
+      'weight': Icons.monitor_weight_rounded,
+      'earning': Icons.payments_rounded,
+      'calorie': Icons.local_fire_department_rounded,
+      'expense': Icons.receipt_long_rounded,
+      'habits': Icons.check_circle_rounded,
+    };
+
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppTheme.stone100,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 20),
+          child: Consumer<SettingsProvider>(
+            builder: (ctx, settings, _) => Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    margin: const EdgeInsets.only(bottom: 16),
+                    decoration: BoxDecoration(
+                      color: AppTheme.stone300,
+                      borderRadius: BorderRadius.circular(4),
+                    ),
+                  ),
+                ),
+                Text('Atur Section Home',
+                    style: Theme.of(ctx).textTheme.titleLarge),
+                const SizedBox(height: 4),
+                Text(
+                  'Sembunyikan atau munculkan section yang kamu butuhkan.',
+                  style: Theme.of(ctx).textTheme.bodyMedium,
+                ),
+                const SizedBox(height: 12),
+                ...SettingsProvider.sectionLabels.entries.map((entry) {
+                  final key = entry.key;
+                  final label = entry.value;
+                  final visible = settings.isVisible(key);
+                  return SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    activeColor: AppTheme.sage600,
+                    secondary: Icon(icons[key], color: AppTheme.sage600),
+                    title: Text(label,
+                        style: Theme.of(ctx).textTheme.bodyLarge),
+                    value: visible,
+                    onChanged: (val) => settings.setVisible(key, val),
+                  );
+                }),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

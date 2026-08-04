@@ -5,6 +5,9 @@ import 'app_colors.dart';
 class AppTextStyles {
   AppTextStyles._();
 
+  static const double baseSyllableFontSize = 64;
+  static const double baseHijaiyahFontSize = 96;
+
   static TextStyle get title => GoogleFonts.fredoka(
         fontSize: 28,
         fontWeight: FontWeight.w600,
@@ -22,10 +25,14 @@ class AppTextStyles {
         color: AppColors.textDark,
       );
 
-  // Diperbesar dari 42 -> 64 agar lebih jelas dibaca anak TK
-  static TextStyle get syllable => GoogleFonts.fredoka(
-        fontSize: 90,
+  static TextStyle syllableScaled(double scale) => GoogleFonts.fredoka(
+        fontSize: baseSyllableFontSize * scale,
         fontWeight: FontWeight.w600,
         height: 1.15,
+      );
+
+  static TextStyle hijaiyahScaled(double scale) => GoogleFonts.notoNaskhArabic(
+        fontSize: baseHijaiyahFontSize * scale,
+        fontWeight: FontWeight.w600,
       );
 }

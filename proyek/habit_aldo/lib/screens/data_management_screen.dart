@@ -11,6 +11,7 @@ import 'package:intl/intl.dart';
 import '../providers/habit_provider.dart';
 import '../providers/weight_provider.dart';
 import '../providers/earning_provider.dart';
+import '../providers/expense_provider.dart';
 import '../theme/app_theme.dart';
 
 class DataManagementScreen extends StatelessWidget {
@@ -104,6 +105,12 @@ class DataManagementScreen extends StatelessWidget {
                       label: 'Data Earning',
                       value: '${ep.entries.length} entri'),
                 ),
+                const Divider(height: 16),
+                Consumer<ExpenseProvider>(
+                  builder: (_, exp, __) => _InfoRow(
+                      label: 'Data Pengeluaran',
+                      value: '${exp.entries.length} entri'),
+                ),
               ],
             ),
           ),
@@ -116,6 +123,7 @@ class DataManagementScreen extends StatelessWidget {
     final hp = context.read<HabitProvider>();
     final wp = context.read<WeightProvider>();
     final ep = context.read<EarningProvider>();
+    final exp = context.read<ExpenseProvider>();
 
     final data = {
       'exportedAt': DateTime.now().toIso8601String(),
@@ -123,6 +131,7 @@ class DataManagementScreen extends StatelessWidget {
       'habits': hp.exportData(),
       'weight': wp.exportData(),
       'earning': ep.exportData(),
+      'expense': exp.exportData(),
     };
 
     final jsonStr = const JsonEncoder.withIndent('  ').convert(data);
@@ -206,6 +215,7 @@ class DataManagementScreen extends StatelessWidget {
       final hp = context.read<HabitProvider>();
       final wp = context.read<WeightProvider>();
       final ep = context.read<EarningProvider>();
+      final exp = context.read<ExpenseProvider>();
 
       if (data['habits'] != null) {
         await hp.importData(data['habits'] as Map<String, dynamic>);
@@ -215,6 +225,9 @@ class DataManagementScreen extends StatelessWidget {
       }
       if (data['earning'] != null) {
         await ep.importData(data['earning'] as Map<String, dynamic>);
+      }
+      if (data['expense'] != null) {
+        await exp.importData(data['expense'] as Map<String, dynamic>);
       }
 
       if (context.mounted) {

@@ -7,6 +7,7 @@ import 'app_colors.dart';
 import 'app_constants.dart';
 import 'app_theme.dart';
 import 'gradient_scaffold_background.dart';
+import 'mistake_service.dart';
 import 'progress_service.dart';
 import 'quiz_category.dart';
 import 'quiz_generator_service.dart';
@@ -35,7 +36,6 @@ class _QuizScreenState extends State<QuizScreen> {
   String? _selectedAnswer;
   bool _showResult = false;
   int _correctCount = 0;
-  Timer? _autoNextTimer;
 
   @override
   void initState() {
@@ -43,34 +43,31 @@ class _QuizScreenState extends State<QuizScreen> {
     _questions = _generator.generateLevel(widget.category, widget.level);
   }
 
-  @override
-  void dispose() {
-    _autoNextTimer?.cancel();
-    super.dispose();
-  }
-
   QuizQuestion get _currentQuestion => _questions[_currentIndex];
   bool get _isLastQuestion => _currentIndex == _questions.length - 1;
 
   void _selectAnswer(String value) {
     if (_showResult) return;
+    final isAnswerCorrect = value == _currentQuestion.correctAnswer;
     setState(() {
       _selectedAnswer = value;
       _showResult = true;
-      if (value == _currentQuestion.correctAnswer) {
+      if (isAnswerCorrect) {
         _correctCount++;
       }
     });
 
-    _autoNextTimer?.cancel();
-    _autoNextTimer = Timer(const Duration(seconds: 2), () {
-      if (!mounted) return;
-      _goToNext();
-    });
+    // Catat statistik per-aksara (fire-and-forget, tidak menghambat UI).
+    unawaited(
+      context.read<MistakeService>().recordAnswer(
+            category: widget.category,
+            item: _currentQuestion.target,
+            wasCorrect: isAnswerCorrect,
+          ),
+    );
   }
 
   void _goToNext() {
-    _autoNextTimer?.cancel();
     if (_isLastQuestion) {
       _finishQuiz();
       return;
@@ -197,7 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       question.promptText,
                       style: isPromptJapanese
                           ? AppTheme.jpTextStyle(fontSize: 56, color: AppColors.sageDeep)
-                          : const TextStyle(
+                          : TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.w800,
                               color: AppColors.sageDeep,

@@ -1,4 +1,7 @@
 import 'package:go_router/go_router.dart';
+import '../features/hijaiyah_drill/hijaiyah_drill_screen.dart';
+import '../features/hijaiyah_level_select/hijaiyah_level_select_screen.dart';
+import '../features/hijaiyah_result/hijaiyah_result_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/level_select/level_select_screen.dart';
 import '../features/reading_drill/reading_drill_screen.dart';
@@ -27,6 +30,24 @@ class AppRouter {
         builder: (context, state) {
           final level = int.parse(state.pathParameters['level']!);
           return LevelResultScreen(level: level);
+        },
+      ),
+      GoRoute(
+        path: '/hijaiyah-levels',
+        builder: (context, state) => const HijaiyahLevelSelectScreen(),
+      ),
+      GoRoute(
+        path: '/hijaiyah-drill/:level',
+        builder: (context, state) {
+          final level = int.parse(state.pathParameters['level']!);
+          return HijaiyahDrillScreen(level: level);
+        },
+      ),
+      GoRoute(
+        path: '/hijaiyah-result/:level',
+        builder: (context, state) {
+          final level = int.parse(state.pathParameters['level']!);
+          return HijaiyahResultScreen(level: level);
         },
       ),
     ],

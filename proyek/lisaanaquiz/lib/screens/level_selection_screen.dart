@@ -35,14 +35,35 @@ class _LevelSelectionScreenState extends State<LevelSelectionScreen> {
 
     // Auto scroll to current level
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_scrollController.hasClients && highest > 1) {
-        final position = (highest - 1) * 140.0; // Approximate card height
-        _scrollController.animateTo(
-          position,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOut,
-        );
-      }
+      if (!mounted || !_scrollController.hasClients || highest <= 1) return;
+
+      // Must match the GridView's actual layout below.
+      const crossAxisCount = 2;
+      const childAspectRatio = 1.3;
+      const crossAxisSpacing = 16.0;
+      const mainAxisSpacing = 16.0;
+      const gridPadding = 16.0;
+
+      final screenWidth = MediaQuery.of(context).size.width;
+      final availableWidth =
+          screenWidth - (gridPadding * 2) - (crossAxisSpacing * (crossAxisCount - 1));
+      final cardWidth = availableWidth / crossAxisCount;
+      final cardHeight = cardWidth / childAspectRatio;
+      final rowHeight = cardHeight + mainAxisSpacing;
+
+      // Row (0-based) that contains the current/next level.
+      final rowIndex = (highest - 1) ~/ crossAxisCount;
+
+      // Scroll to one row above the target so it isn't flush against the top edge.
+      final rawOffset = (rowIndex - 1).clamp(0, rowIndex) * rowHeight;
+      final maxScroll = _scrollController.position.maxScrollExtent;
+      final targetOffset = rawOffset.clamp(0.0, maxScroll);
+
+      _scrollController.animateTo(
+        targetOffset,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeOut,
+      );
     });
   }
 

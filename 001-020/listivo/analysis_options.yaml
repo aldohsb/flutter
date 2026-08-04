@@ -1,0 +1,11 @@
+# Mewarisi seluruh aturan lint standar resmi dari package flutter_lints
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Mendorong pemakaian const di setiap constructor yang memungkinkan, demi performa
+    prefer_const_constructors: true
+    # Menjaga gaya penulisan string tetap konsisten single-quote di seluruh proyek
+    prefer_single_quotes: true
+    # Melarang import relatif yang keluar dari folder lib (menjaga batas modul)
+    avoid_relative_lib_imports: true

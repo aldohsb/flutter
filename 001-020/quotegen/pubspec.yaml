@@ -1,0 +1,28 @@
+# pubspec.yaml - file konfigurasi utama proyek Flutter
+# di sinilah kita mendaftarkan nama app, versi, dan semua dependency
+name: quotegen # nama package, harus lowercase & pakai underscore
+description: "Quotegen - Menampilkan kutipan acak dengan transisi animasi halus." # deskripsi singkat project
+publish_to: 'none' # mencegah project ini ter-publish tidak sengaja ke pub.dev
+
+version: 1.0.0+1 # versi aplikasi format major.minor.patch+buildNumber
+
+environment:
+  sdk: ^3.6.0 # versi minimum Dart SDK yang up-to-date per 2026
+
+dependencies:
+  flutter:
+    sdk: flutter # dependency inti Flutter framework, wajib ada
+
+  cupertino_icons: ^1.0.8 # ikon gaya iOS, dipakai untuk beberapa aksen ikon
+
+  # catatan: kita SENGAJA tidak menambahkan package eksternal untuk random
+  # karena dart:math (Random class) sudah cukup dan merupakan praktik terbaik
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter # dependency untuk unit & widget testing
+
+  flutter_lints: ^5.0.0 # aturan lint resmi Flutter, menjaga kode tetap rapi & modern
+
+flutter:
+  uses-material-design: true # mengaktifkan Material Icons bawaan Flutter

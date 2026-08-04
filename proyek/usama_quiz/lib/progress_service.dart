@@ -68,7 +68,7 @@ class ProgressService extends ChangeNotifier {
   }
 
   Future<void> resetAllProgress() async {
-    await _storage.clearAll();
+    await _storage.clearProgress();
     for (final category in QuizCategory.values) {
       _progress[category] = {};
     }

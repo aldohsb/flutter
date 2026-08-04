@@ -6,10 +6,13 @@ import 'package:intl/intl.dart';
 import '../providers/habit_provider.dart';
 import '../providers/weight_provider.dart';
 import '../providers/calorie_provider.dart';
+import '../providers/expense_provider.dart';
 import '../models/habit.dart';
 import '../models/weight_entry.dart';
+import '../models/expense_entry.dart';
 import '../theme/app_theme.dart';
 import '../widgets/streak_badge.dart';
+import '../widgets/expense_tracker_card.dart' show categoryColor;
 
 class StatsScreen extends StatefulWidget {
   const StatsScreen({super.key});
@@ -25,7 +28,7 @@ class _StatsScreenState extends State<StatsScreen>
   @override
   void initState() {
     super.initState();
-    _tab = TabController(length: 3, vsync: this);
+    _tab = TabController(length: 4, vsync: this);
   }
 
   @override
@@ -50,6 +53,7 @@ class _StatsScreenState extends State<StatsScreen>
             Tab(text: 'Berat Badan'),
             Tab(text: 'Habit'),
             Tab(text: 'Kalori'),
+            Tab(text: 'Pengeluaran'),
           ],
         ),
       ),
@@ -59,6 +63,7 @@ class _StatsScreenState extends State<StatsScreen>
           _WeightStatsTab(),
           _HabitStatsTab(),
           _CalorieStatsTab(),
+          _ExpenseStatsTab(),
         ],
       ),
     );
@@ -1727,6 +1732,541 @@ class _CalorieFullLog extends StatelessWidget {
                         InkWell(
                           onTap: () {
                             cp.deleteEntry(e.id);
+                          },
+                          child: const Icon(Icons.close_rounded,
+                              size: 14, color: AppTheme.stone300),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(height: 1),
+              ],
+            );
+          }),
+          const SizedBox(height: 4),
+        ],
+      ),
+    );
+  }
+
+  bool _sameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+}
+
+// ═══════════════════════════════════════════════════════════════
+// EXPENSE STATS TAB
+// ═══════════════════════════════════════════════════════════════
+
+class _ExpenseStatsTab extends StatefulWidget {
+  const _ExpenseStatsTab();
+
+  @override
+  State<_ExpenseStatsTab> createState() => _ExpenseStatsTabState();
+}
+
+class _ExpenseStatsTabState extends State<_ExpenseStatsTab> {
+  int _rangeDays = 30;
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ExpenseProvider>(
+      builder: (context, exp, _) {
+        final today = DateTime.now();
+        final from = today.subtract(Duration(days: _rangeDays - 1));
+        final dailyData = exp.dailyTotals(from, today);
+        final categoryTotals = exp.totalsByCategory(from, today);
+
+        final daysWithData = dailyData.where((d) => d.total > 0).toList();
+        final avgAmount = daysWithData.isEmpty
+            ? 0
+            : daysWithData.fold(0, (s, d) => s + d.total) ~/
+                daysWithData.length;
+        final rangeTotal = dailyData.fold(0, (s, d) => s + d.total);
+
+        return ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            // ── Summary cards ──
+            Row(
+              children: [
+                _StatMiniCard(
+                  label: 'Hari Ini',
+                  value: formatRupiah(exp.todayTotal),
+                  color: AppTheme.sage600,
+                ),
+                const SizedBox(width: 8),
+                _StatMiniCard(
+                  label: 'Rata-rata/Hari',
+                  value: formatRupiah(avgAmount),
+                  color: AppTheme.accentGold,
+                ),
+                const SizedBox(width: 8),
+                _StatMiniCard(
+                  label: 'Total $_rangeDays Hari',
+                  value: formatRupiah(rangeTotal),
+                  color: AppTheme.sage700,
+                ),
+              ],
+            ),
+            const SizedBox(height: 14),
+
+            // ── Range selector ──
+            _RangeSelector(
+              selected: _rangeDays,
+              onChanged: (v) => setState(() => _rangeDays = v),
+            ),
+            const SizedBox(height: 12),
+
+            // ── Bar chart ──
+            _ExpenseBarChart(
+              dailyData: dailyData,
+              rangeDays: _rangeDays,
+            ),
+            const SizedBox(height: 14),
+
+            // ── Category breakdown ──
+            _ExpenseCategoryBreakdown(
+              categoryTotals: categoryTotals,
+              rangeDays: _rangeDays,
+            ),
+            const SizedBox(height: 14),
+
+            // ── Full log table ──
+            _ExpenseFullLog(exp: exp),
+          ],
+        );
+      },
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Expense bar chart
+// ─────────────────────────────────────────────────────────────
+class _ExpenseBarChart extends StatelessWidget {
+  final List<DayExpenseTotal> dailyData;
+  final int rangeDays;
+
+  const _ExpenseBarChart({
+    required this.dailyData,
+    required this.rangeDays,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final step = rangeDays <= 14 ? 1 : rangeDays <= 30 ? 1 : 3;
+    final display = <DayExpenseTotal>[];
+    for (int i = 0; i < dailyData.length; i++) {
+      if (i % step == 0) display.add(dailyData[i]);
+    }
+
+    final hasData = display.any((d) => d.total > 0);
+    if (!hasData) {
+      return _EmptyChart(
+        message: 'Belum ada data pengeluaran dalam $rangeDays hari terakhir.',
+      );
+    }
+
+    final maxY = (display.map((d) => d.total).reduce((a, b) => a > b ? a : b) *
+            1.2)
+        .ceilToDouble();
+
+    return Container(
+      padding: const EdgeInsets.fromLTRB(8, 16, 16, 12),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, bottom: 14),
+            child: Text('Pengeluaran Harian',
+                style: Theme.of(context).textTheme.titleMedium),
+          ),
+          SizedBox(
+            height: 200,
+            child: BarChart(
+              BarChartData(
+                alignment: BarChartAlignment.spaceAround,
+                maxY: maxY,
+                minY: 0,
+                barTouchData: BarTouchData(
+                  touchTooltipData: BarTouchTooltipData(
+                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                      final d = display[groupIndex];
+                      return BarTooltipItem(
+                        '${DateFormat('d MMM').format(d.date)}\n',
+                        const TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w600),
+                        children: [
+                          TextSpan(
+                            text: formatRupiah(d.total),
+                            style: const TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.w700),
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+                gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: false,
+                  getDrawingHorizontalLine: (_) => const FlLine(
+                      color: AppTheme.sage200, strokeWidth: 1),
+                ),
+                borderData: FlBorderData(show: false),
+                titlesData: FlTitlesData(
+                  leftTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 44,
+                      getTitlesWidget: (v, _) => Text(
+                        v >= 1000000
+                            ? '${(v / 1000000).toStringAsFixed(1)}jt'
+                            : v >= 1000
+                                ? '${(v / 1000).toStringAsFixed(0)}rb'
+                                : v.toStringAsFixed(0),
+                        style: Theme.of(context).textTheme.labelSmall,
+                      ),
+                    ),
+                  ),
+                  bottomTitles: AxisTitles(
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 26,
+                      getTitlesWidget: (v, _) {
+                        final idx = v.toInt();
+                        if (idx < 0 || idx >= display.length) {
+                          return const SizedBox.shrink();
+                        }
+                        final labelEvery = display.length <= 10
+                            ? 1
+                            : display.length <= 20
+                                ? 3
+                                : 5;
+                        if (idx % labelEvery != 0) {
+                          return const SizedBox.shrink();
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: Text(
+                            DateFormat('d/M').format(display[idx].date),
+                            style: Theme.of(context).textTheme.labelSmall,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  rightTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
+                  topTitles: const AxisTitles(
+                      sideTitles: SideTitles(showTitles: false)),
+                ),
+                barGroups: display.asMap().entries.map((e) {
+                  final d = e.value;
+                  final color = d.total == 0
+                      ? AppTheme.stone100
+                      : AppTheme.sage500.withValues(alpha: 0.85);
+                  return BarChartGroupData(
+                    x: e.key,
+                    barRods: [
+                      BarChartRodData(
+                        toY: d.total.toDouble(),
+                        color: color,
+                        width: rangeDays <= 14
+                            ? 18
+                            : rangeDays <= 30
+                                ? 10
+                                : 6,
+                        borderRadius: BorderRadius.circular(4),
+                        backDrawRodData: BackgroundBarChartRodData(
+                          show: true,
+                          toY: maxY,
+                          color: AppTheme.stone100,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Category breakdown — sorted bars with percentage
+// ─────────────────────────────────────────────────────────────
+class _ExpenseCategoryBreakdown extends StatelessWidget {
+  final Map<String, int> categoryTotals;
+  final int rangeDays;
+
+  const _ExpenseCategoryBreakdown({
+    required this.categoryTotals,
+    required this.rangeDays,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final entries = categoryTotals.entries.where((e) => e.value > 0).toList()
+      ..sort((a, b) => b.value.compareTo(a.value));
+    final total = entries.fold(0, (s, e) => s + e.value);
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text('Per Kategori',
+                  style: Theme.of(context).textTheme.titleMedium),
+              const Spacer(),
+              Text('$rangeDays hari terakhir',
+                  style: Theme.of(context).textTheme.labelSmall),
+            ],
+          ),
+          const SizedBox(height: 12),
+          if (entries.isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Center(
+                child: Text(
+                  'Belum ada data pengeluaran.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppTheme.stone500),
+                ),
+              ),
+            )
+          else
+            ...entries.map((e) {
+              final pct = total > 0 ? e.value / total * 100 : 0.0;
+              final color = categoryColor(e.key);
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: 8, height: 8,
+                          decoration: BoxDecoration(
+                              color: color, shape: BoxShape.circle),
+                        ),
+                        const SizedBox(width: 6),
+                        Expanded(
+                          child: Text(e.key,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w600)),
+                        ),
+                        Text(formatRupiah(e.value),
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w700)),
+                        const SizedBox(width: 6),
+                        SizedBox(
+                          width: 42,
+                          child: Text(
+                            '${pct.toStringAsFixed(0)}%',
+                            textAlign: TextAlign.right,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelSmall
+                                ?.copyWith(color: AppTheme.stone500),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(6),
+                      child: LinearProgressIndicator(
+                        value: pct / 100,
+                        minHeight: 6,
+                        backgroundColor: AppTheme.stone200,
+                        valueColor: AlwaysStoppedAnimation(color),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+        ],
+      ),
+    );
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Full expense log — grouped by date, newest first
+// ─────────────────────────────────────────────────────────────
+class _ExpenseFullLog extends StatelessWidget {
+  final ExpenseProvider exp;
+  const _ExpenseFullLog({required this.exp});
+
+  @override
+  Widget build(BuildContext context) {
+    final dates = exp.datesWithEntries.reversed.toList();
+
+    if (dates.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: AppTheme.sage200),
+        ),
+        child: Center(
+          child: Column(
+            children: [
+              const Text('🧾', style: TextStyle(fontSize: 32)),
+              const SizedBox(height: 8),
+              Text('Belum ada log pengeluaran.',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium
+                      ?.copyWith(color: AppTheme.stone500)),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppTheme.sage200),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
+            child: Text('Log Lengkap',
+                style: Theme.of(context).textTheme.titleMedium),
+          ),
+          const Divider(height: 1),
+          ...dates.map((date) {
+            final entries = exp.entriesForDate(date);
+            final dayTotal = exp.totalForDate(date);
+            final isToday = _sameDay(date, DateTime.now());
+
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+                  color: AppTheme.sage100.withValues(alpha: 0.6),
+                  child: Row(
+                    children: [
+                      Text(
+                        isToday
+                            ? 'Hari Ini'
+                            : DateFormat('EEEE, d MMM yyyy').format(date),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyLarge
+                            ?.copyWith(fontWeight: FontWeight.w600),
+                      ),
+                      const Spacer(),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 9, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: AppTheme.sage600.withValues(alpha: 0.1),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: AppTheme.sage600.withValues(alpha: 0.35)),
+                        ),
+                        child: Text(
+                          formatRupiah(dayTotal),
+                          style: const TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: AppTheme.sage700,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                ...entries.reversed.map(
+                  (e) => Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 6, 16, 6),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 6, height: 6,
+                          margin: const EdgeInsets.only(right: 10),
+                          decoration: BoxDecoration(
+                            color: categoryColor(e.category),
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                e.name,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w500),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                e.category,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.copyWith(color: AppTheme.stone500),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                          formatRupiah(e.amount),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelSmall
+                              ?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: AppTheme.stone700,
+                              ),
+                        ),
+                        const SizedBox(width: 6),
+                        Text(
+                          DateFormat('HH:mm').format(e.date),
+                          style: Theme.of(context).textTheme.labelSmall,
+                        ),
+                        const SizedBox(width: 4),
+                        InkWell(
+                          onTap: () {
+                            exp.deleteEntry(e.id);
                           },
                           child: const Icon(Icons.close_rounded,
                               size: 14, color: AppTheme.stone300),

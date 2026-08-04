@@ -1,0 +1,11 @@
+# analysis_options.yaml - mengatur aturan static analysis & linting
+# tujuannya supaya kode kita bebas dari syntax deprecated & konsisten gaya penulisan
+include: package:flutter_lints/flutter.yaml # mewarisi ruleset resmi dari tim Flutter
+
+linter:
+  rules:
+    prefer_const_constructors: true # memaksa pakai const widget kalau memungkinkan (performa lebih baik)
+    prefer_const_literals_to_create_immutables: true # list/map literal const kalau bisa
+    avoid_print: false # kita izinkan print() karena masih tahap belajar & debugging
+    sort_child_properties_last: true # properti "child"/"children" diletakkan paling akhir (readability)
+    always_declare_return_types: true # setiap function wajib deklarasi tipe kembalian secara eksplisit
