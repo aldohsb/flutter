@@ -1,0 +1,12 @@
+# Mewarisi seluruh aturan lint standar resmi dari package flutter_lints
+include: package:flutter_lints/flutter.yaml
+
+# Penyesuaian tambahan aturan linter agar kode tetap rapi dan modern
+linter:
+  rules:
+    # Paksa pakai const constructor kalau memungkinkan, demi performa rebuild
+    prefer_const_constructors: true
+    # Paksa literal list/map immutable pakai const juga
+    prefer_const_literals_to_create_immutables: true
+    # Larang print() tertinggal di kode produksi
+    avoid_print: true

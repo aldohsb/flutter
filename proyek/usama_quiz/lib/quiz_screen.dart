@@ -194,7 +194,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       question.promptText,
                       style: isPromptJapanese
                           ? AppTheme.jpTextStyle(fontSize: 56, color: AppColors.sageDeep)
-                          : TextStyle(
+                          : const TextStyle(
                               fontSize: 40,
                               fontWeight: FontWeight.w800,
                               color: AppColors.sageDeep,

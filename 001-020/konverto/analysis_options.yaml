@@ -1,2 +1,0 @@
-# Terapkan seluruh rule lint standar Flutter agar kode konsisten & terhindar dari syntax usang
-include: package:flutter_lints/flutter.yaml

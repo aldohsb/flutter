@@ -369,7 +369,7 @@ class _AddExpenseSheetState extends State<_AddExpenseSheet>
                 ),
                 const SizedBox(height: 10),
                 DropdownButtonFormField<String>(
-                  value: category,
+                  initialValue: category,
                   decoration: const InputDecoration(labelText: 'Kategori'),
                   items: kExpenseCategories
                       .map((c) => DropdownMenuItem(value: c, child: Text(c)))

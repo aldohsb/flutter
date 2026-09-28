@@ -1,0 +1,21 @@
+name: listivo
+description: "Listivo - aplikasi daftar tugas harian yang ringan dan fokus."
+publish_to: 'none' # mencegah proyek ini ter-publish tidak sengaja ke pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.10.0 <4.0.0' # Dart 3.10+ sesuai bundel Flutter 3.44 stable
+  flutter: '>=3.44.0' # Flutter stable terbaru, sudah Material 3 by default
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8 # pelengkap ikon gaya iOS, dipakai sebagai fallback saja
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0 # aturan lint standar resmi tim Flutter, versi terbaru
+
+flutter:
+  uses-material-design: true # mengaktifkan akses ke seluruh ikon bawaan Material

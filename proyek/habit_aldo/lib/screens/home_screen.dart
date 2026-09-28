@@ -444,7 +444,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                   final visible = settings.isVisible(key);
                   return SwitchListTile(
                     contentPadding: EdgeInsets.zero,
-                    activeColor: AppTheme.sage600,
+                    activeThumbColor: AppTheme.sage600,
                     secondary: Icon(icons[key], color: AppTheme.sage600),
                     title: Text(label,
                         style: Theme.of(ctx).textTheme.bodyLarge),

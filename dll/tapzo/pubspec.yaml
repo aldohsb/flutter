@@ -1,0 +1,31 @@
+# Nama package/project, dipakai sebagai identitas internal Flutter
+name: tapzo
+# Deskripsi singkat project, muncul di beberapa tooling Flutter
+description: "Tapzo - aplikasi counter modern dengan animasi tap interaktif."
+# Project ini tidak akan dipublish ke pub.dev
+publish_to: 'none'
+# Versi aplikasi: versi.build-number, dipakai saat build ke Play Store/exe
+version: 1.0.0+1
+
+# Batas versi Dart SDK yang kompatibel, memakai rentang stabil terbaru
+environment:
+  sdk: '>=3.5.0 <4.0.0'
+
+# Daftar dependency runtime aplikasi
+dependencies:
+  flutter:
+    sdk: flutter
+  # Kumpulan ikon iOS-style tambahan, tetap disertakan sebagai standar Flutter
+  cupertino_icons: ^1.0.8
+
+# Daftar dependency khusus development (testing & linting), tidak ikut ke build rilis
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # Kumpulan aturan lint resmi tim Flutter, versi terbaru per 2026
+  flutter_lints: ^5.0.0
+
+# Konfigurasi flutter tambahan
+flutter:
+  # Aktifkan penggunaan Material Design icon font bawaan
+  uses-material-design: true
